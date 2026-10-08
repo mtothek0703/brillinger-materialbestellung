@@ -17,13 +17,14 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="1" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
 const CATEGORIES=['Alle','Küche','Fahrzeuge','Versand','Werkzeug','Allgemein'];
-let activeCategory='Alle';
+let activeCategory=null;
 function renderProducts(){
-  const filtered=activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
+  const filtered=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
   $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
-  $('catalog-category-label').textContent=activeCategory==='Alle'?'Alle Kategorien':activeCategory;
+  $('catalog-category-label').textContent=activeCategory===null?'Bitte Kategorie auswählen':activeCategory==='Alle'?'Alle Kategorien':activeCategory;
   $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top"><span class="product-symbol" aria-hidden="true">${p.symbol}</span><span class="product-category">${p.category}</span></div><div class="product-body"><p class="sku">${p.id}</p><h3>${p.name}</h3><p class="description">${p.description}</p><div class="unit">${p.unit}</div><div class="product-action">${quantityControl(p,1,'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
-  if(!filtered.length)$('products').innerHTML='<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
+  if(activeCategory===null)$('products').innerHTML='';
+  else if(!filtered.length)$('products').innerHTML='<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
 }
 renderProducts();
 
