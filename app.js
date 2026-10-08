@@ -1,6 +1,6 @@
 'use strict';
 const PRODUCTS = Object.freeze([
-  {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'},
+  {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',image:'milch-packung.svg',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'},
   {id:'BM-008',name:'Hafermilch',category:'Küche',symbol:'🌾',description:'Haferdrink als pflanzliche Alternative zu Milch.',unit:'Packung à 6 Stück (je 1 Liter)'}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
@@ -17,7 +17,7 @@ function renderProducts(){
   const filtered=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
   $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
 
-  $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top"><span class="product-symbol" aria-hidden="true">${p.symbol}</span><span class="product-category">${p.category}</span></div><div class="product-body"><p class="sku">${p.id}</p><h3>${p.name}</h3><p class="description">${p.description}</p><div class="unit">${p.unit}</div><div class="product-action">${quantityControl(p,1,'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
+  $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top">${p.image?`<img class="product-image" src="${p.image}" alt="${p.name} – Produktabbildung">`:`<span class="product-symbol" aria-hidden="true">${p.symbol}</span>`}<span class="product-category">${p.category}</span></div><div class="product-body"><p class="sku">${p.id}</p><h3>${p.name}</h3><p class="description">${p.description}</p><div class="unit">${p.unit}</div><div class="product-action">${quantityControl(p,1,'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
   if(activeCategory===null)$('products').innerHTML='';
   else if(!filtered.length)$('products').innerHTML='<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
 }
