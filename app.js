@@ -21,7 +21,7 @@ let activeCategory=null;
 function renderProducts(){
   const filtered=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
   $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
-  $('catalog-category-label').textContent=activeCategory===null?'Bitte Kategorie auswählen':activeCategory==='Alle'?'Alle Kategorien':activeCategory;
+
   $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top"><span class="product-symbol" aria-hidden="true">${p.symbol}</span><span class="product-category">${p.category}</span></div><div class="product-body"><p class="sku">${p.id}</p><h3>${p.name}</h3><p class="description">${p.description}</p><div class="unit">${p.unit}</div><div class="product-action">${quantityControl(p,1,'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
   if(activeCategory===null)$('products').innerHTML='';
   else if(!filtered.length)$('products').innerHTML='<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
