@@ -6,7 +6,7 @@ const PRODUCTS = Object.freeze([
   {id:'BM-004',name:'Einmalhandschuhe M',category:'Allgemein',symbol:'🧤',description:'Puderfreie Nitrilhandschuhe in Größe M.',unit:'Box à 100 Stück'},
   {id:'BM-005',name:'Papierhandtücher',category:'Allgemein',symbol:'🧻',description:'Zweilagige Papierhandtücher mit Z-Faltung für passende Spender.',unit:'Karton à 3.000 Blatt'},
   {id:'BM-006',name:'Müllbeutel 60 Liter',category:'Allgemein',symbol:'♻️',description:'Reißfeste Müllbeutel für die Entsorgung im Arbeitsalltag.',unit:'Rolle à 20 Stück'},
-  {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 1 Liter'}
+  {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
 const cart=new Map();
