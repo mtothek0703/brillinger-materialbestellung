@@ -1,11 +1,5 @@
 'use strict';
 const PRODUCTS = Object.freeze([
-  {id:'BM-001',name:'Kopierpapier A4',category:'Allgemein',symbol:'📄',description:'Weißes Universalpapier, 80 g/m². Für Drucker und Kopierer.',unit:'Packung à 500 Blatt'},
-  {id:'BM-002',name:'Kugelschreiber blau',category:'Allgemein',symbol:'🖊️',description:'Blau schreibende Kugelschreiber für den täglichen Einsatz.',unit:'Packung à 10 Stück'},
-  {id:'BM-003',name:'Haftnotizen',category:'Allgemein',symbol:'🗒️',description:'Gelbe Haftnotizen, 76 × 76 mm. Für kurze Notizen und Erinnerungen.',unit:'Packung à 12 Blöcke'},
-  {id:'BM-004',name:'Einmalhandschuhe M',category:'Allgemein',symbol:'🧤',description:'Puderfreie Nitrilhandschuhe in Größe M.',unit:'Box à 100 Stück'},
-  {id:'BM-005',name:'Papierhandtücher',category:'Allgemein',symbol:'🧻',description:'Zweilagige Papierhandtücher mit Z-Faltung für passende Spender.',unit:'Karton à 3.000 Blatt'},
-  {id:'BM-006',name:'Müllbeutel 60 Liter',category:'Allgemein',symbol:'♻️',description:'Reißfeste Müllbeutel für die Entsorgung im Arbeitsalltag.',unit:'Rolle à 20 Stück'},
   {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
