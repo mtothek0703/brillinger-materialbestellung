@@ -59,3 +59,7 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 .product-symbol{font-size:65px;line-height:1}
 .product-body{align-self:center}
 @media(max-width:720px){.product{grid-template-columns:118px minmax(0,1fr)}.product-top,.product-top:has(.product-image){min-height:135px;height:auto;padding:7px}.product-image{width:105px;height:118px}.product-symbol{font-size:48px}}
+
+/* Warenkorb unabhängig von der Artikelliste scrollbar */
+@media(min-width:721px){#warenkorb{position:sticky;top:16px;align-self:start;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin}#warenkorb:focus-within{scroll-behavior:auto}}
+@media(max-width:720px){#warenkorb{position:relative;top:auto;max-height:min(80dvh,720px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}}
