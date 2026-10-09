@@ -32,3 +32,12 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 .product-search input{display:block;width:100%;max-width:600px;border:1px solid #bccdd7;border-radius:9px;padding:12px 14px;font-size:15px;background:#fff;color:#142c38}
 .product-search input:focus{outline:2px solid #008ab8;outline-offset:2px}
 @media(max-width:720px){.product-search{padding:14px 16px}}
+
+/* Artikel übersichtlich untereinander statt in zwei Spalten */
+.products{grid-template-columns:minmax(0,1fr);gap:12px}
+.product{display:grid;grid-template-columns:115px minmax(0,1fr);align-items:stretch}
+.product-top,.product-top:has(.product-image){height:auto;min-height:112px;padding:12px;flex-direction:column;justify-content:center}
+.product-body{padding:14px 16px}
+.product-action{flex-direction:row;align-items:center;flex-wrap:wrap}
+.product-action .primary{width:auto;flex:0 1 auto;padding:9px 16px}
+@media(max-width:720px){.products{grid-template-columns:minmax(0,1fr);gap:10px}.product{grid-template-columns:90px minmax(0,1fr)}.product-top,.product-top:has(.product-image){height:auto;min-height:105px;padding:8px}.product-body{padding:12px}.product-action{flex-direction:row;flex-wrap:wrap}.product-action .primary{width:auto;flex:0 1 auto;padding:9px 12px}}
