@@ -45,7 +45,7 @@ document.getElementById('shop-refresh').addEventListener('click',async()=>{
 });
 /* Übersicht: Nur bestätigte Restmüll-Abholungen erfassen. Lokaler Speicher. */
 const pickupStorageKey='brillinger-restmuell-abholungen-v1';
-function getPickups(){try{const entries=JSON.parse(localStorage.getItem(pickupStorageKey)||'[]');return Array.isArray(entries)?entries.filter(x=>/^\\d{4}-\\d{2}-\\d{2}$/.test(x)):[];}catch{return [];}}
+function getPickups(){try{const entries=JSON.parse(localStorage.getItem(pickupStorageKey)||'[]');return Array.isArray(entries)?entries.filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)):[];}catch{return [];}}
 function renderPickups(){
  const entries=getPickups().sort().reverse();
  document.getElementById('pickup-total').textContent=entries.length;
@@ -62,7 +62,7 @@ pickupDate.max=currentLocalDate();
 document.getElementById('pickup-form').addEventListener('submit',event=>{
  event.preventDefault();
  const date=pickupDate.value;
- if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(date)||date>currentLocalDate()){alert('Bitte ein gültiges Datum bis einschließlich heute wählen.');return;}
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date>currentLocalDate()){alert('Bitte ein gültiges Datum bis einschließlich heute wählen.');return;}
  const entries=getPickups();if(entries.includes(date)){alert('Für dieses Datum wurde bereits eine Abholung erfasst.');return;}
  entries.push(date);
  try{localStorage.setItem(pickupStorageKey,JSON.stringify(entries));renderPickups();}catch{alert('Speichern auf diesem Gerät nicht möglich.');}
