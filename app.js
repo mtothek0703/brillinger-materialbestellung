@@ -15,7 +15,7 @@ const PRODUCTS = Object.freeze([
   {id:'BM-019',name:"Spülmaschinensalz",category:"Küche",symbol:"🧂",unit:"1 Stück",supplier:"BüroBoss",supplierArticleNumber:"445860500"},
   {id:'BM-020',name:"Spülmittel",category:"Küche",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-021',name:"Spültabs",category:"Küche",symbol:"🫧",unit:"1 Packung",supplier:"BüroBoss",supplierArticleNumber:"445871100"},
-  {id:'BM-022',name:"Batterien",category:"Allgemein",symbol:"🔋",unit:"1 Packung"},
+  {id:'BM-022',name:"Batterien",category:"Allgemein",symbol:"🔋",unit:"1 Packung",supplier:"BüroBoss"},
   {id:'BM-023',name:"Desinfektionsreiniger",category:"Hygiene",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-024',name:"Flüssigseife",category:"Hygiene",symbol:"🧼",image:'https://commons.wikimedia.org/wiki/Special:FilePath/Savons%20liquide.jpg?width=400',unit:"1 Stück"},
   {id:'BM-025',name:"Kleber (UHU)",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
