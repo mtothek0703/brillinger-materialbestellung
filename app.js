@@ -2,7 +2,7 @@
 const PRODUCTS = Object.freeze([
   {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',image:'milch-packung.svg',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'},
   {id:'BM-008',name:'Hafermilch',category:'Küche',symbol:'🌾',description:'Haferdrink als pflanzliche Alternative zu Milch.',unit:'Packung à 6 Stück (je 1 Liter)'},
-  {id:'BM-009',name:'Glasreiniger',category:'Allgemein',symbol:'🧴',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Spray%20cleaner.jpg?width=400',unit:'1 Packung à 1 Liter',supplierArticleNumber:'445860800'},
+  {id:'BM-009',name:'Glasreiniger',category:'Allgemein',symbol:'🧴',image:'https://commons.wikimedia.org/wiki/Special:FilePath/Spray%20cleaner.jpg?width=400',unit:'1 Packung à 1 Liter',supplier:'BüroBoss',supplierArticleNumber:'445860800'},
   {id:'BM-010',name:"AdBlue (10 Liter)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://www.sonderpreis-baumarkt.de/on/demandware.static/-/Sites-spb_master/default/dw6416b507/01/19/28/47/1192847.jpg',unit:"1 Kanister à 10 Liter"},
   {id:'BM-011',name:"Scheibenreiniger (Sommer)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://panorama24.eu/cdn/shop/files/1200x1200-einzel.jpg?v=1696275275',unit:"1 Kanister à 5 Liter"},
   {id:'BM-012',name:"Scheibenreiniger (Winter)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://www.atp-autoteile.de/media/h/E37C5AD087A570EF958040AB8115DE6E4041D184/product/2000x2000/1421918-1-10813097-jpg.jpg',unit:"1 Kanister à 5 Liter"},
