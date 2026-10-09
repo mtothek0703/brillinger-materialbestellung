@@ -147,3 +147,18 @@ body.custom-entry-view .custom-entry-link{display:none}
  .desktop-shop-heading .eyebrow{font-size:17px}
  .desktop-shop-heading p:not(.eyebrow){font-size:13px}
 }
+
+/* PC: Suche und Kategorien kompakt direkt unter der Kopfzeile fixieren. */
+@media(min-width:721px){
+ main{padding-top:10px}
+ .mobile-sticky-controls{position:sticky;top:112px;z-index:100;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 14px;background:#f3f6f8;padding:8px 0 10px;margin-bottom:14px;border-bottom:1px solid var(--line);box-shadow:0 5px 12px #142c380d}
+ .mobile-sticky-controls .product-search{margin:0;padding:10px 16px}
+ .mobile-sticky-controls .product-search label{margin-bottom:5px;font-size:13px}
+ .mobile-sticky-controls .product-search input{max-width:none;padding:9px 12px;font-size:14px}
+ .mobile-sticky-controls .custom-entry-link{margin:0}
+ .mobile-sticky-controls .category-nav{grid-column:1/-1;margin:0;padding:10px 16px}
+ .mobile-sticky-controls .category-label{font-size:13px;margin-bottom:7px}
+ .mobile-sticky-controls .category-button{padding:7px 14px;font-size:13px}
+ #warenkorb{top:calc(112px + var(--desktop-controls-height,174px) + 16px);max-height:calc(100dvh - 112px - var(--desktop-controls-height,174px) - 32px);scroll-margin-top:calc(112px + var(--desktop-controls-height,174px) + 16px)}
+ #artikel,#sonderartikel{scroll-margin-top:calc(112px + var(--desktop-controls-height,174px) + 16px)}
+}
