@@ -16,10 +16,10 @@ const PRODUCTS = Object.freeze([
   {id:'BM-020',name:"Spülmittel",category:"Küche",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-021',name:"Spültabs",category:"Küche",symbol:"🫧",unit:"1 Packung"},
   {id:'BM-022',name:"Batterien",category:"Allgemein",symbol:"🔋",unit:"1 Packung"},
-  {id:'BM-023',name:"Desinfektionsreiniger",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
-  {id:'BM-024',name:"Flüssigseife",category:"Allgemein",symbol:"🧼",image:'https://commons.wikimedia.org/wiki/Special:FilePath/Savons%20liquide.jpg?width=400',unit:"1 Stück"},
+  {id:'BM-023',name:"Desinfektionsreiniger",category:"Hygiene",symbol:"🧴",unit:"1 Stück"},
+  {id:'BM-024',name:"Flüssigseife",category:"Hygiene",symbol:"🧼",image:'https://commons.wikimedia.org/wiki/Special:FilePath/Savons%20liquide.jpg?width=400',unit:"1 Stück"},
   {id:'BM-025',name:"Kleber (UHU)",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
-  {id:'BM-026',name:"Kosmetikbeutel",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
+  {id:'BM-026',name:"Kosmetikbeutel",category:"Hygiene",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-027',name:"Rohrreiniger",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
   {id:"BM-028",name:"Kabelbinder klein",category:"Allgemein",symbol:"🔗",unit:"1 Packung = 50 Stück"},
   {id:"BM-029",name:"Kabelbinder groß (7,6 × 450 mm)",category:"Allgemein",symbol:"🔗",unit:"1 Packung = 100 Stück"},
@@ -73,7 +73,7 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
-const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Küche','Versand'];
+const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Hygiene','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
 $('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
