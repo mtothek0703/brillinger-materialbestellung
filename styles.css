@@ -41,3 +41,8 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 .product-action{flex-direction:row;align-items:center;flex-wrap:wrap}
 .product-action .primary{width:auto;flex:0 1 auto;padding:9px 16px}
 @media(max-width:720px){.products{grid-template-columns:minmax(0,1fr);gap:10px}.product{grid-template-columns:90px minmax(0,1fr)}.product-top,.product-top:has(.product-image){height:auto;min-height:105px;padding:8px}.product-body{padding:12px}.product-action{flex-direction:row;flex-wrap:wrap}.product-action .primary{width:auto;flex:0 1 auto;padding:9px 12px}}
+
+/* Brillinger-Logo im Kopfbereich etwas größer */
+.brand-logo{width:250px;max-width:100%;height:auto}
+@media(max-width:720px){.brand-logo{width:205px;max-width:58vw}}
+@media(max-width:420px){.brand-logo{width:185px;max-width:58vw}}
