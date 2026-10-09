@@ -32,13 +32,16 @@ function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
 const CATEGORIES=['Alle','Allgemein','Fahrzeuge','Küche','Versand','Werkzeug'];
 let activeCategory=null;
+let searchTerm='';
+$('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
 function renderProducts(){
-  const filtered=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
+  const categoryProducts=searchTerm?PRODUCTS:activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
+  const filtered=categoryProducts.filter(p=>!searchTerm||[p.name,p.category,p.unit].some(value=>value.toLocaleLowerCase('de').includes(searchTerm)));
   $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
 
   $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top">${p.image?`<img class="product-image" src="${p.image}" alt="${p.name} – Produktabbildung">`:`<span class="product-symbol" aria-hidden="true">${p.symbol}</span>`}</div><div class="product-body"><h3>${p.name}</h3><div class="unit">${p.unit}</div>${p.min?`<div class="unit">Mindestbestellmenge: ${p.min}</div>`:''}<div class="product-action">${quantityControl(p,minimum(p),'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
-  if(activeCategory===null)$('products').innerHTML='';
-  else if(!filtered.length)$('products').innerHTML='<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
+  if(activeCategory===null&&!searchTerm)$('products').innerHTML='';
+  else if(!filtered.length)$('products').innerHTML=searchTerm?'<p class="category-empty">Keine passenden Artikel gefunden.</p>':'<p class="category-empty">In dieser Kategorie sind noch keine Artikel hinterlegt.</p>';
 }
 renderProducts();
 
