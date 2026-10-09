@@ -231,3 +231,22 @@ body.custom-entry-view .custom-entry-link{display:none}
 .shop-refresh{appearance:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid #dce5eb;background:#eef5f8;color:#005c80;border-radius:10px;font-size:27px;line-height:1;width:40px;height:40px;flex:none;cursor:pointer}
 .shop-refresh:disabled{opacity:.65}
 @media(max-width:720px){.shop-refresh{width:34px;height:36px;font-size:24px}.shop-start-link{max-width:100px}}
+
+/* Übersicht bestätigter Restmüll-Abholungen */
+#waste-overview-view{max-width:1050px;margin:0 auto;padding:38px 22px}
+#waste-overview-view[hidden]{display:none!important}
+#waste-overview-view h1{margin:4px 0 12px}
+#waste-overview-view>p{color:#607480;line-height:1.5}
+.pickup-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.pickup-stats>div{background:#fff;border:1px solid #dce5eb;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.pickup-stats strong{font-size:38px;color:#005c80}
+.pickup-stats span{font-size:14px;color:#607480}
+.pickup-form{background:#fff;border:1px solid #dce5eb;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.pickup-form h2{margin:0 0 4px}.pickup-form label{font-weight:600}
+.pickup-form input{font:inherit;padding:12px;border:1px solid #cad8e0;border-radius:9px;min-height:46px}
+.pickup-form button{cursor:pointer;min-height:44px}
+.pickup-list{background:#fff;border:1px solid #dce5eb;border-radius:14px;padding:8px 18px}
+.pickup-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e4ebef}
+.pickup-row:last-child{border-bottom:0}.pickup-row button{background:none;border:0;color:#005c80;font:inherit;cursor:pointer;padding:9px}
+#waste-overview-view .pickup-hint{font-size:13px;margin-top:18px}
+@media(max-width:720px){.pickup-stats>div{padding:16px}.pickup-stats strong{font-size:32px}}
