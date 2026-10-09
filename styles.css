@@ -63,3 +63,18 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 /* Warenkorb unabhängig von der Artikelliste scrollbar */
 @media(min-width:721px){#warenkorb{position:sticky;top:16px;align-self:start;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin}#warenkorb:focus-within{scroll-behavior:auto}}
 @media(max-width:720px){#warenkorb{position:relative;top:auto;max-height:min(80dvh,720px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}}
+
+/* Smartphone: Warenkorb als eigene Ansicht statt unter der Artikelliste */
+.mobile-back-to-shop{display:none}
+@media(max-width:720px){
+ body.mobile-cart-view .intro,
+ body.mobile-cart-view .product-search,
+ body.mobile-cart-view .category-nav,
+ body.mobile-cart-view #artikel{display:none!important}
+ body:not(.mobile-cart-view) #warenkorb{display:none!important}
+ body.mobile-cart-view #warenkorb{display:block!important;position:static;max-height:none;overflow:visible;min-width:0;width:100%;box-sizing:border-box}
+ body.mobile-cart-view .shop-layout{display:block!important}
+ body.mobile-cart-view main{min-height:calc(100dvh - 170px)}
+ .mobile-back-to-shop{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:11px 14px;border:1px solid #bfd0da;border-radius:10px;background:#f3f8fb;color:#075775;text-decoration:none;font-weight:700;font-size:14px}
+ body.mobile-cart-view .cart-link{background:#e1f2f8}
+}
