@@ -158,3 +158,17 @@ function updateMobileStickyOffset(){
 }
 window.addEventListener('resize',updateMobileStickyOffset);
 updateMobileStickyOffset();
+
+/* Sticky-Abstände auch bei umgebrochenen Kategorien aktuell halten. */
+function updateDesktopControlsOffset(){
+ const controls=document.querySelector('.mobile-sticky-controls');
+ if(controls)document.documentElement.style.setProperty('--desktop-controls-height',controls.getBoundingClientRect().height+'px');
+}
+window.addEventListener('resize',updateDesktopControlsOffset);
+if(typeof ResizeObserver!=='undefined'){
+ const stickyObserver=new ResizeObserver(()=>{updateMobileStickyOffset();updateDesktopControlsOffset();});
+ for(const element of [document.querySelector('header'),document.querySelector('.mobile-sticky-controls')]){
+  if(element)stickyObserver.observe(element);
+ }
+}
+updateDesktopControlsOffset();
