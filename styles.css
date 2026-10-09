@@ -90,3 +90,23 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 .custom-product input[type=number]{max-width:150px}
 .custom-product button{align-self:flex-start;margin-top:8px}
 @media(max-width:720px){.custom-product{padding:17px;margin-top:18px}.custom-product button{width:100%;text-align:center}}
+
+/* Kompakte, beim Scrollen sichtbare Smartphone-Navigation */
+@media(max-width:720px){
+ header{position:sticky;top:0;z-index:110;background:#fff;padding:8px 14px;box-shadow:0 2px 8px #142c3810}
+ .brand-logo{width:160px;max-width:50vw}
+ .cart-link{padding:8px 10px;border-radius:10px;background:#e4f2f8;font-size:17px}
+ .mobile-sticky-controls{position:sticky;top:var(--mobile-header-height,60px);z-index:100;background:#f3f6f8;padding:8px 0 9px;border-bottom:1px solid #dce5eb;box-shadow:0 5px 12px #142c380d;margin-bottom:12px}
+ main{padding-top:0}
+ .mobile-sticky-controls .intro{margin:0 0 7px;display:block}
+ .mobile-sticky-controls .eyebrow{font-size:14px;letter-spacing:.7px;margin:0 0 2px}
+ .mobile-sticky-controls .intro p:not(.eyebrow){font-size:11px;line-height:1.25}
+ .mobile-sticky-controls .product-search{padding:7px 10px;margin:0 0 7px;border-radius:10px}
+ .mobile-sticky-controls .product-search label{font-size:11px;margin:0 0 3px}
+ .mobile-sticky-controls .product-search input{padding:8px 10px;font-size:13px}
+ .mobile-sticky-controls .category-nav{margin:0;padding:5px 0}
+ .mobile-sticky-controls .category-label{font-size:11px;margin:0 0 4px}
+ .mobile-sticky-controls .category-filters{gap:5px}
+ .mobile-sticky-controls .category-filters button{padding:6px 9px;font-size:11px}
+ body.mobile-cart-view .mobile-sticky-controls{display:none!important}
+}
