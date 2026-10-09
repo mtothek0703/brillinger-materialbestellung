@@ -2,7 +2,7 @@
   "name": "Brillinger Haustechnik",
   "short_name": "Haustechnik",
   "id": "./",
-  "start_url": "./",
+  "start_url": "./haustechnik.html",
   "scope": "./",
   "display": "browser",
   "background_color": "#f3f6f8",
