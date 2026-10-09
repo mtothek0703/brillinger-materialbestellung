@@ -216,3 +216,8 @@ body.custom-entry-view .custom-entry-link{display:none}
 #order-form select:focus-visible{outline:2px solid #005c80;outline-offset:2px}
 #request-custom-product{display:block;width:100%;margin-top:10px;min-height:44px;cursor:pointer}
 .article-request-hint{font-size:13px;color:#607480;line-height:1.45;margin:8px 0 0}
+
+/* iOS-Safari zeigt hidden Optionen im Picker: Platzhalter deshalb außerhalb des select. */
+.select-placeholder-wrap{position:relative}
+.select-placeholder-wrap::after{content:attr(data-select-placeholder);position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#607480;pointer-events:none;white-space:nowrap;max-width:calc(100% - 55px);overflow:hidden;text-overflow:ellipsis}
+.select-placeholder-wrap.has-selection::after{display:none}
