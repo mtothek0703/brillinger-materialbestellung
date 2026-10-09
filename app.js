@@ -1,7 +1,8 @@
 'use strict';
 const PRODUCTS = Object.freeze([
   {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',image:'milch-packung.svg',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'},
-  {id:'BM-008',name:'Hafermilch',category:'Küche',symbol:'🌾',description:'Haferdrink als pflanzliche Alternative zu Milch.',unit:'Packung à 6 Stück (je 1 Liter)'}
+  {id:'BM-008',name:'Hafermilch',category:'Küche',symbol:'🌾',description:'Haferdrink als pflanzliche Alternative zu Milch.',unit:'Packung à 6 Stück (je 1 Liter)'},
+  {id:'BM-009',name:'Glasreiniger',category:'Allgemein',symbol:'🧴',unit:'1 Flasche à 1 Liter'}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
 const cart=new Map();
