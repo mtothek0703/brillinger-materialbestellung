@@ -43,6 +43,7 @@ const PRODUCTS = Object.freeze([
   {id:"BU-009",name:"Batterien Varta AA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
   {id:"BU-010",name:"Batterien Varta AAA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
   {id:"BU-011",name:"Gummiringe, 85 mm (Alco)",category:"Bürobedarf",symbol:"⭕",unit:"1 Packung = 1.000 g"},
+  {id:'BM-039',name:'Würfelzucker 500 g',category:'Küche',symbol:'🧊',unit:'1 Packung à 500 g'},
   {id:'VS-001',name:"Kartonagen 600×400×300 mm (1)",category:'Versand',symbol:'📦',unit:"1 Palette = 220 Stück",min:1},
   {id:'VS-002',name:"Kartonagen 400×300×200 mm (2)",category:'Versand',symbol:'📦',unit:"1 Palette = 720 Stück",min:1},
   {id:'VS-003',name:"Kartonagen 310×230×100–160 mm (3)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1},
