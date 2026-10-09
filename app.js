@@ -149,3 +149,11 @@ document.addEventListener('change',event=>{
  if(!amount){event.target.value=p.amount;notify('Bitte eine gültige Menge eingeben.');return;}
  p.amount=amount;invalidateOrder();renderCart();
 });
+
+/* Abstand der fixierten Suche dynamisch an die Headerhöhe anpassen. */
+function updateMobileStickyOffset(){
+  const header=document.querySelector('header');
+  if(header)document.documentElement.style.setProperty('--mobile-header-height',header.getBoundingClientRect().height+'px');
+}
+window.addEventListener('resize',updateMobileStickyOffset);
+updateMobileStickyOffset();
