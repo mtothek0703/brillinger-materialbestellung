@@ -255,3 +255,6 @@ body.custom-entry-view .custom-entry-link{display:none}
 .home-refresh{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding:11px 22px;border:1px solid #bfd1dc;border-radius:12px;background:#fff;color:#005c80;font:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px #142c3810}
 .home-refresh:hover,.home-refresh:focus-visible{background:#eaf3f8;border-color:#005c80}
 .home-refresh:disabled{opacity:.65}
+
+/* Kompakter Aktualisieren-Button auf der Startseite */
+.home-refresh{margin-top:12px;padding:6px 12px;border-radius:9px;font-size:12px;gap:4px;min-height:30px;box-shadow:none}
