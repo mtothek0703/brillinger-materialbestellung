@@ -39,8 +39,6 @@ const PRODUCTS = Object.freeze([
   {id:"BU-006",name:"Tacker-Heftzange",category:"Bürobedarf",symbol:"📎",unit:"1 Stück"},
   {id:"BU-007",name:"Laminierfolie, klein, DIN A5",category:"Bürobedarf",symbol:"📄",unit:"1 Packung = 100 Stück"},
   {id:"BU-008",name:"Laminierfolie, groß, DIN A4",category:"Bürobedarf",symbol:"📄",unit:"1 Packung = 100 Stück"},
-  {id:"BU-009",name:"Batterien Varta AA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
-  {id:"BU-010",name:"Batterien Varta AAA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
   {id:"BU-011",name:"Gummiringe, 85 mm (Alco)",category:"Bürobedarf",symbol:"⭕",unit:"1 Packung = 1.000 g"},
   {id:'BM-039',name:'Würfelzucker 500 g',category:'Küche',symbol:'🧊',unit:'1 Packung à 500 g'},
   {id:'VS-001',name:"Kartonagen 600×400×300 mm (1)",category:'Versand',symbol:'📦',unit:"1 Palette = 220 Stück",min:1},
