@@ -127,3 +127,23 @@ body.custom-entry-view .custom-entry-link{display:none}
  .custom-entry-link{display:flex;width:100%;box-sizing:border-box;margin:5px 0 8px;padding:10px;font-size:13px}
  body.custom-entry-view .custom-product{margin-top:14px}
 }
+
+/* PC: Shop-Titel neben dem Logo und dauerhaft sichtbare Kopfzeile. */
+.desktop-shop-heading{display:none}
+@media(min-width:721px){
+ header{position:sticky;top:0;z-index:110;height:112px;background:#fff;box-shadow:0 2px 8px #142c3810}
+ header .brand{flex:0 0 250px}
+ .desktop-shop-heading{display:block;flex:1;min-width:0}
+ .desktop-shop-heading .eyebrow{font-size:20px;letter-spacing:1px;margin:0 0 6px}
+ .desktop-shop-heading p:not(.eyebrow){font-size:14px;line-height:1.4;color:#546a78;margin:0}
+ .mobile-sticky-controls .intro{display:none}
+ #warenkorb{top:128px;max-height:calc(100dvh - 144px);scroll-margin-top:128px}
+ #artikel,#sonderartikel{scroll-margin-top:128px}
+}
+@media(min-width:721px) and (max-width:1000px){
+ header{padding-left:20px;padding-right:20px;gap:16px}
+ header .brand{flex-basis:190px}
+ header .brand-logo{width:190px}
+ .desktop-shop-heading .eyebrow{font-size:17px}
+ .desktop-shop-heading p:not(.eyebrow){font-size:13px}
+}
