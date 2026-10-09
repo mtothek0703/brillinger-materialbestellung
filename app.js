@@ -8,7 +8,7 @@ const PRODUCTS = Object.freeze([
   {id:'BM-012',name:"Scheibenreiniger (Winter)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://www.atp-autoteile.de/media/h/E37C5AD087A570EF958040AB8115DE6E4041D184/product/2000x2000/1421918-1-10813097-jpg.jpg',unit:"1 Kanister à 5 Liter"},
   {id:'BM-013',name:"Geschirrtücher",category:"Küche",symbol:"🧽",unit:"1 Stück"},
   {id:'BM-014',name:"Klarspüler",category:"Küche",symbol:"🧴",unit:"1 Stück",supplier:"BüroBoss",supplierArticleNumber:"445914700"},
-  {id:'BM-015',name:"Mikrofasertücher",category:"Allgemein",symbol:"🧽",unit:"1 Stück"},
+  {id:'BM-015',name:"Vileda MicroTuff Universal Mikrofasertuch, 38 × 38 cm",category:"Allgemein",symbol:"🧽",unit:"1 Stück",supplierArticleNumber:"496056930"},
   {id:'BM-016',name:"Putzlappen",category:"Allgemein",symbol:"🧽",unit:"1 Stück"},
   {id:'BM-017',name:"Scheuermilch",category:"Küche",symbol:"🧴",image:'https://commons.wikimedia.org/wiki/Special:FilePath/Ahoi%20Blauwe%20Band%20Poets%20Creme.jpg?width=400',unit:"1 Stück"},
   {id:'BM-018',name:"Scheuerschwamm",category:"Küche",symbol:"🧽",unit:"Packung à 10 Stück"},
