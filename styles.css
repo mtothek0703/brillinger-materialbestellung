@@ -267,3 +267,10 @@ body.custom-entry-view .custom-entry-link{display:none}
 /* Normale Milch (BM-007): Produktbild etwas größer als andere Artikel. */
 .product-image.product-image-milk{width:195px;max-width:100%;height:190px}
 @media(max-width:720px){.product-image.product-image-milk{width:145px;max-width:100%;height:150px}}
+
+/* Artikelliste kompakter unterhalb der Kategorien; Hinweis direkt bei Überschrift. */
+#shop-view .shop-layout{margin-top:0}
+#shop-view #artikel{padding-top:0}
+#shop-view #catalog-title{margin:0 0 3px}
+#shop-view .product-image-disclaimer{margin:0 0 12px;font-size:13px;line-height:1.4;color:#607480}
+@media(max-width:720px){#shop-view .product-image-disclaimer{margin-bottom:9px}}
