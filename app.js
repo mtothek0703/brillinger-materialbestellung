@@ -11,7 +11,7 @@ const PRODUCTS = Object.freeze([
   {id:'BM-015',name:"Vileda MicroTuff Universal Mikrofasertuch, 38 × 38 cm",category:"Allgemein",symbol:"🧽",unit:"1 Stück",supplierArticleNumber:"496056930"},
   {id:'BM-016',name:"Putzlappen",category:"Allgemein",symbol:"🧽",image:"bilder/putzlappen-schwamm-foto.svg",unit:"1 Stück"},
   {id:'BM-017',name:"Scheuermilch",category:"Küche",symbol:"🧴",image:'bilder/scheuermilch-minel-neu.svg',unit:"1 Stück"},
-  {id:'BM-018',name:"Scheuerschwamm",category:"Küche",symbol:"🧽",unit:"Packung à 10 Stück"},
+  {id:'BM-018',name:"Scheuerschwamm",category:"Küche",symbol:"🧽",image:"bilder/scheuerschwamm-selex.svg",unit:"Packung à 10 Stück"},
   {id:'BM-019',name:"Spülmaschinensalz",category:"Küche",symbol:"🧂",unit:"1 Stück",supplier:"BüroBoss",supplierArticleNumber:"445860500"},
   {id:'BM-020',name:"Spülmittel",category:"Küche",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-021',name:"Spültabs",category:"Küche",symbol:"🫧",unit:"1 Packung",supplier:"BüroBoss",supplierArticleNumber:"445871100"},
