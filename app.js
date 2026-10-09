@@ -111,7 +111,7 @@ document.addEventListener('change',event=>{if(event.target.id.startsWith('pack-B
 document.addEventListener('change',event=>{const input=event.target;if(input.dataset.kind==='cart'){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.value=cart.get(input.dataset.id);return;}cart.set(input.dataset.id,amount);invalidateOrder();renderCart();}});
 $('order-form').addEventListener('input',invalidateOrder);
 function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Materialien bestellen:','',...[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `${amount} × ${p.name}${id==='BM-022'?' ('+batteryType+', '+batteryPackSize+'er-Pack)':id==='BM-025'?' ('+glueType+')':id==='BU-002'?' (Farbe: '+edding400Color+')':id==='BU-001'?' (Farbe: '+edding3000Color+')':cableTiePackSizes[id]?' ('+cableTiePackSizes[id]+' Stück je Packung)':''} – ${cableTiePackSizes[id]?'1 Packung = '+cableTiePackSizes[id]+' Stück':p.unit}${p.supplier?'\nLieferant: '+p.supplier:''}${p.supplierArticleNumber?'\nArtikelnummer: '+p.supplierArticleNumber:''}${p.orderContact?'\nBestellkontakt: '+p.orderContact:''}${p.orderNote?'\nBestellhinweis: '+p.orderNote:''}`;}).flatMap(item=>[item,'']),...customCart.map(p=>`${p.amount} × ${p.name} (Sonstiger Artikel)${p.details?'\nWeitere Angaben: '+p.details:''}`).flatMap(item=>[item,'']),'',`Bestellt von: ${name}`,'',`Standort / Bereich: ${department}`, ...(note?[ '', `Anmerkung: ${note}` ]:[]),''].filter(line=>line!==null).join('\n').replace(/\r?\n/g,'\r\n');}
-$('order-form').addEventListener('submit',event=>{event.preventDefault();if(!(cart.size+customCart.length))return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(input.dataset.id,amount);}const name=$('customer').value.trim();const department=$('department').value.trim();if(!name||!department){notify('Bitte Name und Standort / Bereich ausfüllen.');return;}const body=buildOrder(name,department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;window.location.href=`mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;notify('E-Mail vorbereitet. Bitte im E-Mail-Programm absenden.');});
+$('order-form').addEventListener('submit',event=>{event.preventDefault();if(!(cart.size+customCart.length))return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(input.dataset.id,amount);}const name=$('customer').value.trim();const site=$('site').value.trim();const department=$('department').value.trim();if(!name||!site||!department){notify('Bitte Name, Standort und Bereich ausfüllen.');return;}const body=buildOrder(name,site+' / '+department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;window.location.href=`mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;notify('E-Mail vorbereitet. Bitte im E-Mail-Programm absenden.');});
 $('copy-order').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('order-text').value);notify('Bestelltext kopiert.');}catch{$('order-text').focus();$('order-text').select();notify('Bitte den markierten Bestelltext manuell kopieren.');}});
 renderCart();
 
@@ -163,6 +163,23 @@ document.addEventListener('change',event=>{
  p.amount=amount;invalidateOrder();renderCart();
 });
 
+/* Fehlende Artikel auch ohne Warenkorb als eigenständige Anfrage senden. */
+$('request-custom-product').addEventListener('click',()=>{
+ const name=$('custom-product-name').value.trim();
+ const amount=quantity($('custom-product-amount').value);
+ const details=$('custom-product-details').value.trim();
+ if(!name||!amount){notify('Bitte Artikelbezeichnung und gültige Menge eingeben.');$('custom-product-name').focus();return;}
+ const customer=$('customer').value.trim();
+ const site=$('site').value.trim();
+ const department=$('department').value.trim();
+ const lines=['Hallo,','','ich möchte folgenden Artikel für den internen Bestellshop anfragen:','', 'Artikel: '+name,'Gewünschte Menge: '+amount,...(details?['Weitere Angaben: '+details]:[]),'',...(customer?['Angefragt von: '+customer]:[]),...(site?['Standort: '+site]:[]),...(department?['Bereich: '+department]:[]),'','Vielen Dank und freundliche Grüße'];
+ const body=lines.join('\r\n');
+ const subject='Artikelwunsch Brillinger – '+name.replace(/[\r\n]/g,' ');
+ $('order-text').value=body;
+ $('email-fallback').hidden=false;
+ window.location.href='mailto:'+RECIPIENT+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+ notify('Artikelwunsch vorbereitet. Bitte im E-Mail-Programm absenden.');
+});
 /* Abstand der fixierten Suche dynamisch an die Headerhöhe anpassen. */
 function updateMobileStickyOffset(){
   const header=document.querySelector('header');
