@@ -250,3 +250,8 @@ body.custom-entry-view .custom-entry-link{display:none}
 .pickup-row:last-child{border-bottom:0}.pickup-row button{background:none;border:0;color:#005c80;font:inherit;cursor:pointer;padding:9px}
 #waste-overview-view .pickup-hint{font-size:13px;margin-top:18px}
 @media(max-width:720px){.pickup-stats>div{padding:16px}.pickup-stats strong{font-size:32px}}
+
+/* Manuelles Aktualisieren auf der Facility-Management-Startseite. */
+.home-refresh{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding:11px 22px;border:1px solid #bfd1dc;border-radius:12px;background:#fff;color:#005c80;font:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px #142c3810}
+.home-refresh:hover,.home-refresh:focus-visible{background:#eaf3f8;border-color:#005c80}
+.home-refresh:disabled{opacity:.65}
