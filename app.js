@@ -113,3 +113,39 @@ function syncMobileShopView(){
 window.addEventListener('hashchange',syncMobileShopView);
 window.addEventListener('resize',syncMobileShopView);
 syncMobileShopView();
+
+
+/* Individuelle Artikel, die nicht im Katalog stehen. */
+$('custom-product-form').addEventListener('submit',event=>{
+ event.preventDefault();
+ const name=$('custom-product-name').value.trim();
+ const amount=quantity($('custom-product-amount').value);
+ const details=$('custom-product-details').value.trim();
+ if(!name||!amount){notify('Bitte Artikelbezeichnung und gültige Menge eingeben.');return;}
+ customCart.push({id:++customItemCounter,name,amount,details});
+ $('custom-product-form').reset();
+ $('custom-product-amount').value='1';
+ invalidateOrder();renderCart();notify(name+' zum Warenkorb hinzugefügt.');
+});
+document.addEventListener('click',event=>{
+ const button=event.target.closest('button');
+ if(!button)return;
+ const id=Number(button.dataset.customId||button.dataset.customRemove);
+ if(!id)return;
+ const index=customCart.findIndex(p=>p.id===id);
+ if(index<0)return;
+ if(button.dataset.customRemove){customCart.splice(index,1);}
+ else if(button.dataset.customStep){
+  customCart[index].amount=Math.max(1,Math.min(999,customCart[index].amount+Number(button.dataset.customStep)));
+ }
+ invalidateOrder();renderCart();
+});
+document.addEventListener('change',event=>{
+ const id=Number(event.target.dataset.customQuantity);
+ if(!id)return;
+ const p=customCart.find(item=>item.id===id);
+ if(!p)return;
+ const amount=quantity(event.target.value);
+ if(!amount){event.target.value=p.amount;notify('Bitte eine gültige Menge eingeben.');return;}
+ p.amount=amount;invalidateOrder();renderCart();
+});
