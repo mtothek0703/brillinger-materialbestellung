@@ -31,7 +31,7 @@ function minimum(product){return product.min||1;}
 function quantity(value){const number=Number(value);return Number.isInteger(number)&&number>=1&&number<=999?number:null;}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
-const CATEGORIES=['Alle','Küche','Fahrzeuge','Versand','Werkzeug','Allgemein'];
+const CATEGORIES=['Alle','Allgemein','Fahrzeuge','Küche','Versand','Werkzeug'];
 let activeCategory=null;
 function renderProducts(){
   const filtered=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
