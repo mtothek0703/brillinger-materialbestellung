@@ -80,7 +80,19 @@ function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellm
 const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Hygiene','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
-$('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
+const searchInput=$('article-search');
+const clearSearchButton=$('clear-article-search');
+function updateSearch(){
+ searchTerm=searchInput.value.trim().toLocaleLowerCase('de');
+ clearSearchButton.hidden=searchInput.value.length===0;
+ renderProducts();
+}
+searchInput.addEventListener('input',updateSearch);
+clearSearchButton.addEventListener('click',()=>{
+ searchInput.value='';
+ updateSearch();
+ searchInput.focus();
+});
 function renderProducts(){
   const categoryProducts=searchTerm?PRODUCTS:activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
   const filtered=categoryProducts.filter(p=>!searchTerm||[p.name,p.category,p.unit].some(value=>value.toLocaleLowerCase('de').includes(searchTerm))).sort((a,b)=>{const karton=n=>/^Kartonagen\b/.test(n.name)?Number(n.name.match(/\((\d+)\)\s*$/)?.[1]||0):null;const ka=karton(a),kb=karton(b);return ka!==null&&kb!==null?ka-kb:a.name.localeCompare(b.name,'de',{numeric:true,sensitivity:'base'});});
