@@ -3,9 +3,9 @@ const PRODUCTS = Object.freeze([
   {id:'BM-007',name:'Milch',category:'Küche',symbol:'🥛',image:'milch-packung.svg',description:'Milch für Kaffee und den täglichen Bedarf.',unit:'Packung à 12 Stück (je 1 Liter)'},
   {id:'BM-008',name:'Hafermilch',category:'Küche',symbol:'🌾',description:'Haferdrink als pflanzliche Alternative zu Milch.',unit:'Packung à 6 Stück (je 1 Liter)'},
   {id:'BM-009',name:'Glasreiniger',category:'Allgemein',symbol:'🧴',unit:'1 Flasche à 1 Liter'},
-  {id:'BM-010',name:"AdBlue (10 Liter)",category:"Fahrzeuge",symbol:"🚗",unit:"1 Kanister à 10 Liter"},
-  {id:'BM-011',name:"Scheibenreiniger (Sommer)",category:"Fahrzeuge",symbol:"🚗",unit:"1 Kanister à 5 Liter"},
-  {id:'BM-012',name:"Scheibenreiniger (Winter)",category:"Fahrzeuge",symbol:"🚗",unit:"1 Kanister à 5 Liter"},
+  {id:'BM-010',name:"AdBlue (10 Liter)",category:"Fahrzeugzubehör",symbol:"🚗",unit:"1 Kanister à 10 Liter"},
+  {id:'BM-011',name:"Scheibenreiniger (Sommer)",category:"Fahrzeugzubehör",symbol:"🚗",unit:"1 Kanister à 5 Liter"},
+  {id:'BM-012',name:"Scheibenreiniger (Winter)",category:"Fahrzeugzubehör",symbol:"🚗",unit:"1 Kanister à 5 Liter"},
   {id:'BM-013',name:"Geschirrtücher",category:"Küche",symbol:"🧽",unit:"1 Stück"},
   {id:'BM-014',name:"Klarspüler",category:"Küche",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-015',name:"Mikrofasertücher",category:"Allgemein",symbol:"🧽",unit:"1 Stück"},
@@ -50,7 +50,7 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
-const CATEGORIES=['Alle','Allgemein','Fahrzeuge','Küche','Versand','Werkzeug'];
+const CATEGORIES=['Alle','Allgemein','Fahrzeugzubehör','Küche','Versand','Werkzeug'];
 let activeCategory='Alle';
 let searchTerm='';
 $('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
