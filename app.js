@@ -9,17 +9,17 @@ const PRODUCTS = Object.freeze([
   {id:'VS-004',name:"Kartonagen 400×400×300 mm (4)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1},
   {id:'VS-005',name:"Kartonagen 240×200×100 mm (5)",category:'Versand',symbol:'📦',unit:"1 Palette = 600 Stück",min:1},
   {id:'VS-006',name:"Kartonagen 600×300×200 mm (6)",category:'Versand',symbol:'📦',unit:"1 Palette = 300 Stück",min:1},
-  {id:'VS-008',name:"Natronkraftpapier auf Rolle (90 g)",category:'Versand',symbol:'📦',unit:"Egal wie viele",min:10},
-  {id:'VS-009',name:"PVC-Klebeband, transp., 50 mm",category:'Versand',symbol:'📦',unit:"1 Karton = 36 Stück",min:3},
-  {id:'VS-010',name:"Luftpolstertasche 18/H 265×360 mm braun",category:'Versand',symbol:'📦',unit:"1 Pak = 100 Stück",min:6},
-  {id:'VS-011',name:"Begleitpapiertasche",category:'Versand',symbol:'📦',unit:"1 Pak = 1000 Stück",min:1},
-  {id:'VS-012',name:"DPD Express Klebeband",category:'Versand',symbol:'📦',unit:"1 Pak = 6 Stück",min:2},
-  {id:'VS-013',name:"Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm",category:'Versand',symbol:'📦',unit:"1 Karton = 50 Stück",min:1},
-  {id:'VS-014',name:"Stretchfolie klein",category:'Versand',symbol:'📦',unit:"1 Karton = 10 Rollen",min:1},
-  {id:'VS-015',name:"Stretchfolie groß",category:'Versand',symbol:'📦',unit:"1 Karton = 6 Rollen",min:1},
-  {id:'VS-016',name:"Umreifungsband Großrolle 12,7×0,5 mm",category:'Versand',symbol:'📦',unit:"1 Rolle",min:1},
-  {id:'VS-017',name:"Verschlusshülsen für Umreifungsband 13×28×0,5 mm",category:'Versand',symbol:'📦',unit:"1 Pak = 2000 Stück",min:1},
-  {id:'VS-018',name:"Handabroller (Versand)",category:'Versand',symbol:'📦',unit:"1 Stück",min:1}
+  {id:'VS-008',name:"Natronkraftpapier auf Rolle (90 g)",category:'Versand',symbol:'📦',image:'bilder/kraftpapier.svg',unit:"Egal wie viele",min:10},
+  {id:'VS-009',name:"PVC-Klebeband, transp., 50 mm",category:'Versand',symbol:'📦',image:'bilder/klebeband.svg',unit:"1 Karton = 36 Stück",min:3},
+  {id:'VS-010',name:"Luftpolstertasche 18/H 265×360 mm braun",category:'Versand',symbol:'📦',image:'bilder/luftpolstertasche.svg',unit:"1 Pak = 100 Stück",min:6},
+  {id:'VS-011',name:"Begleitpapiertasche",category:'Versand',symbol:'📦',image:'bilder/begleitpapiertasche.svg',unit:"1 Pak = 1000 Stück",min:1},
+  {id:'VS-012',name:"DPD Express Klebeband",category:'Versand',symbol:'📦',image:'bilder/dpd-klebeband.svg',unit:"1 Pak = 6 Stück",min:2},
+  {id:'VS-013',name:"Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm",category:'Versand',symbol:'📦',image:'bilder/haftetiketten.svg',unit:"1 Karton = 50 Stück",min:1},
+  {id:'VS-014',name:"Stretchfolie klein",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 10 Rollen",min:1},
+  {id:'VS-015',name:"Stretchfolie groß",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 6 Rollen",min:1},
+  {id:'VS-016',name:"Umreifungsband Großrolle 12,7×0,5 mm",category:'Versand',symbol:'📦',image:'bilder/umreifungsband.svg',unit:"1 Rolle",min:1},
+  {id:'VS-017',name:"Verschlusshülsen für Umreifungsband 13×28×0,5 mm",category:'Versand',symbol:'📦',image:'bilder/verschlusshuelsen.svg',unit:"1 Pak = 2000 Stück",min:1},
+  {id:'VS-018',name:"Handabroller (Versand)",category:'Versand',symbol:'📦',image:'bilder/handabroller.svg',unit:"1 Stück",min:1}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
 const cart=new Map();
