@@ -226,3 +226,8 @@ body.custom-entry-view .custom-entry-link{display:none}
 .shop-start-link{display:inline-flex;align-items:center;justify-content:center;color:#005c80;font-size:14px;font-weight:700;text-decoration:none;padding:10px 12px;border-radius:10px;background:#eef5f8;white-space:nowrap;margin-left:auto}
 .shop-start-link:hover,.shop-start-link:focus-visible{background:#dcecf3}
 @media(max-width:720px){.shop-start-link{font-size:12px;padding:9px 7px;white-space:normal;text-align:center;line-height:1.15;max-width:115px;flex-shrink:1;margin-left:auto}header{gap:7px}.brand-logo{max-width:100%}}
+
+/* Aktualisieren-Button für die iPhone-Homescreen-App. */
+.shop-refresh{appearance:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid #dce5eb;background:#eef5f8;color:#005c80;border-radius:10px;font-size:27px;line-height:1;width:40px;height:40px;flex:none;cursor:pointer}
+.shop-refresh:disabled{opacity:.65}
+@media(max-width:720px){.shop-refresh{width:34px;height:36px;font-size:24px}.shop-start-link{max-width:100px}}
