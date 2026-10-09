@@ -2,9 +2,9 @@
   "name": "Brillinger Facility Management",
   "short_name": "Facility Management",
   "id": "./",
-  "start_url": "./haustechnik.html",
+  "start_url": "./index.html#start",
   "scope": "./",
-  "display": "browser",
+  "display": "standalone",
   "background_color": "#f3f6f8",
   "theme_color": "#001b79",
   "icons": [
