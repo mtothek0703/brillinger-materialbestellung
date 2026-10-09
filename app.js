@@ -6,7 +6,7 @@ const PRODUCTS = Object.freeze([
   {id:'BM-010',name:"AdBlue (10 Liter)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://www.sonderpreis-baumarkt.de/on/demandware.static/-/Sites-spb_master/default/dw6416b507/01/19/28/47/1192847.jpg',unit:"1 Kanister à 10 Liter",supplier:"Amazon",orderNote:"Bei Amazon bestellen"},
   {id:'BM-011',name:"Scheibenreiniger (Sommer)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://panorama24.eu/cdn/shop/files/1200x1200-einzel.jpg?v=1696275275',unit:"1 Kanister à 5 Liter"},
   {id:'BM-012',name:"Scheibenreiniger (Winter)",category:"Fahrzeugzubehör",symbol:"🚗",image:'https://www.atp-autoteile.de/media/h/E37C5AD087A570EF958040AB8115DE6E4041D184/product/2000x2000/1421918-1-10813097-jpg.jpg',unit:"1 Kanister à 5 Liter"},
-  {id:'BM-013',name:"Geschirrtücher",category:"Küche",symbol:"🧽",unit:"1 Stück"},
+  {id:'BM-013',name:"Geschirrtücher",category:"Küche",symbol:"🧽",unit:"10 Stück"},
   {id:'BM-014',name:"Klarspüler",category:"Küche",symbol:"🧴",unit:"1 Stück",supplier:"BüroBoss",supplierArticleNumber:"445914700"},
   {id:'BM-015',name:"Vileda MicroTuff Universal Mikrofasertuch, 38 × 38 cm",category:"Allgemein",symbol:"🧽",unit:"1 Stück",supplierArticleNumber:"496056930"},
   {id:'BM-016',name:"Putzlappen",category:"Allgemein",symbol:"🧽",unit:"1 Stück"},
