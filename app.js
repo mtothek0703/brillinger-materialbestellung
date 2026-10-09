@@ -10,7 +10,7 @@ const PRODUCTS = Object.freeze([
   {id:'VS-005',name:"Kartonagen 240×200×100 mm (5)",category:'Versand',symbol:'📦',unit:"1 Palette = 600 Stück",min:1},
   {id:'VS-006',name:"Kartonagen 600×300×200 mm (6)",category:'Versand',symbol:'📦',unit:"1 Palette = 300 Stück",min:1},
   {id:'VS-007',name:"Natronkraftpapier auf Rolle 50 cm",category:'Versand',symbol:'📦',unit:"1 Karton = 2 Stück",min:1},
-  {id:'VS-008',name:"Natronkraftpapier auf Rolle für die neue Maschine (90 g)",category:'Versand',symbol:'📦',unit:"Egal wie viele",min:10},
+  {id:'VS-008',name:"Natronkraftpapier auf Rolle (90 g)",category:'Versand',symbol:'📦',unit:"Egal wie viele",min:10},
   {id:'VS-009',name:"PVC-Klebeband, transp., 50 mm",category:'Versand',symbol:'📦',unit:"1 Karton = 36 Stück",min:3},
   {id:'VS-010',name:"Luftpolstertasche 18/H 265×360 mm braun",category:'Versand',symbol:'📦',unit:"1 Pak = 100 Stück",min:6},
   {id:'VS-011',name:"Begleitpapiertasche",category:'Versand',symbol:'📦',unit:"1 Pak = 1000 Stück",min:1},
