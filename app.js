@@ -108,7 +108,8 @@ function syncMobileShopView(){
   const isCart=window.location.hash==='#warenkorb';
   const mobile=window.matchMedia('(max-width: 720px)').matches;
   document.body.classList.toggle('mobile-cart-view',mobile&&isCart);
-  if(mobile&&(isCart||window.location.hash==='#artikel'))window.scrollTo(0,0);
+  document.body.classList.toggle('custom-entry-view',window.location.hash==='#sonderartikel');
+  if((mobile&&(isCart||window.location.hash==='#artikel'))||window.location.hash==='#sonderartikel')window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',syncMobileShopView);
 window.addEventListener('resize',syncMobileShopView);
