@@ -100,3 +100,14 @@ function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Ma
 $('order-form').addEventListener('submit',event=>{event.preventDefault();if(!cart.size)return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(input.dataset.id,amount);}const name=$('customer').value.trim();const department=$('department').value.trim();if(!name||!department){notify('Bitte Name und Standort / Bereich ausfüllen.');return;}const body=buildOrder(name,department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;window.location.href=`mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;notify('E-Mail vorbereitet. Bitte im E-Mail-Programm absenden.');});
 $('copy-order').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('order-text').value);notify('Bestelltext kopiert.');}catch{$('order-text').focus();$('order-text').select();notify('Bitte den markierten Bestelltext manuell kopieren.');}});
 renderCart();
+
+/* Auf Smartphones zwischen Artikeln und Warenkorb wechseln. */
+function syncMobileShopView(){
+  const isCart=window.location.hash==='#warenkorb';
+  const mobile=window.matchMedia('(max-width: 720px)').matches;
+  document.body.classList.toggle('mobile-cart-view',mobile&&isCart);
+  if(mobile&&(isCart||window.location.hash==='#artikel'))window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',syncMobileShopView);
+window.addEventListener('resize',syncMobileShopView);
+syncMobileShopView();
