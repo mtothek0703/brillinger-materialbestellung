@@ -72,7 +72,7 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
-const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Küche','Versand','Werkzeug'];
+const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
 $('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
