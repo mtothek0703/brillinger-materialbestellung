@@ -46,3 +46,8 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
 .brand-logo{width:250px;max-width:100%;height:auto}
 @media(max-width:720px){.brand-logo{width:205px;max-width:58vw}}
 @media(max-width:420px){.brand-logo{width:185px;max-width:58vw}}
+
+/* Angabe des Batterietyps */
+.battery-label{display:block;font-size:12px;font-weight:700;margin:8px 0 5px}
+.battery-type{display:block;width:100%;max-width:300px;border:1px solid #bccdd7;border-radius:8px;padding:9px 11px;margin-bottom:12px;font:inherit;font-size:14px;background:#fff;color:#142c38}
+.battery-type:focus{outline:2px solid #008ab8;outline-offset:2px}
