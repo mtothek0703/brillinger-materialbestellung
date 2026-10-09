@@ -258,3 +258,8 @@ body.custom-entry-view .custom-entry-link{display:none}
 
 /* Kompakter Aktualisieren-Button auf der Startseite */
 .home-refresh{margin-top:12px;padding:6px 12px;border-radius:9px;font-size:12px;gap:4px;min-height:30px;box-shadow:none}
+
+/* Kompakter Refresh-Button oben rechts auf der Facility-Startseite */
+#home-view{position:relative}
+#home-view .home-refresh{position:absolute;top:14px;right:14px;margin:0;padding:5px 9px;min-height:28px;border-radius:8px;font-size:11px;font-weight:600;line-height:1.2;box-shadow:none;z-index:2}
+@media(max-width:720px){#home-view .home-refresh{top:10px;right:12px;padding:5px 8px;font-size:11px}}
