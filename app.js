@@ -21,6 +21,28 @@ const PRODUCTS = Object.freeze([
   {id:'BM-025',name:"Kleber (UHU)",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-026',name:"Kosmetikbeutel",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
   {id:'BM-027',name:"Rohrreiniger",category:"Allgemein",symbol:"🧴",unit:"1 Stück"},
+  {id:"BM-028",name:"Kabelbinder klein",category:"Allgemein",symbol:"🔗",unit:"1 Packung = 50 Stück"},
+  {id:"BM-029",name:"Kabelbinder groß (7,6 × 450 mm)",category:"Allgemein",symbol:"🔗",unit:"1 Packung = 100 Stück"},
+  {id:"BM-030",name:"Tageskontrollblätter (15-Minuten-Takt)",category:"Allgemein",symbol:"📋",unit:"50 Stück"},
+  {id:"BM-031",name:"Empfangsbestätigung",category:"Allgemein",symbol:"📄",unit:"17 Stück"},
+  {id:"BM-032",name:"Allplastik-Blitzbinder, 240 mm, rot",category:"Allgemein",symbol:"🔗",unit:"1 Karton = 1.000 Stück"},
+  {id:"BM-033",name:"Cuttermesser Wedo Safety Standard",category:"Allgemein",symbol:"✂️",unit:"1 Karton = 6 Stück"},
+  {id:"BM-034",name:"Cuttermesser Westcott Cutter Premium",category:"Allgemein",symbol:"✂️",unit:"1 Karton = 24 Stück"},
+  {id:"BM-035",name:"Dymo-Schriftbandkassette für LabelWriter",category:"Allgemein",symbol:"🏷️",unit:"1 Stück"},
+  {id:"BM-036",name:"Etiketten Dymo 54 × 101 mm, weiß, für Dymodrucker",category:"Allgemein",symbol:"🏷️",unit:"1 Stück"},
+  {id:"BM-037",name:"Großraumtüte (Europack), 1.300 × 2.300 mm, 1.000 l",category:"Allgemein",symbol:"🛍️",unit:"1 Karton = 120 Stück"},
+  {id:"BM-038",name:"Matratzentüte auf Rolle, 105 × 20 × 230 cm",category:"Allgemein",symbol:"🛍️",unit:"1 Rolle"},
+  {id:"BU-001",name:"Edding 3000, 1,5–3 mm (schwarz/blau/rot/grün)",category:"Bürobedarf",symbol:"🖊️",unit:"1 Stück"},
+  {id:"BU-002",name:"Edding 400, 1 mm (schwarz/blau/rot/grün)",category:"Bürobedarf",symbol:"🖊️",unit:"1 Stück"},
+  {id:"BU-003",name:"Schere",category:"Bürobedarf",symbol:"✂️",unit:"1 Stück"},
+  {id:"BU-004",name:"Locher",category:"Bürobedarf",symbol:"🗂️",unit:"1 Stück"},
+  {id:"BU-005",name:"Tesafilm-Rolle, 10 m × 19 mm",category:"Bürobedarf",symbol:"🧻",unit:"1 Packung = 8 Rollen"},
+  {id:"BU-006",name:"Tacker-Heftzange",category:"Bürobedarf",symbol:"📎",unit:"1 Stück"},
+  {id:"BU-007",name:"Laminierfolie, klein, DIN A5",category:"Bürobedarf",symbol:"📄",unit:"1 Packung = 100 Stück"},
+  {id:"BU-008",name:"Laminierfolie, groß, DIN A4",category:"Bürobedarf",symbol:"📄",unit:"1 Packung = 100 Stück"},
+  {id:"BU-009",name:"Batterien Varta AA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
+  {id:"BU-010",name:"Batterien Varta AAA",category:"Bürobedarf",symbol:"🔋",unit:"1 Packung = 8 Stück"},
+  {id:"BU-011",name:"Gummiringe, 85 mm (Alco)",category:"Bürobedarf",symbol:"⭕",unit:"1 Packung = 1.000 g"},
   {id:'VS-001',name:"Kartonagen 600×400×300 mm (1)",category:'Versand',symbol:'📦',unit:"1 Palette = 220 Stück",min:1},
   {id:'VS-002',name:"Kartonagen 400×300×200 mm (2)",category:'Versand',symbol:'📦',unit:"1 Palette = 720 Stück",min:1},
   {id:'VS-003',name:"Kartonagen 310×230×100–160 mm (3)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1},
@@ -50,7 +72,7 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
-const CATEGORIES=['Alle','Allgemein','Fahrzeugzubehör','Küche','Versand','Werkzeug'];
+const CATEGORIES=['Alle','Allgemein','Bürobedarf','Fahrzeugzubehör','Küche','Versand','Werkzeug'];
 let activeCategory='Alle';
 let searchTerm='';
 $('article-search').addEventListener('input',event=>{searchTerm=event.target.value.trim().toLocaleLowerCase('de');renderProducts();});
