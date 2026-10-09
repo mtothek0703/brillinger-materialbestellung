@@ -195,3 +195,18 @@ body.custom-entry-view .custom-entry-link{display:none}
 .mobile-home-link{display:none}
 @media(max-width:720px){.home-tiles{gap:12px}.home-tiles a{min-height:175px;padding:14px;gap:10px}.home-tiles a strong{font-size:17px}.home-tiles a span{font-size:38px}.home-tiles a small{font-size:12px}.mobile-home-link{display:block;padding:9px 0}.home-top h1{font-size:32px}}
 @media(max-width:360px){.home-tiles{grid-template-columns:1fr}}
+
+/* Müllentsorgung: Auswahl und E-Mail-Anforderung */
+.waste-back{display:inline-block;color:#005c80;text-decoration:none;font-weight:600;margin-bottom:26px}
+.waste-heading{text-align:center;margin:4px 0 28px}
+.waste-heading>span{font-size:48px}
+#waste-view .waste-heading h1{margin:8px 0 8px;font-size:32px;color:#153443}
+.waste-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.waste-option{display:flex;align-items:center;gap:17px;padding:25px 22px;background:#fff;border:1px solid #dce5eb;border-radius:17px;color:#153443;text-decoration:none;box-shadow:0 6px 22px #142c3810;min-height:150px}
+.waste-option-icon{font-size:40px;flex:none}
+.waste-option strong{display:block;font-size:22px;margin-bottom:8px}
+.waste-option small{display:block;font-size:14px;color:#607480;line-height:1.45}
+.waste-chevron{font-size:30px;margin-left:auto;color:#607480}
+.waste-option:hover,.waste-option:focus-visible{border-color:#005c80;box-shadow:0 10px 28px #142c3820}
+#waste-view .waste-note{font-size:13px;margin-top:23px;text-align:center}
+@media(max-width:720px){.waste-options{grid-template-columns:1fr;gap:13px}.waste-option{min-height:115px;padding:18px}.waste-option strong{font-size:19px}.waste-option-icon{font-size:34px}}
