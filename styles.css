@@ -78,3 +78,15 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
  .mobile-back-to-shop{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:11px 14px;border:1px solid #bfd0da;border-radius:10px;background:#f3f8fb;color:#075775;text-decoration:none;font-weight:700;font-size:14px}
  body.mobile-cart-view .cart-link{background:#e1f2f8}
 }
+
+/* Freie Eingabe für Artikel außerhalb des Sortiments */
+.custom-product{margin-top:24px;padding:22px;border:1px solid #d7e2e9;border-radius:16px;background:#fff}
+.custom-product h3{margin:0 0 7px;color:#153443}
+.custom-product p{margin:0 0 16px;color:#607480}
+.custom-product form{display:flex;flex-direction:column;gap:9px}
+.custom-product label{font-weight:700;font-size:14px}
+.custom-product label span{font-weight:400;color:#647985}
+.custom-product input,.custom-product textarea{width:100%;box-sizing:border-box;padding:11px 13px;border:1px solid #b8cedb;border-radius:9px;font:inherit;background:#fff;color:#153443}
+.custom-product input[type=number]{max-width:150px}
+.custom-product button{align-self:flex-start;margin-top:8px}
+@media(max-width:720px){.custom-product{padding:17px;margin-top:18px}.custom-product button{width:100%;text-align:center}}
