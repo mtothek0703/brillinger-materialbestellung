@@ -163,6 +163,15 @@ document.addEventListener('change',event=>{
  p.amount=amount;invalidateOrder();renderCart();
 });
 
+/* iOS: Platzhalter nur im geschlossenen Feld, nicht in der Auswahlliste. */
+for(const id of ['site','department']){
+ const select=$(id);
+ const wrap=select.closest('.select-placeholder-wrap');
+ select.selectedIndex=-1;
+ function updatePlaceholder(){wrap.classList.toggle('has-selection',select.selectedIndex>=0);}
+ select.addEventListener('change',()=>{updatePlaceholder();invalidateOrder();});
+ updatePlaceholder();
+}
 /* Fehlende Artikel auch ohne Warenkorb als eigenständige Anfrage senden. */
 $('request-custom-product').addEventListener('click',()=>{
  const name=$('custom-product-name').value.trim();
