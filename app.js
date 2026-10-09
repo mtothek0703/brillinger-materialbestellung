@@ -41,23 +41,23 @@ const PRODUCTS = Object.freeze([
   {id:"BU-008",name:"Laminierfolie, groß, DIN A4",category:"Bürobedarf",symbol:"📄",unit:"1 Packung = 100 Stück"},
   {id:"BU-011",name:"Gummiringe, 85 mm (Alco)",category:"Bürobedarf",symbol:"⭕",unit:"1 Packung = 1.000 g"},
   {id:'BM-039',name:'Würfelzucker 500 g',category:'Küche',symbol:'🧊',unit:'1 Packung à 500 g'},
-  {id:'VS-001',name:"Kartonagen 600×400×300 mm (1)",category:'Versand',symbol:'📦',unit:"1 Palette = 220 Stück",min:1},
-  {id:'VS-002',name:"Kartonagen 400×300×200 mm (2)",category:'Versand',symbol:'📦',unit:"1 Palette = 720 Stück",min:1},
-  {id:'VS-003',name:"Kartonagen 310×230×100–160 mm (3)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1},
-  {id:'VS-004',name:"Kartonagen 400×400×300 mm (4)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1},
-  {id:'VS-005',name:"Kartonagen 240×200×100 mm (5)",category:'Versand',symbol:'📦',unit:"1 Palette = 600 Stück",min:1},
-  {id:'VS-006',name:"Kartonagen 600×300×200 mm (6)",category:'Versand',symbol:'📦',unit:"1 Palette = 300 Stück",min:1},
-  {id:'VS-008',name:"Natronkraftpapier auf Rolle (90 g)",category:'Versand',symbol:'📦',image:'bilder/kraftpapier.svg',unit:"Egal wie viele",min:10},
-  {id:'VS-009',name:"PVC-Klebeband, transparent, 50 mm",category:'Versand',symbol:'📦',image:'bilder/klebeband.svg',unit:"1 Karton = 36 Stück",min:3},
-  {id:'VS-010',name:"Luftpolstertasche 18/H, 265 × 360 mm, braun",category:'Versand',symbol:'📦',image:'bilder/luftpolstertasche.svg',unit:"1 Pak = 100 Stück",min:6},
-  {id:'VS-011',name:"Begleitpapiertasche",category:'Versand',symbol:'📦',image:'bilder/begleitpapiertasche.svg',unit:"1 Pak = 1000 Stück",min:1},
-  {id:'VS-012',name:"DPD-Express-Klebeband",category:'Versand',symbol:'📦',image:'bilder/dpd-klebeband.svg',unit:"1 Pak = 6 Stück",min:2},
-  {id:'VS-013',name:"Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm",category:'Versand',symbol:'📦',image:'bilder/haftetiketten.svg',unit:"1 Karton = 50 Stück",min:1},
-  {id:'VS-014',name:"Stretchfolie klein",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 10 Rollen",min:1},
-  {id:'VS-015',name:"Stretchfolie groß",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 6 Rollen",min:1},
-  {id:'VS-016',name:"Umreifungsband, Großrolle, 12,7 × 0,5 mm",category:'Versand',symbol:'📦',image:'bilder/umreifungsband.svg',unit:"1 Rolle",min:1},
-  {id:'VS-017',name:"Verschlusshülsen für Umreifungsband, 13 × 28 × 0,5 mm",category:'Versand',symbol:'📦',image:'bilder/verschlusshuelsen.svg',unit:"1 Pak = 2000 Stück",min:1},
-  {id:'VS-018',name:"Handabroller (Versand)",category:'Versand',symbol:'📦',image:'bilder/handabroller.svg',unit:"1 Stück",min:1}
+  {id:'VS-001',name:"Kartonagen 600×400×300 mm (1)",category:'Versand',symbol:'📦',unit:"1 Palette = 220 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"200"},
+  {id:'VS-002',name:"Kartonagen 400×300×200 mm (2)",category:'Versand',symbol:'📦',unit:"1 Palette = 720 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"148"},
+  {id:'VS-003',name:"Kartonagen 310×230×100–160 mm (3)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"1104"},
+  {id:'VS-004',name:"Kartonagen 400×400×300 mm (4)",category:'Versand',symbol:'📦',unit:"1 Palette = 520 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"092"},
+  {id:'VS-005',name:"Kartonagen 240×200×100 mm (5)",category:'Versand',symbol:'📦',unit:"1 Palette = 600 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"231"},
+  {id:'VS-006',name:"Kartonagen 600×300×200 mm (6)",category:'Versand',symbol:'📦',unit:"1 Palette = 300 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"050"},
+  {id:'VS-008',name:"Natronkraftpapier auf Rolle (90 g)",category:'Versand',symbol:'📦',image:'bilder/kraftpapier.svg',unit:"Egal wie viele",min:10,supplier:"Igepa",orderContact:"shammer@igepagroup.com"},
+  {id:'VS-009',name:"PVC-Klebeband, transparent, 50 mm",category:'Versand',symbol:'📦',image:'bilder/klebeband.svg',unit:"1 Karton = 36 Stück",min:3,supplier:"Karton.eu",supplierArticleNumber:"202"},
+  {id:'VS-010',name:"Luftpolstertasche 18/H, 265 × 360 mm, braun",category:'Versand',symbol:'📦',image:'bilder/luftpolstertasche.svg',unit:"1 Pak = 100 Stück",min:6,supplier:"Karton.eu",supplierArticleNumber:"145"},
+  {id:'VS-011',name:"Begleitpapiertasche",category:'Versand',symbol:'📦',image:'bilder/begleitpapiertasche.svg',unit:"1 Pak = 1000 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"112"},
+  {id:'VS-012',name:"DPD-Express-Klebeband",category:'Versand',symbol:'📦',image:'bilder/dpd-klebeband.svg',unit:"1 Pak = 6 Stück",min:2,supplier:"DPD",orderNote:"Bestellung per E-Mail"},
+  {id:'VS-013',name:"Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm",category:'Versand',symbol:'📦',image:'bilder/haftetiketten.svg',unit:"1 Karton = 50 Stück",min:1,supplier:"Druck-Produkte",supplierArticleNumber:"1005220"},
+  {id:'VS-014',name:"Stretchfolie klein",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 10 Rollen",min:1,supplier:"Karton.eu",supplierArticleNumber:"217"},
+  {id:'VS-015',name:"Stretchfolie groß",category:'Versand',symbol:'📦',image:'bilder/stretchfolie.svg',unit:"1 Karton = 6 Rollen",min:1,supplier:"BüroBoss",supplierArticleNumber:"161858500"},
+  {id:'VS-016',name:"Umreifungsband, Großrolle, 12,7 × 0,5 mm",category:'Versand',symbol:'📦',image:'bilder/umreifungsband.svg',unit:"1 Rolle",min:1,supplier:"Karton.eu",supplierArticleNumber:"195"},
+  {id:'VS-017',name:"Verschlusshülsen für Umreifungsband, 13 × 28 × 0,5 mm",category:'Versand',symbol:'📦',image:'bilder/verschlusshuelsen.svg',unit:"1 Pak = 2000 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"191"},
+  {id:'VS-018',name:"Handabroller (Versand)",category:'Versand',symbol:'📦',image:'bilder/handabroller.svg',unit:"1 Stück",min:1,supplier:"Karton.eu",supplierArticleNumber:"116"}
 ]);
 const RECIPIENT='michael.kohler@brillinger.de';
 const cart=new Map();
@@ -90,7 +90,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('but
 document.addEventListener('input',event=>{if(event.target.id==='battery-type'){batteryType=event.target.value;invalidateOrder();}});
 document.addEventListener('change',event=>{const input=event.target;if(input.dataset.kind==='cart'){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.value=cart.get(input.dataset.id);return;}cart.set(input.dataset.id,amount);invalidateOrder();renderCart();}});
 $('order-form').addEventListener('input',invalidateOrder);
-function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Materialien bestellen:','',...[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `${amount} × ${p.name}${id==='BM-022'?' ('+batteryType+')':''} – ${p.unit}`;}).flatMap(item=>[item,'']),'',`Bestellt von: ${name}`,'',`Standort / Bereich: ${department}`, ...(note?[ '', `Anmerkung: ${note}` ]:[]),''].filter(line=>line!==null).join('\n');}
+function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Materialien bestellen:','',...[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `${amount} × ${p.name}${id==='BM-022'?' ('+batteryType+')':''} – ${p.unit}${p.supplier?'\nLieferant: '+p.supplier:''}${p.supplierArticleNumber?'\nArtikelnummer: '+p.supplierArticleNumber:''}${p.orderContact?'\nBestellkontakt: '+p.orderContact:''}${p.orderNote?'\nBestellhinweis: '+p.orderNote:''}`;}).flatMap(item=>[item,'']),'',`Bestellt von: ${name}`,'',`Standort / Bereich: ${department}`, ...(note?[ '', `Anmerkung: ${note}` ]:[]),''].filter(line=>line!==null).join('\n');}
 $('order-form').addEventListener('submit',event=>{event.preventDefault();if(!cart.size)return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(input.dataset.id,amount);}const name=$('customer').value.trim();const department=$('department').value.trim();if(!name||!department){notify('Bitte Name und Standort / Bereich ausfüllen.');return;}const body=buildOrder(name,department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;window.location.href=`mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;notify('E-Mail vorbereitet. Bitte im E-Mail-Programm absenden.');});
 $('copy-order').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('order-text').value);notify('Bestelltext kopiert.');}catch{$('order-text').focus();$('order-text').select();notify('Bitte den markierten Bestelltext manuell kopieren.');}});
 renderCart();
