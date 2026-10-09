@@ -110,3 +110,20 @@ header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-be
  .mobile-sticky-controls .category-filters button{padding:6px 9px;font-size:11px}
  body.mobile-cart-view .mobile-sticky-controls{display:none!important}
 }
+
+/* Sonderartikel: oben als Button, Eingabe in eigener Ansicht */
+.custom-entry-link{display:inline-flex;align-items:center;justify-content:center;margin:0 0 12px;padding:11px 16px;border-radius:10px;border:1px solid #00618a;color:#005a7e;background:#fff;font-size:14px;font-weight:700;text-decoration:none}
+.custom-entry-link:hover{background:#e8f4fa}
+.custom-back-link{display:inline-flex;margin-bottom:20px;color:#005a7e;font-weight:700;text-decoration:none}
+.custom-product{display:none}
+body.custom-entry-view .mobile-sticky-controls,
+body.custom-entry-view #products,
+body.custom-entry-view #warenkorb{display:none!important}
+body.custom-entry-view .shop-layout{display:block!important}
+body.custom-entry-view #artikel{display:block!important;width:100%!important;max-width:720px;margin:0 auto}
+body.custom-entry-view .custom-product{display:block!important;margin-top:22px}
+body.custom-entry-view .custom-entry-link{display:none}
+@media(max-width:720px){
+ .custom-entry-link{display:flex;width:100%;box-sizing:border-box;margin:5px 0 8px;padding:10px;font-size:13px}
+ body.custom-entry-view .custom-product{margin-top:14px}
+}
