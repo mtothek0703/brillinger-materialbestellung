@@ -23,5 +23,15 @@ function showFacilityManagementPage(){
  if(hash==='#shop'||hash==='#start'||waste)scrollTo(0,0);
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
+document.querySelectorAll('.home-tiles a').forEach(link=>{
+ link.addEventListener('click',event=>{
+  event.preventDefault();
+  const target=link.getAttribute('href');
+  if(location.hash!==target)history.pushState(null,'',target);
+  showFacilityManagementPage();
+ });
+});
+window.addEventListener('pageshow',showFacilityManagementPage);
+window.addEventListener('popstate',showFacilityManagementPage);
 showFacilityManagementPage();
 </script></body></html>
