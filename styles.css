@@ -295,3 +295,9 @@ body.custom-entry-view .custom-entry-link{display:none}
 .order-article-row span{overflow-wrap:anywhere}
 .order-article-empty{padding:16px;color:#607480;margin:0}
 @media(max-width:480px){.order-article-head,.order-article-row{grid-template-columns:minmax(0,1fr) 76px 52px;gap:6px;padding:12px 10px}.order-article-head{font-size:10px}.order-article-row{font-size:13px}}
+
+/* Einheitliches dunkles Brillinger-Blau für Aktionsbuttons. */
+:root{--blue:#001b79}
+.primary,.secondary,.home-refresh{background:#001b79;color:#fff;border-color:#001b79}
+.primary:hover,.secondary:hover,.home-refresh:hover,.home-refresh:focus-visible{background:#00299e;color:#fff;border-color:#00299e}
+button:disabled,.primary:disabled,.secondary:disabled{background:#d9e3e9;color:#6b7d87;border-color:#d9e3e9}
