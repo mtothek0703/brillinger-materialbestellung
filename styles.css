@@ -361,3 +361,8 @@ body:has(#home-view:not([hidden])) #profile-toolbar{display:flex!important;flex-
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
 body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{position:static!important;display:block!important;align-self:flex-end!important;box-sizing:border-box!important;width:185px!important;min-width:185px!important;max-width:185px!important;margin:0!important;padding:11px 8px!important;text-align:center!important;white-space:nowrap!important;border-radius:14px!important;font-size:14px!important}
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+
+/* Einkaufswagen-Symbol und Warenkorbanzahl besser lesbar. */
+#shop-view>header .cart-link{font-size:20px!important;gap:7px!important}
+#shop-view>header .cart-link #cart-count{font-size:19px!important;font-weight:800!important;line-height:1!important}
+@media(max-width:720px){#shop-view>header .cart-link{font-size:21px!important;gap:6px!important}#shop-view>header .cart-link #cart-count{font-size:19px!important}}
