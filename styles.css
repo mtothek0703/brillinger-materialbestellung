@@ -382,3 +382,7 @@ body:has(#waste-view:not([hidden])) #profile-toolbar,
 body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
 body:has(#order-overview-view:not([hidden])) #profile-toolbar,
 body:has(#waste-overview-view:not([hidden])) #profile-toolbar{background:transparent!important;box-shadow:none!important;border:none!important}
+
+/* Startseite: Profil und Aktualisieren unten am Bildschirmrand nebeneinander. */
+body:has(#home-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:0!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;z-index:1200!important}
+body:has(#home-view:not([hidden])) #home-view{padding-bottom:100px!important}
