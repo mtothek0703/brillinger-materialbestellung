@@ -371,3 +371,8 @@ body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{displa
 body:has(#home-view:not([hidden])) #profile-toolbar{flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;padding:10px 16px!important}
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
 body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{width:auto!important;min-width:0!important;max-width:none!important;align-self:center!important;margin:0!important;padding:9px 12px!important;font-size:13px!important;border-radius:12px!important}
+
+/* Startseite: Profil und Aktualisieren exakt gleich groß. */
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
