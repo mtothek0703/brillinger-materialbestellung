@@ -376,3 +376,9 @@ body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{width:auto!imp
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
 body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important}
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+
+/* Müllentsorgung und Übersichten: kein zusätzlicher Rahmen um „Mein Profil“. */
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{background:transparent!important;box-shadow:none!important;border:none!important}
