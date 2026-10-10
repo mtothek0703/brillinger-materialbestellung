@@ -178,7 +178,7 @@ for(const id of ['site','department']){
  const select=$(id);
  const wrap=select.closest('.select-placeholder-wrap');
  select.selectedIndex=-1;
- function updatePlaceholder(){wrap.classList.toggle('has-selection',select.selectedIndex>=0);}
+ function updatePlaceholder(){if(wrap)wrap.classList.toggle('has-selection',select.selectedIndex>=0);}
  select.addEventListener('change',()=>{updatePlaceholder();invalidateOrder();});
  updatePlaceholder();
 }
