@@ -355,3 +355,9 @@ body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit{align-self:fle
  #shop-view>header .cart-link{gap:5px!important;white-space:nowrap!important}
  #shop-view .mobile-sticky-controls{top:82px!important}
 }
+
+/* Startseite: beide Schaltflächen exakt rechtsbündig untereinander. */
+body:has(#home-view:not([hidden])) #profile-toolbar{display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:flex-start!important;gap:8px!important;width:100%!important;margin:0!important;padding:10px 16px!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{position:static!important;display:block!important;align-self:flex-end!important;box-sizing:border-box!important;width:185px!important;min-width:185px!important;max-width:185px!important;margin:0!important;padding:11px 8px!important;text-align:center!important;white-space:nowrap!important;border-radius:14px!important;font-size:14px!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
