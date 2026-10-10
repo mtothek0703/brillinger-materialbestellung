@@ -317,3 +317,7 @@ body:has(#home-view[hidden]) #profile-toolbar .home-refresh{display:none}
  #shop-view>header .cart-link{flex:0 0 auto;padding:8px 6px;font-size:13px;white-space:nowrap}
  #shop-view>header .cart-link .cart-label{display:none}
 }
+
+/* Profil außerhalb des Shops beim Scrollen oben sichtbar halten. */
+#profile-toolbar:not([hidden]){position:sticky;top:0;z-index:120;background:#f3f6f8}
+#profile-toolbar[hidden]{display:none!important}
