@@ -406,3 +406,13 @@ body:has(#home-view:not([hidden])) #home-view .home-top>img{display:block!import
  #shop-view>header .shop-start-link,#shop-view>header .cart-link,#shop-view>header #profile-edit{height:52px!important;min-height:52px!important;max-height:52px!important}
  #shop-view .mobile-sticky-controls{top:104px!important}
 }
+
+/* Kompaktere Kopfzeile mit größerem Logo: Buttons bleiben gleich groß. */
+@media(max-width:720px){
+ #shop-view{padding-top:86px!important}
+ #shop-view>header{height:86px!important;min-height:86px!important;padding:7px 10px!important;gap:5px!important}
+ #shop-view>header .brand{flex:1 1 auto!important;min-width:0!important;display:flex!important;align-items:center!important}
+ #shop-view>header .brand-logo{width:100%!important;max-width:195px!important;height:auto!important;object-fit:contain!important}
+ #shop-view>header .shop-start-link,#shop-view>header .cart-link,#shop-view>header #profile-edit{height:48px!important;min-height:48px!important;max-height:48px!important;flex-basis:clamp(72px,19vw,100px)!important;width:clamp(72px,19vw,100px)!important}
+ #shop-view .mobile-sticky-controls{top:86px!important}
+}
