@@ -342,3 +342,16 @@ body:has(#waste-view:not([hidden])) #waste-view{padding-top:110px}
 /* Startseite: Profil oben rechts statt mittig. */
 body:has(#home-view:not([hidden])) #profile-toolbar{position:sticky!important;top:0;left:auto!important;right:0!important;margin-left:auto!important;margin-right:0!important;width:100%!important;align-items:flex-end!important;justify-content:flex-end!important;padding:10px 16px!important;z-index:120}
 body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit{align-self:flex-end!important;margin-left:auto!important;margin-right:0!important}
+
+/* Größere, einheitliche Shop-Kopfzeile auf Smartphones. */
+@media(max-width:720px){
+ #shop-view{padding-top:82px!important}
+ #shop-view>header{height:82px!important;min-height:82px!important;padding:10px 12px!important;gap:7px!important}
+ #shop-view>header .brand{flex:1 1 auto!important;min-width:0!important;margin-right:0!important}
+ #shop-view>header .brand-logo{width:clamp(120px,30vw,190px)!important;max-width:100%!important;height:auto!important}
+ #shop-view>header .shop-start-link,
+ #shop-view>header .cart-link,
+ #shop-view>header #profile-edit{box-sizing:border-box!important;flex:0 0 clamp(78px,20vw,110px)!important;width:clamp(78px,20vw,110px)!important;min-width:0!important;height:48px!important;min-height:48px!important;max-height:48px!important;margin:0!important;padding:5px!important;border-radius:11px!important;font-size:11px!important;line-height:1.15!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:normal!important}
+ #shop-view>header .cart-link{gap:5px!important;white-space:nowrap!important}
+ #shop-view .mobile-sticky-controls{top:82px!important}
+}
