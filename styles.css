@@ -416,3 +416,7 @@ body:has(#home-view:not([hidden])) #home-view .home-top>img{display:block!import
  #shop-view>header .shop-start-link,#shop-view>header .cart-link,#shop-view>header #profile-edit{height:48px!important;min-height:48px!important;max-height:48px!important;flex-basis:clamp(72px,19vw,100px)!important;width:clamp(72px,19vw,100px)!important}
  #shop-view .mobile-sticky-controls{top:86px!important}
 }
+
+/* Startseite: Logo in der tatsächlichen Bildschirmmitte, unabhängig von anderen Elementen. */
+#home-view .home-top{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;box-sizing:border-box!important}
+#home-view .home-top>img{display:block!important;align-self:center!important;margin:0 auto 30px!important;position:static!important;transform:none!important;float:none!important;max-width:min(70vw,230px)!important;width:230px!important}
