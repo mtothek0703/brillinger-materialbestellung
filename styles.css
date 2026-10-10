@@ -301,3 +301,7 @@ body.custom-entry-view .custom-entry-link{display:none}
 .primary,.secondary,.home-refresh{background:#001b79;color:#fff;border-color:#001b79}
 .primary:hover,.secondary:hover,.home-refresh:hover,.home-refresh:focus-visible{background:#00299e;color:#fff;border-color:#00299e}
 button:disabled,.primary:disabled,.secondary:disabled{background:#d9e3e9;color:#6b7d87;border-color:#d9e3e9}
+
+/* Profil und Aktualisieren bündig untereinander ohne Überlappung. */
+#profile-toolbar .home-refresh{margin-top:0;align-self:center;white-space:nowrap}
+body:has(#home-view[hidden]) #profile-toolbar .home-refresh{display:none}
