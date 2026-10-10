@@ -328,3 +328,13 @@ body:has(#home-view[hidden]) #profile-toolbar .home-refresh{display:none}
  #shop-view>header{position:fixed!important;top:0!important;left:0;right:0;width:100%;height:64px;min-height:64px;margin:0;z-index:1100;background:#fff;box-shadow:0 2px 8px #142c3810}
  #shop-view .mobile-sticky-controls{top:64px!important}
 }
+
+/* Profil-Schaltfläche auch in der Leerungsübersicht dauerhaft sichtbar. */
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#waste-view:not([hidden])) #profile-toolbar{position:fixed!important;top:0;right:0;left:0;width:100%;display:flex;align-items:flex-end;z-index:1100;background:#f3f6f8;box-shadow:0 1px 4px #142c3810}
+body:has(#waste-overview-view:not([hidden])) #waste-overview-view,
+body:has(#order-overview-view:not([hidden])) #order-overview-view,
+body:has(#overview-menu-view:not([hidden])) #overview-menu-view,
+body:has(#waste-view:not([hidden])) #waste-view{padding-top:110px}
