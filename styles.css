@@ -282,3 +282,16 @@ body.custom-entry-view .custom-entry-link{display:none}
 #order-overview-view h1{margin:4px 0 12px}
 #order-overview-view>p{color:#607480;line-height:1.5}
 #order-overview-view .pickup-hint{font-size:13px;margin-top:18px}
+
+/* Artikelbezogene Bestellstatistik mit Häufigkeit und Menge */
+.order-year-label{display:block;font-size:13px;color:#607480;margin:8px 0 6px;font-weight:600}
+.order-year-filter{font:inherit;padding:10px 12px;border:1px solid #cad8e0;border-radius:10px;background:#fff;color:#18313d;margin-bottom:14px;max-width:100%;min-height:42px}
+.order-article-table{background:#fff;border:1px solid #dce5eb;border-radius:14px;overflow:hidden}
+.order-article-head,.order-article-row{display:grid;grid-template-columns:minmax(0,1fr) 92px 68px;align-items:center;gap:10px;padding:13px 16px}
+.order-article-head{background:#edf3f7;color:#496373;font-size:12px;font-weight:700}
+.order-article-head span:not(:first-child),.order-article-row strong{text-align:right}
+.order-article-row{border-top:1px solid #e4ebef;font-size:14px}
+.order-article-row strong{color:#005c80;font-size:16px}
+.order-article-row span{overflow-wrap:anywhere}
+.order-article-empty{padding:16px;color:#607480;margin:0}
+@media(max-width:480px){.order-article-head,.order-article-row{grid-template-columns:minmax(0,1fr) 76px 52px;gap:6px;padding:12px 10px}.order-article-head{font-size:10px}.order-article-row{font-size:13px}}
