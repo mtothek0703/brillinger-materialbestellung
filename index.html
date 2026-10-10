@@ -52,6 +52,14 @@ function showFacilityManagementPage(){
  document.getElementById('order-overview-view').hidden=!orders;
  document.getElementById('waste-overview-view').hidden=!pickups;
  document.getElementById('shop-view').hidden=!shop;
+ const toolbar=document.getElementById('profile-toolbar');
+ if(shop){
+  const header=document.querySelector('#shop-view > header');
+  if(toolbar.previousElementSibling!==header)header.after(toolbar);
+ }else{
+  const home=document.getElementById('home-view');
+  if(toolbar.nextElementSibling!==home)home.before(toolbar);
+ }
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
