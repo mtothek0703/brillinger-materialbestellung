@@ -392,3 +392,7 @@ body:has(#home-view:not([hidden])) #home-view .home-logo,
 body:has(#home-view:not([hidden])) #home-view .home-brand,
 body:has(#home-view:not([hidden])) #home-view .brand-logo{display:block!important;margin-left:auto!important;margin-right:auto!important;float:none!important}
 body:has(#home-view:not([hidden])) #profile-toolbar{bottom:22px!important;padding-bottom:max(12px,env(safe-area-inset-bottom))!important}
+
+/* Tatsächliches Logo-Element auf der Startseite horizontal exakt zentrieren. */
+body:has(#home-view:not([hidden])) #home-view .home-top{width:100%!important;text-align:center!important}
+body:has(#home-view:not([hidden])) #home-view .home-top>img{display:block!important;width:230px!important;max-width:70vw!important;margin-left:auto!important;margin-right:auto!important;float:none!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important}
