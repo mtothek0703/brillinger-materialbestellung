@@ -338,3 +338,7 @@ body:has(#waste-overview-view:not([hidden])) #waste-overview-view,
 body:has(#order-overview-view:not([hidden])) #order-overview-view,
 body:has(#overview-menu-view:not([hidden])) #overview-menu-view,
 body:has(#waste-view:not([hidden])) #waste-view{padding-top:110px}
+
+/* Startseite: Profil oben rechts statt mittig. */
+body:has(#home-view:not([hidden])) #profile-toolbar{position:sticky!important;top:0;left:auto!important;right:0!important;margin-left:auto!important;margin-right:0!important;width:100%!important;align-items:flex-end!important;justify-content:flex-end!important;padding:10px 16px!important;z-index:120}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit{align-self:flex-end!important;margin-left:auto!important;margin-right:0!important}
