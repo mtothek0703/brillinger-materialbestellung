@@ -75,6 +75,12 @@ async function refreshFacilityApp(button){
 
 document.getElementById('home-refresh').addEventListener('click',()=>refreshFacilityApp(document.getElementById('home-refresh')));
 /* Leerungsanforderungen: Klick auf Restmüll dokumentieren, nicht bestätigte Abholungen. */
+const statsResetKey='brillinger-statistik-reset-20261010';
+if(localStorage.getItem(statsResetKey)!=='done'){
+ localStorage.removeItem('brillinger-restmuell-anforderungen-v2');
+ localStorage.removeItem('brillinger-bestellstatistik-v1');
+ localStorage.setItem(statsResetKey,'done');
+}
 const requestStorageKey='brillinger-restmuell-anforderungen-v2';
 function getRequests(){try{const values=JSON.parse(localStorage.getItem(requestStorageKey)||'[]');return Array.isArray(values)?values.filter(v=>typeof v==='string'&&!isNaN(Date.parse(v))):[];}catch{return [];}}
 function renderRequests(){
