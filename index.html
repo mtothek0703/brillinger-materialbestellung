@@ -53,10 +53,15 @@ function showFacilityManagementPage(){
  document.getElementById('waste-overview-view').hidden=!pickups;
  document.getElementById('shop-view').hidden=!shop;
  const toolbar=document.getElementById('profile-toolbar');
+ const profileButton=document.getElementById('profile-edit');
  if(shop){
   const header=document.querySelector('#shop-view > header');
-  if(toolbar.previousElementSibling!==header)header.after(toolbar);
+  const cart=header.querySelector('.cart-link');
+  if(profileButton.nextElementSibling!==cart)header.insertBefore(profileButton,cart);
+  toolbar.hidden=true;
  }else{
+  if(profileButton.parentElement!==toolbar)toolbar.insertBefore(profileButton,toolbar.firstChild);
+  toolbar.hidden=false;
   const home=document.getElementById('home-view');
   if(toolbar.nextElementSibling!==home)home.before(toolbar);
  }
