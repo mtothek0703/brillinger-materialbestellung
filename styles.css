@@ -477,3 +477,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Sonderartikel: beide Aktionen exakt gleich breit und hoch. */
 @media(max-width:720px){body.custom-entry-view #custom-product-form>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:48px!important;height:48px!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important;padding:8px 12px!important;line-height:1.2!important}}
+
+/* Startseite: Brillinger-Logo größer darstellen. */
+#home-view .home-top img{width:300px!important;max-width:85vw!important;height:auto!important}
