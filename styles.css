@@ -304,7 +304,8 @@ button:disabled,.primary:disabled,.secondary:disabled{background:#d9e3e9;color:#
 
 /* Profil und Aktualisieren bündig untereinander ohne Überlappung. */
 #profile-toolbar .home-refresh{margin-top:0;align-self:center;white-space:nowrap}
-body:has(#home-view[hidden]) #profile-toolbar .home-refresh{display:none}
+/* Aktualisieren bleibt auf allen Facility-Seiten sichtbar. */
+#profile-toolbar:not([hidden]) .home-refresh{display:inline-flex}
 
 /* Profil im Shop direkt neben Startseite und Warenkorb, mobil kompakt. */
 #shop-view>header #profile-edit{position:static!important;flex:0 0 auto;margin:0;border-radius:10px!important;padding:10px 12px!important;font-size:13px!important;white-space:nowrap}
