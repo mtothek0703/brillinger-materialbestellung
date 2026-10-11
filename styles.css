@@ -907,3 +907,58 @@ body.order-history-open{overflow:hidden!important}
  #order-overview-view #order-filter-panel{grid-template-columns:1fr;gap:8px;padding:14px}
  #order-overview-view #order-filter-panel label:not(:first-child){margin-top:7px}
 }
+
+/* Ständig sichtbare, beim Scrollen fixierte Filter für beide Übersichten. */
+#order-overview-view .order-filter-wrap,#waste-overview-view .waste-filter-wrap{
+ position:sticky!important;top:12px!important;z-index:110!important;
+ margin:0 0 22px!important;padding:0!important;
+}
+#order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel{
+ display:grid!important;grid-template-columns:auto minmax(130px,1fr) auto minmax(150px,1fr) auto!important;
+ align-items:center!important;gap:12px!important;
+ padding:14px 17px!important;border:1px solid #d7e4ed!important;border-radius:14px!important;
+ background:rgba(255,255,255,.98)!important;
+ box-shadow:0 5px 20px rgba(18,48,69,.11)!important;
+ backdrop-filter:blur(8px);
+}
+#order-overview-view #order-filter-panel label,#waste-overview-view #waste-filter-panel label{font-size:14px!important;font-weight:650!important;color:#153443!important}
+#order-overview-view #order-filter-panel select,#waste-overview-view #waste-filter-panel select{
+ width:100%!important;min-width:0!important;min-height:42px!important;padding:8px 10px!important;
+ border:1px solid #cddde7!important;border-radius:9px!important;background:#fff!important;
+ color:#153443!important;font-size:15px!important;
+}
+#order-overview-view #order-filter-reset,#waste-overview-view #waste-filter-reset{
+ min-height:42px!important;padding:9px 13px!important;border:1px solid #cddde7!important;
+ border-radius:9px!important;background:#edf5fa!important;color:#005c80!important;
+ font-size:14px!important;font-weight:650!important;cursor:pointer!important;
+}
+#order-overview-view #order-filter-reset:hover,#waste-overview-view #waste-filter-reset:hover{background:#dceef8!important}
+#waste-overview-view #pickup-types .pickup-type-button{
+ grid-template-columns:minmax(0,1fr) minmax(78px,1fr) auto!important;column-gap:12px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-share{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ justify-self:start!important;min-height:40px!important;min-width:64px!important;
+ padding:8px 12px!important;box-sizing:border-box!important;border-radius:11px!important;
+ background:#f2f7fa!important;color:#48778d!important;font-size:18px!important;
+ font-weight:700!important;line-height:1.2!important;white-space:nowrap!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{
+ background:#d2eaf7!important;color:#00658b!important;
+}
+@media(max-width:720px){
+ #order-overview-view .order-filter-wrap,#waste-overview-view .waste-filter-wrap{top:6px!important;margin-bottom:16px!important}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:6px 9px!important;
+  padding:10px!important;border-radius:12px!important;
+ }
+ #order-overview-view #order-filter-panel label,#waste-overview-view #waste-filter-panel label{font-size:12px!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(1),#waste-overview-view #waste-filter-panel label:nth-of-type(1){grid-column:1!important;grid-row:1!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(2),#waste-overview-view #waste-filter-panel label:nth-of-type(2){grid-column:2!important;grid-row:1!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(1),#waste-overview-view #waste-filter-panel select:nth-of-type(1){grid-column:1!important;grid-row:2!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(2),#waste-overview-view #waste-filter-panel select:nth-of-type(2){grid-column:2!important;grid-row:2!important}
+ #order-overview-view #order-filter-reset,#waste-overview-view #waste-filter-reset{grid-column:1/-1!important;grid-row:3!important;min-height:34px!important;padding:6px!important;font-size:12px!important}
+ #order-overview-view #order-filter-panel select,#waste-overview-view #waste-filter-panel select{min-height:36px!important;padding:6px!important;font-size:13px!important}
+ #waste-overview-view #pickup-types .pickup-type-button{grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto!important;column-gap:7px!important}
+ #waste-overview-view #pickup-types .pickup-type-share{min-height:36px!important;min-width:56px!important;padding:7px 9px!important;font-size:16px!important}
+}
