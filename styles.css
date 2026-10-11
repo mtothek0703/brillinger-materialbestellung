@@ -754,3 +754,19 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-overview-view .pickup-top-row .pickup-year-total strong{font-size:19px!important}
  #waste-overview-view .pickup-top-row .pickup-year-total>span{font-size:19px!important}
 }
+
+/* Leerungsverlauf als eigenständiges Fenster auf allen Geräten. */
+body.pickup-history-open{overflow:hidden!important}
+#pickup-history-backdrop[hidden],#pickup-history-section[hidden]{display:none!important}
+#pickup-history-backdrop:not([hidden]){display:block!important;position:fixed!important;inset:0!important;background:rgba(8,23,44,.58)!important;z-index:3500!important}
+#waste-overview-view #pickup-history-section:not([hidden]){display:block!important;position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:min(640px,calc(100vw - 32px))!important;max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;z-index:3501!important;background:#fff!important;border-radius:18px!important;padding:24px!important;box-sizing:border-box!important;box-shadow:0 24px 70px rgba(0,0,0,.25)!important;margin:0!important}
+#waste-overview-view .pickup-history-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+#waste-overview-view .pickup-history-header h2{margin:0!important}
+#waste-overview-view #pickup-history-close{flex-shrink:0;width:42px;height:42px;border:0;border-radius:50%;background:#edf4f8;color:#12384c;font-size:29px;line-height:1;cursor:pointer}
+#waste-overview-view #pickup-history-close:hover{background:#d9eaf4}
+@media(max-width:720px){
+ #waste-overview-view #pickup-history-section:not([hidden]){padding:18px!important;max-height:calc(100dvh - 32px)!important}
+ #waste-overview-view #pickup-history-close{width:38px;height:38px}
+ #waste-overview-view #pickup-types + h2{font-size:18px!important}
+ #waste-overview-view h2:has(+ #pickup-types){font-size:clamp(14px,4.2vw,18px)!important;white-space:nowrap!important;letter-spacing:-.25px!important}
+}
