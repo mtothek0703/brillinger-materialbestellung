@@ -685,3 +685,10 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
   margin-right:auto!important;
  }
 }
+
+/* Smartphone: Historie erst nach Auswahl einer Entsorgungsart anzeigen. */
+@media(max-width:720px){
+ #waste-overview-view #pickup-history-section[hidden]{display:none!important}
+ #waste-overview-view .pickup-hint{display:none!important}
+ #waste-overview-view #pickup-history-section:not([hidden]){margin-top:18px}
+}
