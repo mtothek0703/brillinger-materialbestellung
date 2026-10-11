@@ -1036,3 +1036,14 @@ body.order-history-open{overflow:hidden!important}
 @media (max-width: 720px) {
   #order-overview-view { padding-top: 12px !important; }
 }
+
+/* Standortauswahl in der Leerungsuebersicht: drei Filterfelder sauber anordnen */
+#waste-overview-view #waste-filter-panel{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px 14px!important;align-items:end!important}
+#waste-overview-view #waste-filter-panel label{grid-column:auto!important;grid-row:auto!important;margin:0!important}
+#waste-overview-view #waste-filter-panel select{grid-column:auto!important;grid-row:auto!important;min-width:0!important;width:100%!important}
+#waste-overview-view #waste-filter-panel label[for="waste-month-filter"]{grid-column:1!important;grid-row:1!important}
+#waste-overview-view #waste-month-filter{grid-column:1!important;grid-row:2!important}
+#waste-overview-view #waste-filter-panel label[for="waste-site-filter"]{grid-column:2!important;grid-row:1!important}
+#waste-overview-view #waste-site-filter{grid-column:2!important;grid-row:2!important}
+#waste-overview-view #waste-filter-reset{grid-column:1/-1!important;grid-row:3!important;justify-self:end!important;margin:2px 0 0!important}
+@media(max-width:720px){#waste-overview-view #waste-filter-panel{gap:8px!important}#waste-overview-view #waste-filter-panel select{font-size:13px!important}}
