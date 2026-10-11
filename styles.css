@@ -423,3 +423,15 @@ body:has(#home-view:not([hidden])) #home-view .home-top>img{display:block!import
 
 /* Optische Logo-Zentrierung: Das SVG hat rechts mehr freien Innenraum als links. */
 body:has(#home-view:not([hidden])) #home-view .home-top>img{transform:translateX(9px)!important}
+
+/* Sonderartikel-Formular: Abstände auf Smartphones leicht reduzieren. */
+@media(max-width:720px){
+ body.custom-entry-view .custom-product{padding:16px!important}
+ body.custom-entry-view .custom-back-link{margin-bottom:14px!important}
+ body.custom-entry-view .custom-product h3{margin-bottom:5px!important}
+ body.custom-entry-view .custom-product p{margin-bottom:11px!important}
+ body.custom-entry-view .custom-product form{gap:6px!important}
+ body.custom-entry-view .custom-product form label{margin-top:9px!important;margin-bottom:4px!important}
+ body.custom-entry-view .custom-product form input,body.custom-entry-view .custom-product form textarea{padding-top:10px!important;padding-bottom:10px!important}
+ body.custom-entry-view .custom-product form button{margin-top:6px!important}
+}
