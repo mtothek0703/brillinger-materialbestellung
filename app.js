@@ -112,7 +112,31 @@ document.addEventListener('change',event=>{if(event.target.id.startsWith('pack-B
 document.addEventListener('change',event=>{const input=event.target;if(input.dataset.kind==='cart'){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.value=cart.get(input.dataset.id);return;}cart.set(input.dataset.id,amount);invalidateOrder();renderCart();}});
 $('order-form').addEventListener('input',invalidateOrder);
 function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Materialien bestellen:','',...[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `${amount} × ${p.name}${id==='BM-022'?' ('+batteryType+', '+batteryPackSize+'er-Pack)':id==='BU-002'?' (Farbe: '+edding400Color+')':id==='BU-001'?' (Farbe: '+edding3000Color+')':cableTiePackSizes[id]?' ('+cableTiePackSizes[id]+' Stück je Packung)':''} – ${cableTiePackSizes[id]?'1 Packung = '+cableTiePackSizes[id]+' Stück':p.unit}${p.supplier?'\n\nLieferant: '+p.supplier:''}${p.supplierArticleNumber?'\nArtikelnummer: '+p.supplierArticleNumber:''}${p.orderContact?'\nBestellkontakt: '+p.orderContact:''}${p.orderNote?'\n\nBestellhinweis: '+p.orderNote:''}`;}).flatMap(item=>[item,'']),...customCart.map(p=>`${p.amount} × ${p.name} (Sonstiger Artikel)${p.details?'\nWeitere Angaben: '+p.details:''}${p.url?'\nProduktlink: '+p.url:''}`).flatMap(item=>[item,'']),'',`Bestellt von: ${name}`,'',...department.split(' / ').flatMap((value,index)=>index===0?[`Standort: ${value}`,'']:[`Bereich: ${value}`]), ...(note?[ '', `Anmerkung: ${note}` ]:[]),''].filter(line=>line!==null).join('\n').replace(/\r?\n/g,'\r\n');}
-$('order-form').addEventListener('submit',event=>{event.preventDefault();if(!(cart.size+customCart.length))return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(input.dataset.customQuantity){const item=customCart.find(p=>p.id===Number(input.dataset.customQuantity));if(!amount||!item){notify('Bitte eine gültige Menge eingeben.');input.focus();return;}item.amount=amount;continue;}const product=PRODUCTS.find(p=>p.id===input.dataset.id);if(!product||!amount||amount<minimum(product)){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(product.id,amount);}let name=$('customer').value.trim();let site=$('site').value.trim();let department=$('department').value.trim();if(!name||!site||!department){try{const saved=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');if(saved){name=name||String(saved.name||'').trim();site=site||String(saved.site||'').trim();department=department||String(saved.dept||'').trim();}}catch(e){console.warn('Profil konnte nicht gelesen werden',e);}}if(!name||!site||!department){notify('Bitte unter Mein Profil Name, Standort und Bereich speichern.');return;}const body=buildOrder(name,site+' / '+department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;try{
+$('order-form').addEventListener('submit',async event=>{event.preventDefault();if(!(cart.size+customCart.length))return;if(cart.has('BM-022')&&!batteryType.trim()){notify('Bitte bei Batterien den Batterietyp angeben.');$('battery-type')?.focus();return;}for(const input of $('cart-items').querySelectorAll('input')){const amount=quantity(input.value);if(input.dataset.customQuantity){const item=customCart.find(p=>p.id===Number(input.dataset.customQuantity));if(!amount||!item){notify('Bitte eine gültige Menge eingeben.');input.focus();return;}item.amount=amount;continue;}const product=PRODUCTS.find(p=>p.id===input.dataset.id);if(!product||!amount||amount<minimum(product)){notify('Bitte die Mindestbestellmenge beachten.');input.focus();return;}cart.set(product.id,amount);}let name=$('customer').value.trim();let site=$('site').value.trim();let department=$('department').value.trim();if(!name||!site||!department){try{const saved=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');if(saved){name=name||String(saved.name||'').trim();site=site||String(saved.site||'').trim();department=department||String(saved.dept||'').trim();}}catch(e){console.warn('Profil konnte nicht gelesen werden',e);}}if(!name||!site||!department){notify('Bitte unter Mein Profil Name, Standort und Bereich speichern.');return;}const items=[...cart].map(([id,amount])=>({name:PRODUCTS.find(p=>p.id===id)?.name||id,quantity:amount}));
+customCart.forEach(p=>items.push({name:p.name||'Sonstiger Artikel',quantity:Number(p.amount)||1}));
+const orderButton=$('order-button');
+if(orderButton.dataset.sending==='1')return;
+orderButton.dataset.sending='1';orderButton.disabled=true;orderButton.textContent='Wird gesendet…';
+try{
+ const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-send-mail',{
+  method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({id:crypto.randomUUID(),typ:'bestellung',name,site,department,items,note:$('note').value.trim()})
+ });
+ const result=await response.json();
+ if(!response.ok||result.success!==true)throw new Error(result.error||'Versand fehlgeschlagen');
+ const key='brillinger-bestellstatistik-v1';
+ const history=JSON.parse(localStorage.getItem(key)||'[]');
+ const entries=Array.isArray(history)?history:[];
+ entries.push({date:new Date().toISOString(),items,department,site});
+ localStorage.setItem(key,JSON.stringify(entries));
+ cart.clear();customCart.length=0;$('note').value='';
+ invalidateOrder();renderCart();
+ if(typeof window.renderOrderStats==='function')window.renderOrderStats();
+ notify('Bestellung erfolgreich versendet. Warenkorb geleert.');
+}catch(error){notify(error.message||'Versand fehlgeschlagen. Warenkorb bleibt erhalten.');}
+finally{delete orderButton.dataset.sending;orderButton.textContent='Bestellen';renderCart();}
+return;
+const body=buildOrder(name,site+' / '+department,$('note').value.trim());$('order-text').value=body;$('email-fallback').hidden=false;const subject=`Materialbestellung Brillinger – ${name.replace(/[\r\n]/g,' ')}`;try{
  const key='brillinger-bestellstatistik-v1';
  const existing=JSON.parse(localStorage.getItem(key)||'[]');
  const history=Array.isArray(existing)?existing:[];
