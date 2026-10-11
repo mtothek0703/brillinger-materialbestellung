@@ -248,66 +248,71 @@ wasteTypes.forEach(([id,type])=>{
  });
 });
 renderRequests();
+let selectedOrderYear=new Date().getFullYear();
+let selectedOrderProduct=null;
+function readOrderStats(){
+ try{const data=JSON.parse(localStorage.getItem('brillinger-bestellstatistik-v1')||'[]');return Array.isArray(data)?data.filter(o=>o&&o.date&&!isNaN(Date.parse(o.date))):[];}catch{return [];}
+}
+function closeOrderHistory(){
+ document.getElementById('order-history-section').hidden=true;
+ document.getElementById('order-history-backdrop').hidden=true;
+ document.body.classList.remove('order-history-open');
+}
+function openOrderHistory(product){
+ selectedOrderProduct=product;
+ renderOrderStats();
+ document.getElementById('order-history-section').hidden=false;
+ document.getElementById('order-history-backdrop').hidden=false;
+ document.body.classList.add('order-history-open');
+ document.getElementById('order-history-close').focus();
+}
 function renderOrderStats(){
- const list=document.getElementById('order-ranking'),years=document.getElementById('order-years'),filter=document.getElementById('order-year-filter');
- list.replaceChildren();years.replaceChildren();
- let orders=[];try{const stored=JSON.parse(localStorage.getItem('brillinger-bestellstatistik-v1')||'[]');if(Array.isArray(stored))orders=stored;}catch(e){}
- const yearCounts=new Map(),allProducts=new Map();let allUnits=0;
- orders.forEach(order=>{
-  const year=new Date(order.date).getFullYear();
-  if(year>=2026)yearCounts.set(year,(yearCounts.get(year)||0)+1);
-  const seen=new Set();
-  (Array.isArray(order.items)?order.items:[]).forEach(item=>{
-   const quantity=Number(item.quantity)||0;if(quantity<=0)return;
-   const name=String(item.name||'Artikel').trim();
-   allUnits+=quantity;
-   const key=name.toLocaleLowerCase('de-DE');
-   if(!allProducts.has(key))allProducts.set(key,{name,orders:0,quantity:0});
-   const stats=allProducts.get(key);stats.quantity+=quantity;
-   if(!seen.has(key)){stats.orders++;seen.add(key);}
-  });
- });
- document.getElementById('order-count').textContent=orders.length;
- document.getElementById('order-units').textContent=allUnits;
- const selected=filter.value;
- filter.replaceChildren();
- const optionAll=document.createElement('option');optionAll.value='all';optionAll.textContent='Alle Jahre';filter.appendChild(optionAll);
- for(let year=Math.max(2026,new Date().getFullYear(),...yearCounts.keys());year>=2026;year--){
-  const option=document.createElement('option');option.value=String(year);option.textContent=String(year);filter.appendChild(option);
- }
- filter.value=[...filter.options].some(o=>o.value===selected)?selected:'all';
- function addYear(label,value){const row=document.createElement('div');row.className='pickup-row';const left=document.createElement('span');left.textContent=label;const right=document.createElement('strong');right.textContent=String(value);row.append(left,right);years.appendChild(row);}
- for(let y=2026;y<=Math.max(2026,new Date().getFullYear(),...yearCounts.keys());y++)addYear(String(y),yearCounts.get(y)||0);
- const monthFilter=document.getElementById('order-month-filter');
- const selectedMonth=monthFilter.value;
- monthFilter.replaceChildren();
- const allMonths=new Option('Alle Monate','all');monthFilter.add(allMonths);
- const monthNames=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
- monthNames.forEach((name,index)=>monthFilter.add(new Option(name,String(index))));
- monthFilter.value=[...monthFilter.options].some(o=>o.value===selectedMonth)?selectedMonth:'all';
+ const orders=readOrderStats().filter(o=>new Date(o.date).getFullYear()===selectedOrderYear).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
+ document.getElementById('order-selected-year').textContent=String(selectedOrderYear);
+ document.getElementById('order-count').textContent=String(orders.length);
  const products=new Map();
- orders.filter(o=>(filter.value==='all'||String(new Date(o.date).getFullYear())===filter.value)&&(monthFilter.value==='all'||String(new Date(o.date).getMonth())===monthFilter.value)).forEach(order=>{
+ orders.forEach(order=>{
   const seen=new Set();
   (Array.isArray(order.items)?order.items:[]).forEach(item=>{
-   const quantity=Number(item.quantity)||0;if(quantity<=0)return;
    const name=String(item.name||'Artikel').trim(),key=name.toLocaleLowerCase('de-DE');
+   const quantity=Number(item.quantity)||0;
+   if(!name||quantity<=0)return;
    if(!products.has(key))products.set(key,{name,orders:0,quantity:0});
    const entry=products.get(key);entry.quantity+=quantity;
    if(!seen.has(key)){entry.orders++;seen.add(key);}
   });
  });
- const ranking=[...products.values()].sort((a,b)=>b.orders-a.orders||b.quantity-a.quantity||a.name.localeCompare(b.name,'de'));
- if(!ranking.length){const empty=document.createElement('p');empty.className='order-article-empty';empty.textContent='Für diesen Zeitraum wurden noch keine Bestellungen erfasst.';list.appendChild(empty);return;}
- ranking.forEach(item=>{
-  const row=document.createElement('div');row.className='order-article-row';
-  const name=document.createElement('span');name.textContent=item.name;
-  const ordersCount=document.createElement('strong');ordersCount.textContent=String(item.orders);
-  const quantity=document.createElement('strong');quantity.textContent=String(item.quantity);
-  row.append(name,ordersCount,quantity);list.appendChild(row);
+ const types=document.getElementById('order-type-buttons');types.replaceChildren();
+ const ranked=[...products.values()].sort((a,b)=>b.orders-a.orders||a.name.localeCompare(b.name,'de'));
+ if(!ranked.length){const empty=document.createElement('p');empty.textContent='Für '+selectedOrderYear+' wurden noch keine Bestellungen erfasst.';types.appendChild(empty);}
+ ranked.forEach(item=>{
+  const row=document.createElement('button');row.type='button';row.className='pickup-row pickup-type-button';
+  const label=document.createElement('span');label.className='pickup-type-label';label.textContent=item.name;
+  const share=document.createElement('span');share.className='pickup-type-share';share.textContent=(orders.length?(item.orders/orders.length*100).toLocaleString('de-DE',{maximumFractionDigits:1}):'0')+' %';
+  const count=document.createElement('strong');count.textContent=item.orders+' ›';
+  row.append(label,share,count);
+  row.addEventListener('click',()=>openOrderHistory(item.name));
+  types.appendChild(row);
+ });
+ const history=document.getElementById('order-history-list');history.replaceChildren();
+ document.getElementById('order-history-title').textContent=selectedOrderProduct?'Bestellverlauf: '+selectedOrderProduct:'Bestellverlauf: Alle Bestellungen';
+ const filtered=selectedOrderProduct?orders.filter(o=>(o.items||[]).some(item=>String(item.name||'').toLocaleLowerCase('de-DE')===selectedOrderProduct.toLocaleLowerCase('de-DE'))):orders;
+ if(!filtered.length){const empty=document.createElement('p');empty.textContent='Keine Bestellungen im Jahr '+selectedOrderYear+'.';history.appendChild(empty);}
+ filtered.forEach(order=>{
+  const row=document.createElement('div');row.className='pickup-row';
+  const date=document.createElement('strong');date.textContent=new Date(order.date).toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'short'});
+  const details=document.createElement('span');
+  details.textContent=(Array.isArray(order.items)?order.items:[]).filter(item=>!selectedOrderProduct||String(item.name||'').toLocaleLowerCase('de-DE')===selectedOrderProduct.toLocaleLowerCase('de-DE')).map(item=>String(item.name||'Artikel')+' × '+(Number(item.quantity)||0)).join(', ');
+  row.append(date,details);history.appendChild(row);
  });
 }
-document.getElementById('order-year-filter').addEventListener('change',renderOrderStats);
-document.getElementById('order-month-filter').addEventListener('change',renderOrderStats);
+document.getElementById('order-year-prev').addEventListener('click',()=>{selectedOrderYear--;renderOrderStats();});
+document.getElementById('order-year-next').addEventListener('click',()=>{selectedOrderYear++;renderOrderStats();});
+document.getElementById('order-all-history').addEventListener('click',()=>openOrderHistory(null));
+document.getElementById('order-history-close').addEventListener('click',closeOrderHistory);
+document.getElementById('order-history-backdrop').addEventListener('click',closeOrderHistory);
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.body.classList.contains('order-history-open'))closeOrderHistory();});
+window.addEventListener('hashchange',closeOrderHistory);
 window.addEventListener('storage',event=>{if(event.key==='brillinger-bestellstatistik-v1')renderOrderStats();});
 window.addEventListener('pageshow',renderOrderStats);
 renderOrderStats();
