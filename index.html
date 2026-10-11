@@ -74,6 +74,11 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   const target=link.getAttribute('href');
   if(location.hash!==target)history.pushState(null,'',target);
   showFacilityManagementPage();
+  if(target==='#shop'){
+   document.documentElement.scrollTop=0;
+   document.body.scrollTop=0;
+   requestAnimationFrame(()=>{window.scrollTo({top:0,left:0,behavior:'instant'});document.documentElement.scrollTop=0;document.body.scrollTop=0;});
+  }
  });
 });
 async function refreshFacilityApp(button){
