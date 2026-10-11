@@ -586,3 +586,10 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-view .waste-option strong{font-size:17px!important;margin-bottom:3px!important}
  #waste-view .waste-option small{font-size:12px!important;line-height:1.25!important}
 }
+
+/* Smartphone: Entsorgungskacheln etwas größer und weiterhin kompakt. */
+@media(max-width:720px){
+ #waste-view .waste-options{gap:10px!important}
+ #waste-view .waste-option{min-height:78px!important;padding:15px 16px!important;gap:13px!important}
+ #waste-view .waste-option-icon{font-size:30px!important}
+}
