@@ -1021,3 +1021,8 @@ body.order-history-open{overflow:hidden!important}
  #waste-overview-view #waste-month-filter{grid-column:2!important;grid-row:1!important}
  #waste-overview-view #waste-filter-reset{grid-column:2!important;grid-row:2!important;justify-self:end!important;margin-top:4px!important}
 }
+
+/* Desktop: Bestellbestaetigung weiter oben und ueber dem Warenkorb anzeigen */
+@media (min-width: 1051px) {
+  .live-message { top: 105px; bottom: auto; z-index: 10000; text-align: center; }
+}
