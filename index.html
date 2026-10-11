@@ -450,4 +450,29 @@ edit.addEventListener('click',open);
 const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails();
 window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
 })();
+</script><script>
+/* Mobile Wischgeste: nach links zur übergeordneten Seite. */
+(function(){
+ let startX=0,startY=0,tracking=false;
+ const parent={'#muellentsorgung':'#start','#entsorgungsuebersicht':'#start','#bestelluebersicht':'#entsorgungsuebersicht','#leerungsuebersicht':'#entsorgungsuebersicht','#shop':'#start','#artikel':'#start','#warenkorb':'#artikel','#sonderartikel':'#artikel'};
+ document.addEventListener('touchstart',function(e){
+  tracking=false;
+  if(e.touches.length!==1||!matchMedia('(max-width: 720px)').matches)return;
+  const t=e.target;
+  if(t.closest('input,textarea,select,[contenteditable="true"],dialog,[role="dialog"],.modal,.popup'))return;
+  startX=e.touches[0].clientX;startY=e.touches[0].clientY;
+  tracking=true;
+ },{passive:true});
+ document.addEventListener('touchend',function(e){
+  if(!tracking||!e.changedTouches.length)return;
+  tracking=false;
+  const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;
+  if(dx > -85||Math.abs(dx)<Math.abs(dy)*1.5)return;
+  const current=location.hash||'#start',target=parent[current];
+  if(!target)return;
+  location.hash=target;
+  if(typeof showFacilityManagementPage==='function')showFacilityManagementPage();
+ },{passive:true});
+ document.addEventListener('touchcancel',()=>{tracking=false},{passive:true});
+})();
 </script></body></html>
