@@ -1031,3 +1031,8 @@ body.order-history-open{overflow:hidden!important}
 @media (min-width: 1051px) {
   .mobile-sticky-controls > .custom-entry-link { align-self: stretch; min-height: 80px; box-sizing: border-box; margin-bottom: 0; padding: 14px 20px; }
 }
+
+/* Smartphone: Bestelluebersicht auf dieselbe obere Position wie Leerungsuebersicht setzen */
+@media (max-width: 720px) {
+  #order-overview-view { padding-top: 12px !important; }
+}
