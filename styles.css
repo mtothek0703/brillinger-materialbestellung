@@ -474,3 +474,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Höhere Spezifität als die alte Sticky-Regel: Kopfzeile ist immer viewport-fixiert. */
 @media(max-width:720px){body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}body.mobile-cart-view #shop-view>header,body.custom-entry-view #shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}}
+
+/* Sonderartikel: beide Aktionen exakt gleich breit und hoch. */
+@media(max-width:720px){body.custom-entry-view #custom-product-form>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:48px!important;height:48px!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important;padding:8px 12px!important;line-height:1.2!important}}
