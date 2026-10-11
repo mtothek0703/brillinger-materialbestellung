@@ -146,7 +146,7 @@ $('custom-product-form').addEventListener('submit',event=>{
  const details=$('custom-product-details').value.trim();
  const urlInput=$('custom-product-url').value.trim();
  let url='';
- if(urlInput){try{const parsed=new URL(urlInput);if(!['http:','https:'].includes(parsed.protocol))throw new Error('protocol');url=parsed.href;}catch{notify('Bitte einen gültigen Produktlink mit https:// eingeben.');return;}}
+ if(urlInput){try{const parsed=new URL(urlInput);if(!['http:','https:'].includes(parsed.protocol))throw new Error('protocol');const asin=/(?:\/dp\/|\/gp\/product\/)([A-Z0-9]{10})(?:[/?]|$)/i.exec(parsed.pathname);if(/(^|\.)amazon\.[a-z.]+$/i.test(parsed.hostname)&&asin){url=parsed.origin+'/dp/'+asin[1].toUpperCase();}else{parsed.search='';parsed.hash='';url=parsed.href;}}catch{notify('Bitte einen gültigen Produktlink mit https:// eingeben.');return;}}
  if(!name||!amount){notify('Bitte Artikelbezeichnung und gültige Menge eingeben.');return;}
  customCart.push({id:++customItemCounter,name,amount,details,url});
  $('custom-product-form').reset();
@@ -190,11 +190,14 @@ $('request-custom-product').addEventListener('click',()=>{
  const name=$('custom-product-name').value.trim();
  const amount=quantity($('custom-product-amount').value);
  const details=$('custom-product-details').value.trim();
+ const urlInput=$('custom-product-url').value.trim();
+ let productUrl='';
+ if(urlInput){try{const u=new URL(urlInput);if(!['http:','https:'].includes(u.protocol))throw Error('protocol');const asin=/(?:\/dp\/|\/gp\/product\/)([A-Z0-9]{10})(?:[/?]|$)/i.exec(u.pathname);if(/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname)&&asin)productUrl=u.origin+'/dp/'+asin[1].toUpperCase();else{u.search='';u.hash='';productUrl=u.href;}}catch{notify('Bitte einen gültigen Produktlink eingeben.');return;}}
  if(!name||!amount){notify('Bitte Artikelbezeichnung und gültige Menge eingeben.');$('custom-product-name').focus();return;}
  const customer=$('customer').value.trim();
  const site=$('site').value.trim();
  const department=$('department').value.trim();
- const lines=['Hallo,','','ich möchte folgenden Artikel für den internen Bestellshop anfragen:','', 'Artikel: '+name,'Gewünschte Menge: '+amount,...(details?['Weitere Angaben: '+details]:[]),'',...(customer?['Angefragt von: '+customer]:[]),...(site?['Standort: '+site]:[]),...(department?['Bereich: '+department]:[]),'','Vielen Dank und freundliche Grüße'];
+ const lines=['Hallo,','','ich möchte folgenden Artikel für den internen Bestellshop anfragen:','', 'Artikel: '+name,'Gewünschte Menge: '+amount,...(details?['Weitere Angaben: '+details]:[]),...(productUrl?['Produktlink: '+productUrl]:[]),'',...(customer?['Angefragt von: '+customer]:[]),...(site?['Standort: '+site]:[]),...(department?['Bereich: '+department]:[]),'','Vielen Dank und freundliche Grüße'];
  const body=lines.join('\r\n');
  const subject='Artikelwunsch Brillinger – '+name.replace(/[\r\n]/g,' ');
  $('order-text').value=body;
