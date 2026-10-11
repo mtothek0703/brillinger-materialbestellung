@@ -740,3 +740,17 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-overview-view #pickup-types .pickup-type-button{min-height:56px!important;padding:10px 14px!important}
  #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:9px 13px!important}
 }
+
+/* Jahresauswahl und Gesamtleerungen nebeneinander auf PC und Smartphone. */
+#waste-overview-view .pickup-top-row{display:grid!important;grid-template-columns:minmax(0,390px) minmax(0,1fr)!important;align-items:stretch!important;gap:14px!important;margin:16px 0 24px!important}
+#waste-overview-view .pickup-top-row .pickup-year-selector{width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;box-sizing:border-box!important}
+#waste-overview-view .pickup-top-row .pickup-year-total{width:100%!important;min-width:0!important;margin:0!important;box-sizing:border-box!important;align-self:stretch!important}
+@media(max-width:720px){
+ #waste-overview-view .pickup-top-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;margin:12px 0 18px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector{padding:7px 5px!important;gap:3px!important;border-radius:12px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector button{width:32px!important;height:36px!important;flex-shrink:0!important;font-size:25px!important;padding:0!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector strong{font-size:19px!important;min-width:0!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total{padding:9px 10px!important;gap:5px!important;border-radius:12px!important;font-size:12px!important;line-height:1.2!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total strong{font-size:19px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total>span{font-size:19px!important}
+}
