@@ -677,3 +677,11 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-overview-view #pickup-types .pickup-type-button strong{font-size:16px!important;min-width:45px!important;padding:7px 10px!important}
  #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:14px 16px!important}
 }
+
+/* PC: Jahresauswahl linksbündig statt zentriert. */
+@media(min-width:721px){
+ #waste-overview-view .pickup-year-selector{
+  margin-left:0!important;
+  margin-right:auto!important;
+ }
+}
