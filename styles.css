@@ -460,3 +460,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Kategorien-Überschrift bündig mit dem Text 'Artikel suchen' ausrichten. */
 #shop-view .mobile-sticky-controls .category-label{padding-left:10px!important;box-sizing:border-box!important}
+
+/* Kategorien-Buttons in der ersten und zweiten Zeile etwas nach rechts einrücken. */
+#shop-view .mobile-sticky-controls .category-nav{padding-left:10px!important;box-sizing:border-box!important}
