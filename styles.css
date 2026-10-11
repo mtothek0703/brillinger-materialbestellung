@@ -962,3 +962,26 @@ body.order-history-open{overflow:hidden!important}
  #waste-overview-view #pickup-types .pickup-type-button{grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto!important;column-gap:7px!important}
  #waste-overview-view #pickup-types .pickup-type-share{min-height:36px!important;min-width:56px!important;padding:7px 9px!important;font-size:16px!important}
 }
+
+/* Leerungsfilter: Zurücksetzen separat rechts unterhalb der Filterauswahl. */
+#waste-overview-view #waste-filter-panel{
+ grid-template-columns:auto minmax(130px,1fr) auto minmax(150px,1fr)!important;
+}
+#waste-overview-view #waste-filter-reset{
+ grid-column:4!important;
+ grid-row:2!important;
+ justify-self:end!important;
+ margin-top:6px!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #waste-filter-panel{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ }
+ #waste-overview-view #waste-filter-reset{
+  grid-column:2!important;
+  grid-row:3!important;
+  justify-self:end!important;
+  width:auto!important;
+  margin-top:4px!important;
+ }
+}
