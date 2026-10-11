@@ -287,7 +287,7 @@ function renderOrderStats(){
  const monthNames=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
  monthSelect.replaceChildren(new Option('Alle Monate','all'),...monthNames.map((name,i)=>new Option(name,String(i))));
  monthSelect.value=selectedOrderMonth;
- const departments=[...new Set(allYearOrders.map(o=>String(o.department||o.dept||'Nicht zugeordnet').trim()||'Nicht zugeordnet'))].sort((a,b)=>a.localeCompare(b,'de'));
+ const departments=[...new Set(['Logistik','Werkstatt','Haustechnik',...allYearOrders.map(o=>String(o.department||o.dept||'Nicht zugeordnet').trim()||'Nicht zugeordnet')])].sort((a,b)=>a.localeCompare(b,'de'));
  deptSelect.replaceChildren(new Option('Alle Bereiche','all'),...departments.map(name=>new Option(name,name)));
  if(selectedOrderDept!=='all'&&!departments.includes(selectedOrderDept))selectedOrderDept='all';
  deptSelect.value=selectedOrderDept;
@@ -334,19 +334,24 @@ document.getElementById('order-month-filter').addEventListener('change',event=>{
 document.getElementById('order-dept-filter').addEventListener('change',event=>{selectedOrderDept=event.target.value;renderOrderStats();});
 document.getElementById('order-filter-reset').addEventListener('click',()=>{selectedOrderMonth='all';selectedOrderDept='all';renderOrderStats();});
 document.getElementById('order-form')?.addEventListener('submit',()=>{
- try{
-  const key='brillinger-bestellstatistik-v1';
-  const history=JSON.parse(localStorage.getItem(key)||'[]');
-  const profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
-  if(!Array.isArray(history)||!history.length||!profile)return;
-  const last=history[history.length-1];
-  if(last&&!last.department&&Date.now()-Date.parse(last.date)<10000){
-   last.department=String(profile.dept||'').trim()||'Nicht zugeordnet';
-   last.site=String(profile.site||'').trim();
-   localStorage.setItem(key,JSON.stringify(history));
-   renderOrderStats();
-  }
- }catch(error){console.warn('Bereich konnte nicht zur Bestellung gespeichert werden',error);}
+ // Nach dem Bestell-Handler speichern, damit die neue Bestellung bereits existiert.
+ queueMicrotask(()=>{
+  try{
+   const key='brillinger-bestellstatistik-v1';
+   const history=JSON.parse(localStorage.getItem(key)||'[]');
+   if(!Array.isArray(history)||!history.length)return;
+   const profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
+   const department=String(profile?.dept||document.getElementById('department')?.value||'').trim();
+   const site=String(profile?.site||document.getElementById('site')?.value||'').trim();
+   const last=history[history.length-1];
+   if(last&&!last.department&&department&&Date.now()-Date.parse(last.date)<10000){
+    last.department=department;
+    last.site=site;
+    localStorage.setItem(key,JSON.stringify(history));
+    renderOrderStats();
+   }
+  }catch(error){console.warn('Bereich konnte nicht zur Bestellung gespeichert werden',error);}
+ });
 });
 document.getElementById('order-year-prev').addEventListener('click',()=>{selectedOrderYear--;renderOrderStats();});
 document.getElementById('order-year-next').addEventListener('click',()=>{selectedOrderYear++;renderOrderStats();});
