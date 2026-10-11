@@ -526,3 +526,23 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!imp
 body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
 body:has(#order-overview-view:not([hidden])) #profile-toolbar,
 body:has(#waste-overview-view:not([hidden])) #profile-toolbar{left:auto!important;right:24px!important}}
+
+/* Desktop: Müllentsorgung und alle Übersichten – gleiche untere Buttonleiste wie Startseite. */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:22px!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;box-shadow:none!important;z-index:1200!important;box-sizing:border-box!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #home-refresh{position:static!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;margin:0!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;border-radius:12px!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+}
