@@ -212,7 +212,7 @@ function renderRequests(){
   const percent=entries.length?((amount/entries.length)*100).toLocaleString('de-DE',{maximumFractionDigits:1}):'0';
   const share=document.createElement('span');share.className='pickup-type-share';share.textContent=percent+' %';
   const count=document.createElement('strong');count.textContent=String(amount)+' ›';
-  row.append(label,share,count);
+  row.append(label,count,share);
   row.addEventListener('click',()=>{
    selectedPickupType=name;
    openPickupHistory();
