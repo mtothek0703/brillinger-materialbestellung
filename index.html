@@ -68,21 +68,66 @@ function showFacilityManagementPage(){
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
-/* Desktop: Warenkorb-Link scrollt zuverlässig zum Warenkorb, auch bei
-   fixierter Kopfzeile und wenn #warenkorb bereits in der URL steht. */
-document.querySelector('#shop-view > header .cart-link')?.addEventListener('click',function(event){
- if(window.matchMedia('(max-width: 720px)').matches)return;
- event.preventDefault();
- if(location.hash!=='#warenkorb')history.pushState(null,'','#warenkorb');
- showFacilityManagementPage();
- const target=document.getElementById('warenkorb');
- if(!target)return;
- const header=document.querySelector('#shop-view > header');
- const offset=(header?.getBoundingClientRect().height||0)+16;
- const top=window.scrollY+target.getBoundingClientRect().top-offset;
- window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
-});
-
+/* Desktop: Warenkorb als eigenständiges Dialogfenster öffnen. */
+(function(){
+ const cart=document.getElementById('warenkorb');
+ const link=document.querySelector('#shop-view > header .cart-link');
+ if(!cart||!link)return;
+ const backdrop=document.createElement('div');
+ backdrop.id='desktop-cart-backdrop';
+ backdrop.setAttribute('aria-hidden','true');
+ document.body.appendChild(backdrop);
+ const close=document.createElement('button');
+ close.type='button';
+ close.id='desktop-cart-close';
+ close.setAttribute('aria-label','Warenkorb schließen');
+ close.textContent='×';
+ cart.insertBefore(close,cart.firstChild);
+ let previousHash='#shop';
+ function openCart(){
+  if(window.matchMedia('(max-width: 720px)').matches)return;
+  document.body.classList.add('desktop-cart-open');
+  cart.setAttribute('role','dialog');
+  cart.setAttribute('aria-modal','true');
+  cart.setAttribute('tabindex','-1');
+  close.focus();
+ }
+ function closeCart(){
+  document.body.classList.remove('desktop-cart-open');
+  cart.removeAttribute('aria-modal');
+  cart.removeAttribute('role');
+  if(location.hash==='#warenkorb'){
+   history.replaceState(null,'',previousHash==='#warenkorb'?'#shop':previousHash);
+   showFacilityManagementPage();
+  }
+  link.focus();
+ }
+ link.addEventListener('click',event=>{
+  if(window.matchMedia('(max-width: 720px)').matches)return;
+  event.preventDefault();
+  if(!document.body.classList.contains('desktop-cart-open')){
+   previousHash=location.hash&&location.hash!=='#warenkorb'?location.hash:'#shop';
+   if(location.hash!=='#warenkorb')history.pushState(null,'','#warenkorb');
+   showFacilityManagementPage();
+   openCart();
+  }else closeCart();
+ });
+ close.addEventListener('click',closeCart);
+ backdrop.addEventListener('click',closeCart);
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&document.body.classList.contains('desktop-cart-open'))closeCart();
+ });
+ window.addEventListener('hashchange',()=>{
+  if(window.matchMedia('(max-width: 720px)').matches){document.body.classList.remove('desktop-cart-open');return}
+  if(location.hash==='#warenkorb')openCart();
+  else document.body.classList.remove('desktop-cart-open');
+ });
+ window.addEventListener('resize',()=>{
+  if(window.matchMedia('(max-width: 720px)').matches)document.body.classList.remove('desktop-cart-open');
+  else if(location.hash==='#warenkorb')openCart();
+ });
+ if(location.hash==='#warenkorb')openCart();
+})();
 document.querySelectorAll('.home-tiles a').forEach(link=>{
  link.addEventListener('click',event=>{
   event.preventDefault();
