@@ -546,3 +546,28 @@ body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit[hidde
 body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
 body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
 }
+
+/* PC-Warenkorb: eigener Dialog statt Sidebar und Scrollsprung. */
+#desktop-cart-backdrop,#desktop-cart-close{display:none}
+@media(min-width:721px){
+ body.desktop-cart-open{overflow:hidden!important}
+ #desktop-cart-backdrop{position:fixed;inset:0;background:rgba(8,23,44,.58);z-index:2900}
+ body.desktop-cart-open #desktop-cart-backdrop{display:block}
+ body.desktop-cart-open #shop-view #warenkorb{
+  display:block!important;position:fixed!important;top:50%!important;left:50%!important;
+  right:auto!important;bottom:auto!important;transform:translate(-50%,-50%)!important;
+  width:min(640px,calc(100vw - 48px))!important;max-width:640px!important;
+  max-height:calc(100dvh - 64px)!important;overflow-y:auto!important;
+  margin:0!important;padding:30px!important;box-sizing:border-box!important;
+  background:#fff!important;border-radius:18px!important;
+  box-shadow:0 20px 65px rgba(0,0,0,.25)!important;z-index:2901!important;
+  scrollbar-gutter:auto!important
+ }
+ body.desktop-cart-open #desktop-cart-close{
+  display:flex!important;align-items:center;justify-content:center;
+  position:sticky;top:0;float:right;margin:-14px -14px 8px 8px;
+  width:40px;height:40px;border:0;border-radius:50%;
+  background:#eef3f7;color:#12354a;font-size:30px;line-height:1;cursor:pointer;z-index:2
+ }
+ body.desktop-cart-open #desktop-cart-close:hover{background:#dbeaf2}
+}
