@@ -770,3 +770,13 @@ body.pickup-history-open{overflow:hidden!important}
  #waste-overview-view #pickup-types + h2{font-size:18px!important}
  #waste-overview-view h2:has(+ #pickup-types){font-size:clamp(14px,4.2vw,18px)!important;white-space:nowrap!important;letter-spacing:-.25px!important}
 }
+
+/* Prozentwert mittig im freien Bereich der Entsorgungskachel. */
+#waste-overview-view #pickup-types .pickup-type-button{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;align-items:center!important;column-gap:20px!important}
+#waste-overview-view #pickup-types .pickup-type-label{display:block!important;min-width:0!important}
+#waste-overview-view #pickup-types .pickup-type-share{display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;padding:7px 11px!important;border-radius:10px!important;background:#f2f7fa!important;color:#48778d!important;font-size:14px!important;font-weight:700!important;line-height:1.2!important}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{background:#d2eaf7!important;color:#00658b!important}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types .pickup-type-button{grid-template-columns:minmax(0,1fr) auto auto!important;column-gap:8px!important}
+ #waste-overview-view #pickup-types .pickup-type-share{font-size:12px!important;padding:6px 8px!important}
+}
