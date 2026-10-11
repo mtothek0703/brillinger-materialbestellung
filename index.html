@@ -462,6 +462,8 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  document.addEventListener('touchstart',function(e){
   tracking=false;
   if(e.touches.length!==1||!matchMedia('(max-width: 720px)').matches)return;
+  // Startseite ist das Ende der Wisch-Navigation.
+  if(!location.hash||location.hash==='#start'||location.hash==='#')return;
   const t=e.target;
   if(t.closest('input,textarea,select,[contenteditable="true"],dialog,[role="dialog"],.modal,.popup'))return;
   startX=e.touches[0].clientX;startY=e.touches[0].clientY;
