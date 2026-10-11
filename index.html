@@ -159,6 +159,14 @@ if(localStorage.getItem(statsResetKey)!=='done'){
  localStorage.removeItem('brillinger-bestellstatistik-v1');
  localStorage.setItem(statsResetKey,'done');
 }
+/* Einmaliger Reset der lokalen Bestell- und Leerungsstatistiken. */
+const fullStatsResetKey='brillinger-statistik-reset-20261011-alle';
+if(localStorage.getItem(fullStatsResetKey)!=='done'){
+ for(const key of ['brillinger-bestellstatistik-v1','brillinger-entsorgungsanforderungen-v1','brillinger-restmuell-anforderungen-v2']){
+  localStorage.removeItem(key);
+ }
+ localStorage.setItem(fullStatsResetKey,'done');
+}
 const requestStorageKey='brillinger-entsorgungsanforderungen-v1';
 const legacyRequestStorageKey='brillinger-restmuell-anforderungen-v2';
 const wasteTypes=[
