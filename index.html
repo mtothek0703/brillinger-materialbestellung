@@ -176,7 +176,21 @@ const wasteTypes=[
  ['waste-wood','Holz'],
  ['waste-metal','Metallschrott']
 ];
+let sharedFacilityStats={orders:[],waste:[]};
+let sharedFacilityStatsReady=false;
+async function loadSharedFacilityStats(){
+ try{
+  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/rest/v1/rpc/facility_statistics_summary',{method:'POST',headers:{'apikey':'sb_publishable_bRcUeUgZI3OQrupuTPNWQA_GQW9YLbf','Content-Type':'application/json'},body:'{}',cache:'no-store'});
+  if(!response.ok)throw Error('Statistik nicht erreichbar');
+  const result=await response.json();
+  sharedFacilityStats={orders:Array.isArray(result.orders)?result.orders:[],waste:Array.isArray(result.waste)?result.waste:[]};
+  sharedFacilityStatsReady=true;
+  renderRequests();renderOrderStats();
+ }catch(e){console.warn('Zentrale Statistik nicht geladen',e);sharedFacilityStatsReady=false;}
+}
+window.addEventListener('hashchange',()=>{if(['#entsorgungsuebersicht','#bestelluebersicht','#leerungsuebersicht'].includes(location.hash))loadSharedFacilityStats();});
 function getRequests(){
+ if(sharedFacilityStatsReady)return sharedFacilityStats.waste;
  let entries=[];
  try{
   const values=JSON.parse(localStorage.getItem(requestStorageKey)||'[]');
@@ -299,6 +313,7 @@ let selectedOrderDept="all";
 let selectedOrderArticle="all";
 const allCatalogArticleNames=["Milch","Hafermilch","Glasreiniger","AdBlue (10 Liter)","Scheibenreiniger (Sommer)","Scheibenreiniger (Winter)","Geschirrtücher","Klarspüler","Vileda MicroTuff Universal Mikrofasertuch, 38 × 38 cm","Putztücher","Scheuermilch","Scheuerschwamm","Spülmaschinensalz","Spülmittel","Spülmaschinen Tabs","Batterien","Desinfektionsreiniger","Flüssigseife","Kleber (UHU)","Sekundenkleber","Hygienebeutel","Rohrreiniger","Kabelbinder klein","Kabelbinder groß (7,6 × 450 mm)","Empfangsbestätigung","Allplastik-Blitzbinder, 240 mm, rot","Cuttermesser Wedo Safety Standard","Cuttermesser Westcott Cutter Premium","Dymo-Schriftbandkassette für LabelWriter","Dymo Etiketten 54x101 mm , weiß","Großraumtüte (Europack), 1.300 × 2.300 mm, 1.000 l","Matratzentüte auf Rolle, 105 × 20 × 230 cm","Edding 3000, 1,5–3 mm","Edding 400, 1 mm","Schere","Locher","Tesafilm-Rolle, 10 m × 19 mm","Tacker","Laminierfolie, klein, DIN A5","Laminierfolie, groß, DIN A4","Gummiringe, 85 mm","Würfelzucker 500 g","Kartonagen 600×400×300 mm (1)","Kartonagen 400×300×200 mm (2)","Kartonagen 310×230×100–160 mm (3)","Kartonagen 400×400×300 mm (4)","Kartonagen 240×200×100 mm (5)","Kartonagen 600×300×200 mm (6)","Natronkraftpapier auf Rolle (90 g)","PVC-Klebeband, 50 mm","Luftpolstertasche 18/H, 265 × 360 mm, braun","Begleitpapiertasche","DPD-Express-Klebeband","Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm","Stretchfolie klein","Stretchfolie groß","Umreifungsband, Großrolle, 12,7 × 0,5 mm","Verschlusshülsen für Umreifungsband, 13 × 28 × 0,5 mm","Handabroller"];
 function readOrderStats(){
+ if(sharedFacilityStatsReady)return sharedFacilityStats.orders;
  try{const data=JSON.parse(localStorage.getItem('brillinger-bestellstatistik-v1')||'[]');return Array.isArray(data)?data.filter(o=>o&&o.date&&!isNaN(Date.parse(o.date))):[];}catch{return [];}
 }
 function closeOrderHistory(){
