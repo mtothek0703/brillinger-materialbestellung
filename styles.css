@@ -486,3 +486,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Desktop-Startseite: Logo größer; mobile Darstellung bleibt unverändert. */
 @media(min-width:721px){#home-view .home-top img{width:420px!important;max-width:80vw!important;height:auto!important}}
+
+/* PC: Beide Sonderartikel-Aktionsbuttons gleich breit und hoch. */
+@media(min-width:721px){#custom-product-form>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:46px!important;min-height:46px!important;box-sizing:border-box!important;padding:10px 16px!important;line-height:1.2!important;text-align:center!important}}
