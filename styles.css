@@ -593,3 +593,11 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-view .waste-option{min-height:78px!important;padding:15px 16px!important;gap:13px!important}
  #waste-view .waste-option-icon{font-size:30px!important}
 }
+
+/* Jahresnavigation in der Leerungsübersicht. */
+.pickup-year-selector{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:390px;margin:22px auto 18px;padding:10px 12px;background:#fff;border:1px solid #dce5eb;border-radius:16px;box-shadow:0 4px 16px #142c3809}
+.pickup-year-selector strong{font-size:26px;color:#153443;font-weight:800;font-variant-numeric:tabular-nums}
+.pickup-year-selector button{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border:1px solid #d3e0e8;border-radius:11px;background:#edf5fa;color:#005c80;font-size:34px;cursor:pointer;line-height:1}
+.pickup-year-selector button:hover{background:#dceef8}
+.pickup-year-selector button:focus-visible{outline:3px solid #007eaf;outline-offset:2px}
+@media(max-width:720px){.pickup-year-selector{margin:14px auto 12px}.pickup-year-selector strong{font-size:23px}.pickup-year-selector button{width:44px;height:44px}}
