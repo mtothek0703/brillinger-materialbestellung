@@ -198,7 +198,7 @@ function updateWasteEmails(){
  const dept=String(profile?.dept||'').trim();
  const pickup=(dept==='Logistik'||dept==='Werkstatt')
   ? 'Orthopädie Brillinger GmbH\nEinhornstraße 10\n72138 Kirchentellinsfurt'
-  : 'Handwerkerpark 25\n72070 Tübingen';
+  : 'Orthopädie Brillinger GmbH\nHandwerkerpark 25\n72070 Tübingen';
  for(const id of ['waste-rest','waste-paper']){
   const link=document.getElementById(id);
   if(!link)return;
