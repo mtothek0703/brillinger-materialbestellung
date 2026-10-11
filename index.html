@@ -193,8 +193,12 @@ function renderRequests(){
  wasteTypes.forEach(([,name])=>{
   const row=document.createElement('button');row.type='button';row.className='pickup-row pickup-type-button';
   row.setAttribute('aria-pressed',String(selectedPickupType===name));
-  const label=document.createElement('span');label.textContent=name;
-  const count=document.createElement('strong');const amount=entries.filter(v=>v.type===name).length;const percent=entries.length?((amount/entries.length)*100).toLocaleString('de-DE',{maximumFractionDigits:1}):'0';count.textContent=String(amount)+' · '+percent+' % ›';
+  const label=document.createElement('span');label.className='pickup-type-label';label.textContent=name;
+  const amount=entries.filter(v=>v.type===name).length;
+  const percent=entries.length?((amount/entries.length)*100).toLocaleString('de-DE',{maximumFractionDigits:1}):'0';
+  const share=document.createElement('small');share.className='pickup-type-share';share.textContent=percent+' % Anteil';
+  label.appendChild(share);
+  const count=document.createElement('strong');count.textContent=String(amount)+' ›';
   row.append(label,count);
   row.addEventListener('click',()=>{
    selectedPickupType=selectedPickupType===name?null:name;
