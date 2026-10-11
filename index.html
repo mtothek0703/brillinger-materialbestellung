@@ -188,7 +188,18 @@ async function loadSharedFacilityStats(){
   renderRequests();renderOrderStats();
  }catch(e){console.warn('Zentrale Statistik nicht geladen',e);sharedFacilityStatsReady=false;}
 }
-window.addEventListener('hashchange',()=>{if(['#entsorgungsuebersicht','#bestelluebersicht','#leerungsuebersicht'].includes(location.hash))loadSharedFacilityStats();});
+const facilityStatsViews=['#entsorgungsuebersicht','#bestelluebersicht','#leerungsuebersicht'];
+let facilityStatsLoading=false;
+async function refreshFacilityStatsIfVisible(){
+ if(document.hidden||!facilityStatsViews.includes(location.hash)||facilityStatsLoading)return;
+ facilityStatsLoading=true;
+ try{await loadSharedFacilityStats();}finally{facilityStatsLoading=false;}
+}
+window.addEventListener('hashchange',refreshFacilityStatsIfVisible);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshFacilityStatsIfVisible();});
+window.addEventListener('focus',refreshFacilityStatsIfVisible);
+setInterval(refreshFacilityStatsIfVisible,30000);
+if(facilityStatsViews.includes(location.hash))setTimeout(refreshFacilityStatsIfVisible,0);
 function getRequests(){
  if(sharedFacilityStatsReady)return sharedFacilityStats.waste;
  let entries=[];
