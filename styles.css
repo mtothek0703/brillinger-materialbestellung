@@ -480,3 +480,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Startseite: Brillinger-Logo größer darstellen. */
 #home-view .home-top img{width:300px!important;max-width:85vw!important;height:auto!important}
+
+/* iPhone: Doppeltippen auf Aktualisieren darf keinen Seitenzoom auslösen. */
+#home-refresh,#home-refresh *{touch-action:manipulation!important;-webkit-user-select:none!important;user-select:none!important;-webkit-tap-highlight-color:transparent}
