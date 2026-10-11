@@ -193,13 +193,31 @@ showFacilityManagementPage();
 (function(){
 const k='facility-employee-profile-v1',pop=document.getElementById('profile-popup'),edit=document.getElementById('profile-edit');
 const n=document.getElementById('profile-name'),s=document.getElementById('profile-site'),d=document.getElementById('profile-dept');
+function updateWasteEmails(){
+ const profile=saved();
+ const dept=String(profile?.dept||'').trim();
+ const pickup=(dept==='Logistik'||dept==='Werkstatt')
+  ? 'Orthopädie Brillinger GmbH\nEinhornstraße 10\n72138 Kirchentellinsfurt'
+  : 'Handwerkerpark 25\n72070 Tübingen';
+ for(const id of ['waste-rest','waste-paper']){
+  const link=document.getElementById(id);
+  if(!link)return;
+  const original=link.dataset.baseMailto||(link.dataset.baseMailto=link.getAttribute('href'));
+  const [prefix,encodedBody]=original.split('&body=');
+  if(!encodedBody)continue;
+  const body=decodeURIComponent(encodedBody);
+  const updated=body.replace(/Abholort:\r?\n(?:Handwerkerpark 25\r?\n72070 Tübingen|Orthopädie Brillinger GmbH\r?\nEinhornstraße 10\r?\n72138 Kirchentellinsfurt)/,'Abholort:\n'+pickup);
+  link.setAttribute('href',prefix+'&body='+encodeURIComponent(updated).replace(/%20/g,'%20'));
+ }
+}
+
 function saved(){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function apply(p){if(!p)return;document.getElementById('customer').value=p.name;for(const [id,v] of [['site',p.site],['department',p.dept]]){const el=document.getElementById(id);if(![...el.options].some(o=>o.value===v))el.add(new Option(v,v));el.value=v;el.parentElement.classList.add('has-selection')}}
 function open(){const p=saved();if(p){n.value=p.name;s.value=p.site;d.value=p.dept}pop.hidden=false;pop.style.display='flex'}
-document.getElementById('profile-form').addEventListener('submit',e=>{e.preventDefault();const p={name:n.value.trim(),site:s.value,dept:d.value.trim()};if(!p.name||!p.site||!p.dept)return;localStorage.setItem(k,JSON.stringify(p));apply(p);pop.hidden=true;pop.style.display='none';edit.hidden=false});
+document.getElementById('profile-form').addEventListener('submit',e=>{e.preventDefault();const p={name:n.value.trim(),site:s.value,dept:d.value.trim()};if(!p.name||!p.site||!p.dept)return;localStorage.setItem(k,JSON.stringify(p));apply(p);updateWasteEmails();pop.hidden=true;pop.style.display='none';edit.hidden=false});
 document.getElementById('profile-back').addEventListener('click',()=>{if(!saved())return;pop.hidden=true;pop.style.display='none';});
 edit.addEventListener('click',open);
-const p=saved();if(p){apply(p);edit.hidden=false}else open();
-window.addEventListener('pageshow',()=>apply(saved()));
+const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails();
+window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
 })();
 </script></body></html>
