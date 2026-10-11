@@ -1047,3 +1047,30 @@ body.order-history-open{overflow:hidden!important}
 #waste-overview-view #waste-site-filter{grid-column:2!important;grid-row:2!important}
 #waste-overview-view #waste-filter-reset{grid-column:1/-1!important;grid-row:3!important;justify-self:end!important;margin:2px 0 0!important}
 @media(max-width:720px){#waste-overview-view #waste-filter-panel{gap:8px!important}#waste-overview-view #waste-filter-panel select{font-size:13px!important}}
+
+/* Responsive smartphone baseline: 320px through large phones, portrait and landscape. */
+@media (max-width:720px) {
+ html,body {max-width:100%;overflow-x:clip}
+ *,*::before,*::after {box-sizing:border-box}
+ #start-view,#overview-menu-view,#order-overview-view,#waste-overview-view,#waste-view,#shop-view {max-width:100%;min-width:0}
+ #order-overview-view,#waste-overview-view,#overview-menu-view {padding-left:clamp(12px,4vw,22px)!important;padding-right:clamp(12px,4vw,22px)!important}
+ #order-overview-view h1,#waste-overview-view h1 {font-size:clamp(25px,6.2vw,38px)!important;line-height:1.14;overflow-wrap:anywhere}
+ #order-overview-view .pickup-top-row,#waste-overview-view .pickup-top-row {grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:clamp(6px,2vw,12px)!important}
+ #order-overview-view .pickup-top-row > *,#waste-overview-view .pickup-top-row > * {min-width:0!important;max-width:100%!important}
+ #order-overview-view select,#waste-overview-view select,#profile-popup select,#profile-popup input {max-width:100%;min-width:0}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel {min-width:0;max-width:100%}
+ #order-overview-view #order-type-buttons .pickup-type-button,
+ #waste-overview-view #pickup-types .pickup-type-button {min-width:0;overflow-wrap:anywhere}
+ #order-overview-view #order-type-buttons .pickup-type-label,
+ #waste-overview-view #pickup-types .pickup-type-label {overflow-wrap:anywhere}
+ .live-message {max-width:calc(100vw - 24px)}
+}
+@media (max-width:380px) {
+ #order-overview-view .pickup-top-row .pickup-year-selector button,
+ #waste-overview-view .pickup-top-row .pickup-year-selector button {width:28px!important;min-width:28px!important;font-size:21px!important}
+ #order-overview-view .pickup-top-row .pickup-year-selector,
+ #waste-overview-view .pickup-top-row .pickup-year-selector {padding:6px 3px!important;gap:2px!important}
+ #order-overview-view .pickup-top-row .pickup-year-total,
+ #waste-overview-view .pickup-top-row .pickup-year-total {padding:7px!important;gap:4px!important}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel {gap:7px!important;padding:10px!important}
+}
