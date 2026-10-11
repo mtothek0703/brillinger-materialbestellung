@@ -457,3 +457,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
  body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view .mobile-sticky-controls{position:sticky!important;top:86px!important;z-index:1050!important;background:#f3f6f8!important;transform:none!important;will-change:auto!important;align-self:stretch!important}
  body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view>header{position:sticky!important;top:0!important;z-index:1100!important}
 }
+
+/* Kategorien-Überschrift bündig mit dem Text 'Artikel suchen' ausrichten. */
+#shop-view .mobile-sticky-controls .category-label{padding-left:10px!important;box-sizing:border-box!important}
