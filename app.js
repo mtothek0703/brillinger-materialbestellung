@@ -133,6 +133,9 @@ try{
  invalidateOrder();renderCart();
  if(typeof window.renderOrderStats==='function')window.renderOrderStats();
  notify('Bestellung erfolgreich versendet. Warenkorb geleert.');
+ const closeCart=document.getElementById('desktop-cart-close');
+ if(document.body.classList.contains('desktop-cart-open')&&closeCart){closeCart.click();}
+ else if(window.location.hash==='#warenkorb'){window.location.hash='#artikel';}
 }catch(error){notify(error.message||'Versand fehlgeschlagen. Warenkorb bleibt erhalten.');}
 finally{delete orderButton.dataset.sending;orderButton.textContent='Bestellen';renderCart();}
 return;
