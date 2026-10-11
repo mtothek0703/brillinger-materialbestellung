@@ -1075,3 +1075,6 @@ body.order-history-open{overflow:hidden!important}
  #waste-overview-view .pickup-top-row .pickup-year-total {padding:7px!important;gap:4px!important}
  #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel {gap:7px!important;padding:10px!important}
 }
+
+/* Profil und Aktualisieren: identische Button-Abmessungen. */
+#profile-toolbar #profile-edit,#profile-toolbar #home-refresh{box-sizing:border-box;width:120px;min-height:40px;padding:10px 12px;border-radius:24px;font-size:14px;line-height:20px;font-weight:600;justify-content:center;align-items:center;white-space:nowrap}
