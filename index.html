@@ -326,6 +326,21 @@ document.getElementById('order-filter-toggle').addEventListener('click',()=>{
 document.getElementById('order-month-filter').addEventListener('change',event=>{selectedOrderMonth=event.target.value;renderOrderStats();});
 document.getElementById('order-dept-filter').addEventListener('change',event=>{selectedOrderDept=event.target.value;renderOrderStats();});
 document.getElementById('order-filter-reset').addEventListener('click',()=>{selectedOrderMonth='all';selectedOrderDept='all';renderOrderStats();});
+document.getElementById('order-form')?.addEventListener('submit',()=>{
+ try{
+  const key='brillinger-bestellstatistik-v1';
+  const history=JSON.parse(localStorage.getItem(key)||'[]');
+  const profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
+  if(!Array.isArray(history)||!history.length||!profile)return;
+  const last=history[history.length-1];
+  if(last&&!last.department&&Date.now()-Date.parse(last.date)<10000){
+   last.department=String(profile.dept||'').trim()||'Nicht zugeordnet';
+   last.site=String(profile.site||'').trim();
+   localStorage.setItem(key,JSON.stringify(history));
+   renderOrderStats();
+  }
+ }catch(error){console.warn('Bereich konnte nicht zur Bestellung gespeichert werden',error);}
+});
 document.getElementById('order-year-prev').addEventListener('click',()=>{selectedOrderYear--;renderOrderStats();});
 document.getElementById('order-year-next').addEventListener('click',()=>{selectedOrderYear++;renderOrderStats();});
 document.getElementById('order-all-history').addEventListener('click',()=>openOrderHistory(null));
