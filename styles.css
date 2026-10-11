@@ -483,3 +483,6 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* iPhone: Doppeltippen auf Aktualisieren darf keinen Seitenzoom auslösen. */
 #home-refresh,#home-refresh *{touch-action:manipulation!important;-webkit-user-select:none!important;user-select:none!important;-webkit-tap-highlight-color:transparent}
+
+/* Desktop-Startseite: Logo größer; mobile Darstellung bleibt unverändert. */
+@media(min-width:721px){#home-view .home-top img{width:420px!important;max-width:80vw!important;height:auto!important}}
