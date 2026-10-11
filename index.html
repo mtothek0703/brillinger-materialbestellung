@@ -68,6 +68,21 @@ function showFacilityManagementPage(){
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
+/* Desktop: Warenkorb-Link scrollt zuverlässig zum Warenkorb, auch bei
+   fixierter Kopfzeile und wenn #warenkorb bereits in der URL steht. */
+document.querySelector('#shop-view > header .cart-link')?.addEventListener('click',function(event){
+ if(window.matchMedia('(max-width: 720px)').matches)return;
+ event.preventDefault();
+ if(location.hash!=='#warenkorb')history.pushState(null,'','#warenkorb');
+ showFacilityManagementPage();
+ const target=document.getElementById('warenkorb');
+ if(!target)return;
+ const header=document.querySelector('#shop-view > header');
+ const offset=(header?.getBoundingClientRect().height||0)+16;
+ const top=window.scrollY+target.getBoundingClientRect().top-offset;
+ window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+});
+
 document.querySelectorAll('.home-tiles a').forEach(link=>{
  link.addEventListener('click',event=>{
   event.preventDefault();
