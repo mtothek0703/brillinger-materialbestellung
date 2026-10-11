@@ -1026,3 +1026,8 @@ body.order-history-open{overflow:hidden!important}
 @media (min-width: 1051px) {
   .live-message { top: 105px; bottom: auto; z-index: 10000; text-align: center; }
 }
+
+/* PC: Sonderartikel-Schaltflaeche auf Hoehe der gesamten Artikelsuche */
+@media (min-width: 1051px) {
+  .mobile-sticky-controls > .custom-entry-link { align-self: stretch; min-height: 80px; box-sizing: border-box; margin-bottom: 0; padding: 14px 20px; }
+}
