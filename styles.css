@@ -498,3 +498,19 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* PC: Mein Profil exakt so groß wie Warenkorb und Zurück zur Startseite. */
 @media(min-width:721px){#shop-view>header #profile-edit{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important;margin:0!important;padding:8px 12px!important;border-radius:10px!important;font-size:14px!important;font-weight:700!important;line-height:1.2!important;text-align:center!important}}
+
+/* Desktop: Profil in Müllentsorgung und Übersichten oben rechts statt unten. */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:12px!important;bottom:auto!important;left:auto!important;right:24px!important;width:auto!important;min-width:0!important;padding:0!important;margin:0!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;background:transparent!important;box-shadow:none!important;z-index:1200!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #home-refresh{display:none!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important}
+}
