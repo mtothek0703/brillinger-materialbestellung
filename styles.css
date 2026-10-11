@@ -451,3 +451,9 @@ body:has(#waste-view:not([hidden])) #waste-view,body:has(#overview-menu-view:not
 /* Sonderartikel: Zurück zum Sortiment als klar erkennbarer Button. */
 body.custom-entry-view .custom-back-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;background:#e5f0f6!important;border:1px solid #c4dce9!important;border-radius:11px!important;padding:11px 16px!important;color:#005a7e!important;font-weight:700!important;text-decoration:none!important;min-height:44px!important;width:auto!important;max-width:100%!important}
 body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
+
+/* Mobil: Suche, Artikelwunsch und Kategorien dauerhaft unter dem fixierten Shop-Header halten. */
+@media(max-width:720px){
+ body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view .mobile-sticky-controls{position:sticky!important;top:86px!important;z-index:1050!important;background:#f3f6f8!important;transform:none!important;will-change:auto!important;align-self:stretch!important}
+ body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view>header{position:sticky!important;top:0!important;z-index:1100!important}
+}
