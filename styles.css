@@ -1084,3 +1084,6 @@ body.order-history-open{overflow:hidden!important}
 
 /* Global: Doppeltippen darf keine Browser-Zoomgeste auslösen; Pinch-Zoom bleibt möglich. */
 html,body,button,a,input,textarea,select,label,[role="button"],.home-tiles,.waste-options{touch-action:manipulation}
+
+/* Einheitliche Form und Maße für Profil/Aktualisieren auf allen Facility-Seiten. */
+#profile-toolbar #profile-edit,#profile-toolbar #home-refresh{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;padding:0 8px!important;margin:0!important;border:0!important;border-radius:12px!important;background:#001b79!important;color:#fff!important;font-size:13px!important;font-weight:700!important;line-height:1.2!important;box-shadow:none!important;appearance:none!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important}
