@@ -601,3 +601,9 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
 .pickup-year-selector button:hover{background:#dceef8}
 .pickup-year-selector button:focus-visible{outline:3px solid #007eaf;outline-offset:2px}
 @media(max-width:720px){.pickup-year-selector{margin:14px auto 12px}.pickup-year-selector strong{font-size:23px}.pickup-year-selector button{width:44px;height:44px}}
+
+/* Antippbare Entsorgungsarten filtern den Leerungsverlauf. */
+#pickup-types .pickup-type-button{width:100%;font:inherit;text-align:left;color:inherit;background:#fff;border:1px solid #dce5eb;cursor:pointer;transition:background .15s,border-color .15s}
+#pickup-types .pickup-type-button:hover{background:#f0f7fb;border-color:#8fb9cd}
+#pickup-types .pickup-type-button[aria-pressed="true"]{background:#e0f1fa;border-color:#007ba7;box-shadow:inset 4px 0 #007ba7}
+#pickup-types .pickup-type-button:focus-visible{outline:3px solid #007ba7;outline-offset:2px}
