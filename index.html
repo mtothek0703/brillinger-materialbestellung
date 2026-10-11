@@ -249,13 +249,28 @@ document.getElementById('pickup-all-history').addEventListener('click',()=>{
 });
 document.getElementById('pickup-year-prev').addEventListener('click',()=>{selectedPickupYear--;renderRequests();});
 document.getElementById('pickup-year-next').addEventListener('click',()=>{selectedPickupYear++;renderRequests();});
+/* Sichtbare Statusmeldung fuer Entsorgungsanforderungen */
+const wasteStatusDialog=document.createElement('dialog');
+wasteStatusDialog.id='waste-status-dialog';
+wasteStatusDialog.style.cssText='border:0;border-radius:18px;padding:28px;max-width:min(440px,calc(100vw - 36px));width:100%;box-shadow:0 18px 70px #0004;color:#173247;background:white;text-align:center';
+wasteStatusDialog.innerHTML='<div id="waste-status-icon" style="font-size:36px;margin-bottom:12px"></div><h2 id="waste-status-title" style="font-size:21px;margin:0 0 10px"></h2><p id="waste-status-description" style="line-height:1.5;margin:0 0 24px"></p><button type="button" id="waste-status-close" style="background:#123e7d;color:white;border:0;border-radius:10px;padding:12px 32px;font-weight:700;cursor:pointer">Schließen</button>';
+document.body.appendChild(wasteStatusDialog);
+wasteStatusDialog.addEventListener('click',e=>{if(e.target===wasteStatusDialog)wasteStatusDialog.close();});
+wasteStatusDialog.querySelector('#waste-status-close').addEventListener('click',()=>wasteStatusDialog.close());
+function showWasteStatus(ok,message){
+ wasteStatusDialog.querySelector('#waste-status-icon').textContent=ok?'✓':'!';
+ wasteStatusDialog.querySelector('#waste-status-icon').style.color=ok?'#15803d':'#b45309';
+ wasteStatusDialog.querySelector('#waste-status-title').textContent=ok?'Anforderung erfolgreich versendet':'Anforderung nicht versendet';
+ wasteStatusDialog.querySelector('#waste-status-description').textContent=message;
+ if(!wasteStatusDialog.open)wasteStatusDialog.showModal();
+}
 wasteTypes.forEach(([id,type])=>{
  const link=document.getElementById(id);
  link?.addEventListener('click',async event=>{
   event.preventDefault();
   if(link.dataset.sending==='1')return;
   const profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
-  if(!profile?.name||!profile?.site||!profile?.dept){alert('Bitte zuerst das Mitarbeiterprofil vollständig ausfüllen.');return;}
+  if(!profile?.name||!profile?.site||!profile?.dept){showWasteStatus(false,'Bitte zuerst das Mitarbeiterprofil vollständig ausfüllen.');return;}
   link.dataset.sending='1';
   link.style.opacity='.55';
   const requestId=crypto.randomUUID();
@@ -271,8 +286,8 @@ wasteTypes.forEach(([id,type])=>{
    entries.push({date:new Date().toISOString(),type});
    localStorage.setItem(requestStorageKey,JSON.stringify(entries));
    renderRequests();
-   alert('Leerungsanforderung erfolgreich versendet.');
-  }catch(error){alert(error.message||'Versand fehlgeschlagen. Bitte erneut versuchen.');}
+   showWasteStatus(true,'Die Leerungsanforderung wurde erfolgreich übermittelt und erfasst.');
+  }catch(error){showWasteStatus(false,error.message||'Versand fehlgeschlagen. Bitte später erneut versuchen.');}
   finally{delete link.dataset.sending;link.style.opacity='';}
  });
 });
