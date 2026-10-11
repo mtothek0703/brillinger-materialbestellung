@@ -843,3 +843,39 @@ body.order-history-open{overflow:hidden!important}
  #order-overview-view h2:has(+ #order-type-buttons){font-size:clamp(14px,4.2vw,18px);white-space:nowrap}
  #order-overview-view #order-history-section:not([hidden]){padding:18px;max-height:calc(100dvh - 32px)}
 }
+
+/* Leerungen: Anzahl zuerst als Kachel, Prozentanteil rechts als reiner Text. */
+#waste-overview-view #pickup-types .pickup-type-button{
+ grid-template-columns:minmax(0,1fr) auto minmax(66px,auto)!important;
+ column-gap:18px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-share{
+ display:inline-block!important;
+ justify-self:end!important;
+ min-height:0!important;
+ min-width:66px!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#48778d!important;
+ font-size:17px!important;
+ font-weight:650!important;
+ text-align:right!important;
+ line-height:1.3!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{
+ background:transparent!important;
+ color:#00658b!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types .pickup-type-button{
+  grid-template-columns:minmax(0,1fr) auto minmax(54px,auto)!important;
+  column-gap:9px!important;
+ }
+ #waste-overview-view #pickup-types .pickup-type-share{
+  min-width:54px!important;
+  font-size:14px!important;
+ }
+}
