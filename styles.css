@@ -463,3 +463,5 @@ body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
 
 /* Kategorien-Buttons in der ersten und zweiten Zeile etwas nach rechts einrücken. */
 #shop-view .mobile-sticky-controls .category-nav{padding-left:10px!important;box-sizing:border-box!important}
+
+@media(max-width:720px){html,body{overscroll-behavior-y:none!important}#shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}#shop-view .mobile-sticky-controls{position:sticky!important;top:86px!important}}
