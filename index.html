@@ -210,10 +210,9 @@ function renderRequests(){
   const label=document.createElement('span');label.className='pickup-type-label';label.textContent=name;
   const amount=entries.filter(v=>v.type===name).length;
   const percent=entries.length?((amount/entries.length)*100).toLocaleString('de-DE',{maximumFractionDigits:1}):'0';
-  const share=document.createElement('small');share.className='pickup-type-share';share.textContent=percent+' % Anteil';
-  label.appendChild(share);
+  const share=document.createElement('span');share.className='pickup-type-share';share.textContent=percent+' %';
   const count=document.createElement('strong');count.textContent=String(amount)+' ›';
-  row.append(label,count);
+  row.append(label,share,count);
   row.addEventListener('click',()=>{
    selectedPickupType=name;
    openPickupHistory();
