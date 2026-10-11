@@ -435,3 +435,15 @@ body:has(#home-view:not([hidden])) #home-view .home-top>img{transform:translateX
  body.custom-entry-view .custom-product form input,body.custom-entry-view .custom-product form textarea{padding-top:10px!important;padding-bottom:10px!important}
  body.custom-entry-view .custom-product form button{margin-top:6px!important}
 }
+
+/* Profil-Button in Müllentsorgung und allen Übersichten an derselben unteren Position wie auf der Startseite. */
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:22px!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;z-index:1200!important;box-sizing:border-box!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;border-radius:12px!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+body:has(#waste-view:not([hidden])) #waste-view,body:has(#overview-menu-view:not([hidden])) #overview-menu-view,body:has(#order-overview-view:not([hidden])) #order-overview-view,body:has(#waste-overview-view:not([hidden])) #waste-overview-view{padding-bottom:110px!important}
