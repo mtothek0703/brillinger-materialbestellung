@@ -612,3 +612,68 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
 #waste-overview-view .pickup-year-total{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;margin:8px 0 22px;background:#fff;border:1px solid #dce5eb;border-radius:14px;color:#153443;font-size:17px;font-weight:650}
 #waste-overview-view .pickup-year-total strong{font-size:27px;color:#005c80;font-variant-numeric:tabular-nums}
 @media(max-width:720px){#waste-overview-view .pickup-year-total{padding:12px 15px;font-size:15px;margin-bottom:18px}#waste-overview-view .pickup-year-total strong{font-size:24px}}
+
+/* Leerungsübersicht: jede Entsorgungsart als eigenständige Schaltfläche. */
+#waste-overview-view #pickup-types{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:14px!important;
+ background:transparent!important;
+ border:0!important;
+ padding:0!important;
+ margin:12px 0 28px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:14px!important;
+ width:100%!important;
+ min-height:82px!important;
+ padding:20px 22px!important;
+ background:#fff!important;
+ border:1px solid #d7e4ed!important;
+ border-radius:16px!important;
+ box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
+ color:#163747!important;
+ font-size:18px!important;
+ font-weight:650!important;
+ text-align:left!important;
+ cursor:pointer!important;
+ transition:background .15s,border-color .15s,box-shadow .15s,transform .15s!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button strong{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-width:50px!important;
+ padding:8px 12px!important;
+ border-radius:11px!important;
+ background:#edf5fa!important;
+ color:#005c80!important;
+ font-size:18px!important;
+ font-weight:800!important;
+ white-space:nowrap!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button:hover{
+ background:#f2f9fd!important;
+ border-color:#8ebed5!important;
+ box-shadow:0 8px 22px rgba(18,48,69,.12)!important;
+ transform:translateY(-1px)!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{
+ background:#e4f3fc!important;
+ border:2px solid #007da8!important;
+ padding:19px 21px!important;
+ box-shadow:0 5px 20px rgba(0,104,148,.14)!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] strong{
+ background:#006e97!important;
+ color:white!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types{grid-template-columns:1fr!important;gap:10px!important;margin:10px 0 22px!important}
+ #waste-overview-view #pickup-types .pickup-type-button{min-height:68px!important;padding:15px 17px!important;border-radius:14px!important;font-size:16px!important}
+ #waste-overview-view #pickup-types .pickup-type-button strong{font-size:16px!important;min-width:45px!important;padding:7px 10px!important}
+ #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:14px 16px!important}
+}
