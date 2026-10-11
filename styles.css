@@ -807,3 +807,39 @@ body.pickup-history-open{overflow:hidden!important}
   font-size:16px!important;
  }
 }
+
+/* Bestellübersicht nutzt dieselbe Jahres- und Kachelanordnung wie Leerungen. */
+#order-overview-view .pickup-top-row{display:grid;grid-template-columns:minmax(0,390px) minmax(0,1fr);gap:14px;align-items:stretch;margin:16px 0 24px}
+#order-overview-view .pickup-top-row .pickup-year-selector{width:100%;max-width:none;margin:0;box-sizing:border-box}
+#order-overview-view .pickup-top-row .pickup-year-total{width:100%;margin:0;box-sizing:border-box}
+#order-overview-view button.pickup-year-total{font:inherit;font-weight:650;text-align:left;cursor:pointer}
+#order-overview-view button.pickup-year-total strong{margin-left:auto}
+#order-overview-view button.pickup-year-total>span{font-size:26px;color:#005c80}
+#order-overview-view #order-type-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;background:transparent;border:0;padding:0;margin:12px 0 28px}
+#order-overview-view #order-type-buttons .pickup-type-button{display:grid;grid-template-columns:minmax(0,1fr) minmax(78px,1fr) auto;align-items:center;column-gap:12px;width:100%;min-height:82px;padding:20px 22px;background:#fff;border:1px solid #d7e4ed;border-radius:16px;box-shadow:0 5px 18px rgba(18,48,69,.07);color:#163747;font:inherit;font-size:18px;font-weight:650;text-align:left;cursor:pointer}
+#order-overview-view #order-type-buttons .pickup-type-button:hover{background:#f2f9fd;border-color:#8ebed5}
+#order-overview-view #order-type-buttons .pickup-type-label{min-width:0;overflow-wrap:anywhere}
+#order-overview-view #order-type-buttons .pickup-type-share{justify-self:start;display:inline-flex;align-items:center;justify-content:center;min-height:40px;min-width:64px;box-sizing:border-box;padding:8px 12px;border-radius:11px;background:#f2f7fa;color:#48778d;font-size:18px;font-weight:700;white-space:nowrap}
+#order-overview-view #order-type-buttons .pickup-type-button strong{display:inline-flex;align-items:center;justify-content:center;min-width:50px;padding:8px 12px;border-radius:11px;background:#edf5fa;color:#005c80;font-size:18px;white-space:nowrap}
+body.order-history-open{overflow:hidden!important}
+#order-history-backdrop[hidden],#order-history-section[hidden]{display:none!important}
+#order-history-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:rgba(8,23,44,.58);z-index:3500}
+#order-overview-view #order-history-section:not([hidden]){display:block;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,calc(100vw - 32px));max-height:calc(100dvh - 48px);overflow-y:auto;z-index:3501;background:#fff;border-radius:18px;padding:24px;box-sizing:border-box;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+#order-overview-view .pickup-history-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+#order-overview-view .pickup-history-header h2{margin:0}
+#order-history-close{flex-shrink:0;width:42px;height:42px;border:0;border-radius:50%;background:#edf4f8;color:#12384c;font-size:29px;cursor:pointer}
+#order-history-list .pickup-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+@media(max-width:720px){
+ #order-overview-view .pickup-top-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:12px 0 18px}
+ #order-overview-view .pickup-top-row .pickup-year-selector{padding:7px 5px;gap:3px;border-radius:12px}
+ #order-overview-view .pickup-top-row .pickup-year-selector button{width:32px;height:36px;flex-shrink:0;font-size:25px;padding:0}
+ #order-overview-view .pickup-top-row .pickup-year-selector strong{font-size:19px}
+ #order-overview-view .pickup-top-row .pickup-year-total{padding:9px 10px;gap:5px;border-radius:12px;font-size:12px;line-height:1.2}
+ #order-overview-view .pickup-top-row .pickup-year-total strong{font-size:19px}
+ #order-overview-view #order-type-buttons{grid-template-columns:1fr;gap:10px}
+ #order-overview-view #order-type-buttons .pickup-type-button{min-height:60px;padding:12px 14px;font-size:16px;grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto;column-gap:7px}
+ #order-overview-view #order-type-buttons .pickup-type-share{min-height:36px;min-width:56px;padding:7px 9px;font-size:16px}
+ #order-overview-view #order-type-buttons .pickup-type-button strong{font-size:16px}
+ #order-overview-view h2:has(+ #order-type-buttons){font-size:clamp(14px,4.2vw,18px);white-space:nowrap}
+ #order-overview-view #order-history-section:not([hidden]){padding:18px;max-height:calc(100dvh - 32px)}
+}
