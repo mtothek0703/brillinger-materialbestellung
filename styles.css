@@ -700,3 +700,9 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
 #waste-overview-view button.pickup-year-total strong{margin-left:auto}
 #waste-overview-view button.pickup-year-total>span{font-size:26px;color:#005c80;line-height:1}
 #waste-overview-view #pickup-history-section{scroll-margin-top:24px}
+
+/* Prozentanteil dezent unter der Entsorgungsart, getrennt von der Anzahl. */
+#waste-overview-view #pickup-types .pickup-type-label{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;min-width:0!important}
+#waste-overview-view #pickup-types .pickup-type-share{display:block!important;font-size:13px!important;font-weight:500!important;line-height:1.3!important;color:#647d8c!important}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{color:#356f88!important}
+@media(max-width:720px){#waste-overview-view #pickup-types .pickup-type-share{font-size:12px!important}}
