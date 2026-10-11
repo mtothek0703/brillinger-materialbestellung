@@ -514,3 +514,15 @@ body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
 body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
 body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important}
 }
+
+/* Desktop: Profilbutton bei Müllentsorgung und Übersichten rechts neben der Inhaltsmitte (markierte Position). */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:86px!important;bottom:auto!important;left:calc(50% + 280px)!important;right:auto!important;width:160px!important;padding:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;z-index:1200!important;display:flex!important;align-items:center!important;justify-content:center!important}
+}
+@media(min-width:721px) and (max-width:1150px){body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{left:auto!important;right:24px!important}}
