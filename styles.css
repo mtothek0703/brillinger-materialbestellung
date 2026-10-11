@@ -692,3 +692,11 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
  #waste-overview-view .pickup-hint{display:none!important}
  #waste-overview-view #pickup-history-section:not([hidden]){margin-top:18px}
 }
+
+/* Gesamtleerungen als anklickbare Historien-Schaltfläche. */
+#waste-overview-view button.pickup-year-total{width:100%;font:inherit;font-weight:650;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+#waste-overview-view button.pickup-year-total:hover{background:#eff8fc;border-color:#87bbd3}
+#waste-overview-view button.pickup-year-total:focus-visible{outline:3px solid #007ba7;outline-offset:2px}
+#waste-overview-view button.pickup-year-total strong{margin-left:auto}
+#waste-overview-view button.pickup-year-total>span{font-size:26px;color:#005c80;line-height:1}
+#waste-overview-view #pickup-history-section{scroll-margin-top:24px}
