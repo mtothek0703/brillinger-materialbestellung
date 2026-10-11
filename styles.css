@@ -607,3 +607,8 @@ body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidd
 #pickup-types .pickup-type-button:hover{background:#f0f7fb;border-color:#8fb9cd}
 #pickup-types .pickup-type-button[aria-pressed="true"]{background:#e0f1fa;border-color:#007ba7;box-shadow:inset 4px 0 #007ba7}
 #pickup-types .pickup-type-button:focus-visible{outline:3px solid #007ba7;outline-offset:2px}
+
+/* Leerungsübersicht: Gesamtzahl direkt unter der Jahresauswahl statt zwei Statistik-Kacheln. */
+#waste-overview-view .pickup-year-total{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;margin:8px 0 22px;background:#fff;border:1px solid #dce5eb;border-radius:14px;color:#153443;font-size:17px;font-weight:650}
+#waste-overview-view .pickup-year-total strong{font-size:27px;color:#005c80;font-variant-numeric:tabular-nums}
+@media(max-width:720px){#waste-overview-view .pickup-year-total{padding:12px 15px;font-size:15px;margin-bottom:18px}#waste-overview-view .pickup-year-total strong{font-size:24px}}
