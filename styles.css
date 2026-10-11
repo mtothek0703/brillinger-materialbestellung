@@ -985,3 +985,15 @@ body.order-history-open{overflow:hidden!important}
   margin-top:4px!important;
  }
 }
+
+/* Bestellfilter: Artikel als dritte Auswahl, Reset darunter rechts. */
+#order-overview-view #order-filter-panel{
+ grid-template-columns:auto minmax(110px,1fr) auto minmax(110px,1fr) auto minmax(150px,1fr)!important;
+}
+#order-overview-view #order-filter-reset{grid-column:6!important;grid-row:2!important;justify-self:end!important}
+@media(max-width:720px){
+ #order-overview-view #order-filter-panel{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(3){grid-column:1!important;grid-row:3!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(3){grid-column:1/-1!important;grid-row:4!important}
+ #order-overview-view #order-filter-reset{grid-column:2!important;grid-row:5!important;justify-self:end!important;width:auto!important}
+}
