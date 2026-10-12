@@ -132,7 +132,7 @@ try{
  cart.clear();customCart.length=0;$('note').value='';
  invalidateOrder();renderCart();
  if(typeof window.renderOrderStats==='function')window.renderOrderStats();
- notify('Bestellung erfolgreich versendet. Warenkorb geleert.');
+ notify('Bestellvorschlag erfasst. Der Einkäufer erhält alle 2 Stunden eine Sammel-E-Mail.');
  const closeCart=document.getElementById('desktop-cart-close');
  if(document.body.classList.contains('desktop-cart-open')&&closeCart){closeCart.click();}
  else if(window.location.hash==='#warenkorb'){window.location.hash='#artikel';}
