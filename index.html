@@ -483,7 +483,10 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  function clear(){gesture=null;}
  window.addEventListener('touchstart',event=>{
   clear();
-  if(!mobile.matches||event.touches.length!==1||!parent[route()]||popupOpen()||blocked(event.target))return;
+  if(!mobile.matches||event.touches.length!==1||popupOpen()||blocked(event.target))return;
+  // Startseite bewusst mitverfolgen: horizontale Gesten dort blockieren,
+  // aber niemals eine neue Route oeffnen oder einen Verlaufseintrag erzeugen.
+  if(!parent[route()]&&route()!=='#start')return;
   const touch=event.touches[0];
   gesture={x:touch.clientX,y:touch.clientY,from:route(),direction:null};
  },{capture:true,passive:true});
@@ -496,7 +499,9 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
    gesture.direction=Math.abs(dx)>Math.abs(dy)*1.25?'horizontal':'vertical';
   }
   if(gesture.direction==='vertical'){clear();return;}
-  if(gesture.direction==='horizontal'&&dx>0&&event.cancelable){
+  // Auf der Startseite in BEIDE Richtungen blockieren. Auf Unterseiten
+  // bleibt nur das gewollte Rechtswischen fuer die App-Zurueck-Geste aktiv.
+  if(gesture.direction==='horizontal'&&(gesture.from==='#start'||dx>0)&&event.cancelable){
    event.preventDefault();
   }
  },{capture:true,passive:false});
