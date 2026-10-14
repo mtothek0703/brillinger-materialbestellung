@@ -1409,3 +1409,10 @@ html body #facility-blue-header .facility-header-brand img{
   margin-top:38px!important;
  }
 }
+
+/* Übersicht: Inhalt auf dieselbe obere Ausrichtung wie Müllentsorgung setzen. */
+@media(max-width:720px){
+ html body #overview-menu-view:not([hidden]){padding-top:15px!important}
+ html body #overview-menu-view:not([hidden]) .waste-heading{margin-top:clamp(18px,3.5dvh,38px)!important;margin-bottom:20px!important}
+ html body #overview-menu-view:not([hidden]) .waste-options{margin-top:38px!important}
+}
