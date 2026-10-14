@@ -1571,3 +1571,27 @@ html body #home-view .home-tiles a{background:#fff!important}
  html body #waste-view:not([hidden]) .waste-heading{margin-top:8px!important}
  html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}
 }
+
+/* FIX MOBILE SHOP 2026-10-14: Verhindert Überlagerung durch frühere hochspezifische Sticky-Regeln. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:static!important;
+  top:auto!important;bottom:auto!important;
+  inset-block-start:auto!important;
+  transform:none!important;
+  z-index:auto!important;
+  margin-top:0!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  padding-top:0!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{
+  clear:both!important;
+  margin-top:0!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  position:fixed!important;top:0!important;
+ }
+}
