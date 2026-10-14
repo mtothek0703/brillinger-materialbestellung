@@ -716,4 +716,68 @@ window.addEventListener('pageshow',()=>{
  },{passive:false});
  controls.addEventListener('touchend',()=>{touchTracking=false},{passive:true});
  controls.addEventListener('touchcancel',()=>{touchTracking=false},{passive:true});
-})();</script></body></html>
+})();</script>
+<script>
+/* Untere Navigation: beim Herunterscrollen ausblenden, beim Hochscrollen
+   einblenden. Im Shop bestimmt die bestehende Suchleisten-Steuerung
+   die Richtung; dort wird die Leiste nur per CSS mitgenommen. */
+(function(){
+ const nav=document.getElementById('facility-home-nav');
+ const shop=document.getElementById('shop-view');
+ if(!nav||!shop)return;
+ const media=window.matchMedia('(max-width:720px)');
+ const views=['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view']
+  .map(id=>document.getElementById(id)).filter(Boolean);
+ const hiddenClass='facility-bottom-nav-hidden';
+ let active=null,lastPosition=0,travel=0,direction=0;
+ function reveal(){
+  document.body.classList.remove(hiddenClass);
+ }
+ function activeView(){
+  if(!media.matches||!shop.hidden)return null;
+  return views.find(view=>!view.hidden)||null;
+ }
+ function reset(){
+  active=activeView();
+  lastPosition=active?Math.max(0,active.scrollTop):0;
+  travel=0;
+  direction=0;
+  reveal();
+ }
+ function followScroll(event){
+  if(!media.matches||event.currentTarget!==active||!active)return;
+  const position=Math.max(0,active.scrollTop);
+  const delta=position-lastPosition;
+  lastPosition=position;
+  if(position<=5||active.scrollHeight<=active.clientHeight+3){
+   travel=0;
+   direction=0;
+   reveal();
+   return;
+  }
+  if(Math.abs(delta)<1)return;
+  const nextDirection=Math.sign(delta);
+  if(nextDirection!==direction){
+   direction=nextDirection;
+   travel=0;
+  }
+  travel+=Math.abs(delta);
+  if(direction>0&&position>38&&travel>=28){
+   document.body.classList.add(hiddenClass);
+   travel=0;
+  }else if(direction<0&&travel>=12){
+   reveal();
+   travel=0;
+  }
+ }
+ for(const view of views)view.addEventListener('scroll',followScroll,{passive:true});
+ window.addEventListener('hashchange',()=>{reset();requestAnimationFrame(reset);});
+ window.addEventListener('popstate',reset);
+ window.addEventListener('pageshow',reset);
+ window.addEventListener('resize',reset,{passive:true});
+ if(media.addEventListener)media.addEventListener('change',reset);
+ else media.addListener(reset);
+ nav.addEventListener('focusin',reveal);
+ reset();
+})();
+</script></body></html>
