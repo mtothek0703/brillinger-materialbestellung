@@ -500,6 +500,14 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  window.addEventListener('popstate',()=>{
   if(!mobile.matches)return;
   const before=lastDisplayedRoute;
+  // Ein normaler Klick auf eine Unterseite kann auf iOS ebenfalls popstate
+  // ausloesen. Nur echte Zurueck-Navigation darf zur Elternseite fuehren.
+  // Beispiel: Uebersicht -> Bestellungen/Leerungen muss immer funktionieren.
+  const destination=route();
+  if(destination!==before&&parent[destination]===before){
+   updateRoute();
+   return;
+  }
   // Safari kann nach der bereits ausgefuehrten App-Wischgeste noch
   // ein eigenes popstate melden. Das darf nicht zwei Ebenen springen.
   const recentAppSwipe=lastSwipeTarget&&Date.now()-lastSwipeAt<750;
