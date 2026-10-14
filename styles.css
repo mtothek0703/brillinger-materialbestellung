@@ -1815,3 +1815,13 @@ html body #home-view .home-tiles a{background:#fff!important}
    z-index:auto!important;
  }
 }
+
+/* Shop-Artikelsuche: duenne blaue Kontur nur am Eingabefeld. */
+html body #shop-view .product-search #article-search{
+  border:1px solid #0a3b91!important;
+  box-shadow:none!important;
+}
+html body #shop-view .product-search #article-search:focus{
+  border:1px solid #0a3b91!important;
+  outline:none!important;
+}
