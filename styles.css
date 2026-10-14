@@ -1394,9 +1394,9 @@ html body #facility-blue-header .facility-header-brand img{display:block!importa
 html body #facility-blue-header .facility-header-brand{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:max-content!important;max-width:100%!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;align-items:center!important}
 html body #facility-blue-header .facility-header-brand img{margin:0 auto!important;align-self:center!important}
 
-/* Optische Zentrierung der sichtbaren SVG-Grafik: SVG enthält rechts mehr Leerraum. */
+/* Sichtbares Logo optisch zur Displaymitte ausrichten (SVG mit asymmetrischem Innenabstand). */
 html body #facility-blue-header .facility-header-brand img{
- transform:translateX(14px)!important;
+ transform:translateX(28px)!important;
 }
 
 /* Müllentsorgung: Überschrift und Kacheln gemeinsam etwas tiefer; nach Displayhöhe angepasst. */
