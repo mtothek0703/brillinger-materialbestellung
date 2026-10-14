@@ -1399,3 +1399,13 @@ html body #facility-blue-header .facility-header-brand img{
  transform:translateX(14px)!important;
 }
 
+
+/* Müllentsorgung: Überschrift und Kacheln gemeinsam etwas tiefer; nach Displayhöhe angepasst. */
+@media(max-width:720px){
+ html body #waste-view:not([hidden]) .waste-heading{
+  margin-top:clamp(18px,3.5dvh,38px)!important;
+ }
+ html body #waste-view:not([hidden]) .waste-options{
+  margin-top:38px!important;
+ }
+}
