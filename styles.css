@@ -1433,3 +1433,26 @@ html body #facility-blue-header .facility-header-brand img{
 
 /* Bestellübersicht: kompakte Überschrift in Anlehnung an Müllentsorgung. */
 @media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:24px!important;line-height:normal!important;font-weight:700!important;color:#153443!important;margin:3px 0!important}}
+
+/* Startseite: Symbole, Überschriften und Untertitel aller Kacheln auf gleiche Höhe bringen. */
+html body #home-view .home-tiles a{
+ display:grid!important;
+ grid-template-rows:65px 54px 26px!important;
+ align-content:center!important;
+ justify-items:center!important;
+ row-gap:8px!important;
+}
+html body #home-view .home-tiles a > span{
+ position:static!important;top:auto!important;
+ align-self:center!important;line-height:1!important;
+}
+html body #home-view .home-tiles a > strong{
+ position:static!important;top:auto!important;
+ align-self:center!important;display:flex!important;align-items:center!important;
+ justify-content:center!important;min-height:54px!important;
+ margin:0!important;text-align:center!important;line-height:1.2!important;
+}
+html body #home-view .home-tiles a > small{
+ position:static!important;top:auto!important;
+ align-self:center!important;margin:0!important;text-align:center!important;
+}
