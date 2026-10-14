@@ -1610,3 +1610,6 @@ html body #home-view .home-tiles a{background:#fff!important}
   filter:brightness(0) invert(1)!important;
  }
 }
+
+/* Warenkorb-Button in der blauen Shop-Kopfzeile weiß darstellen. */
+@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link{background:#fff!important;background-color:#fff!important;border-color:#fff!important}}
