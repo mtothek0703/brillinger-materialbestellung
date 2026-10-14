@@ -475,6 +475,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  let gesture=null;
  let lastSwipeAt=0;
  let settling=false;
+ let suppressedTapTarget=null;
  const reset=()=>{gesture=null;};
  const activePopup=()=>document.body.classList.contains('pickup-history-open')
   ||document.body.classList.contains('order-history-open')
@@ -511,11 +512,12 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   if(!mobile.matches||event.touches.length!==1||activePopup()||interactiveField(event.target))return;
   const touch=event.touches[0];
   gesture={x:touch.clientX,y:touch.clientY,
-   route:route(),axis:null,prevented:false};
+   route:route(),axis:null,prevented:false,target:event.target};
  },{capture:true,passive:true});
 
  window.addEventListener('touchmove',event=>{
-  if(!gesture||event.touches.length!==1)return;
+  if(!gesture)return;
+  if(event.touches.length!==1){reset();return;}
   const touch=event.touches[0];
   const dx=touch.clientX-gesture.x,dy=touch.clientY-gesture.y;
   if(gesture.axis===null){
@@ -543,8 +545,9 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   if(dx<55||dx<Math.abs(dy)*1.25)return;
   if(route()!==swipe.route||!parent[swipe.route])return;
   const now=Date.now();
-  if(now-lastSwipeAt<240||settling)return;
+  if(now-lastSwipeAt<110||settling)return;
   lastSwipeAt=now;
+  suppressedTapTarget=swipe.target;
   settling=true;
   const focused=document.activeElement;
   if(focused&&focused!==document.body&&!focused.matches?.('input,textarea,select')){
@@ -553,6 +556,17 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   changeRoute(parent[swipe.route]);
   requestAnimationFrame(()=>{settling=false;});
  },{capture:true,passive:true});
+ window.addEventListener('click',event=>{
+  // Ein vom Wischen erzeugter iOS-Geisterklick darf keine alte Kachel oeffnen.
+  if(!suppressedTapTarget||Date.now()-lastSwipeAt>400){suppressedTapTarget=null;return;}
+  if(event.detail===0)return; // Tastatur- und programmatische Klicks bleiben moeglich.
+  const target=event.target;
+  if(target===suppressedTapTarget||target?.contains?.(suppressedTapTarget)||suppressedTapTarget?.contains?.(target)){
+   event.preventDefault();
+   event.stopImmediatePropagation();
+   suppressedTapTarget=null;
+  }
+ },{capture:true});
  window.addEventListener('touchcancel',reset,{capture:true,passive:true});
 })();</script><script>
 /* iOS: Bei Neuaufruf nach Pull-to-refresh niemals alte Shop-Scrollposition übernehmen. */
