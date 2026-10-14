@@ -1200,3 +1200,19 @@ html body #facility-home-nav a svg{width:26px!important;height:26px!important}
 /* Blauen Kopfbereich leicht flacher gestalten, ohne Logo und Profil zu verändern. */
 html body #facility-blue-header{height:198px!important;min-height:198px!important}
 @media(max-width:720px){html body #facility-blue-header{height:188px!important;min-height:188px!important}html body #home-view{min-height:calc(100dvh - 188px)!important}}
+
+/* Aktualisieren ist jetzt ein reines Icon in der festen unteren Leiste. */
+html body #facility-home-nav{justify-content:center!important;gap:56px!important}
+html body #facility-home-nav #facility-refresh-slot{display:flex!important;align-items:center!important;justify-content:center!important}
+html body #facility-home-nav #home-refresh,
+html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #home-refresh{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ position:static!important;box-sizing:border-box!important;
+ width:42px!important;min-width:42px!important;max-width:42px!important;
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ flex:0 0 42px!important;padding:6px!important;margin:0!important;
+ background:transparent!important;border:0!important;border-radius:12px!important;
+ color:#0346ae!important;box-shadow:none!important;line-height:1!important;
+}
+html body #facility-home-nav #home-refresh svg{width:27px!important;height:27px!important}
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{display:none!important}
