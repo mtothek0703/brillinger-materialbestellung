@@ -1362,3 +1362,6 @@ html body #waste-view .waste-options{margin-top:22px!important}
   transition:transform .14s ease-out!important;
  }
 }
+
+/* Fünf Entsorgungskacheln auf Wunsch etwas tiefer; Überschrift bleibt stehen. */
+html body #waste-view .waste-options{margin-top:38px!important}
