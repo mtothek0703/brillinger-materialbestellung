@@ -1472,3 +1472,24 @@ html body #home-view .home-tiles a > small{
   top:calc(86px + env(safe-area-inset-top))!important;
  }
 }
+
+/* iPhone Bestellshop: eigenes Scrollfenster verhindert Safari-Gummiband/Leerraum
+   und hält den fixierten Kopfbereich stabil. */
+@media(max-width:720px){
+ html:has(#shop-view:not([hidden])){height:100%!important;overflow:hidden!important;overscroll-behavior-y:none!important}
+ html body:has(#shop-view:not([hidden])){
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;overscroll-behavior-y:none!important;
+  padding-bottom:0!important;
+ }
+ html body #shop-view:not([hidden]){
+  box-sizing:border-box!important;
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch;
+  transform:none!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+ }
+}
