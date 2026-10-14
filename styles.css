@@ -1365,3 +1365,12 @@ html body #waste-view .waste-options{margin-top:22px!important}
 
 /* Fünf Entsorgungskacheln auf Wunsch etwas tiefer; Überschrift bleibt stehen. */
 html body #waste-view .waste-options{margin-top:38px!important}
+
+/* Müllentsorgung: Kacheln nutzen den freien Raum auf unterschiedlich hohen Smartphones.
+   Überschrift bleibt an ihrem Platz; Abstand und Zwischenräume wachsen moderat. */
+@media(max-width:720px){
+ html body #waste-view .waste-options{
+  margin-top:clamp(42px,6.5dvh,78px)!important;
+  row-gap:clamp(10px,1.45dvh,22px)!important;
+ }
+}
