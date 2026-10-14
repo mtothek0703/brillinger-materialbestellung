@@ -546,6 +546,8 @@ window.addEventListener('pageshow',()=>{
  };
  function visual(pull){
   document.documentElement.style.setProperty('--facility-pull-distance',pull+'px');
+  const shop=document.getElementById('shop-view');
+  if(shop)shop.classList.toggle('facility-shop-pulling',pull>0&&!shop.hidden);
   indicator.classList.toggle('visible',pull>0);
   indicator.classList.toggle('ready',pull>=42);
  }
