@@ -1597,7 +1597,8 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Ladekreis im mobilen Bestellshop näher an den oberen Bildschirmrand setzen. */
-@media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:calc(env(safe-area-inset-top) - 24px)!important}}
+/* Beim Ziehen sitzt der Kreis mittig in der Lücke oberhalb der Shop-Kopfzeile. */
+@media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:0!important}}
 
 /* Shop: Brillinger-blauer Header mit weißem Original-Logo. */
 @media(max-width:720px){
