@@ -2107,3 +2107,22 @@ html body #shop-view .product-search #article-search:focus{
     transition:none!important;
   }
 }
+
+
+/* Startseite: horizontale Browser-Gesten und seitliches Gummiband vermeiden.
+   Auf iOS bleiben vertikales Scrollen und normale Kachel-Taps erhalten. */
+@media (max-width:720px) {
+ html:has(#home-view:not([hidden])),
+ html body:has(#home-view:not([hidden])),
+ html body #home-view:not([hidden]),
+ html body #home-view:not([hidden]) .home-tiles,
+ html body #home-view:not([hidden]) .home-tiles a {
+   overscroll-behavior-x:none!important;
+   touch-action:pan-y pinch-zoom!important;
+ }
+ html:has(#home-view:not([hidden])),
+ html body:has(#home-view:not([hidden])) {
+   background:#f3f6f8!important;
+   overflow-x:clip!important;
+ }
+}
