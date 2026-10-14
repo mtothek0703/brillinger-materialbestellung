@@ -1648,3 +1648,16 @@ html body #home-view .home-tiles a{background:#fff!important}
   padding-left:52px!important;min-height:46px!important;
  }
 }
+
+/* Mobile: Suchfeld, Sonderartikel-Button und Kategorien beim Zurueckscrollen wieder sichtbar. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:sticky!important;
+  top:var(--shop-mobile-header-height, 0px)!important;
+  inset-block-start:var(--shop-mobile-header-height, 0px)!important;
+  z-index:15!important;
+  transform:none!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
+}
