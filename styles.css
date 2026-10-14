@@ -1419,3 +1419,14 @@ html body #facility-blue-header .facility-header-brand img{
 
 /* Bestellübersicht: Überschrift gleich groß wie Müllentsorgung auf Smartphones. */
 @media(max-width:720px){html body #order-overview-view h1{font-size:24px!important;line-height:1.2!important}}
+
+/* Smartphone: dieselbe untere Startseite/Profil-Navigation auch im Bestellshop. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav{
+  display:flex!important;justify-content:center!important;align-items:center!important;
+ }
+ html body:has(#shop-view:not([hidden])) #shop-view{
+  padding-bottom:calc(110px + env(safe-area-inset-bottom))!important;
+ }
+ html body:has(#shop-view:not([hidden])) #shop-view > header #profile-edit{display:none!important}
+}
