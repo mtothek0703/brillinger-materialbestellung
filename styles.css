@@ -1191,3 +1191,8 @@ html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar #home-refresh{
 }
 html body #facility-blue-header #profile-edit:not([hidden]){display:flex!important}
 html body:has(#shop-view:not([hidden])) #profile-toolbar{display:none!important}
+
+/* Untere Startseiten-Leiste kompakter, Icon und Text mittig. */
+html body #facility-home-nav{min-height:66px!important;padding:7px 14px calc(7px + env(safe-area-inset-bottom))!important;border-radius:18px 18px 0 0!important}
+html body #facility-home-nav a{gap:1px!important;font-size:12px!important}
+html body #facility-home-nav a svg{width:26px!important;height:26px!important}
