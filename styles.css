@@ -1456,3 +1456,19 @@ html body #home-view .home-tiles a > small{
  position:static!important;top:auto!important;
  align-self:center!important;margin:0!important;text-align:center!important;
 }
+
+/* Pull-to-refresh im Shop: nur den Inhaltsbereich leicht bewegen.
+   Die fixierte Kopfzeile bleibt an ihrem Platz, kein großer Leerraum darüber. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){transform:none!important;transition:none!important}
+ html body #shop-view:not([hidden]) > header{
+  transform:none!important;transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-pull-refresh{
+  top:calc(86px + env(safe-area-inset-top))!important;
+ }
+}
