@@ -320,6 +320,18 @@ for (const wasteId of ['waste-rest','waste-paper']) {
   link.setAttribute('href',baseHref.slice(0,q+1)+params.toString());
  });
 }
+/* Am Handwerkerpark 25 sind diese drei Entsorgungsarten nicht verfügbar. */
+for (const wasteId of ['waste-electronics','waste-wood','waste-metal']) {
+ const link=document.getElementById(wasteId);
+ if (!link) continue;
+ link.addEventListener('click',(event)=>{
+  let profile=null;
+  try { profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null'); } catch {}
+  if (String(profile?.site||'').trim()!=='Handwerkerpark 25') return;
+  event.preventDefault();
+  showWasteStatus(false,'Diese Entsorgungsart ist am Standort Handwerkerpark 25 nicht möglich.');
+ });
+}
 /* Testphase: Vorbereitete Mailto-Links bleiben klickbar; keine Supabase-Leerungsübermittlung. */
 renderRequests();
 let selectedOrderYear=new Date().getFullYear();
