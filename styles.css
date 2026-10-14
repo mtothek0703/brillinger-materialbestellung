@@ -1524,3 +1524,20 @@ html body #home-view .home-tiles a > strong{min-height:43px!important}
 /* Startseite: Abstände in allen drei Kacheln noch leicht kompakter. */
 html body #home-view .home-tiles a{grid-template-rows:49px 41px 21px!important;row-gap:2px!important}
 html body #home-view .home-tiles a > strong{min-height:41px!important}
+
+/* iPhone-Shop: fixierten Header NICHT über einen transformierten Vorfahren bewegen.
+   Header und Inhalt separat um höchstens 36px versetzen; kein Leerraum durch position:fixed. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:none!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  transform:translate3d(0,min(var(--facility-pull-distance),36px),0)!important;
+  transition:transform .12s ease-out!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),36px),0)!important;
+  transition:transform .12s ease-out!important;
+ }
+}
