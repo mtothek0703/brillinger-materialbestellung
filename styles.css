@@ -2170,3 +2170,42 @@ html body #shop-view .product-search #article-search:focus{
    z-index:900!important;
  }
 }
+
+
+/* Sonderartikel: eingebettetes X fuer Artikelbezeichnung und Weitere Angaben. */
+#custom-product-form .custom-field-clear-wrap {
+ position:relative;
+ width:100%;
+ min-width:0;
+}
+#custom-product-form .custom-field-clear-wrap > input,
+#custom-product-form .custom-field-clear-wrap > textarea {
+ width:100%;
+ padding-right:54px!important;
+ box-sizing:border-box;
+}
+#custom-product-form .custom-field-clear {
+ position:absolute;
+ top:9px;
+ right:8px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:38px;
+ height:38px;
+ padding:0;
+ border:0;
+ border-radius:50%;
+ background:transparent;
+ color:#607480;
+ font-size:28px;
+ font-weight:400;
+ line-height:1;
+ cursor:pointer;
+ z-index:2;
+ -webkit-tap-highlight-color:transparent;
+ touch-action:manipulation;
+}
+#custom-product-form .custom-field-clear[hidden] {display:none!important}
+#custom-product-form .custom-field-clear:active {background:#e9f1f7}
+#custom-product-form .custom-field-clear:focus-visible {outline:2px solid #005c80;outline-offset:2px}
