@@ -1271,3 +1271,13 @@ html body #facility-blue-header{
  border-radius:0!important;
  clip-path:polygon(0 0,100% 0,100% 84%,93.75% 87.75%,87.5% 91%,81.25% 93.75%,75% 96%,68.75% 97.75%,62.5% 99%,56.25% 99.75%,50% 100%,43.75% 99.75%,37.5% 99%,31.25% 97.75%,25% 96%,18.75% 93.75%,12.5% 91%,6.25% 87.75%,0 84%);
 }
+
+/* Kopfbereich etwas flacher und Logo leicht verkleinert; Schrift und Profil bleiben unverändert. */
+html body #facility-blue-header{height:174px!important;min-height:174px!important}
+html body #facility-blue-header .facility-header-brand img{width:285px!important;max-width:min(70vw,285px)!important}
+html body #home-view:not([hidden]){height:calc(100dvh - 174px)!important;max-height:calc(100dvh - 174px)!important}
+@media(max-width:720px){
+ html body #facility-blue-header{height:166px!important;min-height:166px!important;padding:16px 55px!important}
+ html body #facility-blue-header .facility-header-brand img{width:255px!important;max-width:68vw!important}
+ html body #home-view:not([hidden]){height:calc(100dvh - 166px)!important;max-height:calc(100dvh - 166px)!important}
+}
