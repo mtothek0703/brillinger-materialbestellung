@@ -1876,3 +1876,30 @@ html body #shop-view .product-search #article-search:focus{
    z-index:1;
  }
 }
+
+/* Sonderartikel-Button: Plus durch nach rechts gerichteten Pfeil ersetzen. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link {
+  position:relative!important;
+  font-size:0!important;
+  text-align:center!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link::before {
+  content:"Artikel nicht gefunden?";
+  display:inline-block;
+  font-size:16px;
+  line-height:1.25;
+  font-weight:700;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link::after {
+  content:"\2192";
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:22px;
+  line-height:1;
+  font-weight:600;
+  pointer-events:none;
+ }
+}
