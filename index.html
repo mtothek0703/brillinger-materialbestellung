@@ -468,6 +468,22 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  window.addEventListener('touchend',()=>{enabled=false;},{capture:true,passive:true});
  window.addEventListener('touchcancel',()=>{enabled=false;},{capture:true,passive:true});
 })();
+/* Auf der Startseite horizontale Gesten nicht an die Webseite weitergeben.
+   Safari-eigene Browser-Verlaufsgesten können davon unabhängig bleiben. */
+(function(){
+ let sx=0,sy=0,started=false;
+ window.addEventListener('touchstart',e=>{
+  started=e.touches.length===1&&(!location.hash||location.hash==='#start'||location.hash==='#');
+  if(started){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}
+ },{capture:true,passive:true});
+ window.addEventListener('touchmove',e=>{
+  if(!started||e.touches.length!==1)return;
+  const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
+  if(dx>12&&Math.abs(dx)>Math.abs(dy)*1.2&&e.cancelable)e.preventDefault();
+ },{capture:true,passive:false});
+ window.addEventListener('touchend',()=>{started=false;},{capture:true,passive:true});
+ window.addEventListener('touchcancel',()=>{started=false;},{capture:true,passive:true});
+})();
 /* Mobile Wischgeste: nur von links nach rechts zur übergeordneten Seite. */
 (function(){
  let startX=0,startY=0,tracking=false;
