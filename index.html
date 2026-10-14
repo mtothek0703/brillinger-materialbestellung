@@ -300,28 +300,9 @@ function showWasteStatus(ok,message){
  wasteStatusDialog.querySelector('#waste-status-description').textContent=message;
  if(!wasteStatusDialog.open)wasteStatusDialog.showModal();
 }
-wasteTypes.forEach(([id,type])=>{
- const link=document.getElementById(id);
- link?.addEventListener('click',async event=>{
-  event.preventDefault();
-  if(link.dataset.sending==='1')return;
-  const profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
-  if(!profile?.name||!profile?.site||!profile?.dept){showWasteStatus(false,'Bitte zuerst das Mitarbeiterprofil vollständig ausfüllen.');return;}
-  link.dataset.sending='1';
-  link.style.opacity='.55';
-  const requestId=crypto.randomUUID();
-  try{
-   const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-send-mail',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({id:requestId,typ:'leerung',name:profile.name,site:profile.site,department:profile.dept,wasteType:type})
-   });
-   const result=await response.json();
-   if(!response.ok||result.success!==true)throw new Error(result.error||'Versand fehlgeschlagen');
-   const values=JSON.parse(localStorage.getItem(requestStorageKey)||'[]');
-   const entries=Array.isArray(values)?values:[];
-   entries.push({date:new Date().toISOString(),type});
-   localStorage.setItem(requestStorageKey,JSON.stringify(entries));
-   renderRequests();
+/* Testphase: Die fünf Leerungslinks öffnen voradressierte E-Mails.
+   Automatischer Supabase-Versand bleibt bis zur Empfängerkonfiguration deaktiviert. */
+renderRequests();
    showWasteStatus(true,'Die Leerungsanforderung wurde erfolgreich übermittelt und erfasst.');
   }catch(error){showWasteStatus(false,error.message||'Versand fehlgeschlagen. Bitte später erneut versuchen.');}
   finally{delete link.dataset.sending;link.style.opacity='';}
