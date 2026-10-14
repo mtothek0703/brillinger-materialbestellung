@@ -71,6 +71,53 @@ let edding3000Color='Schwarz';
 let batteryPackSize='8';
 const cableTiePackSizes={'BM-028':'','BM-029':''};
 const $=id=>document.getElementById(id);
+
+/* Warenkorb ueber Neuladen, Pull-to-refresh und App-Neustart erhalten.
+   Auf diesem Geraet speichern, keine Uebertragung von Warenkorbdaten. */
+const CART_STORAGE_KEY='brillinger-facility-cart-v1';
+function persistCart(){
+ try{
+  localStorage.setItem(CART_STORAGE_KEY,JSON.stringify({
+   items:[...cart],
+   custom:customCart,
+   batteryType,glueType,edding400Color,edding3000Color,batteryPackSize,
+   cableTiePackSizes:{...cableTiePackSizes},
+   note:document.getElementById('note')?.value||''
+  }));
+ }catch(error){console.warn('Warenkorb konnte nicht gespeichert werden',error);}
+}
+function restoreCart(){
+ try{
+  const saved=JSON.parse(localStorage.getItem(CART_STORAGE_KEY)||'null');
+  if(!saved||typeof saved!=='object')return;
+  if(Array.isArray(saved.items))for(const entry of saved.items){
+   if(!Array.isArray(entry)||entry.length!==2)continue;
+   const [id,amount]=entry;
+   const product=PRODUCTS.find(p=>p.id===id);
+   if(product&&quantity(amount)&&amount>=minimum(product))cart.set(id,Number(amount));
+  }
+  if(Array.isArray(saved.custom))for(const item of saved.custom){
+   if(!item||typeof item.name!=='string'||!item.name.trim()||!quantity(item.amount))continue;
+   const id=++customItemCounter;
+   customCart.push({id,name:item.name.slice(0,160),amount:Number(item.amount),
+    details:String(item.details||'').slice(0,300),url:String(item.url||'').slice(0,2000)});
+  }
+  batteryType=String(saved.batteryType||'').slice(0,80);
+  glueType=String(saved.glueType||'Alleskleber');
+  edding400Color=String(saved.edding400Color||'Schwarz');
+  edding3000Color=String(saved.edding3000Color||'Schwarz');
+  batteryPackSize=['8','24','40'].includes(String(saved.batteryPackSize))?String(saved.batteryPackSize):'8';
+  for(const id of Object.keys(cableTiePackSizes)){
+   const size=String(saved.cableTiePackSizes?.[id]||'');
+   if(['','50','100'].includes(size))cableTiePackSizes[id]=size;
+  }
+  const note=document.getElementById('note');
+  if(note)note.value=String(saved.note||'').slice(0,500);
+ }catch(error){console.warn('Warenkorb konnte nicht wiederhergestellt werden',error);}
+}
+restoreCart();
+window.addEventListener('pagehide',persistCart);
+
 let feedbackTimer;
 function notify(message){$('feedback').textContent=message;clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{$('feedback').textContent='';},3500);}
 function minimum(product){return product.min||1;}
@@ -255,10 +302,10 @@ function renderProducts(){
 }
 renderProducts();
 
-function renderCart(){const total=[...cart.values()].reduce((a,b)=>a+b,0)+customCart.reduce((a,p)=>a+p.amount,0);$('cart-count').textContent=total;$('position-count').textContent=`${cart.size+customCart.length} ${cart.size+customCart.length===1?'Position':'Positionen'}`;$('order-button').disabled=!(cart.size+customCart.length);$('cart-items').innerHTML=cart.size?[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `<div class="cart-item"><h3>${p.name}</h3><p>${p.unit}${id==='BM-022'&&batteryType?' · Typ: '+escapeHtml(batteryType)+' · '+batteryPackSize+'er-Pack':''}${id==='BU-002'?' · Farbe: '+edding400Color:''}${id==='BU-001'?' · Farbe: '+edding3000Color:''}${cableTiePackSizes[id]?' · Packung: '+cableTiePackSizes[id]+' Stück':''}${p.min?` · Mindestbestellmenge: ${p.min}`:''}</p><div class="cart-controls">${quantityControl(p,amount,'cart')}<button type="button" class="remove" data-remove="${id}" aria-label="${p.name} aus dem Warenkorb entfernen">Entfernen</button></div></div>`;}).join(''):(customCart.length?'':'<p class="empty">Dein Warenkorb ist noch leer.<br>Wähle Artikel aus dem Sortiment.</p>');$('cart-items').innerHTML+=customCart.map(p=>`<div class="cart-item"><h3>${escapeHtml(p.name)} <small>(Sonstiger Artikel)</small></h3><p>${p.details?escapeHtml(p.details):'Individuelle Anfrage'}${p.url?'<br><a href="'+escapeHtml(p.url)+'" target="_blank" rel="noopener noreferrer">Produktlink öffnen ↗</a>':''}</p><div class="cart-controls"><div class="quantity"><button type="button" data-custom-step="-1" data-custom-id="${p.id}" aria-label="Menge verringern">−</button><input type="number" min="1" max="999" value="${p.amount}" data-custom-quantity="${p.id}" aria-label="Menge für ${escapeHtml(p.name)}"><button type="button" data-custom-step="1" data-custom-id="${p.id}" aria-label="Menge erhöhen">+</button></div><button type="button" class="remove" data-custom-remove="${p.id}">Entfernen</button></div></div>`).join('');$('cart-summary').innerHTML=(cart.size+customCart.length)?`<div class="summary">${total} Verpackungseinheiten insgesamt</div>`:'';}
+function renderCart(){persistCart();const total=[...cart.values()].reduce((a,b)=>a+b,0)+customCart.reduce((a,p)=>a+p.amount,0);$('cart-count').textContent=total;$('position-count').textContent=`${cart.size+customCart.length} ${cart.size+customCart.length===1?'Position':'Positionen'}`;$('order-button').disabled=!(cart.size+customCart.length);$('cart-items').innerHTML=cart.size?[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `<div class="cart-item"><h3>${p.name}</h3><p>${p.unit}${id==='BM-022'&&batteryType?' · Typ: '+escapeHtml(batteryType)+' · '+batteryPackSize+'er-Pack':''}${id==='BU-002'?' · Farbe: '+edding400Color:''}${id==='BU-001'?' · Farbe: '+edding3000Color:''}${cableTiePackSizes[id]?' · Packung: '+cableTiePackSizes[id]+' Stück':''}${p.min?` · Mindestbestellmenge: ${p.min}`:''}</p><div class="cart-controls">${quantityControl(p,amount,'cart')}<button type="button" class="remove" data-remove="${id}" aria-label="${p.name} aus dem Warenkorb entfernen">Entfernen</button></div></div>`;}).join(''):(customCart.length?'':'<p class="empty">Dein Warenkorb ist noch leer.<br>Wähle Artikel aus dem Sortiment.</p>');$('cart-items').innerHTML+=customCart.map(p=>`<div class="cart-item"><h3>${escapeHtml(p.name)} <small>(Sonstiger Artikel)</small></h3><p>${p.details?escapeHtml(p.details):'Individuelle Anfrage'}${p.url?'<br><a href="'+escapeHtml(p.url)+'" target="_blank" rel="noopener noreferrer">Produktlink öffnen ↗</a>':''}</p><div class="cart-controls"><div class="quantity"><button type="button" data-custom-step="-1" data-custom-id="${p.id}" aria-label="Menge verringern">−</button><input type="number" min="1" max="999" value="${p.amount}" data-custom-quantity="${p.id}" aria-label="Menge für ${escapeHtml(p.name)}"><button type="button" data-custom-step="1" data-custom-id="${p.id}" aria-label="Menge erhöhen">+</button></div><button type="button" class="remove" data-custom-remove="${p.id}">Entfernen</button></div></div>`).join('');$('cart-summary').innerHTML=(cart.size+customCart.length)?`<div class="summary">${total} Verpackungseinheiten insgesamt</div>`:'';}
 document.addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;if(button.hasAttribute('data-category')){activeCategory=button.dataset.category;renderProducts();return;}if(button.hasAttribute('data-step')){const input=button.parentElement.querySelector('input');const product=PRODUCTS.find(p=>p.id===input.dataset.id);const min=minimum(product);const current=quantity(input.value)||min;input.value=Math.max(min,Math.min(999,current+Number(button.dataset.step)));if(input.dataset.kind==='cart'){cart.set(input.dataset.id,Number(input.value));invalidateOrder();renderCart();}return;}if(button.dataset.add){const id=button.dataset.add;if(['BM-028','BM-029'].includes(id)&&!cableTiePackSizes[id]){notify('Bitte zuerst eine Packungsgröße auswählen.');document.getElementById('pack-'+id)?.focus();return;}if(id==='BM-022'&&!batteryType.trim()){notify('Bitte den Batterietyp angeben (z. B. AA oder AAA).');$('battery-type')?.focus();return;}const input=button.parentElement.querySelector('input');const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===id))){notify('Bitte die Mindestbestellmenge beachten.');return;}const next=(cart.get(id)||0)+amount;if(next>999){notify('Pro Artikel sind maximal 999 Verpackungseinheiten möglich.');return;}cart.set(id,next);invalidateOrder();renderCart();notify(`${PRODUCTS.find(p=>p.id===id).name} zum Warenkorb hinzugefügt.`);}if(button.dataset.remove){cart.delete(button.dataset.remove);invalidateOrder();renderCart();notify('Artikel entfernt.');}});
-document.addEventListener('input',event=>{if(event.target.id==='battery-type'){batteryType=event.target.value;invalidateOrder();}});
-document.addEventListener('change',event=>{if(event.target.id.startsWith('pack-BM-02')&&cableTiePackSizes[event.target.id.slice(5)]){cableTiePackSizes[event.target.id.slice(5)]=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='battery-pack-size'){batteryPackSize=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='edding400-color'){edding400Color=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='edding3000-color'){edding3000Color=event.target.value;invalidateOrder();renderCart();}});
+document.addEventListener('input',event=>{if(event.target.id==='battery-type'){batteryType=event.target.value;invalidateOrder();persistCart();}if(event.target.id==='note')persistCart();});
+document.addEventListener('change',event=>{if(event.target.id.startsWith('pack-BM-02')&&cableTiePackSizes[event.target.id.slice(5)]){cableTiePackSizes[event.target.id.slice(5)]=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='battery-pack-size'){batteryPackSize=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='edding400-color'){edding400Color=event.target.value;invalidateOrder();renderCart();}if(event.target.id==='edding3000-color'){edding3000Color=event.target.value;invalidateOrder();renderCart();}persistCart();});
 document.addEventListener('change',event=>{const input=event.target;if(input.dataset.kind==='cart'){const amount=quantity(input.value);if(!amount||amount<minimum(PRODUCTS.find(p=>p.id===input.dataset.id))){notify('Bitte die Mindestbestellmenge beachten.');input.value=cart.get(input.dataset.id);return;}cart.set(input.dataset.id,amount);invalidateOrder();renderCart();}});
 $('order-form').addEventListener('input',invalidateOrder);
 function buildOrder(name,department,note){return ['Hallo,','','bitte folgende Materialien bestellen:','',...[...cart].map(([id,amount])=>{const p=PRODUCTS.find(p=>p.id===id);return `${amount} × ${p.name}${id==='BM-022'?' ('+batteryType+', '+batteryPackSize+'er-Pack)':id==='BU-002'?' (Farbe: '+edding400Color+')':id==='BU-001'?' (Farbe: '+edding3000Color+')':cableTiePackSizes[id]?' ('+cableTiePackSizes[id]+' Stück je Packung)':''} – ${cableTiePackSizes[id]?'1 Packung = '+cableTiePackSizes[id]+' Stück':p.unit}${p.supplier?'\n\nLieferant: '+p.supplier:''}${p.supplierArticleNumber?'\nArtikelnummer: '+p.supplierArticleNumber:''}${p.orderContact?'\nBestellkontakt: '+p.orderContact:''}${p.orderNote?'\n\nBestellhinweis: '+p.orderNote:''}`;}).flatMap(item=>[item,'']),...customCart.map(p=>`${p.amount} × ${p.name} (Sonstiger Artikel)${p.details?'\nWeitere Angaben: '+p.details:''}${p.url?'\nProduktlink: '+p.url:''}`).flatMap(item=>[item,'']),'',`Bestellt von: ${name}`,'',...department.split(' / ').flatMap((value,index)=>index===0?[`Standort: ${value}`,'']:[`Bereich: ${value}`]), ...(note?[ '', `Anmerkung: ${note}` ]:[]),''].filter(line=>line!==null).join('\n').replace(/\r?\n/g,'\r\n');}
