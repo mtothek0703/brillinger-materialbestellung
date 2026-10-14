@@ -1616,3 +1616,12 @@ html body #home-view .home-tiles a{background:#fff!important}
 
 /* Warenkorb-Zaehler ohne hellblauen Kreis im mobilen Shop. */
 @media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link #cart-count{background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
+
+/* Mobile Shop: Such- und Kategoriezone dezent hellblau vom Artikelsortiment absetzen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  background:#e8f0f8!important;
+  border-bottom:2px solid #0a3b91!important;
+  border-radius:0 0 12px 12px!important;
+ }
+}
