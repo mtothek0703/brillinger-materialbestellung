@@ -63,10 +63,9 @@ function showFacilityManagementPage(){
   if(profileButton.previousElementSibling!==cart)cart.after(profileButton);
   toolbar.hidden=true;
  }else{
-  if(profileButton.parentElement!==toolbar)toolbar.insertBefore(profileButton,toolbar.firstChild);
+  const brandHeader=document.getElementById('facility-blue-header');
+  if(profileButton.parentElement!==brandHeader)brandHeader.appendChild(profileButton);
   toolbar.hidden=false;
-  const home=document.getElementById('home-view');
-  if(toolbar.nextElementSibling!==home)home.before(toolbar);
  }
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
 }
