@@ -61,6 +61,7 @@ function showFacilityManagementPage(){
  if(profileButton.parentElement!==slot)slot.insertBefore(profileButton,slot.firstChild);
  toolbar.hidden=true;
  if(hash==='#shop'||hash==='#artikel'||hash==='#start'||waste||overview||orders||pickups){if(shop){const main=document.querySelector('#shop-view > main');if(main)main.scrollTop=0;}scrollTo(0,0);}
+ document.dispatchEvent(new Event('facility:viewchange'));
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
 /* Desktop: Warenkorb als eigenständiges Dialogfenster öffnen. */
@@ -771,6 +772,7 @@ window.addEventListener('pageshow',()=>{
   }
  }
  for(const view of views)view.addEventListener('scroll',followScroll,{passive:true});
+ document.addEventListener('facility:viewchange',reset);
  window.addEventListener('hashchange',()=>{reset();requestAnimationFrame(reset);});
  window.addEventListener('popstate',reset);
  window.addEventListener('pageshow',reset);
