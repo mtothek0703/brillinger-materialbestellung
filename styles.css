@@ -1281,3 +1281,6 @@ html body #home-view:not([hidden]){height:calc(100dvh - 174px)!important;max-hei
  html body #facility-blue-header .facility-header-brand img{width:255px!important;max-width:68vw!important}
  html body #home-view:not([hidden]){height:calc(100dvh - 166px)!important;max-height:calc(100dvh - 166px)!important}
 }
+
+/* Startseite: Inhalt der Müllentsorgungs-Kachel dezent nach oben setzen. */
+html body #home-view .home-tiles a[href="#muellentsorgung"] > *{position:relative;top:-8px}
