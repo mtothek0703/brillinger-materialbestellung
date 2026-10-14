@@ -479,7 +479,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   ||document.body.classList.contains('desktop-cart-open')
   ||document.getElementById('profile-popup')?.style.display==='flex';
  let gesture=null;
- let suppressedClickUntil=0;
+
  function clear(){gesture=null;}
  window.addEventListener('touchstart',event=>{
   clear();
@@ -511,17 +511,11 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   if(!destination||destination===route())return;
   // Die Seite ersetzen statt erneut in den Verlauf zu springen.
   // Dadurch gelangt ein zweiter Swipe nur eine Ebene weiter zur Startseite.
+  // Verhindert den synthetischen Klick nach dem Swipe, ohne spaetere Taps zu blockieren.
+  if(event.cancelable)event.preventDefault();
   history.replaceState(history.state,'',destination);
   window.dispatchEvent(new Event('hashchange'));
-  suppressedClickUntil=Date.now()+350;
- },{capture:true,passive:true});
- window.addEventListener('click',event=>{
-  // iOS kann nach einem erkannten Swipe noch einen synthetischen Klick senden.
-  if(Date.now()>suppressedClickUntil||event.detail===0)return;
-  event.preventDefault();
-  event.stopImmediatePropagation();
-  suppressedClickUntil=0;
- },{capture:true});
+ },{capture:true,passive:false});
  window.addEventListener('touchcancel',clear,{capture:true,passive:true});
 })();</script><script>
 /* iOS: Bei Neuaufruf nach Pull-to-refresh niemals alte Shop-Scrollposition übernehmen. */
