@@ -1262,3 +1262,10 @@ html body #home-view:not([hidden]){
   min-height:0!important;max-height:calc(100dvh - 188px)!important;
  }
 }
+
+/* Horizontale Wischgesten in der Facility-Oberfläche deaktivieren. */
+html,body{overflow-x:hidden!important;overscroll-behavior-x:none!important}
+#home-view,#waste-view,#overview-menu-view,#order-overview-view,#waste-overview-view,
+#facility-blue-header,#facility-home-nav{
+ touch-action:pan-y!important;overscroll-behavior-x:none!important;
+}
