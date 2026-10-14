@@ -1980,3 +1980,39 @@ html body #shop-view .product-search #article-search:focus{
   transition:none!important;
  }
 }
+
+/* iOS: Wisch-Navigation ohne lange graue Kachel-Markierungen.
+   Hover-Stile gelten auf Touchscreens nicht als permanente Auswahl. */
+@media(max-width:720px){
+ html,body,a,button,[role="button"],.home-tiles a,.waste-option,
+ .pickup-type-button,.category-button{
+  -webkit-tap-highlight-color:transparent!important;
+ }
+ html body #home-view:not([hidden]) .home-tiles a,
+ html body .waste-option{
+  touch-action:pan-y!important;
+ }
+}
+@media(max-width:720px) and (hover:none){
+ html body #home-view .home-tiles a:hover{
+  background:#fff!important;
+  box-shadow:0 5px 21px #112a4610!important;
+ }
+ html body .waste-option:hover{
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:0 6px 22px #142c3810!important;
+ }
+ html body #order-overview-view #order-type-buttons .pickup-type-button:hover{
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
+  transform:none!important;
+ }
+ html body #waste-overview-view #pickup-types .pickup-type-button:hover:not([aria-pressed="true"]){
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:none!important;
+  transform:none!important;
+ }
+}
