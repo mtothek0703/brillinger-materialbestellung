@@ -1631,7 +1631,7 @@ html body #home-view .home-tiles a{background:#fff!important}
  #shop-view>header{
   background:linear-gradient(180deg,#20469b 0%,#07176b 100%)!important;
   border-bottom:0!important;
-  border-radius:0 0 50% 5% / 0 0 12px 5px!important;
+  border-radius:0!important;
   overflow:visible!important;
  }
  #shop-view>header .brand-logo{filter:brightness(0) invert(1)!important}
