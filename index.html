@@ -513,7 +513,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  const moving=()=>[document.getElementById('facility-blue-header'),...['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view','shop-view'].map(id=>document.getElementById(id))].filter(el=>el&&!el.hidden);
  const top=()=>{
   const shop=document.getElementById('shop-view');
-  if(shop&&!shop.hidden)return window.scrollY<=12&&shop.scrollTop<=12;
+  if(shop&&!shop.hidden)return shop.scrollTop<=3;
   const visible=moving();
   return window.scrollY<=3&&visible.every(el=>el.scrollTop<=3);
  };
