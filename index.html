@@ -317,7 +317,7 @@ for (const wasteId of ['waste-rest','waste-paper']) {
   let body=params.get('body')||'';
   body=body.replace(/Orthopädie Brillinger GmbH\s*(?:Einhornstraße 10\s*72138 Kirchentellinsfurt|Handwerkerpark 25\s*72070 Tübingen)/,targetAddress);
   params.set('body',body);
-  link.setAttribute('href',baseHref.slice(0,q+1)+params.toString());
+  link.setAttribute('href',baseHref.slice(0,q+1)+'subject='+encodeURIComponent(params.get('subject')||'')+'&body='+encodeURIComponent(body));
  });
 }
 /* Am Handwerkerpark 25 sind diese drei Entsorgungsarten nicht verfügbar. */
