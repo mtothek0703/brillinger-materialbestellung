@@ -1432,4 +1432,4 @@ html body #facility-blue-header .facility-header-brand img{
 }
 
 /* Bestellübersicht: kompakte Überschrift in Anlehnung an Müllentsorgung. */
-@media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:22px!important;line-height:1.2!important;font-weight:700!important}}
+@media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:24px!important;line-height:normal!important;font-weight:700!important;color:#153443!important;margin:3px 0!important}}
