@@ -453,44 +453,25 @@ const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails()
 window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
 })();
 </script><script>
-/* Links-Wischen in der Web-App nicht als Navigation/Scrollbewegung zulassen. */
+/* Eine zentrale, robuste Wisch-Navigation für Smartphones.
+   Rechtswischen führt genau eine Ebene zurück. Auf der Startseite endet die Navigation.
+   Links- und Rechtswischen werden nur bei eindeutig horizontalen Gesten abgefangen,
+   damit vertikales Scrollen und Pull-to-refresh ungestört bleiben. */
 (function(){
- let x=0,y=0,enabled=false;
- window.addEventListener('touchstart',e=>{
-  enabled=e.touches.length===1&&matchMedia('(max-width:720px)').matches;
-  if(enabled){x=e.touches[0].clientX;y=e.touches[0].clientY;}
- },{capture:true,passive:true});
- window.addEventListener('touchmove',e=>{
-  if(!enabled||e.touches.length!==1)return;
-  const dx=e.touches[0].clientX-x,dy=e.touches[0].clientY-y;
-  if(dx< -8&&Math.abs(dx)>Math.abs(dy)*1.15&&e.cancelable)e.preventDefault();
- },{capture:true,passive:false});
- window.addEventListener('touchend',()=>{enabled=false;},{capture:true,passive:true});
- window.addEventListener('touchcancel',()=>{enabled=false;},{capture:true,passive:true});
-})();
-/* Auf der Startseite horizontale Gesten nicht an die Webseite weitergeben.
-   Safari-eigene Browser-Verlaufsgesten können davon unabhängig bleiben. */
-(function(){
- let sx=0,sy=0,started=false;
- window.addEventListener('touchstart',e=>{
-  started=e.touches.length===1&&(!location.hash||location.hash==='#start'||location.hash==='#');
-  if(started){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}
- },{capture:true,passive:true});
- window.addEventListener('touchmove',e=>{
-  if(!started||e.touches.length!==1)return;
-  const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
-  if(dx>12&&Math.abs(dx)>Math.abs(dy)*1.2&&e.cancelable)e.preventDefault();
- },{capture:true,passive:false});
- window.addEventListener('touchend',()=>{started=false;},{capture:true,passive:true});
- window.addEventListener('touchcancel',()=>{started=false;},{capture:true,passive:true});
-})();
-/* Startseite ist Endpunkt der Zurueck-Navigation:
-   Ein zusaetzlicher gleichnamiger History-Eintrag faengt die native
-   iPhone-Zurueck-Geste ab, ohne die Rueck-Geste auf Unterseiten zu blockieren. */
-(function(){
- const onHome=()=>!location.hash||location.hash==='#start'||location.hash==='#';
+ const mobile=window.matchMedia('(max-width:720px)');
+ const parent={
+  '#muellentsorgung':'#start',
+  '#entsorgungsuebersicht':'#start',
+  '#bestelluebersicht':'#entsorgungsuebersicht',
+  '#leerungsuebersicht':'#entsorgungsuebersicht',
+  '#shop':'#start',
+  '#artikel':'#start',
+  '#warenkorb':'#artikel',
+  '#sonderartikel':'#artikel'
+ };
+ const isHome=()=>!location.hash||location.hash==='#start'||location.hash==='#';
  function protectHome(){
-  if(!onHome())return;
+  if(!isHome())return;
   if(history.state&&history.state.facilityHomeSwipeGuard===true)return;
   const previous=history.state&&typeof history.state==='object'?history.state:{};
   history.pushState({...previous,facilityHomeSwipeGuard:true},'',location.href);
@@ -499,38 +480,54 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  window.addEventListener('hashchange',protectHome);
  window.addEventListener('pageshow',protectHome);
  protectHome();
-})();
-/* Mobile Wischgeste: nur von links nach rechts zur übergeordneten Seite. */
-(function(){
- let startX=0,startY=0,tracking=false;
- const parent={'#muellentsorgung':'#start','#entsorgungsuebersicht':'#start','#bestelluebersicht':'#entsorgungsuebersicht','#leerungsuebersicht':'#entsorgungsuebersicht','#shop':'#start','#artikel':'#start','#warenkorb':'#artikel','#sonderartikel':'#artikel'};
- document.addEventListener('touchstart',function(e){
-  tracking=false;
-  if(e.touches.length!==1||!matchMedia('(max-width: 720px)').matches)return;
-  // Startseite ist das Ende der Wisch-Navigation.
-  if(!location.hash||location.hash==='#start'||location.hash==='#')return;
-  const t=e.target;
-  if(t.closest('input,textarea,select,[contenteditable="true"],dialog,[role="dialog"],.modal,.popup'))return;
-  startX=e.touches[0].clientX;startY=e.touches[0].clientY;
-  tracking=true;
- },{passive:true});
- /* Links-Wischbewegungen aktiv unterbinden, auch bevor touchend ausgelöst wird. */
- document.addEventListener('touchmove',function(e){
-  if(!tracking||e.touches.length!==1)return;
-  const dx=e.touches[0].clientX-startX,dy=e.touches[0].clientY-startY;
-  if(dx < -12 && Math.abs(dx)>Math.abs(dy)*1.2 && e.cancelable)e.preventDefault();
- },{passive:false});
- document.addEventListener('touchend',function(e){
-  if(!tracking||!e.changedTouches.length)return;
-  tracking=false;
-  const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;
-  if(dx < 85||Math.abs(dx)<Math.abs(dy)*1.5)return;
-  const current=location.hash||'#start',target=parent[current];
-  if(!target)return;
-  location.hash=target;
-  if(typeof showFacilityManagementPage==='function')showFacilityManagementPage();
- },{passive:true});
- document.addEventListener('touchcancel',()=>{tracking=false},{passive:true});
+
+ let swipe=null;
+ function reset(){swipe=null;}
+ function blockedTarget(target){
+  return Boolean(target.closest('input,textarea,select,[contenteditable],[role="dialog"],dialog,.modal,.popup,#profile-popup,#pickup-history-section,#order-history-section'));
+ }
+ window.addEventListener('touchstart',event=>{
+  reset();
+  if(!mobile.matches||event.touches.length!==1||blockedTarget(event.target))return;
+  if(document.body.classList.contains('pickup-history-open')
+   ||document.body.classList.contains('order-history-open')
+   ||document.body.classList.contains('desktop-cart-open'))return;
+  const point=event.touches[0];
+  const route=location.hash||'#start';
+  swipe={x:point.clientX,y:point.clientY,route,target:parent[route]||null,direction:null};
+ },{capture:true,passive:true});
+
+ window.addEventListener('touchmove',event=>{
+  if(!swipe||event.touches.length!==1)return;
+  const point=event.touches[0],dx=point.clientX-swipe.x,dy=point.clientY-swipe.y;
+  if(swipe.direction===null){
+   if(Math.abs(dy)>13&&Math.abs(dy)>Math.abs(dx)*1.1){
+    reset();
+    return;
+   }
+   if(Math.abs(dx)>=14&&Math.abs(dx)>Math.abs(dy)*1.35){
+    swipe.direction=dx>0?'right':'left';
+   }
+  }
+  if(swipe&&swipe.direction!==null&&event.cancelable){
+   event.preventDefault(); // unterdrückt iOS-Tap-Highlight und versehentliche Klicks
+  }
+ },{capture:true,passive:false});
+
+ window.addEventListener('touchend',event=>{
+  const gesture=swipe;
+  reset();
+  if(!gesture||event.changedTouches.length!==1)return;
+  const point=event.changedTouches[0];
+  const dx=point.clientX-gesture.x,dy=point.clientY-gesture.y;
+  if(gesture.direction!=='right'||dx<70||Math.abs(dx)<Math.abs(dy)*1.3)return;
+  if(!gesture.target||(location.hash||'#start')!==gesture.route)return;
+  const focused=document.activeElement;
+  if(focused&&focused!==document.body&&typeof focused.blur==='function'&&!focused.matches('input,textarea,select'))focused.blur();
+  // Keine zusätzlichen Verlaufseinträge bei jeder Wischbewegung erzeugen.
+  location.replace(gesture.target);
+ },{capture:true,passive:true});
+ window.addEventListener('touchcancel',reset,{capture:true,passive:true});
 })();
 </script><script>
 /* iOS: Bei Neuaufruf nach Pull-to-refresh niemals alte Shop-Scrollposition übernehmen. */
