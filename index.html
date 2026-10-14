@@ -691,6 +691,27 @@ window.addEventListener('pageshow',()=>{
   }
  }
  main.addEventListener('scroll',followArticleScroll,{passive:true});
+
+ // iPhone: Am letzten Artikel stoppt die Liste. Kein elastisches Ziehen
+ // der ganzen Shop-Seite, wenn nach Erreichen des Endes weiter gewischt wird.
+ let listTouchStart=null;
+ main.addEventListener('touchstart',event=>{
+  if(!shopActive()||event.touches.length!==1){listTouchStart=null;return;}
+  const t=event.touches[0];
+  listTouchStart={x:t.clientX,y:t.clientY};
+ },{passive:true});
+ main.addEventListener('touchmove',event=>{
+  if(!listTouchStart||!shopActive()||event.touches.length!==1)return;
+  const t=event.touches[0];
+  const dx=t.clientX-listTouchStart.x,dy=t.clientY-listTouchStart.y;
+  if(dy>=-3||Math.abs(dy)<=Math.abs(dx)*1.2)return;
+  const maxScroll=Math.max(0,main.scrollHeight-main.clientHeight);
+  if(maxScroll>1&&main.scrollTop>=maxScroll-2&&event.cancelable){
+   event.preventDefault();
+  }
+ },{passive:false});
+ main.addEventListener('touchend',()=>{listTouchStart=null;},{passive:true});
+ main.addEventListener('touchcancel',()=>{listTouchStart=null;},{passive:true});
  positionControls();
  if(mobile.addEventListener)mobile.addEventListener('change',positionControls);
  else mobile.addListener(positionControls);
