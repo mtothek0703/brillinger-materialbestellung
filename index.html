@@ -300,14 +300,7 @@ function showWasteStatus(ok,message){
  wasteStatusDialog.querySelector('#waste-status-description').textContent=message;
  if(!wasteStatusDialog.open)wasteStatusDialog.showModal();
 }
-/* Testphase: Die fünf Leerungslinks öffnen voradressierte E-Mails.
-   Automatischer Supabase-Versand bleibt bis zur Empfängerkonfiguration deaktiviert. */
-renderRequests();
-   showWasteStatus(true,'Die Leerungsanforderung wurde erfolgreich übermittelt und erfasst.');
-  }catch(error){showWasteStatus(false,error.message||'Versand fehlgeschlagen. Bitte später erneut versuchen.');}
-  finally{delete link.dataset.sending;link.style.opacity='';}
- });
-});
+/* Testphase: Vorbereitete Mailto-Links bleiben klickbar; keine Supabase-Leerungsübermittlung. */
 renderRequests();
 let selectedOrderYear=new Date().getFullYear();
 let selectedOrderProduct=null;
