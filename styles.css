@@ -1687,3 +1687,7 @@ html body #home-view .home-tiles a{background:#fff!important}
   margin-bottom:16px!important;box-shadow:0 8px 18px #102a4b24!important;
  }
 }
+
+/* Shop: Such- und Filterkacheln auf Wunsch vollständig ausblenden. */
+@media(max-width:720px){html body #shop-view .mobile-sticky-controls,html body #shop-view .mobile-sticky-controls.facility-reveal-controls{display:none!important}html body #shop-view:not([hidden]) .shop-layout{margin-top:12px!important}}
+@media(min-width:721px){#shop-view .mobile-sticky-controls{display:none!important}}
