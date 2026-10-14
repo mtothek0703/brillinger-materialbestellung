@@ -1943,3 +1943,17 @@ html body #shop-view .product-search #article-search:focus{
  #shop-search-suggestions{gap:6px;padding:8px 10px;font-size:13px}
  #shop-search-suggestions .shop-search-suggestion{font-size:13px}
 }
+
+/* Auf der Startseite ist horizontaler Zurueck-Swipe kein Navigationsziel.
+   Vertikales Scrollen und Tippen auf die Kacheln bleiben moeglich. */
+@media(max-width:720px){
+ html:has(#home-view:not([hidden])),
+ body:has(#home-view:not([hidden])){
+  overscroll-behavior-x:none!important;
+ }
+ html body #home-view:not([hidden]),
+ html body:has(#home-view:not([hidden])) #facility-home-nav{
+  touch-action:pan-y!important;
+  overscroll-behavior-x:none!important;
+ }
+}
