@@ -583,21 +583,32 @@ window.addEventListener('pageshow',()=>{
  document.addEventListener('touchcancel',reset,{passive:true});
 })();
 </script><script>
-/* Shop: Beim Hochscrollen die drei Such-/Filterkacheln wieder einblenden. */
+/* Mobile Shop: Touch-Richtung direkt auswerten, unabhängig vom Scroll-Container. */
 (function(){
- const shop=document.getElementById('shop-view');
- const controls=shop?.querySelector('.mobile-sticky-controls');
+ const shop=document.getElementById('shop-view'),controls=shop?.querySelector('.mobile-sticky-controls');
  if(!shop||!controls)return;
- let last=0,active=false;
- function clear(){controls.classList.remove('facility-reveal-controls');active=false;}
- shop.addEventListener('scroll',()=>{
-  if(shop.hidden||!matchMedia('(max-width:720px)').matches){clear();return;}
-  const y=shop.scrollTop,delta=y-last;
-  if(y<15){clear();}
-  else if(delta < -5){controls.classList.add('facility-reveal-controls');active=true;}
-  else if(delta > 5 && active){clear();}
-  last=y;
+ let previousY=null,lastScroll=0;
+ function show(on){controls.classList.toggle('facility-reveal-controls',on);}
+ shop.addEventListener('touchstart',e=>{previousY=e.touches[0]?.clientY??null;},{passive:true});
+ shop.addEventListener('touchmove',e=>{
+  if(shop.hidden||innerWidth>720||previousY===null)return;
+  const y=e.touches[0]?.clientY??previousY,dy=y-previousY;
+  const pos=Math.max(shop.scrollTop,window.scrollY);
+  if(pos<12)show(false);
+  else if(dy>2)show(true);
+  else if(dy< -2)show(false);
+  previousY=y;
  },{passive:true});
- window.addEventListener('hashchange',clear);
+ function scrolled(){
+  if(shop.hidden||innerWidth>720)return;
+  const pos=Math.max(shop.scrollTop,window.scrollY),delta=pos-lastScroll;
+  if(pos<12)show(false);
+  else if(delta< -1)show(true);
+  else if(delta>1)show(false);
+  lastScroll=pos;
+ }
+ shop.addEventListener('scroll',scrolled,{passive:true});
+ window.addEventListener('scroll',scrolled,{passive:true});
+ window.addEventListener('hashchange',()=>show(false));
 })();
 </script></body></html>
