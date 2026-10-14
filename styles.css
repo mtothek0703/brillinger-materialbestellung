@@ -1265,3 +1265,9 @@ html body #home-view:not([hidden]){
 
 /* Horizontales Scrollen vermeiden; die gewünschte Zurück-Geste bleibt per JS erhalten. */
 html,body{overflow-x:hidden!important;overscroll-behavior-x:none!important}
+
+/* Freigegebener Entwurf: sanft geschwungene Unterkante, Schrift unverändert. */
+html body #facility-blue-header{
+ border-radius:0!important;
+ clip-path:polygon(0 0,100% 0,100% 84%,93.75% 87.75%,87.5% 91%,81.25% 93.75%,75% 96%,68.75% 97.75%,62.5% 99%,56.25% 99.75%,50% 100%,43.75% 99.75%,37.5% 99%,31.25% 97.75%,25% 96%,18.75% 93.75%,12.5% 91%,6.25% 87.75%,0 84%);
+}
