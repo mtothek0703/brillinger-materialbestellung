@@ -484,6 +484,22 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  window.addEventListener('touchend',()=>{started=false;},{capture:true,passive:true});
  window.addEventListener('touchcancel',()=>{started=false;},{capture:true,passive:true});
 })();
+/* Startseite ist Endpunkt der Zurueck-Navigation:
+   Ein zusaetzlicher gleichnamiger History-Eintrag faengt die native
+   iPhone-Zurueck-Geste ab, ohne die Rueck-Geste auf Unterseiten zu blockieren. */
+(function(){
+ const onHome=()=>!location.hash||location.hash==='#start'||location.hash==='#';
+ function protectHome(){
+  if(!onHome())return;
+  if(history.state&&history.state.facilityHomeSwipeGuard===true)return;
+  const previous=history.state&&typeof history.state==='object'?history.state:{};
+  history.pushState({...previous,facilityHomeSwipeGuard:true},'',location.href);
+ }
+ window.addEventListener('popstate',protectHome);
+ window.addEventListener('hashchange',protectHome);
+ window.addEventListener('pageshow',protectHome);
+ protectHome();
+})();
 /* Mobile Wischgeste: nur von links nach rechts zur übergeordneten Seite. */
 (function(){
  let startX=0,startY=0,tracking=false;
