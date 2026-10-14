@@ -454,10 +454,10 @@ const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails()
 window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
 })();
 </script><script>
-/* Verlaessliche Zurueck-Geste (iPhone/Android).
-   Eine Wischbewegung fuehrt exakt eine Ebene nach oben, nie wieder vorwaerts.
-   Kein kuenstlicher Home-Verlaufseintrag: sonst landet der zweite Swipe
-   gelegentlich wieder auf der urspruenglichen Seite. */
+/* Einheitliche mobile Zurueck-Geste.
+   Normale Links behalten das native Hash-Routing. Nur ein bewusstes
+   horizontales Wischen navigiert genau eine Hierarchieebene zurueck.
+   Kein popstate-Umschreiben: das hatte Klicks und Browser-History zerstoert. */
 (function(){
  const mobile=window.matchMedia('(max-width:720px)');
  const parent={
@@ -470,117 +470,59 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   '#warenkorb':'#artikel',
   '#sonderartikel':'#artikel'
  };
- const route=()=>location.hash&&location.hash!=='#'?location.hash:'#start';
- let lastDisplayedRoute=route();
- let gesture=null;
- let lastSwipeAt=0;
- let lastSwipeTarget=null;
- let settling=false;
- let suppressedTapTarget=null;
- const reset=()=>{gesture=null;};
- const activePopup=()=>document.body.classList.contains('pickup-history-open')
+ const route=()=>location.hash||'#start';
+ const blocked=target=>target?.closest?.(
+  'input,textarea,select,[contenteditable],[role="dialog"],dialog,.modal,.popup,#profile-popup,#pickup-history-section,#order-history-section'
+ );
+ const popupOpen=()=>document.body.classList.contains('pickup-history-open')
   ||document.body.classList.contains('order-history-open')
   ||document.body.classList.contains('desktop-cart-open')
   ||document.getElementById('profile-popup')?.style.display==='flex';
- const interactiveField=target=>target?.closest?.(
-  'input,textarea,select,[contenteditable],[role="dialog"],dialog,.modal,.popup,#profile-popup,#pickup-history-section,#order-history-section'
- );
- function updateRoute(){lastDisplayedRoute=route();}
- function changeRoute(target){
-  if(!target||route()===target)return;
-  history.replaceState(null,'',target);
-  // replaceState erzeugt kein hashchange, deshalb die vorhandenen
-  // Seiten-, Warenkorb- und Navigations-Listener gezielt benachrichtigen.
-  window.dispatchEvent(new Event('hashchange'));
-  lastDisplayedRoute=route();
- }
- // Auch die systemeigene Browser-Zurueck-Geste darf keine Unterseite aus
- // der Vergangenheit erneut oeffnen. Ein bereits sichtbarer Startscreen
- // bleibt daher Startscreen; sonst geht es zur festgelegten Elternseite.
- window.addEventListener('popstate',()=>{
-  if(!mobile.matches)return;
-  const before=lastDisplayedRoute;
-  // Ein normaler Klick auf eine Unterseite kann auf iOS ebenfalls popstate
-  // ausloesen. Nur echte Zurueck-Navigation darf zur Elternseite fuehren.
-  // Beispiel: Uebersicht -> Bestellungen/Leerungen muss immer funktionieren.
-  const destination=route();
-  const recentAppSwipe=lastSwipeTarget&&Date.now()-lastSwipeAt<750;
-  if(!recentAppSwipe&&destination!==before&&parent[destination]===before){
-   updateRoute();
-   return;
-  }
-  // Safari kann nach der bereits ausgefuehrten App-Wischgeste noch
-  // ein eigenes popstate melden. Das darf nicht zwei Ebenen springen.
-  const expected=recentAppSwipe?lastSwipeTarget:(parent[before]||'#start');
-  if(route()!==expected)changeRoute(expected);
-  else updateRoute();
- },{capture:true});
- window.addEventListener('hashchange',updateRoute);
- document.addEventListener('facility:viewchange',updateRoute);
- window.addEventListener('pageshow',updateRoute);
-
+ let gesture=null;
+ let suppressedClickUntil=0;
+ function clear(){gesture=null;}
  window.addEventListener('touchstart',event=>{
-  reset();
-  if(!mobile.matches||event.touches.length!==1||activePopup()||interactiveField(event.target))return;
+  clear();
+  if(!mobile.matches||event.touches.length!==1||!parent[route()]||popupOpen()||blocked(event.target))return;
   const touch=event.touches[0];
-  gesture={x:touch.clientX,y:touch.clientY,
-   route:route(),axis:null,prevented:false,target:event.target};
+  gesture={x:touch.clientX,y:touch.clientY,from:route(),direction:null};
  },{capture:true,passive:true});
-
  window.addEventListener('touchmove',event=>{
   if(!gesture)return;
-  if(event.touches.length!==1){reset();return;}
+  if(event.touches.length!==1){clear();return;}
   const touch=event.touches[0];
   const dx=touch.clientX-gesture.x,dy=touch.clientY-gesture.y;
-  if(gesture.axis===null){
-   if(Math.abs(dy)>13&&Math.abs(dy)>Math.abs(dx)*1.15){
-    reset(); // echtes vertikales Scrollen oder Pull-to-refresh
-    return;
-   }
-   if(Math.abs(dx)>11&&Math.abs(dx)>Math.abs(dy)*1.2){
-    gesture.axis='horizontal';
-   }
+  if(!gesture.direction&&Math.max(Math.abs(dx),Math.abs(dy))>=12){
+   gesture.direction=Math.abs(dx)>Math.abs(dy)*1.25?'horizontal':'vertical';
   }
-  if(gesture&&gesture.axis==='horizontal'&&event.cancelable){
-   event.preventDefault(); // kein iPhone-Browserwischen / anhaltendes Highlight
-   gesture.prevented=true;
+  if(gesture.direction==='vertical'){clear();return;}
+  if(gesture.direction==='horizontal'&&dx>0&&event.cancelable){
+   event.preventDefault();
   }
  },{capture:true,passive:false});
-
  window.addEventListener('touchend',event=>{
   const swipe=gesture;
-  reset();
-  if(!swipe||event.changedTouches.length!==1||swipe.axis==='vertical')return;
+  clear();
+  if(!swipe||event.changedTouches.length!==1||swipe.direction==='vertical')return;
   const touch=event.changedTouches[0];
   const dx=touch.clientX-swipe.x,dy=touch.clientY-swipe.y;
-  // Endposition reicht aus: schnelle Flicks ohne touchmove funktionieren.
-  if(dx<55||dx<Math.abs(dy)*1.25)return;
-  if(route()!==swipe.route||!parent[swipe.route])return;
-  const now=Date.now();
-  if(now-lastSwipeAt<110||settling)return;
-  lastSwipeAt=now;
-  suppressedTapTarget=swipe.target;
-  settling=true;
-  const focused=document.activeElement;
-  if(focused&&focused!==document.body&&!focused.matches?.('input,textarea,select')){
-   focused.blur?.(); // festhaengendes iOS-Fokus/Highlight entfernen
-  }
-  lastSwipeTarget=parent[swipe.route];
-  changeRoute(lastSwipeTarget);
-  requestAnimationFrame(()=>{settling=false;});
+  if(dx<55||dx<Math.abs(dy)*1.35||route()!==swipe.from)return;
+  const destination=parent[swipe.from];
+  if(!destination||destination===route())return;
+  // Die Seite ersetzen statt erneut in den Verlauf zu springen.
+  // Dadurch gelangt ein zweiter Swipe nur eine Ebene weiter zur Startseite.
+  history.replaceState(history.state,'',destination);
+  window.dispatchEvent(new Event('hashchange'));
+  suppressedClickUntil=Date.now()+350;
  },{capture:true,passive:true});
  window.addEventListener('click',event=>{
-  // Ein vom Wischen erzeugter iOS-Geisterklick darf keine alte Kachel oeffnen.
-  if(!suppressedTapTarget||Date.now()-lastSwipeAt>400){suppressedTapTarget=null;return;}
-  if(event.detail===0)return; // Tastatur- und programmatische Klicks bleiben moeglich.
-  const target=event.target;
-  if(target===suppressedTapTarget||target?.contains?.(suppressedTapTarget)||suppressedTapTarget?.contains?.(target)){
-   event.preventDefault();
-   event.stopImmediatePropagation();
-   suppressedTapTarget=null;
-  }
+  // iOS kann nach einem erkannten Swipe noch einen synthetischen Klick senden.
+  if(Date.now()>suppressedClickUntil||event.detail===0)return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  suppressedClickUntil=0;
  },{capture:true});
- window.addEventListener('touchcancel',reset,{capture:true,passive:true});
+ window.addEventListener('touchcancel',clear,{capture:true,passive:true});
 })();</script><script>
 /* iOS: Bei Neuaufruf nach Pull-to-refresh niemals alte Shop-Scrollposition übernehmen. */
 if('scrollRestoration' in history)history.scrollRestoration='manual';
