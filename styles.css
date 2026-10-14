@@ -2036,3 +2036,20 @@ html body #shop-view .product-search #article-search:focus{
   transition:none!important;
  }
 }
+
+/* Mobile Zurueckwisch-Geste: horizontale Browser-Back-/Forward-Gesten
+   nach Moeglichkeit unterbinden, vertikales Scrollen und Zoom erhalten. */
+@media(max-width:720px){
+ html,html body,
+ html body #home-view,
+ html body #waste-view,
+ html body #overview-menu-view,
+ html body #order-overview-view,
+ html body #waste-overview-view,
+ html body #shop-view,
+ html body #shop-view > main,
+ html body #facility-home-nav{
+  overscroll-behavior-x:none!important;
+  touch-action:pan-y pinch-zoom!important;
+ }
+}
