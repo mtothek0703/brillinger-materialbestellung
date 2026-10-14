@@ -1500,3 +1500,23 @@ html body #home-view .home-tiles a{
  row-gap:3px!important;
 }
 html body #home-view .home-tiles a > strong{min-height:43px!important}
+
+/* Shop Pull-to-refresh: komplette Shop-Ansicht samt fixer Kopfzeile bewegen.
+   Bottom-Navigation bleibt am Platz, maximal 44px Ziehweg. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:none!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-pull-refresh{
+  top:calc(12px + env(safe-area-inset-top))!important;
+ }
+}
