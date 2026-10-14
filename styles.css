@@ -1595,3 +1595,6 @@ html body #home-view .home-tiles a{background:#fff!important}
   position:fixed!important;top:0!important;
  }
 }
+
+/* Ladekreis im mobilen Bestellshop näher an den oberen Bildschirmrand setzen. */
+@media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:calc(env(safe-area-inset-top) - 24px)!important}}
