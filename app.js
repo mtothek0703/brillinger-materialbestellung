@@ -350,15 +350,41 @@ $('copy-order').addEventListener('click',async()=>{try{await navigator.clipboard
 renderCart();
 
 /* Auf Smartphones zwischen Artikeln und Warenkorb wechseln. */
+function resetCustomEntryScroll(){
+  if(window.location.hash!=='#sonderartikel')return;
+  const shop=document.getElementById('shop-view');
+  const main=shop?.querySelector(':scope > main');
+  if(shop)shop.scrollTop=0;
+  if(main)main.scrollTop=0;
+  window.scrollTo(0,0);
+}
 function syncMobileShopView(){
   const isCart=window.location.hash==='#warenkorb';
   const mobile=window.matchMedia('(max-width: 720px)').matches;
+  const isCustom=window.location.hash==='#sonderartikel';
   document.body.classList.toggle('mobile-cart-view',mobile&&isCart);
-  document.body.classList.toggle('custom-entry-view',window.location.hash==='#sonderartikel');
-  if((mobile&&(isCart||window.location.hash==='#artikel'))||window.location.hash==='#sonderartikel')window.scrollTo(0,0);
+  document.body.classList.toggle('custom-entry-view',isCustom);
+  if(isCustom){
+    resetCustomEntryScroll();
+    requestAnimationFrame(resetCustomEntryScroll);
+  }else if(mobile&&(isCart||window.location.hash==='#artikel')){
+    window.scrollTo(0,0);
+  }
 }
 window.addEventListener('hashchange',syncMobileShopView);
 window.addEventListener('resize',syncMobileShopView);
+window.addEventListener('pageshow',()=>{
+  if(window.location.hash==='#sonderartikel'){
+    resetCustomEntryScroll();
+    requestAnimationFrame(resetCustomEntryScroll);
+  }
+});
+window.addEventListener('load',()=>{
+  if(window.location.hash==='#sonderartikel'){
+    resetCustomEntryScroll();
+    requestAnimationFrame(resetCustomEntryScroll);
+  }
+});
 syncMobileShopView();
 
 
