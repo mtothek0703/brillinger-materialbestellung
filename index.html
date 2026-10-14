@@ -603,24 +603,120 @@ window.addEventListener('pageshow',()=>{
  document.addEventListener('touchcancel',reset,{passive:true});
 })();
 </script><script>
-/* Mobile: Filter als direktes Kind des scrollenden Shops fixieren.
-   Im Desktop bleibt das vorhandene Layout im main unverändert. */
+/* Mobile Shop: Such-, Wunsch- und Kategorienbereich beim Scrollen ausblenden,
+   bei Aufwaertsbewegung wieder einblenden. Die Kopfzeile bleibt stehen. */
 (function(){
  const shop=document.getElementById('shop-view');
  const main=shop?.querySelector(':scope > main');
  const controls=shop?.querySelector('.mobile-sticky-controls');
  if(!shop||!main||!controls)return;
  const mobile=window.matchMedia('(max-width:720px)');
+ const hiddenClass='facility-shop-controls-hidden';
+ let lastScroll=0,scrollTravel=0,scrollDirection=0;
+
+ function shopActive(){
+  return mobile.matches&&!shop.hidden
+   &&!document.body.classList.contains('mobile-cart-view')
+   &&!document.body.classList.contains('custom-entry-view');
+ }
+ function updateControlHeight(){
+  const height=controls.offsetHeight;
+  if(height>0)shop.style.setProperty('--facility-shop-controls-height',height+'px');
+ }
+ function setHidden(hidden){
+  if(!shopActive())hidden=false;
+  if(hidden&&controls.contains(document.activeElement))return;
+  if(hidden&&!shop.classList.contains(hiddenClass))updateControlHeight();
+  shop.classList.toggle(hiddenClass,hidden);
+ }
+ function resetControls(){
+  setHidden(false);
+  lastScroll=main.scrollTop;
+  scrollTravel=0;
+  scrollDirection=0;
+ }
  function positionControls(){
-  controls.classList.remove('facility-reveal-controls');
   if(mobile.matches){
    if(controls.parentElement!==shop)shop.insertBefore(controls,main);
   }else if(controls.parentElement!==main){
    main.insertBefore(controls,main.firstChild);
   }
+  resetControls();
+  updateControlHeight();
  }
+ function followArticleScroll(){
+  const position=Math.max(0,main.scrollTop);
+  const delta=position-lastScroll;
+  lastScroll=position;
+  if(!shopActive()){
+   setHidden(false);
+   scrollTravel=0;
+   return;
+  }
+  if(position<=5){
+   setHidden(false);
+   scrollTravel=0;
+   scrollDirection=0;
+   return;
+  }
+  if(shop.classList.contains('facility-shop-pulling')||Math.abs(delta)<1)return;
+  const direction=Math.sign(delta);
+  if(direction!==scrollDirection){
+   scrollDirection=direction;
+   scrollTravel=0;
+  }
+  scrollTravel+=Math.abs(delta);
+  if(direction>0&&position>38&&scrollTravel>=28){
+   setHidden(true);
+   scrollTravel=0;
+  }else if(direction<0&&scrollTravel>=12){
+   setHidden(false);
+   scrollTravel=0;
+  }
+ }
+ main.addEventListener('scroll',followArticleScroll,{passive:true});
  positionControls();
  if(mobile.addEventListener)mobile.addEventListener('change',positionControls);
  else mobile.addListener(positionControls);
-})();
-</script></body></html>
+ window.addEventListener('resize',()=>{
+  updateControlHeight();
+  resetControls();
+ },{passive:true});
+ window.addEventListener('hashchange',()=>{
+  resetControls();
+  requestAnimationFrame(resetControls);
+ });
+ window.addEventListener('pageshow',resetControls);
+ if(typeof ResizeObserver!=='undefined'){
+  const observer=new ResizeObserver(updateControlHeight);
+  observer.observe(controls);
+ }
+ controls.addEventListener('focusin',()=>setHidden(false));
+
+ /* Wenn die Wischbewegung auf einer Kategorie-Kachel beginnt, ebenfalls die
+    Artikelliste scrollen. Eingabefelder behalten ihr normales Touch-Verhalten. */
+ let touchTracking=false,lastTouchX=0,lastTouchY=0,startTouchX=0,startTouchY=0;
+ controls.addEventListener('touchstart',event=>{
+  touchTracking=shopActive()&&event.touches.length===1
+   &&!event.target.closest('input,textarea,select,[contenteditable]');
+  if(!touchTracking)return;
+  const touch=event.touches[0];
+  startTouchX=lastTouchX=touch.clientX;
+  startTouchY=lastTouchY=touch.clientY;
+ },{passive:true});
+ controls.addEventListener('touchmove',event=>{
+  if(!touchTracking||event.touches.length!==1)return;
+  const touch=event.touches[0];
+  const horizontal=touch.clientX-startTouchX;
+  const vertical=touch.clientY-startTouchY;
+  const shift=touch.clientY-lastTouchY;
+  lastTouchX=touch.clientX;
+  lastTouchY=touch.clientY;
+  if(Math.abs(vertical)<9||Math.abs(horizontal)>Math.abs(vertical)*0.8)return;
+  if(shift>0&&main.scrollTop<=0)return; // Pull-to-refresh unangetastet.
+  if(event.cancelable)event.preventDefault();
+  main.scrollTop=Math.max(0,main.scrollTop-shift);
+ },{passive:false});
+ controls.addEventListener('touchend',()=>{touchTracking=false},{passive:true});
+ controls.addEventListener('touchcancel',()=>{touchTracking=false},{passive:true});
+})();</script></body></html>
