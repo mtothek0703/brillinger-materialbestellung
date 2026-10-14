@@ -1957,3 +1957,26 @@ html body #shop-view .product-search #article-search:focus{
   overscroll-behavior-x:none!important;
  }
 }
+
+/* Shop Mobil: Bedienbereich gleitet beim Runterscrollen unter den
+   feststehenden blauen Header und erscheint beim Hochscrollen wieder.
+   Negative untere Margin gibt den Platz an die Artikelliste zurueck. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls{
+  transition:transform .19s ease,margin-bottom .19s ease!important;
+  will-change:transform;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls.facility-reveal-controls{
+  transform:translate3d(0,-100%,0)!important;
+  margin-bottom:calc(-1 * var(--facility-shop-controls-height,0px))!important;
+  pointer-events:none!important;
+  box-shadow:none!important;
+ }
+}
+@media(max-width:720px) and (prefers-reduced-motion:reduce){
+ html body #shop-view:not([hidden]) > .mobile-sticky-controls{
+  transition:none!important;
+ }
+}
