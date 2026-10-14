@@ -300,6 +300,26 @@ function showWasteStatus(ok,message){
  wasteStatusDialog.querySelector('#waste-status-description').textContent=message;
  if(!wasteStatusDialog.open)wasteStatusDialog.showModal();
 }
+/* Mailvorlage für Restmüll und Kartonagen richtet sich beim Klick nach dem Profilstandort. */
+for (const wasteId of ['waste-rest','waste-paper']) {
+ const link=document.getElementById(wasteId);
+ if (!link) continue;
+ const baseHref=link.getAttribute('href');
+ link.addEventListener('click',()=>{
+  let profile=null;
+  try { profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null'); } catch {}
+  const isHwp=String(profile?.site||'').trim()==='Handwerkerpark 25';
+  const targetAddress=isHwp
+   ? 'Orthopädie Brillinger GmbH\r\nHandwerkerpark 25\r\n72070 Tübingen'
+   : 'Orthopädie Brillinger GmbH\r\nEinhornstraße 10\r\n72138 Kirchentellinsfurt';
+  const q=baseHref.indexOf('?');
+  const params=new URLSearchParams(baseHref.slice(q+1).replaceAll('&amp;','&'));
+  let body=params.get('body')||'';
+  body=body.replace(/Orthopädie Brillinger GmbH\s*(?:Einhornstraße 10\s*72138 Kirchentellinsfurt|Handwerkerpark 25\s*72070 Tübingen)/,targetAddress);
+  params.set('body',body);
+  link.setAttribute('href',baseHref.slice(0,q+1)+params.toString());
+ });
+}
 /* Testphase: Vorbereitete Mailto-Links bleiben klickbar; keine Supabase-Leerungsübermittlung. */
 renderRequests();
 let selectedOrderYear=new Date().getFullYear();
