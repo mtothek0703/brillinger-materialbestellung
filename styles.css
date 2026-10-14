@@ -1159,3 +1159,6 @@ html body:has(#shop-view:not([hidden])) #facility-home-nav{display:none!importan
  html body #home-view .home-tiles a{min-height:180px!important}
  html body #waste-view{padding-top:15px!important}
 }
+
+/* Blauer Kopfbereich: gerade Unterkante ohne Rundung. */
+html body #facility-blue-header{border-radius:0!important;}
