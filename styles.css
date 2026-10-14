@@ -1547,3 +1547,21 @@ html body #home-view .home-tiles a{background:#fff!important}
 
 /* Müllentsorgung: fünf Kacheln minimal nach oben; Überschrift unverändert. */
 @media(max-width:720px){html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}}
+
+/* Mobil: Such- und Kategorienbereich bleibt im normalen Seitenfluss.
+   Dadurch überdeckt er beim Scrollen keine Produktkarten mehr. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:relative!important;
+  top:auto!important;
+  inset-block-start:auto!important;
+  z-index:1!important;
+  transform:none!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{
+  position:relative!important;
+  z-index:1!important;
+  margin-top:0!important;
+ }
+}
