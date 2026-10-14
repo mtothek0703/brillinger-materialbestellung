@@ -1541,3 +1541,6 @@ html body #home-view .home-tiles a > strong{min-height:41px!important}
   transition:transform .12s ease-out!important;
  }
 }
+
+/* Startseite: drei Kacheln mit sehr dezenter hellblauer Fläche. */
+html body #home-view .home-tiles a{background:#f0f7ff!important}
