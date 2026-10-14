@@ -1896,3 +1896,26 @@ html body #shop-view .product-search #article-search:focus{
   box-sizing:border-box!important;
  }
 }
+
+/* Pull-to-refresh Bestellshop: Beim aktiven Ziehen die GESAMTE Shop-Ansicht
+   verschieben (Header, Suche, Kategorien und Artikel zusammen).
+   Nur während des Ziehens wird ein Transform auf dem Shop gesetzt. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) {
+  transition:transform .16s ease-out!important;
+ }
+ html body #shop-view:not([hidden]).facility-shop-pulling,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling {
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:transform .08s ease-out!important;
+ }
+ html body #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls {
+  transform:none!important;
+  transition:none!important;
+ }
+}
