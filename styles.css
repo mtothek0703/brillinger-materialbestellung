@@ -1342,3 +1342,12 @@ html body #facility-pull-refresh.visible{opacity:1!important}
 
 /* Alle fünf Entsorgungskacheln etwas tiefer, Überschrift bleibt unverändert. */
 html body #waste-view .waste-options{margin-top:12px!important}
+
+/* Gleiche Pull-to-refresh-Bewegung auch im internen Bestellshop. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:translateY(var(--facility-pull-distance))!important;
+  transition:transform .14s ease-out!important;
+  overscroll-behavior-y:contain;
+ }
+}
