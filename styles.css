@@ -1825,3 +1825,38 @@ html body #shop-view .product-search #article-search:focus{
   border:1px solid #0a3b91!important;
   outline:none!important;
 }
+
+/* Mobile Artikelsuche: exakt dieselbe Breite und Hoehe wie "Artikel nicht gefunden?". */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search .search-input-wrap {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search #article-search,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  height:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  box-sizing:border-box!important;
+  border-radius:11px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search #article-search {
+  width:100%!important;
+  max-width:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 10px!important;
+ }
+}
