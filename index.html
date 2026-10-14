@@ -57,16 +57,9 @@ function showFacilityManagementPage(){
  
  const toolbar=document.getElementById('profile-toolbar');
  const profileButton=document.getElementById('profile-edit');
- if(shop){
-  const header=document.querySelector('#shop-view > header');
-  const cart=header.querySelector('.cart-link');
-  if(profileButton.previousElementSibling!==cart)cart.after(profileButton);
-  toolbar.hidden=true;
- }else{
-  const slot=document.getElementById('facility-profile-slot');
-  if(profileButton.parentElement!==slot)slot.insertBefore(profileButton,slot.firstChild);
-  toolbar.hidden=false;
- }
+ const slot=document.getElementById('facility-profile-slot');
+ if(profileButton.parentElement!==slot)slot.insertBefore(profileButton,slot.firstChild);
+ toolbar.hidden=true;
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
