@@ -1365,3 +1365,18 @@ html body #waste-view .waste-options{margin-top:22px!important}
 
 /* Fünf Entsorgungskacheln auf Wunsch etwas tiefer; Überschrift bleibt stehen. */
 html body #waste-view .waste-options{margin-top:38px!important}
+
+/* Profil unten neben Startseite; auf allen Facility-Seiten einheitlich. */
+html body #facility-home-nav{gap:58px!important}
+html body #facility-home-nav #facility-profile-slot{display:flex!important;align-items:center!important;justify-content:center!important}
+html body #facility-home-nav #facility-profile-slot #profile-edit{
+ display:flex!important;position:static!important;width:48px!important;min-width:48px!important;max-width:48px!important;
+ height:48px!important;min-height:48px!important;max-height:48px!important;flex:0 0 48px!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:12px!important;
+ background:transparent!important;color:transparent!important;font-size:0!important;
+ box-shadow:none!important;align-items:center!important;justify-content:center!important;
+}
+html body #facility-home-nav #facility-profile-slot #profile-edit::after{
+ content:""!important;display:block!important;width:29px!important;height:29px!important;
+ background:center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230346ae'%3E%3Ccircle cx='12' cy='7.5' r='4'/%3E%3Cpath d='M4 21v-2.5a8 8 0 0 1 16 0V21z'/%3E%3C/svg%3E")!important;
+}
