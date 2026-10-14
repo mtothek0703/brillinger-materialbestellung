@@ -1318,3 +1318,24 @@ html body #facility-pull-refresh.visible{opacity:1!important}
 #facility-pull-refresh.ready .facility-pull-spinner,
 #facility-pull-refresh.loading .facility-pull-spinner{animation:facility-refresh-spin .7s linear infinite}
 @keyframes facility-refresh-spin{to{transform:rotate(360deg)}}
+
+/* Facility-Unterseiten: kein Verschieben der gesamten Seite nach oben.
+   Längere Inhalte scrollen innerhalb des jeweiligen Bereichs. */
+@media(max-width:720px){
+ html:has(#waste-view:not([hidden])),html:has(#overview-menu-view:not([hidden])),
+ html:has(#order-overview-view:not([hidden])),html:has(#waste-overview-view:not([hidden])){
+  height:100%!important;overflow:hidden!important;overscroll-behavior-y:none!important;
+ }
+ html body:has(#waste-view:not([hidden])),html body:has(#overview-menu-view:not([hidden])),
+ html body:has(#order-overview-view:not([hidden])),html body:has(#waste-overview-view:not([hidden])){
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;padding-bottom:0!important;overscroll-behavior-y:none!important;
+ }
+ html body #waste-view:not([hidden]),html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),html body #waste-overview-view:not([hidden]){
+  box-sizing:border-box!important;height:calc(100dvh - 166px)!important;
+  max-height:calc(100dvh - 166px)!important;min-height:0!important;
+  overflow-y:auto!important;overscroll-behavior-y:contain!important;
+  -webkit-overflow-scrolling:touch;padding-bottom:100px!important;
+ }
+}
