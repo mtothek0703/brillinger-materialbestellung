@@ -1565,3 +1565,9 @@ html body #home-view .home-tiles a{background:#fff!important}
   margin-top:0!important;
  }
 }
+
+/* Müllentsorgung: Überschrift und fünf Kacheln gemeinsam etwas höher setzen. */
+@media(max-width:720px){
+ html body #waste-view:not([hidden]) .waste-heading{margin-top:8px!important}
+ html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}
+}
