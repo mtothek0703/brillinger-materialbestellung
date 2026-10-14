@@ -1196,3 +1196,7 @@ html body:has(#shop-view:not([hidden])) #profile-toolbar{display:none!important}
 html body #facility-home-nav{min-height:66px!important;padding:7px 14px calc(7px + env(safe-area-inset-bottom))!important;border-radius:18px 18px 0 0!important}
 html body #facility-home-nav a{gap:1px!important;font-size:12px!important}
 html body #facility-home-nav a svg{width:26px!important;height:26px!important}
+
+/* Blauen Kopfbereich leicht flacher gestalten, ohne Logo und Profil zu verändern. */
+html body #facility-blue-header{height:198px!important;min-height:198px!important}
+@media(max-width:720px){html body #facility-blue-header{height:188px!important;min-height:188px!important}html body #home-view{min-height:calc(100dvh - 188px)!important}}
