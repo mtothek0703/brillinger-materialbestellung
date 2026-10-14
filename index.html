@@ -474,6 +474,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  let lastDisplayedRoute=route();
  let gesture=null;
  let lastSwipeAt=0;
+ let lastSwipeTarget=null;
  let settling=false;
  let suppressedTapTarget=null;
  const reset=()=>{gesture=null;};
@@ -499,7 +500,10 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  window.addEventListener('popstate',()=>{
   if(!mobile.matches)return;
   const before=lastDisplayedRoute;
-  const expected=parent[before]||'#start';
+  // Safari kann nach der bereits ausgefuehrten App-Wischgeste noch
+  // ein eigenes popstate melden. Das darf nicht zwei Ebenen springen.
+  const recentAppSwipe=lastSwipeTarget&&Date.now()-lastSwipeAt<750;
+  const expected=recentAppSwipe?lastSwipeTarget:(parent[before]||'#start');
   if(route()!==expected)changeRoute(expected);
   else updateRoute();
  },{capture:true});
@@ -553,7 +557,8 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   if(focused&&focused!==document.body&&!focused.matches?.('input,textarea,select')){
    focused.blur?.(); // festhaengendes iOS-Fokus/Highlight entfernen
   }
-  changeRoute(parent[swipe.route]);
+  lastSwipeTarget=parent[swipe.route];
+  changeRoute(lastSwipeTarget);
   requestAnimationFrame(()=>{settling=false;});
  },{capture:true,passive:true});
  window.addEventListener('click',event=>{
