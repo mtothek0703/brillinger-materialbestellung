@@ -504,13 +504,13 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   // ausloesen. Nur echte Zurueck-Navigation darf zur Elternseite fuehren.
   // Beispiel: Uebersicht -> Bestellungen/Leerungen muss immer funktionieren.
   const destination=route();
-  if(destination!==before&&parent[destination]===before){
+  const recentAppSwipe=lastSwipeTarget&&Date.now()-lastSwipeAt<750;
+  if(!recentAppSwipe&&destination!==before&&parent[destination]===before){
    updateRoute();
    return;
   }
   // Safari kann nach der bereits ausgefuehrten App-Wischgeste noch
   // ein eigenes popstate melden. Das darf nicht zwei Ebenen springen.
-  const recentAppSwipe=lastSwipeTarget&&Date.now()-lastSwipeAt<750;
   const expected=recentAppSwipe?lastSwipeTarget:(parent[before]||'#start');
   if(route()!==expected)changeRoute(expected);
   else updateRoute();
