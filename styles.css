@@ -1263,9 +1263,5 @@ html body #home-view:not([hidden]){
  }
 }
 
-/* Horizontale Wischgesten in der Facility-Oberfläche deaktivieren. */
+/* Horizontales Scrollen vermeiden; die gewünschte Zurück-Geste bleibt per JS erhalten. */
 html,body{overflow-x:hidden!important;overscroll-behavior-x:none!important}
-#home-view,#waste-view,#overview-menu-view,#order-overview-view,#waste-overview-view,
-#facility-blue-header,#facility-home-nav{
- touch-action:pan-y!important;overscroll-behavior-x:none!important;
-}
