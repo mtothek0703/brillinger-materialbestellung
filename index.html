@@ -488,47 +488,48 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  document.addEventListener('touchcancel',()=>{tracking=false},{passive:true});
 })();
 </script><script>
-/* Zum Aktualisieren nach unten ziehen. Funktioniert am oberen Seitenrand auf Smartphones. */
+/* iPhone: Pull-to-refresh am oberen Seitenrand mit sichtbarer Rückmeldung. */
 (function(){
  const indicator=document.createElement('div');
  indicator.id='facility-pull-refresh';
  indicator.setAttribute('role','status');
  indicator.setAttribute('aria-live','polite');
- indicator.textContent='↓ Zum Aktualisieren ziehen';
+ indicator.textContent='↓ Nach unten ziehen';
  document.body.appendChild(indicator);
- let startY=0,startX=0,pull=0,active=false,locked=false;
- const top=()=>Math.max(window.scrollY||0,document.documentElement.scrollTop||0,document.body.scrollTop||0)<=2;
- const mobile=()=>matchMedia('(max-width:720px) and (pointer:coarse)').matches;
- const blocked=t=>!!t.closest('input,textarea,select,[contenteditable="true"],dialog,[role="dialog"],.modal,.popup,#profile-popup');
- function reset(){
-  active=false;locked=false;pull=0;
-  indicator.classList.remove('visible','ready');
-  indicator.style.transform='';
- }
+ let startY=0,startX=0,dy=0,tracking=false,refreshing=false;
+ const atTop=()=>window.scrollY<=3;
+ const eligible=t=>!(t instanceof Element&&t.closest('input,textarea,select,[contenteditable],dialog,[role="dialog"],.modal,.popup,#profile-popup'));
+ const reset=()=>{tracking=false;dy=0;indicator.classList.remove('visible','ready');indicator.style.transform='';};
  document.addEventListener('touchstart',e=>{
   reset();
-  if(e.touches.length!==1||!mobile()||!top()||blocked(e.target))return;
-  startY=e.touches[0].clientY;startX=e.touches[0].clientX;active=true;
+  if(refreshing||e.touches.length!==1||!atTop()||!eligible(e.target))return;
+  startY=e.touches[0].clientY;startX=e.touches[0].clientX;tracking=true;
  },{passive:true});
  document.addEventListener('touchmove',e=>{
-  if(!active||e.touches.length!==1)return;
-  const dy=e.touches[0].clientY-startY,dx=e.touches[0].clientX-startX;
-  if(!locked&&Math.abs(dx)>Math.abs(dy)){reset();return}
-  if(dy<=0){reset();return}
-  if(!top()){reset();return}
-  locked=true;
-  e.preventDefault();
-  pull=Math.min(110,dy*.52);
+  if(!tracking||e.touches.length!==1)return;
+  const y=e.touches[0].clientY-startY,x=e.touches[0].clientX-startX;
+  if(y<0||Math.abs(x)>Math.abs(y)){reset();return;}
+  if(y<8)return;
+  if(!atTop()){reset();return;}
+  if(e.cancelable)e.preventDefault();
+  dy=Math.min(y,160);
+  const ready=dy>=65;
+  indicator.textContent=ready?'↻ Loslassen zum Aktualisieren':'↓ Nach unten ziehen';
   indicator.classList.add('visible');
-  indicator.classList.toggle('ready',pull>=62);
-  indicator.textContent=pull>=62?'↻ Loslassen zum Aktualisieren':'↓ Zum Aktualisieren ziehen';
-  indicator.style.transform='translate(-50%,'+(Math.min(pull,77))+'px)';
+  indicator.classList.toggle('ready',ready);
+  indicator.style.transform='translateX(-50%) translateY('+Math.min(dy*.35,28)+'px)';
  },{passive:false});
  document.addEventListener('touchend',()=>{
-  if(!active)return;
-  const refresh=pull>=62;
+  if(!tracking)return;
+  const ready=dy>=65;
   reset();
-  if(refresh){indicator.textContent='↻ Wird aktualisiert …';indicator.classList.add('visible');refreshFacilityApp(document.getElementById('home-refresh'));}
+  if(ready&&!refreshing){
+   refreshing=true;
+   indicator.textContent='↻ Aktualisiere …';
+   indicator.classList.add('visible');
+   const button=document.getElementById('home-refresh');
+   if(button)refreshFacilityApp(button);else location.reload();
+  }
  },{passive:true});
  document.addEventListener('touchcancel',reset,{passive:true});
 })();
