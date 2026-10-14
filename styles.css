@@ -1241,3 +1241,24 @@ html body #facility-home-nav{min-height:78px!important;gap:0!important;justify-c
 html body #facility-home-nav a{align-items:center!important;text-align:center!important;gap:3px!important}
 html body #facility-home-nav a svg{width:29px!important;height:29px!important}
 html body #facility-home-nav #facility-refresh-slot{display:none!important}
+
+/* 2026-10-14: Startseite darf nicht über die Bildschirmhöhe hinausragen.
+   Bei wenig Platz scrollt ausschließlich der Kachelbereich, nicht die ganze Seite. */
+html:has(#home-view:not([hidden])){height:100%;overflow:hidden!important;overscroll-behavior-y:none}
+html body:has(#home-view:not([hidden])){
+ height:100dvh!important;min-height:0!important;max-height:100dvh!important;
+ overflow:hidden!important;overscroll-behavior-y:none!important;padding-bottom:0!important;
+}
+html body #home-view:not([hidden]){
+ height:calc(100dvh - 198px)!important;
+ min-height:0!important;max-height:calc(100dvh - 198px)!important;
+ overflow-y:auto!important;overscroll-behavior-y:contain!important;
+ -webkit-overflow-scrolling:touch;
+ padding-bottom:98px!important;
+}
+@media(max-width:720px){
+ html body #home-view:not([hidden]){
+  height:calc(100dvh - 188px)!important;
+  min-height:0!important;max-height:calc(100dvh - 188px)!important;
+ }
+}
