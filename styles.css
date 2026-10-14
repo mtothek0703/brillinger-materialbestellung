@@ -1430,3 +1430,6 @@ html body #facility-blue-header .facility-header-brand img{
  }
  html body:has(#shop-view:not([hidden])) #shop-view > header #profile-edit{display:none!important}
 }
+
+/* Bestellübersicht: kompakte Überschrift in Anlehnung an Müllentsorgung. */
+@media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:22px!important;line-height:1.2!important;font-weight:700!important}}
