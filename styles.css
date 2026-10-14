@@ -1393,3 +1393,8 @@ html body #facility-blue-header .facility-header-brand img{display:block!importa
 /* Logo wirklich unabhängig vom Container-Padding zur Bildschirmmitte ausrichten. */
 html body #facility-blue-header .facility-header-brand{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:max-content!important;max-width:100%!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;align-items:center!important}
 html body #facility-blue-header .facility-header-brand img{margin:0 auto!important;align-self:center!important}
+
+/* Optische Zentrierung der sichtbaren SVG-Grafik: SVG enthält rechts mehr Leerraum. */
+html body #facility-blue-header .facility-header-brand img{
+ transform:translateX(14px)!important;
+}
