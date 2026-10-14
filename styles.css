@@ -1625,3 +1625,26 @@ html body #home-view .home-tiles a{background:#fff!important}
   border-radius:0 0 12px 12px!important;
  }
 }
+
+/* Shop 2026-10-14: curved blue header and inline search icon */
+@media(max-width:720px){
+ #shop-view>header{
+  background:linear-gradient(180deg,#20469b 0%,#07176b 100%)!important;
+  border-bottom:0!important;
+  border-radius:0 0 50% 5% / 0 0 12px 5px!important;
+  overflow:visible!important;
+ }
+ #shop-view>header .brand-logo{filter:brightness(0) invert(1)!important}
+ #shop-view .product-search{position:relative!important}
+ #shop-view .product-search>label{
+  position:absolute!important;left:26px!important;top:50%!important;
+  transform:translateY(-50%)!important;margin:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:26px!important;height:26px!important;z-index:2!important;
+  pointer-events:none!important;color:#203947!important;
+ }
+ #shop-view .product-search .search-input-wrap{max-width:none!important}
+ #shop-view .product-search #article-search{
+  padding-left:52px!important;min-height:46px!important;
+ }
+}
