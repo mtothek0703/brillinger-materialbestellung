@@ -1354,3 +1354,11 @@ html body #waste-view .waste-options{margin-top:12px!important}
 
 /* Entsorgungskacheln etwas weiter nach unten, Überschrift unverändert. */
 html body #waste-view .waste-options{margin-top:22px!important}
+
+/* Bestellshop: auch fixierte Kopfzeile beim Pull-to-refresh sichtbar mitbewegen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) > header{
+  transform:translateY(var(--facility-pull-distance))!important;
+  transition:transform .14s ease-out!important;
+ }
+}
