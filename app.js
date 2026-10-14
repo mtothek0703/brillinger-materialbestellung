@@ -362,6 +362,43 @@ window.addEventListener('resize',syncMobileShopView);
 syncMobileShopView();
 
 
+/* X zum schnellen Leeren der zwei Textfelder im Sonderartikel-Formular. */
+(function setupCustomProductClearButtons(){
+ const form=document.getElementById('custom-product-form');
+ if(!form)return;
+ const fields=['custom-product-name','custom-product-details'];
+ for(const id of fields){
+  const field=document.getElementById(id);
+  if(!field||field.parentElement?.classList.contains('custom-field-clear-wrap'))continue;
+  const wrap=document.createElement('div');
+  wrap.className='custom-field-clear-wrap';
+  field.parentNode.insertBefore(wrap,field);
+  wrap.appendChild(field);
+  const clear=document.createElement('button');
+  clear.type='button';
+  clear.className='custom-field-clear';
+  clear.textContent='×';
+  clear.setAttribute('aria-label',(id==='custom-product-name'?'Artikelbezeichnung':'Weitere Angaben')+' löschen');
+  clear.hidden=!field.value;
+  wrap.appendChild(clear);
+  field.addEventListener('input',()=>{clear.hidden=!field.value;});
+  clear.addEventListener('pointerdown',event=>event.preventDefault());
+  clear.addEventListener('click',()=>{
+   field.value='';
+   clear.hidden=true;
+   field.dispatchEvent(new Event('input',{bubbles:true}));
+   field.focus({preventScroll:true});
+  });
+ }
+ form.addEventListener('reset',()=>{
+  requestAnimationFrame(()=>fields.forEach(id=>{
+   const input=document.getElementById(id);
+   const clear=input?.parentElement?.querySelector('.custom-field-clear');
+   if(clear)clear.hidden=!input.value;
+  }));
+ });
+})();
+
 /* Individuelle Artikel, die nicht im Katalog stehen. */
 $('custom-product-form').addEventListener('submit',event=>{
  event.preventDefault();
