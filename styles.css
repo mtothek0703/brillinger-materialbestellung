@@ -1228,3 +1228,10 @@ html,body{overscroll-behavior-y:none}
 }
 #facility-pull-refresh.visible{opacity:1}
 #facility-pull-refresh.ready{background:#e7f0ff}
+
+/* Pull-to-refresh Status sofort sichtbar unter dem oberen Bildschirmrand. */
+html body #facility-pull-refresh{
+ top:calc(env(safe-area-inset-top) + 10px)!important;
+ z-index:3000!important;transform:translateX(-50%);
+ transition:opacity .1s ease!important;
+}
