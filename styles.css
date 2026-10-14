@@ -1598,3 +1598,14 @@ html body #home-view .home-tiles a{background:#fff!important}
 
 /* Ladekreis im mobilen Bestellshop näher an den oberen Bildschirmrand setzen. */
 @media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:calc(env(safe-area-inset-top) - 24px)!important}}
+
+/* Shop: Brillinger-blauer Header mit weißem Original-Logo. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) > header{
+  background:linear-gradient(180deg,#093b9a 0%,#001b79 100%)!important;
+  border-color:transparent!important;
+ }
+ html body #shop-view:not([hidden]) > header .brand-logo{
+  filter:brightness(0) invert(1)!important;
+ }
+}
