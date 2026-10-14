@@ -128,7 +128,10 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  link.addEventListener('click',event=>{
   event.preventDefault();
   const target=link.getAttribute('href');
-  if(location.hash!==target)history.pushState(null,'',target);
+  if(location.hash!==target){
+   if(window.matchMedia('(max-width:720px)').matches)history.replaceState(history.state,'',target);
+   else history.pushState(null,'',target);
+  }
   showFacilityManagementPage();
   if(target==='#shop'){
    document.documentElement.scrollTop=0;
@@ -452,6 +455,29 @@ document.getElementById('profile-back').addEventListener('click',()=>{if(!saved(
 edit.addEventListener('click',open);
 const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails();
 window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
+})();
+</script><script>
+/* Mobil: App-Unterseiten im selben Browser-Verlaufseintrag oeffnen.
+   Echte neue iOS-History-Eintraege verursachten die zweite Startseite
+   bei systemeigenen Randwisch-Gesten. Externe Links bleiben unveraendert. */
+(function(){
+ const internalRoutes=new Set([
+  '#start','#shop','#artikel','#warenkorb','#sonderartikel',
+  '#muellentsorgung','#entsorgungsuebersicht',
+  '#bestelluebersicht','#leerungsuebersicht'
+ ]);
+ document.addEventListener('click',event=>{
+  if(!window.matchMedia('(max-width:720px)').matches||event.defaultPrevented)return;
+  if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  const link=event.target.closest?.('a[href^="#"]');
+  if(!link)return;
+  const target=link.getAttribute('href');
+  if(!internalRoutes.has(target))return;
+  event.preventDefault();
+  if(location.hash===target)return;
+  history.replaceState(history.state,'',target);
+  window.dispatchEvent(new Event('hashchange'));
+ },{capture:true});
 })();
 </script><script>
 /* Einheitliche mobile Zurueck-Geste.
