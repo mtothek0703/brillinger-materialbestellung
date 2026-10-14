@@ -1396,6 +1396,6 @@ html body #facility-blue-header .facility-header-brand img{margin:0 auto!importa
 
 /* Sichtbares Logo optisch zur Displaymitte ausrichten (SVG mit asymmetrischem Innenabstand). */
 html body #facility-blue-header .facility-header-brand img{
- transform:translateX(28px)!important;
+ transform:translateX(14px)!important;
 }
 
