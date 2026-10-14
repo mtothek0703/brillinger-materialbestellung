@@ -332,6 +332,22 @@ for (const wasteId of ['waste-electronics','waste-wood','waste-metal']) {
   showWasteStatus(false,'Diese Entsorgungsart ist am Standort Handwerkerpark 25 nicht möglich.');
  });
 }
+/* Sichtbare Rückmeldung beim Öffnen einer vorbereiteten Leerungs-E-Mail.
+   Eine tatsächliche Zustellung kann bei mailto: nicht bestätigt werden. */
+const wasteMailNotice=document.createElement('div');
+wasteMailNotice.setAttribute('role','status');
+wasteMailNotice.setAttribute('aria-live','polite');
+wasteMailNotice.hidden=true;
+wasteMailNotice.style.cssText='margin:16px 0;padding:14px 16px;border-radius:12px;background:#f0efff;color:#27215b;font-size:15px;line-height:1.45;';
+document.querySelector('#waste-view .waste-heading')?.after(wasteMailNotice);
+for(const [wasteId] of wasteTypes){
+ const link=document.getElementById(wasteId);
+ link?.addEventListener('click',(event)=>{
+  if(event.defaultPrevented)return;
+  wasteMailNotice.textContent='E-Mail vorbereitet. Bitte im geöffneten E-Mail-Programm auf „Senden“ klicken. Erst danach ist die Leerungsanforderung abgeschickt.';
+  wasteMailNotice.hidden=false;
+ });
+}
 /* Testphase: Vorbereitete Mailto-Links bleiben klickbar; keine Supabase-Leerungsübermittlung. */
 renderRequests();
 let selectedOrderYear=new Date().getFullYear();
