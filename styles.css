@@ -1174,3 +1174,20 @@ html body #facility-blue-header .facility-header-subtitle{color:#fff!important;f
  html body #facility-blue-header .facility-header-subtitle{font-size:17px!important}
  html body #home-view{min-height:calc(100dvh - 205px)!important}
 }
+
+/* Profil im blauen Header, Aktualisieren als eigener kompakter Button darunter. */
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{
+ display:flex!important;position:relative!important;top:auto!important;right:auto!important;left:auto!important;
+ width:100%!important;min-height:0!important;height:auto!important;margin:0!important;
+ padding:8px 15px 0!important;align-items:flex-end!important;justify-content:flex-end!important;
+ background:transparent!important;box-shadow:none!important;z-index:5!important;
+}
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar #home-refresh{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:134px!important;min-width:134px!important;max-width:134px!important;height:38px!important;
+ min-height:38px!important;max-height:38px!important;flex:0 0 134px!important;
+ border-radius:11px!important;background:#e8effb!important;color:#073d9a!important;
+ border:1px solid #d2e0f9!important;font-size:13px!important;box-shadow:none!important;
+}
+html body #facility-blue-header #profile-edit:not([hidden]){display:flex!important}
+html body:has(#shop-view:not([hidden])) #profile-toolbar{display:none!important}
