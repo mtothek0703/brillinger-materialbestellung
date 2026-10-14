@@ -1887,3 +1887,12 @@ html body #shop-view .product-search #article-search:focus{
   pointer-events:none;
  }
 }
+
+/* Kategorien-Kachel: dünner blauer Rahmen wie bei der Artikelsuche. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav {
+  border:1px solid #0a3b91!important;
+  border-radius:11px!important;
+  box-sizing:border-box!important;
+ }
+}
