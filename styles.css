@@ -1385,3 +1385,7 @@ html body #facility-home-nav #facility-profile-slot #profile-edit::after{
 html body #facility-home-nav #facility-profile-slot{flex-direction:column!important;gap:3px!important}
 html body #facility-home-nav #facility-profile-slot #profile-edit{height:29px!important;min-height:29px!important;max-height:29px!important;flex:0 0 29px!important}
 html body #facility-home-nav #facility-profile-slot .facility-profile-label{display:block;color:#0346ae;font-size:12px;font-weight:700;line-height:1.2;text-align:center}
+
+/* Brillinger-Logo horizontal exakt mittig in der blauen Leiste. */
+html body #facility-blue-header .facility-header-brand{width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;margin:0 auto!important;text-align:center!important}
+html body #facility-blue-header .facility-header-brand img{display:block!important;margin-left:auto!important;margin-right:auto!important;align-self:center!important}
