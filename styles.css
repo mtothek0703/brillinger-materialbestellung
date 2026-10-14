@@ -2126,3 +2126,20 @@ html body #shop-view .product-search #article-search:focus{
    overflow-x:clip!important;
  }
 }
+
+
+/* Mobiler Shop: stabiles Listenende statt nachgebender Gesamtseite.
+   Gleicher unterer Abstand bei sichtbaren/versteckten Filtern verhindert,
+   dass scrollHeight am Ende umspringt und Safari den Inhalt verschiebt. */
+@media (max-width:720px) {
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > main {
+    padding-bottom:calc(86px + env(safe-area-inset-bottom))!important;
+    overscroll-behavior-y:none!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) {
+    overflow:hidden!important;
+    overscroll-behavior-y:none!important;
+  }
+}
