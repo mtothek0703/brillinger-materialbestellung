@@ -1613,3 +1613,6 @@ html body #home-view .home-tiles a{background:#fff!important}
 
 /* Warenkorb-Button in der blauen Shop-Kopfzeile weiß darstellen. */
 @media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link{background:#fff!important;background-color:#fff!important;border-color:#fff!important}}
+
+/* Warenkorb-Zaehler ohne hellblauen Kreis im mobilen Shop. */
+@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link #cart-count{background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
