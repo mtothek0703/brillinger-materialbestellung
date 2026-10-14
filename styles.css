@@ -1493,3 +1493,10 @@ html body #home-view .home-tiles a > small{
   transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
  }
 }
+
+/* Startseiten-Kacheln: kompaktere Abstände zwischen Icon, Titel und Untertitel. */
+html body #home-view .home-tiles a{
+ grid-template-rows:52px 43px 22px!important;
+ row-gap:3px!important;
+}
+html body #home-view .home-tiles a > strong{min-height:43px!important}
