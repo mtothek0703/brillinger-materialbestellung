@@ -2212,3 +2212,26 @@ html body #shop-view .product-search #article-search:focus{
 
 /* Loeschen-X nicht wie einen regulaeren Formularbutton verschieben. */
 body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!important;min-height:0!important;max-width:38px!important;}
+
+
+/* Sonderartikel nach Reload: der fixe 86px-Kopf darf niemals die Ueberschrift
+   oder den Zurueck-Link verdecken. Nur die eigene Formularansicht betreffen. */
+@media (max-width:720px) {
+  html body.custom-entry-view #shop-view:not([hidden]) {
+    padding-top:86px!important;
+    box-sizing:border-box!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-y:contain!important;
+  }
+  html body.custom-entry-view #shop-view:not([hidden]) > main {
+    padding-top:14px!important;
+    padding-bottom:calc(110px + env(safe-area-inset-bottom))!important;
+    margin-top:0!important;
+  }
+  html body.custom-entry-view #sonderartikel {
+    scroll-margin-top:108px!important;
+  }
+}
