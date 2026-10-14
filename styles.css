@@ -2069,3 +2069,41 @@ html body #shop-view .product-search #article-search:focus{
   pointer-events:none!important;
  }
 }
+
+
+/* Mehr Platz fuer die Artikelliste auf Smartphones:
+   Der ausgeblendete Such-/Kategorieblock darf nicht weiter die Hoehe
+   des Scrollfensters belegen. Der frei werdende Platz gehoert den Artikeln. */
+@media (max-width:720px) {
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls {
+    min-height:0!important;
+    flex-shrink:0!important;
+    transition:max-height .19s ease,padding .19s ease,border-width .19s ease,margin .19s ease!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls.facility-reveal-controls {
+    max-height:0!important;
+    height:0!important;
+    min-height:0!important;
+    padding-top:0!important;
+    padding-bottom:0!important;
+    border-width:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+    transform:none!important;
+    box-shadow:none!important;
+    pointer-events:none!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main {
+    padding-top:6px!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > main {
+    padding-bottom:calc(22px + env(safe-area-inset-bottom))!important;
+  }
+}
+@media (max-width:720px) and (prefers-reduced-motion:reduce) {
+  html body #shop-view:not([hidden]) > .mobile-sticky-controls {
+    transition:none!important;
+  }
+}
