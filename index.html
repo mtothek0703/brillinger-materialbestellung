@@ -517,7 +517,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  indicator.setAttribute('role','status');
  document.body.appendChild(indicator);
  let initialX=0,initialY=0,distance=0,tracking=false,refreshing=false;
- const moving=()=>[document.getElementById('facility-blue-header'),...['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view'].map(id=>document.getElementById(id))].filter(el=>el&&!el.hidden);
+ const moving=()=>[document.getElementById('facility-blue-header'),...['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view','shop-view'].map(id=>document.getElementById(id))].filter(el=>el&&!el.hidden);
  const top=()=>{
   const visible=moving();
   return window.scrollY<3&&visible.every(el=>el.scrollTop<3);
