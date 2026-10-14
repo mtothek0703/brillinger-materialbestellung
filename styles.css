@@ -1162,3 +1162,15 @@ html body:has(#shop-view:not([hidden])) #facility-home-nav{display:none!importan
 
 /* Blauer Kopfbereich: gerade Unterkante ohne Rundung. */
 html body #facility-blue-header{border-radius:0!important;}
+
+/* 2026-10: Logo vergrößert und Untertitel im blauen Kopfbereich. */
+html body #facility-blue-header{height:220px!important;min-height:220px!important;padding:23px 67px!important}
+html body #facility-blue-header .facility-header-brand{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:12px!important;min-width:0!important;width:100%!important}
+html body #facility-blue-header .facility-header-brand img{width:325px!important;max-width:min(76vw,325px)!important;height:auto!important;filter:brightness(0) invert(1)!important}
+html body #facility-blue-header .facility-header-subtitle{color:#fff!important;font-size:19px!important;font-weight:600!important;letter-spacing:.65px!important;text-align:center!important;line-height:1.2!important}
+@media(max-width:720px){
+ html body #facility-blue-header{height:205px!important;min-height:205px!important;padding:20px 55px!important}
+ html body #facility-blue-header .facility-header-brand img{width:290px!important;max-width:76vw!important}
+ html body #facility-blue-header .facility-header-subtitle{font-size:17px!important}
+ html body #home-view{min-height:calc(100dvh - 205px)!important}
+}
