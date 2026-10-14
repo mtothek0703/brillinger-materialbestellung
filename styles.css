@@ -1688,6 +1688,6 @@ html body #home-view .home-tiles a{background:#fff!important}
  }
 }
 
-/* Shop: Such- und Filterkacheln auf Wunsch vollständig ausblenden. */
-@media(max-width:720px){html body #shop-view .mobile-sticky-controls,html body #shop-view .mobile-sticky-controls.facility-reveal-controls{display:none!important}html body #shop-view:not([hidden]) .shop-layout{margin-top:12px!important}}
-@media(min-width:721px){#shop-view .mobile-sticky-controls{display:none!important}}
+/* Shop: Filter und Sonderartikel wieder sichtbar; nur den Rahmen um die Artikelsuche entfernen. */
+@media(max-width:720px){html body #shop-view .mobile-sticky-controls{display:block!important}html body #shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}}
+@media(min-width:721px){#shop-view .mobile-sticky-controls{display:grid!important}#shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important}}
