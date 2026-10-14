@@ -2143,3 +2143,30 @@ html body #shop-view .product-search #article-search:focus{
     overscroll-behavior-y:none!important;
   }
 }
+
+
+/* 2026-10-15: Untere Navigation auf Smartphones dauerhaft fixieren.
+   Sie bleibt beim Scrollen von Artikeln und Filtern sichtbar, auch wenn
+   aeltere JS-Logik die Klasse facility-bottom-nav-hidden setzt. */
+@media (max-width:720px) {
+ html body #facility-home-nav,
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
+   display:flex!important;
+   position:fixed!important;
+   inset:auto 0 0 0!important;
+   bottom:0!important;
+   width:100%!important;
+   transform:none!important;
+   transition:none!important;
+   animation:none!important;
+   will-change:auto!important;
+   opacity:1!important;
+   visibility:visible!important;
+   pointer-events:auto!important;
+   box-shadow:0 -4px 20px #102d4a12!important;
+   border-color:transparent!important;
+   background:#fff!important;
+   z-index:900!important;
+ }
+}
