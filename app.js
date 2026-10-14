@@ -78,6 +78,121 @@ function quantity(value){const number=Number(value);return Number.isInteger(numb
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
 function invalidateOrder(){$('email-fallback').hidden=true;$('order-text').value='';}
 function quantityControl(product,value,kind){const label=kind==='cart'?'Bestellmenge':'Menge';return `<div class="quantity"><button type="button" data-step="-1" aria-label="${label} für ${product.name} verringern">−</button><input type="number" min="${minimum(product)}" max="999" step="1" value="${value}" aria-label="${label} für ${product.name}" data-kind="${kind}" data-id="${product.id}"><button type="button" data-step="1" aria-label="${label} für ${product.name} erhöhen">+</button></div>`;}
+
+/* Intelligente Artikelsuche: lokal, ohne API oder externe Datenübertragung. */
+function normalizeShopSearch(value){
+ return String(value??'').toLocaleLowerCase('de')
+  .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+  .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+}
+const SHOP_SYNONYM_GROUPS=[
+ ['tesafilm','tesa film','klebefilm','klebestreifen','klebeband','paketband','packband'],
+ ['kabelbinder','blitzbinder','kabelband','kabelstrapse'],
+ ['kartonagen','karton','versandkarton','paketkarton','schachtel'],
+ ['mikrofasertuch','microfasertuch','microfaser','mikrofaser','putztuch','putztuecher','putzlappen'],
+ ['spuelmaschinen tabs','spuelmaschinentabs','spueltabs','geschirrspueltabs','geschirrspuelertabs','spuelmaschinentabletten'],
+ ['spuelmittel','spueli','geschirrspuelmittel','handspuelmittel'],
+ ['spuelmaschinensalz','geschirrspuelersalz','regeneriersalz'],
+ ['klarspueler','glanzspueler','klarspuelmittel'],
+ ['glasreiniger','fensterreiniger','fensterputzmittel'],
+ ['rohrreiniger','abflussreiniger','abflussfrei'],
+ ['desinfektionsreiniger','desinfektionsmittel','hygienereiniger','desinfektion'],
+ ['sekundenkleber','superkleber','blitzkleber'],
+ ['hafermilch','haferdrink','pflanzenmilch'],
+ ['batterien','batterie','mignon','alkaline','aa batterie','aaa batterie'],
+ ['thermo haftetiketten','thermoetiketten','versandetiketten','etiketten','label','aufkleber'],
+ ['stretchfolie','wickelfolie','dehnfolie','palettenfolie'],
+ ['natronkraftpapier','packpapier','fuellpapier'],
+ ['matratzentuete','matratzenhuelle','matratzenschutzfolie'],
+ ['edding','permanentmarker','filzstift','marker'],
+ ['tacker','heftgeraet','hefter'],
+ ['umreifungsband','spannband','palettenband'],
+ ['verschlusshuelsen','bandklemmen','umreifungshuelsen'],
+ ['handabroller','paketbandabroller','klebebandabroller'],
+ ['luftpolstertasche','polsterumschlag','luftpolsterumschlag']
+];
+const SHOP_SEARCH_INDEX=PRODUCTS.map(product=>{
+ const name=normalizeShopSearch(product.name);
+ const meta=normalizeShopSearch([product.category,product.unit].filter(Boolean).join(' '));
+ const flatName=name.replace(/ /g,'');
+ const aliases=[...new Set(SHOP_SYNONYM_GROUPS
+  .filter(group=>group.some(term=>flatName.includes(normalizeShopSearch(term).replace(/ /g,''))))
+  .flat().map(normalizeShopSearch))];
+ return {
+  product,name,meta,flatName,aliases,
+  nameWords:name.split(' ').filter(Boolean),
+  metaWords:meta.split(' ').filter(Boolean),
+  aliasWords:[...new Set(aliases.flatMap(term=>term.split(' ')))].filter(Boolean)
+ };
+});
+function shopDirectWordScore(query,words,weight){
+ if(words.some(word=>word===query))return weight;
+ if(words.some(word=>word.startsWith(query)))return weight+1;
+ if(words.some(word=>word.includes(query)))return weight+2;
+ return Infinity;
+}
+function shopEditDistance(first,second,limit){
+ if(Math.abs(first.length-second.length)>limit)return limit+1;
+ let oldOld=null,old=Array.from({length:second.length+1},(_,i)=>i);
+ for(let i=1;i<=first.length;i++){
+  const row=[i];
+  for(let j=1;j<=second.length;j++){
+   let distance=Math.min(row[j-1]+1,old[j]+1,old[j-1]+(first[i-1]===second[j-1]?0:1));
+   if(oldOld&&i>1&&j>1&&first[i-1]===second[j-2]&&first[i-2]===second[j-1]){
+    distance=Math.min(distance,oldOld[j-2]+1);
+   }
+   row.push(distance);
+  }
+  oldOld=old;
+  old=row;
+ }
+ return old[second.length];
+}
+function shopSearchScore(query,index,allowTypos){
+ const tokens=normalizeShopSearch(query).split(' ').filter(Boolean);
+ if(!tokens.length)return null;
+ const compact=tokens.join('');
+ if(index.flatName.includes(compact))return 0;
+ if(index.aliases.some(alias=>alias.replace(/ /g,'').includes(compact)))return 3;
+ let score=0;
+ for(const token of tokens){
+  let current=Math.min(
+   shopDirectWordScore(token,index.nameWords,0),
+   shopDirectWordScore(token,index.aliasWords,3),
+   shopDirectWordScore(token,index.metaWords,6)
+  );
+  if(!Number.isFinite(current)&&allowTypos&&token.length>=4){
+   const limit=token.length>=6?2:1;
+   const candidates=[...index.nameWords,...index.aliasWords]
+    .filter(word=>word.length>=4&&word[0]===token[0]&&Math.abs(word.length-token.length)<=limit);
+   let distance=limit+1;
+   for(const word of candidates){
+    distance=Math.min(distance,shopEditDistance(token,word,limit));
+    if(distance===1)break;
+   }
+   if(distance<=limit)current=20+distance*3;
+  }
+  if(!Number.isFinite(current))return null;
+  score+=current;
+ }
+ return score;
+}
+function shopProductSort(a,b){
+ const carton=product=>/^Kartonagen\b/.test(product.name)?Number(product.name.match(/\((\d+)\)\s*$/)?.[1]||0):null;
+ const first=carton(a),second=carton(b);
+ return first!==null&&second!==null?first-second:a.name.localeCompare(b.name,'de',{numeric:true,sensitivity:'base'});
+}
+function shopRankProducts(query){
+ const direct=SHOP_SEARCH_INDEX.map(index=>({product:index.product,score:shopSearchScore(query,index,false)}))
+  .filter(hit=>hit.score!==null);
+ const fuzzy=direct.length===0;
+ const hits=fuzzy?SHOP_SEARCH_INDEX.map(index=>({product:index.product,score:shopSearchScore(query,index,true)}))
+  .filter(hit=>hit.score!==null):direct;
+ hits.sort((a,b)=>a.score-b.score||shopProductSort(a.product,b.product));
+ return {items:hits.map(hit=>hit.product),fuzzy:fuzzy&&hits.length>0};
+}
+
 const CATEGORIES=['Alle','Allgemein','Büromaterial','Fahrzeugzubehör','Reinigung & Hygiene','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
@@ -94,9 +209,43 @@ clearSearchButton.addEventListener('click',()=>{
  updateSearch();
  searchInput.focus();
 });
+
+/* Nur bei Tippfehlern dezente, direkt anklickbare Artikelvorschläge anzeigen. */
+const shopSuggestionPanel=document.createElement('div');
+shopSuggestionPanel.id='shop-search-suggestions';
+shopSuggestionPanel.hidden=true;
+$('products').before(shopSuggestionPanel);
+function renderShopSearchSuggestions(matching){
+ if(!matching?.fuzzy||!matching.items.length){
+  shopSuggestionPanel.hidden=true;
+  shopSuggestionPanel.replaceChildren();
+  return;
+ }
+ const suggested=[...new Set(matching.items.map(product=>product.name))].slice(0,3);
+ const intro=document.createElement('span');
+ intro.textContent='Meintest du:';
+ shopSuggestionPanel.replaceChildren(intro);
+ for(const name of suggested){
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='shop-search-suggestion';
+  button.textContent=name;
+  button.addEventListener('click',()=>{
+   searchInput.value=name;
+   updateSearch();
+   const main=document.querySelector('#shop-view > main');
+   if(main)main.scrollTop=0;
+  });
+  shopSuggestionPanel.appendChild(button);
+ }
+ shopSuggestionPanel.hidden=false;
+}
+
 function renderProducts(){
-  const categoryProducts=searchTerm?PRODUCTS:activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
-  const filtered=categoryProducts.filter(p=>!searchTerm||[p.name,p.category,p.unit].some(value=>value.toLocaleLowerCase('de').includes(searchTerm))).sort((a,b)=>{const karton=n=>/^Kartonagen\b/.test(n.name)?Number(n.name.match(/\((\d+)\)\s*$/)?.[1]||0):null;const ka=karton(a),kb=karton(b);return ka!==null&&kb!==null?ka-kb:a.name.localeCompare(b.name,'de',{numeric:true,sensitivity:'base'});});
+  const matching=searchTerm?shopRankProducts(searchTerm):null;
+  const categoryProducts=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(product=>product.category===activeCategory);
+  const filtered=matching?matching.items:categoryProducts.slice().sort(shopProductSort);
+  renderShopSearchSuggestions(matching);
   $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
 
   $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top">${p.image?`<img class="product-image${p.id==='BM-007'?' product-image-milk':''}" src="${p.image}" alt="${p.name} – Produktabbildung">`:`<span class="product-symbol" aria-hidden="true">${p.symbol}</span>`}</div><div class="product-body"><h3>${p.id==='BM-037'?'Großraumtüte (Europack)<br>1.300 × 2.300 mm, 1.000 l':p.id==='BM-038'?'Matratzentüte auf Rolle<br>105 × 20 × 230 cm':p.id==='VS-010'?'Luftpolstertasche 18/H<br>265 × 360 mm, braun':p.id==='VS-016'?'Umreifungsband, Großrolle<br>12,7 × 0,5 mm':p.name}</h3>${p.unit?`<div class="unit">${p.unit}</div>`:''}${p.min?`<div class="unit">Mindestbestellmenge: ${p.min}</div>`:''}${['BM-028','BM-029'].includes(p.id)?`<label class="battery-label" for="pack-${p.id}">Packungsgröße auswählen</label><select class="battery-type" id="pack-${p.id}"><option value="" disabled ${!cableTiePackSizes[p.id]?'selected':''}></option>${['50','100'].map(n=>`<option value="${n}" ${cableTiePackSizes[p.id]===n?'selected':''}>${n} Stück</option>`).join('')}</select>`:''}${p.id==='BU-001'?`<label class="battery-label" for="edding3000-color">Farbe auswählen</label><select class="battery-type" id="edding3000-color">${['Schwarz','Blau','Rot','Grün'].map(c=>`<option value="${c}" ${edding3000Color===c?'selected':''}>${c}</option>`).join('')}</select>`:''}${p.id==='BU-002'?`<label class="battery-label" for="edding400-color">Farbe auswählen</label><select class="battery-type" id="edding400-color">${['Schwarz','Blau','Rot','Grün'].map(c=>`<option value="${c}" ${edding400Color===c?'selected':''}>${c}</option>`).join('')}</select>`:''}${p.id==='BM-022'?`<label class="battery-label" for="battery-type">Batterietyp / Größe</label><input class="battery-type" id="battery-type" type="text" maxlength="80" placeholder="z. B. AA, AAA, 9 V" value="${escapeHtml(batteryType)}" required><label class="battery-label" for="battery-pack-size">Packungsgröße</label><select class="battery-type" id="battery-pack-size"><option value="8" ${batteryPackSize==='8'?'selected':''}>8er-Pack</option><option value="24" ${batteryPackSize==='24'?'selected':''}>24er-Pack</option><option value="40" ${batteryPackSize==='40'?'selected':''}>40er-Pack</option></select>`:''}<div class="product-action">${quantityControl(p,minimum(p),'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
