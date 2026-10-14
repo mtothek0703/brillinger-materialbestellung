@@ -1520,3 +1520,7 @@ html body #home-view .home-tiles a > strong{min-height:43px!important}
   top:calc(12px + env(safe-area-inset-top))!important;
  }
 }
+
+/* Startseite: Abstände in allen drei Kacheln noch leicht kompakter. */
+html body #home-view .home-tiles a{grid-template-rows:49px 41px 21px!important;row-gap:2px!important}
+html body #home-view .home-tiles a > strong{min-height:41px!important}
