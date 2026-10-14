@@ -2016,3 +2016,23 @@ html body #shop-view .product-search #article-search:focus{
   transform:none!important;
  }
 }
+
+/* Untere Startseite/Profil-Leiste: beim Scrollen wie die Suchleiste ein- und
+   ausfahren. Im Shop wird exakt der Zustand der Suchleiste verwendet. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  transform:translate3d(0,0,0)!important;
+  transition:transform .19s ease!important;
+  will-change:transform;
+ }
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  transform:translate3d(0,calc(100% + 12px),0)!important;
+  pointer-events:none!important;
+ }
+}
+@media(max-width:720px) and (prefers-reduced-motion:reduce){
+ html body #facility-home-nav{
+  transition:none!important;
+ }
+}
