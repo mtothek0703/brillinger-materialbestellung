@@ -517,6 +517,15 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
  document.addEventListener('touchcancel',()=>{tracking=false},{passive:true});
 })();
 </script><script>
+/* iOS: Bei Neuaufruf nach Pull-to-refresh niemals alte Shop-Scrollposition übernehmen. */
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+window.addEventListener('pageshow',()=>{
+ const shop=document.getElementById('shop-view');
+ if(shop&&!shop.hidden&&location.hash==='#shop'){
+  shop.scrollTop=0;
+  window.scrollTo(0,0);
+ }
+});
 /* Native-artiges Pull-to-refresh: sichtbarer Ziehweg plus animierter Ladekreis. */
 (function(){
  const indicator=document.createElement('div');
@@ -564,6 +573,8 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   indicator.classList.add('loading');
   indicator.setAttribute('aria-label','Aktualisiere');
   setTimeout(()=>{
+   const shop=document.getElementById('shop-view');
+   if(shop&&!shop.hidden){shop.scrollTop=0;window.scrollTo(0,0);}
    const url=new URL(location.href);
    url.searchParams.set('refresh',Date.now().toString());
    location.replace(url.toString());
