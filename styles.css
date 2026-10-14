@@ -1416,3 +1416,6 @@ html body #facility-blue-header .facility-header-brand img{
  html body #overview-menu-view:not([hidden]) .waste-heading{margin-top:clamp(18px,3.5dvh,38px)!important;margin-bottom:20px!important}
  html body #overview-menu-view:not([hidden]) .waste-options{margin-top:38px!important}
 }
+
+/* Bestellübersicht: Überschrift gleich groß wie Müllentsorgung auf Smartphones. */
+@media(max-width:720px){html body #order-overview-view h1{font-size:24px!important;line-height:1.2!important}}
