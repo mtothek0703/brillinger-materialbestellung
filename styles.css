@@ -1691,3 +1691,19 @@ html body #home-view .home-tiles a{background:#fff!important}
 /* Shop: Filter und Sonderartikel wieder sichtbar; nur den Rahmen um die Artikelsuche entfernen. */
 @media(max-width:720px){html body #shop-view .mobile-sticky-controls{display:block!important}html body #shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}}
 @media(min-width:721px){#shop-view .mobile-sticky-controls{display:grid!important}#shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important}}
+
+/* 2026-10-14: Such-/Filterbereich dauerhaft unter dem fixierten Shop-Header halten. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
+  display:block!important;position:sticky!important;
+  top:var(--shop-mobile-header-height, 0px)!important;
+  inset-block-start:var(--shop-mobile-header-height, 0px)!important;
+  left:auto!important;right:auto!important;width:auto!important;
+  z-index:1090!important;transform:none!important;
+  max-height:none!important;overflow:visible!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) > main{isolation:isolate!important}
+ html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
+}
