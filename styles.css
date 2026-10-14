@@ -1351,3 +1351,6 @@ html body #waste-view .waste-options{margin-top:12px!important}
   overscroll-behavior-y:contain;
  }
 }
+
+/* Entsorgungskacheln etwas weiter nach unten, Überschrift unverändert. */
+html body #waste-view .waste-options{margin-top:22px!important}
