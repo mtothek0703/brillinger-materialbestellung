@@ -582,4 +582,22 @@ window.addEventListener('pageshow',()=>{
  },{passive:true});
  document.addEventListener('touchcancel',reset,{passive:true});
 })();
+</script><script>
+/* Shop: Beim Hochscrollen die drei Such-/Filterkacheln wieder einblenden. */
+(function(){
+ const shop=document.getElementById('shop-view');
+ const controls=shop?.querySelector('.mobile-sticky-controls');
+ if(!shop||!controls)return;
+ let last=0,active=false;
+ function clear(){controls.classList.remove('facility-reveal-controls');active=false;}
+ shop.addEventListener('scroll',()=>{
+  if(shop.hidden||!matchMedia('(max-width:720px)').matches){clear();return;}
+  const y=shop.scrollTop,delta=y-last;
+  if(y<15){clear();}
+  else if(delta < -5){controls.classList.add('facility-reveal-controls');active=true;}
+  else if(delta > 5 && active){clear();}
+  last=y;
+ },{passive:true});
+ window.addEventListener('hashchange',clear);
+})();
 </script></body></html>
