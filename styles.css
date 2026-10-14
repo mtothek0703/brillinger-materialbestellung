@@ -1677,3 +1677,13 @@ html body #home-view .home-tiles a{background:#fff!important}
   box-shadow:0 8px 18px #102a4b24!important;
  }
 }
+
+/* Sichtbare Suchkacheln beim Aufwaertswischen: hoehere Prioritaet als alte static-Regeln. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
+  position:sticky!important;top:86px!important;inset-block-start:86px!important;
+  z-index:1090!important;left:auto!important;right:auto!important;width:auto!important;
+  max-height:none!important;overflow:visible!important;
+  margin-bottom:16px!important;box-shadow:0 8px 18px #102a4b24!important;
+ }
+}
