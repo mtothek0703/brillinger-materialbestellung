@@ -64,7 +64,7 @@ function showFacilityManagementPage(){
   toolbar.hidden=true;
  }else{
   const slot=document.getElementById('facility-profile-slot');
-  if(profileButton.parentElement!==slot)slot.appendChild(profileButton);
+  if(profileButton.parentElement!==slot)slot.insertBefore(profileButton,slot.firstChild);
   toolbar.hidden=false;
  }
  if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
