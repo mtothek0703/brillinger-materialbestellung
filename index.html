@@ -625,7 +625,7 @@ window.addEventListener('pageshow',()=>{
  }
  function setHidden(hidden){
   if(!shopActive())hidden=false;
-  if(hidden&&controls.contains(document.activeElement))return;
+  if(hidden&&controls.contains(document.activeElement)&&document.activeElement.matches('input,textarea,select'))return;
   if(hidden&&!shop.classList.contains(hiddenClass))updateControlHeight();
   shop.classList.toggle(hiddenClass,hidden);
  }
