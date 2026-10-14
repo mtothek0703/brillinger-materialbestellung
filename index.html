@@ -60,7 +60,7 @@ function showFacilityManagementPage(){
  const slot=document.getElementById('facility-profile-slot');
  if(profileButton.parentElement!==slot)slot.insertBefore(profileButton,slot.firstChild);
  toolbar.hidden=true;
- if(hash==='#shop'||hash==='#start'||waste||overview||orders||pickups)scrollTo(0,0);
+ if(hash==='#shop'||hash==='#artikel'||hash==='#start'||waste||overview||orders||pickups){if(shop){const main=document.querySelector('#shop-view > main');if(main)main.scrollTop=0;}scrollTo(0,0);}
 }
 window.addEventListener('hashchange',showFacilityManagementPage);
 /* Desktop: Warenkorb als eigenständiges Dialogfenster öffnen. */
@@ -523,6 +523,8 @@ window.addEventListener('pageshow',()=>{
  const shop=document.getElementById('shop-view');
  if(shop&&!shop.hidden&&location.hash==='#shop'){
   shop.scrollTop=0;
+  const main=shop.querySelector(':scope > main');
+  if(main)main.scrollTop=0;
   window.scrollTo(0,0);
  }
 });
@@ -538,7 +540,7 @@ window.addEventListener('pageshow',()=>{
  const moving=()=>[document.getElementById('facility-blue-header'),...['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view','shop-view'].map(id=>document.getElementById(id))].filter(el=>el&&!el.hidden);
  const top=()=>{
   const shop=document.getElementById('shop-view');
-  if(shop&&!shop.hidden)return shop.scrollTop<=3;
+  if(shop&&!shop.hidden){const main=shop.querySelector(':scope > main');return shop.scrollTop<=3&&(!main||main.scrollTop<=3);}
   const visible=moving();
   return window.scrollY<=3&&visible.every(el=>el.scrollTop<=3);
  };
@@ -574,7 +576,7 @@ window.addEventListener('pageshow',()=>{
   indicator.setAttribute('aria-label','Aktualisiere');
   setTimeout(()=>{
    const shop=document.getElementById('shop-view');
-   if(shop&&!shop.hidden){shop.scrollTop=0;window.scrollTo(0,0);}
+   if(shop&&!shop.hidden){shop.scrollTop=0;const main=shop.querySelector(':scope > main');if(main)main.scrollTop=0;window.scrollTo(0,0);}
    const url=new URL(location.href);
    url.searchParams.set('refresh',Date.now().toString());
    location.replace(url.toString());
