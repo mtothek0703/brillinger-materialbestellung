@@ -460,6 +460,21 @@ const p=saved();if(p){apply(p);edit.hidden=false}else open();updateWasteEmails()
 window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
 })();
 </script><script>
+/* Links-Wischen in der Web-App nicht als Navigation/Scrollbewegung zulassen. */
+(function(){
+ let x=0,y=0,enabled=false;
+ window.addEventListener('touchstart',e=>{
+  enabled=e.touches.length===1&&matchMedia('(max-width:720px)').matches;
+  if(enabled){x=e.touches[0].clientX;y=e.touches[0].clientY;}
+ },{capture:true,passive:true});
+ window.addEventListener('touchmove',e=>{
+  if(!enabled||e.touches.length!==1)return;
+  const dx=e.touches[0].clientX-x,dy=e.touches[0].clientY-y;
+  if(dx< -8&&Math.abs(dx)>Math.abs(dy)*1.15&&e.cancelable)e.preventDefault();
+ },{capture:true,passive:false});
+ window.addEventListener('touchend',()=>{enabled=false;},{capture:true,passive:true});
+ window.addEventListener('touchcancel',()=>{enabled=false;},{capture:true,passive:true});
+})();
 /* Mobile Wischgeste: nur von links nach rechts zur übergeordneten Seite. */
 (function(){
  let startX=0,startY=0,tracking=false;
