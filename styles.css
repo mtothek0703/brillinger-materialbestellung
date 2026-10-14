@@ -1860,3 +1860,19 @@ html body #shop-view .product-search #article-search:focus{
   padding:0 10px!important;
  }
 }
+
+/* Dezenter Suchhinweis im leeren Artikel-Suchfeld. */
+@media (max-width:720px) {
+ #shop-view .search-input-wrap:has(#article-search:placeholder-shown):not(:focus-within)::after {
+   content:"Artikel suchen";
+   position:absolute;
+   top:50%;
+   left:52px;
+   transform:translateY(-50%);
+   color:#8c99a4;
+   font-size:16px;
+   line-height:1.2;
+   pointer-events:none;
+   z-index:1;
+ }
+}
