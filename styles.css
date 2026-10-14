@@ -1216,3 +1216,15 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #home-refresh{
 }
 html body #facility-home-nav #home-refresh svg{width:27px!important;height:27px!important}
 html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{display:none!important}
+
+/* Pull-to-refresh: Seite bleibt beim Ziehen am oberen Rand ruhig. */
+html,body{overscroll-behavior-y:none}
+#facility-pull-refresh{
+ position:fixed;top:-65px;left:50%;transform:translate(-50%,0);z-index:1500;
+ padding:9px 16px;white-space:nowrap;border-radius:20px;
+ background:#fff;color:#001b79;font-size:13px;font-weight:700;
+ box-shadow:0 4px 16px #001b7922;pointer-events:none;
+ opacity:0;transition:opacity .12s ease;
+}
+#facility-pull-refresh.visible{opacity:1}
+#facility-pull-refresh.ready{background:#e7f0ff}
