@@ -1235,3 +1235,9 @@ html body #facility-pull-refresh{
  z-index:3000!important;transform:translateX(-50%);
  transition:opacity .1s ease!important;
 }
+
+/* Startseitenleiste wieder etwas höher und Startseite exakt mittig. */
+html body #facility-home-nav{min-height:78px!important;gap:0!important;justify-content:center!important;align-items:center!important;padding:10px 14px calc(10px + env(safe-area-inset-bottom))!important}
+html body #facility-home-nav a{align-items:center!important;text-align:center!important;gap:3px!important}
+html body #facility-home-nav a svg{width:29px!important;height:29px!important}
+html body #facility-home-nav #facility-refresh-slot{display:none!important}
