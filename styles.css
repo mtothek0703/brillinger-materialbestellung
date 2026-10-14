@@ -1284,3 +1284,6 @@ html body #home-view:not([hidden]){height:calc(100dvh - 174px)!important;max-hei
 
 /* Startseite: Inhalt der Müllentsorgungs-Kachel dezent nach oben setzen. */
 html body #home-view .home-tiles a[href="#muellentsorgung"] > *{position:relative;top:-8px}
+
+/* Müllentsorgung: etwas mehr Luft zwischen Überschrift und erster Restmüll-Kachel. */
+html body #waste-view .waste-heading{margin-bottom:20px!important}
