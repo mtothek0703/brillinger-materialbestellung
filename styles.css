@@ -2060,8 +2060,10 @@ html body #shop-view .product-search #article-search:focus{
 @media (max-width:720px) {
  html body.facility-bottom-nav-hidden #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
-  transform:translate3d(0,calc(100% + 30px),0)!important;
+  transform:translate3d(0,calc(100% + 48px),0)!important;
   box-shadow:none!important;
+  -webkit-box-shadow:none!important;
+  border-color:transparent!important;
   outline:none!important;
   filter:none!important;
   pointer-events:none!important;
