@@ -583,32 +583,24 @@ window.addEventListener('pageshow',()=>{
  document.addEventListener('touchcancel',reset,{passive:true});
 })();
 </script><script>
-/* Mobile Shop: Touch-Richtung direkt auswerten, unabhängig vom Scroll-Container. */
+/* Mobile: Filter als direktes Kind des scrollenden Shops fixieren.
+   Im Desktop bleibt das vorhandene Layout im main unverändert. */
 (function(){
- const shop=document.getElementById('shop-view'),controls=shop?.querySelector('.mobile-sticky-controls');
- if(!shop||!controls)return;
- let previousY=null,lastScroll=0;
- function show(on){controls.classList.toggle('facility-reveal-controls',on);}
- shop.addEventListener('touchstart',e=>{previousY=e.touches[0]?.clientY??null;},{passive:true});
- shop.addEventListener('touchmove',e=>{
-  if(shop.hidden||innerWidth>720||previousY===null)return;
-  const y=e.touches[0]?.clientY??previousY,dy=y-previousY;
-  const pos=Math.max(shop.scrollTop,window.scrollY);
-  if(pos<12)show(false);
-  else if(dy>2)show(true);
-  else if(dy< -2)show(false);
-  previousY=y;
- },{passive:true});
- function scrolled(){
-  if(shop.hidden||innerWidth>720)return;
-  const pos=Math.max(shop.scrollTop,window.scrollY),delta=pos-lastScroll;
-  if(pos<12)show(false);
-  else if(delta< -1)show(true);
-  else if(delta>1)show(false);
-  lastScroll=pos;
+ const shop=document.getElementById('shop-view');
+ const main=shop?.querySelector(':scope > main');
+ const controls=shop?.querySelector('.mobile-sticky-controls');
+ if(!shop||!main||!controls)return;
+ const mobile=window.matchMedia('(max-width:720px)');
+ function positionControls(){
+  controls.classList.remove('facility-reveal-controls');
+  if(mobile.matches){
+   if(controls.parentElement!==shop)shop.insertBefore(controls,main);
+  }else if(controls.parentElement!==main){
+   main.insertBefore(controls,main.firstChild);
+  }
  }
- shop.addEventListener('scroll',scrolled,{passive:true});
- window.addEventListener('scroll',scrolled,{passive:true});
- window.addEventListener('hashchange',()=>show(false));
+ positionControls();
+ if(mobile.addEventListener)mobile.addEventListener('change',positionControls);
+ else mobile.addListener(positionControls);
 })();
 </script></body></html>
