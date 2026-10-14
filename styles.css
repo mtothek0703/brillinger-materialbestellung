@@ -1543,7 +1543,7 @@ html body #home-view .home-tiles a > strong{min-height:41px!important}
 }
 
 /* Startseite: drei Kacheln mit sehr dezenter hellblauer Fläche. */
-html body #home-view .home-tiles a{background:#f0f7ff!important}
+html body #home-view .home-tiles a{background:#E6F0FA!important}
 
 /* Müllentsorgung: fünf Kacheln minimal nach oben; Überschrift unverändert. */
 @media(max-width:720px){html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}}
