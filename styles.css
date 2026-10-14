@@ -1707,3 +1707,41 @@ html body #home-view .home-tiles a{background:#fff!important}
  html body #shop-view:not([hidden]) > main{isolation:isolate!important}
  html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
 }
+
+/* 2026-10-14: STABILE Shop-Fixierung: Das Filterfeld ist auf Mobilgeräten
+   DIREKTES Kind des scrollenden #shop-view, nicht mehr Kind des bewegten main.
+   Damit bleibt position:sticky auch in iOS-Safari verlässlich wirksam. */
+@media (max-width:720px) {
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls {
+   display:block!important;
+   position:-webkit-sticky!important;
+   position:sticky!important;
+   top:86px!important;
+   inset-block-start:86px!important;
+   z-index:1050!important;
+   left:auto!important;right:auto!important;
+   width:100%!important;
+   max-width:none!important;
+   box-sizing:border-box!important;
+   padding:8px 16px 9px!important;
+   margin:0 0 16px!important;
+   transform:none!important;
+   overflow:visible!important;
+   background:#e8f0f8!important;
+   border-bottom:4px solid #0a3b91!important;
+   border-radius:0 0 12px 12px!important;
+   box-shadow:0 5px 12px #142c381a!important;
+ }
+ html body #shop-view:not([hidden]) {
+   padding-top:86px!important;
+   overflow-y:auto!important;
+ }
+ html body #shop-view:not([hidden]) > main {
+   padding-top:0!important;
+   isolation:auto!important;
+ }
+ html body.mobile-cart-view #shop-view > .mobile-sticky-controls,
+ html body.custom-entry-view #shop-view > .mobile-sticky-controls {
+   display:none!important;
+ }
+}
