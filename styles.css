@@ -1919,3 +1919,27 @@ html body #shop-view .product-search #article-search:focus{
   transition:none!important;
  }
 }
+
+/* Intelligente Suche: dezente Vorschlaege nur bei erkannten Tippfehlern. */
+#shop-search-suggestions[hidden]{display:none!important}
+#shop-search-suggestions{
+ display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+ margin:0 0 12px;padding:9px 12px;box-sizing:border-box;
+ background:#eaf2fa;color:#24465c;border:1px solid #c5d7eb;
+ border-radius:11px;font-size:14px;
+}
+#shop-search-suggestions>span{font-weight:600}
+#shop-search-suggestions .shop-search-suggestion{
+ appearance:none;background:#fff;color:#0a3b91;
+ border:1px solid #0a3b91;border-radius:18px;
+ padding:6px 11px;min-height:34px;max-width:100%;
+ font:inherit;font-weight:600;line-height:1.3;
+ text-align:left;cursor:pointer;
+}
+#shop-search-suggestions .shop-search-suggestion:focus-visible{
+ outline:2px solid #0a3b91;outline-offset:2px;
+}
+@media(max-width:720px){
+ #shop-search-suggestions{gap:6px;padding:8px 10px;font-size:13px}
+ #shop-search-suggestions .shop-search-suggestion{font-size:13px}
+}
