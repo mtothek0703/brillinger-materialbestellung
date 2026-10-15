@@ -3208,3 +3208,37 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   transition:none!important;
  }
 }
+
+/* Einheitliches Pull-to-refresh: gesamtes Dokument inklusive Kopfzeile,
+   Warenkorb, Seiteninhalt und unterer Navigation verschieben. */
+@media(max-width:720px){
+ html:has(body.facility-whole-page-pulling){
+  background:#1c398d!important;
+  overscroll-behavior-y:none!important;
+ }
+ html body.facility-whole-page-pulling{
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+  will-change:transform;
+ }
+ html body.facility-whole-page-pulling #facility-blue-header,
+ html body.facility-whole-page-pulling #home-view:not([hidden]),
+ html body.facility-whole-page-pulling #waste-view:not([hidden]),
+ html body.facility-whole-page-pulling #overview-menu-view:not([hidden]),
+ html body.facility-whole-page-pulling #order-overview-view:not([hidden]),
+ html body.facility-whole-page-pulling #waste-overview-view:not([hidden]),
+ html body.facility-whole-page-pulling #shop-view:not([hidden]),
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > header,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > main,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls{
+  transform:none!important;
+  transition:none!important;
+ }
+ html body.facility-whole-page-pulling #facility-pull-refresh{
+  top:calc(-1 * var(--facility-pull-distance,0px) / 2 - 21px)!important;
+ }
+}
