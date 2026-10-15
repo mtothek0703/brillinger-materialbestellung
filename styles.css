@@ -2966,7 +2966,9 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 @media (max-width:720px) {
  html { background-color:#1c398d!important; }
  html body { background-color:#f3f6f8!important; }
- html body::before {
+ /* Auf Nicht-Shop-Seiten war die alte Flaeche mit z-index:0
+    unter dem Seitenhintergrund versteckt. Ueber dem Header positionieren. */
+ html body:not(:has(#shop-view:not([hidden])))::before {
    content:""!important;
    display:block!important;
    position:fixed!important;
@@ -2974,9 +2976,9 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    right:0!important;
    top:0!important;
    width:100%!important;
-   height:max(65px,env(safe-area-inset-top,0px))!important;
+   height:max(48px,env(safe-area-inset-top,0px))!important;
    background:#1c398d!important;
-   z-index:0!important;
+   z-index:1200!important;
    pointer-events:none!important;
    border:0!important;
    margin:0!important;
