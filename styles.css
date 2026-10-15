@@ -2527,3 +2527,22 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    max-width:330px!important;
  }
 }
+
+
+/* Desktop-Korrektur: Warenkorb unter der tatsaechlich sichtbaren
+   Such-/Kategorienleiste ausrichten, nicht an einer geratenen Pixelzahl.
+   Titel bleibt im eigenstaendig scrollbaren Warenkorb stets sichtbar. */
+@media (min-width:721px) {
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
+   top:var(--desktop-cart-top,260px)!important;
+   max-height:calc(100dvh - var(--desktop-cart-top,260px) - 12px)!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) #warenkorb > .section-heading {
+   position:sticky!important;
+   top:-1px!important;
+   background:#fff!important;
+   z-index:3!important;
+   padding:2px 0 12px!important;
+   margin-top:-2px!important;
+ }
+}
