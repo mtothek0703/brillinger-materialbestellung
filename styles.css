@@ -2316,3 +2316,38 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    overflow-y:visible!important;
  }
 }
+
+
+/* PC: obere Kopfzeile auf allen Seiten dauerhaft sichtbar halten.
+   Keine Aenderung am mobilen Layout. Die Browserseite bleibt scrollbar. */
+@media (min-width:721px) {
+  html body:not(:has(#shop-view:not([hidden]))) #facility-blue-header {
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    z-index:1150!important;
+    transform:none!important;
+  }
+  html body:not(:has(#shop-view:not([hidden]))) {
+    padding-top:174px!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view > header {
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    z-index:1150!important;
+    transform:none!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view {
+    padding-top:var(--desktop-shop-header-height,96px)!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view .mobile-sticky-controls {
+    position:sticky!important;
+    top:var(--desktop-shop-header-height,96px)!important;
+    z-index:1050!important;
+  }
+}
