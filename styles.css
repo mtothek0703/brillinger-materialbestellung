@@ -3371,3 +3371,28 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
   flex-shrink:0!important;
  }
 }
+
+/* Zurueck-Pfeil kompakt links neben dem Warenkorb im blauen Header. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:relative!important;
+  inset:auto!important;
+  flex:0 0 40px!important;
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  margin:0 8px 0 auto!important;
+  padding:0!important;
+  color:#fff!important;
+  background:rgba(255,255,255,.12)!important;
+  border:1px solid rgba(255,255,255,.5)!important;
+  border-radius:10px!important;
+  font-size:23px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+ }
+}
