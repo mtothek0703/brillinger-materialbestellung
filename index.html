@@ -362,6 +362,22 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    requestAnimationFrame(()=>input.focus({preventScroll:true}));
   }
  });
+ // Beim Scrollen der Artikelliste wird die aufgeklappte Suche geschlossen.
+ // Ein normales Antippen oder Schreiben im Suchfeld schliesst sie nicht.
+ const articleScroller=shop.querySelector(':scope > main');
+ const scrollContainers=[articleScroller,shop].filter(Boolean);
+ const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
+ for(const container of scrollContainers){
+  container.addEventListener('scroll',()=>{
+   const current=container.scrollTop;
+   const previous=previousPositions.get(container)??current;
+   previousPositions.set(container,current);
+   if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
+   if(Math.abs(current-previous)<2)return;
+   setOpen(false);
+   input.blur();
+  },{passive:true});
+ }
  window.addEventListener('hashchange',()=>{
   if(location.hash!=='#artikel'&&location.hash!=='#shop')setOpen(false);
  });
