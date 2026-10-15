@@ -3727,3 +3727,25 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   transform:none!important;
  }
 }
+
+/* Shop-spezifische alte Vier-Spalten-Regel ueberstimmen:
+   identische fuenfteilige Navigation wie auf allen anderen Seiten. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  justify-items:stretch!important;
+  align-items:center!important;
+  gap:0!important;
+  padding-inline:6px!important;
+  background:#fff!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > a[href="#start"]{grid-column:1!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-back-nav{grid-column:2!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle{grid-column:3!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:5!important;grid-row:1!important}
+}
