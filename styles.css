@@ -3338,3 +3338,36 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
   padding-top:20px!important;
  }
 }
+
+/* Warenkorb: Zurueck direkt in der blauen Kopfzeile links vom Warenkorb. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  display:inline-flex!important;
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  width:auto!important;
+  max-width:calc(100vw - 235px)!important;
+  margin:0 8px 0 auto!important;
+  padding:8px 9px!important;
+  border:1px solid rgba(255,255,255,.5)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.12)!important;
+  color:white!important;
+  box-shadow:none!important;
+  font-size:clamp(10px,2.6vw,13px)!important;
+  line-height:1.2!important;
+  text-align:center!important;
+  white-space:normal!important;
+  text-decoration:none!important;
+  z-index:auto!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop.cart-back-hidden{
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header .cart-link{
+  flex-shrink:0!important;
+ }
+}
