@@ -3414,3 +3414,30 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   border:1px solid #fff!important;
  }
 }
+
+/* Verbindliche Gestaltung des Zurueck-Pfeils im mobilen Warenkorb. */
+@media(max-width:720px){
+ body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop,
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:link,
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:visited{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  padding:0!important;
+  background:#fff!important;
+  background-color:#fff!important;
+  color:#1c398d!important;
+  -webkit-text-fill-color:#1c398d!important;
+  border:1px solid #fff!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+  font-size:24px!important;
+  font-weight:700!important;
+  line-height:1!important;
+  text-decoration:none!important;
+ }
+}
