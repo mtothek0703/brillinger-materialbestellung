@@ -3302,3 +3302,17 @@ html body #shop-view .category-nav{
   box-shadow:none!important;
  }
 }
+
+/* Zurueck zu den Artikeln: aeusseren weissen Kachelrand an BEIDEN
+   moeglichen DOM-Positionen entfernen; nur der eigentliche Button bleibt. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > a.mobile-back-to-shop,
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb > a.mobile-back-to-shop{
+  box-shadow:none!important;
+  outline:none!important;
+  outline-offset:0!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  background:#f3f8fb!important;
+ }
+}
