@@ -390,13 +390,13 @@ function syncMobileShopView(){
       layout.insertBefore(backLink,cart);
     }
     if(mobile&&isCart){
-      backLink.textContent='←';
+      backLink.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>';
       backLink.setAttribute('aria-label','Zurück zu den Artikeln');
       backLink.setAttribute('title','Zurück zu den Artikeln');
       // iOS: direkte Styles am echten Header-Button verhindern konkurrierende CSS-Regeln.
       const fixedStyle={
         display:'inline-flex',alignItems:'center',justifyContent:'center',
-        position:'relative',width:'40px',minWidth:'40px',maxWidth:'40px',height:'40px',
+        position:'relative',width:'46px',minWidth:'46px',maxWidth:'46px',height:'46px',
         padding:'0',background:'#ffffff',backgroundColor:'#ffffff',
         color:'#1c398d',webkitTextFillColor:'#1c398d',
         border:'1px solid #ffffff',borderRadius:'10px',
