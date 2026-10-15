@@ -2591,3 +2591,26 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    border:0!important;
  }
 }
+
+/* Smartphone: "Suche" unter der Lupe wie Startseite und Profil. */
+@media(max-width:720px){
+ html body #facility-home-nav #facility-search-toggle{
+  flex-direction:column!important;
+  gap:3px!important;
+  height:auto!important;
+  min-height:44px!important;
+  flex-basis:48px!important;
+  width:48px!important;
+  padding:0!important;
+  align-self:center!important;
+ }
+ html body #facility-home-nav #facility-search-toggle .facility-search-label{
+  display:block!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  color:#0346ae!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+ }
+}
