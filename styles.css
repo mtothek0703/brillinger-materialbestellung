@@ -3176,3 +3176,35 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    white-space:normal!important;
  }
 }
+
+/* Einheitliches Pull-to-refresh 2026-10-15: Kopfbereich und aktive Seite folgen exakt demselben Ziehweg.
+   Keine Einzelanimation waehrend der Fingerbewegung, damit kein Spalt entsteht. */
+@media(max-width:720px){
+ html body #facility-blue-header,
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]){
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+  will-change:transform;
+ }
+ /* Der Shop ist ein eigenes Scrollfenster: den kompletten Container bewegen,
+    nicht den fixierten Header und den Inhalt ein zweites Mal. */
+ html body #shop-view:not([hidden]),
+ html body #shop-view:not([hidden]).facility-shop-pulling,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling{
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header,
+ html body #shop-view:not([hidden]) > main,
+ html body #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls{
+  transform:none!important;
+  transition:none!important;
+ }
+}
