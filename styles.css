@@ -2754,14 +2754,14 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 .category-tile-icon{display:none}
 @media(max-width:720px){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav{
-  padding:10px 12px!important;
+  padding:5px 10px!important;
   margin:0!important;
   background:transparent!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
   display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:8px!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:5px!important;
   align-items:stretch!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
@@ -2769,19 +2769,19 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   flex-direction:column!important;
   align-items:center!important;
   justify-content:center!important;
-  gap:6px!important;
+  gap:3px!important;
   width:100%!important;
   min-width:0!important;
-  min-height:78px!important;
+  min-height:64px!important;
   height:auto!important;
   margin:0!important;
-  padding:10px 4px!important;
+  padding:6px 2px!important;
   border:1px solid #d9e4f0!important;
-  border-radius:12px!important;
+  border-radius:10px!important;
   background:#fff!important;
   color:#173a52!important;
   box-shadow:none!important;
-  font-size:11px!important;
+  font-size:10px!important;
   font-weight:600!important;
   line-height:1.2!important;
   text-align:center!important;
@@ -2795,24 +2795,24 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
   display:flex!important;
-  width:25px!important;
-  height:25px!important;
-  flex:0 0 25px!important;
+  width:20px!important;
+  height:20px!important;
+  flex:0 0 20px!important;
   align-items:center!important;
   justify-content:center!important;
   color:#0346ae!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
   display:block!important;
-  width:24px!important;
-  height:24px!important;
+  width:19px!important;
+  height:19px!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-label{
   display:block!important;
   max-width:100%!important;
   overflow-wrap:break-word!important;
   hyphens:auto!important;
-  font-size:11px!important;
+  font-size:10px!important;
   text-align:center!important;
  }
 }
