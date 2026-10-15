@@ -3155,3 +3155,24 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    margin-top:0!important;
  }
 }
+
+
+/* Smartphone: Bestell- und Statusmeldung deutlich hoeher, sichtbar direkt
+   unter dem blauen Header statt unten hinter Bestellbutton/Navigation. */
+@media(max-width:720px){
+ html body > #feedback.live-message:not(:empty){
+   position:fixed!important;
+   top:106px!important;
+   bottom:auto!important;
+   left:50%!important;
+   right:auto!important;
+   transform:translateX(-50%)!important;
+   z-index:1500!important;
+   box-sizing:border-box!important;
+   width:max-content!important;
+   max-width:calc(100vw - 32px)!important;
+   padding:13px 17px!important;
+   text-align:center!important;
+   white-space:normal!important;
+ }
+}
