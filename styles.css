@@ -3268,3 +3268,16 @@ html body #shop-view .category-nav{
  border-radius:0!important;
  box-shadow:none!important;
 }
+
+/* Smartphone-Bestellbutton: weiss mit blauer Schrift. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) button.submit,
+ html body.mobile-cart-view #shop-view:not([hidden]) .submit,
+ html body #shop-view:not([hidden]) #submit-order{
+  background:#fff!important;
+  color:#1c398d!important;
+  border:1px solid #dce5eb!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) button.submit *,
+ html body #shop-view:not([hidden]) #submit-order *{color:#1c398d!important}
+}
