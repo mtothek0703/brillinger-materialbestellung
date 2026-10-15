@@ -2496,3 +2496,83 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    gap:20px!important;
  }
 }
+
+
+/* Smartphone: Artikelsuche nur ueber die Lupe der unteren Navigation.
+   Kategorien und Sonderartikel-Kachel bleiben oben bestehen.
+   Die PC-Ansicht bleibt unveraendert. */
+#facility-search-toggle {display:none}
+@media (max-width:720px) {
+ html body #facility-home-nav {
+   gap:0!important;
+   justify-content:center!important;
+   column-gap:clamp(28px,8vw,65px)!important;
+ }
+ html body #facility-home-nav #facility-search-toggle {
+   display:flex!important;
+   position:relative!important;
+   align-items:center!important;
+   justify-content:center!important;
+   flex:0 0 44px!important;
+   width:44px!important;
+   height:44px!important;
+   min-height:44px!important;
+   margin:0!important;
+   padding:6px!important;
+   border:0!important;
+   border-radius:12px!important;
+   box-shadow:none!important;
+   background:transparent!important;
+   color:#0346ae!important;
+   cursor:pointer;
+   -webkit-tap-highlight-color:transparent;
+ }
+ html body #facility-home-nav #facility-search-toggle svg {
+   width:30px!important;
+   height:30px!important;
+   stroke:currentColor!important;
+ }
+ html body #shop-view .mobile-sticky-controls > .product-search {
+   display:none!important;
+ }
+ html body.facility-search-open > .product-search {
+   display:block!important;
+   position:fixed!important;
+   bottom:calc(88px + env(safe-area-inset-bottom))!important;
+   left:12px!important;
+   right:12px!important;
+   top:auto!important;
+   width:auto!important;
+   max-width:none!important;
+   height:auto!important;
+   margin:0!important;
+   padding:12px!important;
+   z-index:2100!important;
+   border:1px solid #dce5eb!important;
+   border-radius:16px!important;
+   background:#fff!important;
+   box-shadow:0 6px 26px #142c3833!important;
+ }
+ html body.facility-search-open > .product-search > label {
+   display:none!important;
+ }
+ html body.facility-search-open > .product-search .search-input-wrap {
+   position:relative!important;
+   width:100%!important;
+   max-width:none!important;
+ }
+ html body.facility-search-open > .product-search #article-search {
+   display:block!important;
+   width:100%!important;
+   min-height:48px!important;
+   box-sizing:border-box!important;
+   border:1px solid #1a419c!important;
+   border-radius:11px!important;
+   background:white!important;
+   padding:10px 48px 10px 16px!important;
+   font-size:16px!important;
+ }
+ html body.facility-search-open #facility-home-nav #facility-search-toggle {
+   background:#eaf2fb!important;
+ }
+}
