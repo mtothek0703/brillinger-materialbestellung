@@ -3090,3 +3090,41 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    box-shadow:0 0 0 10px #fff!important;
  }
 }
+
+
+/* Kleine Artikelbilder ausschliesslich im Smartphone-Warenkorb.
+   Bezeichnungen, Mengensteuerung und Entfernen bleiben unveraendert;
+   auf PC werden die Bilder nicht eingeblendet. */
+.cart-item-product > .cart-item-image{display:none}
+.cart-item-product > .cart-item-details{display:contents}
+@media(max-width:720px){
+ html body.mobile-cart-view #cart-items > .cart-item-product{
+   display:grid!important;
+   grid-template-columns:48px minmax(0,1fr)!important;
+   column-gap:11px!important;
+   align-items:start!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-image{
+   display:block!important;
+   box-sizing:border-box!important;
+   width:48px!important;
+   height:54px!important;
+   object-fit:contain!important;
+   padding:3px!important;
+   border:1px solid #e5edf3!important;
+   border-radius:8px!important;
+   background:#fff!important;
+   grid-column:1!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-symbol{
+   display:flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   font-size:25px!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-details{
+   display:block!important;
+   grid-column:2!important;
+   min-width:0!important;
+ }
+}
