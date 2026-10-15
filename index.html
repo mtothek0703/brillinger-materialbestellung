@@ -332,10 +332,14 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  const mobile=window.matchMedia('(max-width:720px)');
  function sync(){
   if(!mobile.matches)return;
-  const top=Math.round(nav.getBoundingClientRect().top);
+  const navTop=nav.getBoundingClientRect().top;
+  const shopTop=shop.getBoundingClientRect().top;
+  // Wichtig: Der Shop kann bei iOS gegenueber dem Bildschirm verschoben sein.
+  // Deshalb NICHT navTop als Hoehe verwenden, sondern die Differenz.
+  const height=Math.round(navTop-shopTop);
   const max=Math.round(window.innerHeight);
-  if(top<250||top>max)return;
-  const value=top+'px';
+  if(shop.hidden||height<250||height>max+120)return;
+  const value=height+'px';
   if(shop.style.getPropertyValue('--facility-shop-visible-height')!==value)
    shop.style.setProperty('--facility-shop-visible-height',value);
  }
