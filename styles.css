@@ -3645,3 +3645,8 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   font-size:clamp(10px,2.9vw,12px)!important;
  }
 }
+
+/* Warenkorb: oberen Zurueck-Pfeil ausblenden; Navigation unten bleibt. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{display:none!important}
+}
