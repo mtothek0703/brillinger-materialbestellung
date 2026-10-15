@@ -1143,4 +1143,31 @@ window.addEventListener('pageshow',()=>{
  nav.addEventListener('focusin',reveal);
  reset();
 })();
+</script><script>
+/* Warenkorb: Zurueck-Button reagiert auf Scrollrichtung. */
+(function(){
+ const main=document.querySelector('#shop-view > main');
+ const link=document.querySelector('#shop-view .shop-layout > .mobile-back-to-shop');
+ if(!main||!link)return;
+ let last=0,travel=0,dir=0;
+ function reset(){
+  last=main.scrollTop||0;travel=0;dir=0;
+  link.classList.remove('cart-back-hidden');
+ }
+ main.addEventListener('scroll',()=>{
+  if(!document.body.classList.contains('mobile-cart-view')||innerWidth>720)return;
+  const now=Math.max(0,main.scrollTop);
+  const delta=now-last;last=now;
+  if(now<=5){link.classList.remove('cart-back-hidden');travel=0;dir=0;return;}
+  if(Math.abs(delta)<1)return;
+  const next=Math.sign(delta);
+  if(next!==dir){dir=next;travel=0;}
+  travel+=Math.abs(delta);
+  if(dir>0&&travel>=22){link.classList.add('cart-back-hidden');travel=0;}
+  if(dir<0&&travel>=10){link.classList.remove('cart-back-hidden');travel=0;}
+ },{passive:true});
+ document.addEventListener('facility:viewchange',reset);
+ window.addEventListener('hashchange',()=>requestAnimationFrame(reset));
+ window.addEventListener('pageshow',reset);
+})();
 </script></body></html>
