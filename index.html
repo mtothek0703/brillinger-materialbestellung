@@ -1149,7 +1149,7 @@ window.addEventListener('pageshow',()=>{
 (function(){
  const shop=document.getElementById('shop-view');
  const main=shop?.querySelector(':scope > main');
- const link=shop?.querySelector('.shop-layout > .mobile-back-to-shop');
+ const link=document.querySelector('.mobile-back-to-shop');
  if(!main||!link)return;
  const active=()=>document.body.classList.contains('mobile-cart-view')&&
    !shop.hidden&&window.matchMedia('(max-width:720px)').matches;
