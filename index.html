@@ -322,6 +322,27 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  window.addEventListener('scroll',schedule,{passive:true});
  window.addEventListener('hashchange',schedule);
 })();
+/* Die mobile Artikelliste endet exakt oberhalb der fixierten Navigation.
+   Die Leistenhoehe wird gemessen, damit auch iPhones mit Safe-Area passen. */
+(function(){
+ const nav=document.getElementById('facility-home-nav');
+ if(!nav)return;
+ function update(){
+  if(!window.matchMedia('(max-width:720px)').matches)return;
+  const height=Math.ceil(nav.getBoundingClientRect().height);
+  if(height>0&&height<220){
+   const value=height+'px';
+   if(document.documentElement.style.getPropertyValue('--facility-bottom-nav-height')!==value)
+    document.documentElement.style.setProperty('--facility-bottom-nav-height',value);
+  }
+ }
+ update();
+ document.addEventListener('DOMContentLoaded',update);
+ window.addEventListener('load',update);
+ window.addEventListener('resize',update,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',update,{passive:true});
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(update).observe(nav);
+})();
 /* Smartphone: Lupe in der unteren Navigation oeffnet die vorhandene
    Artikelsuche als aufklappbares Feld. Suche/Filter bleiben dieselben. */
 (function(){
