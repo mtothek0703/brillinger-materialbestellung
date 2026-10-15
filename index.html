@@ -816,10 +816,11 @@ window.addEventListener('pageshow',()=>{
   scrollDirection=0;
  }
  function positionControls(){
-  if(mobile.matches){
-   if(controls.parentElement!==shop)shop.insertBefore(controls,main);
-  }else if(controls.parentElement!==main){
-   main.insertBefore(controls,main.firstChild);
+  // Die komplette Filterleiste ist auf PC UND Smartphone ein direktes
+  // Kindelement des Shops. So kann sie nicht in einem scrollenden main
+  // gefangen bleiben. Smartphone-Scrolllogik bleibt unveraendert.
+  if(controls.parentElement!==shop||controls.nextElementSibling!==main){
+   shop.insertBefore(controls,main);
   }
   resetControls();
   updateControlHeight();
