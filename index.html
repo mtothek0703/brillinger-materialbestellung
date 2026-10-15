@@ -322,6 +322,33 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  window.addEventListener('scroll',schedule,{passive:true});
  window.addEventListener('hashchange',schedule);
 })();
+/* Smartphone: reale Oberkante der unteren Navigation bestimmt das Ende
+   des gesamten Shop-Viewports (nicht die Hoehe eines Artikels oder main).
+   Keine zusaetzlichen margin-bottom-Abstaende an den Artikeln. */
+(function(){
+ const nav=document.getElementById('facility-home-nav');
+ const shop=document.getElementById('shop-view');
+ if(!nav||!shop)return;
+ const mobile=window.matchMedia('(max-width:720px)');
+ function sync(){
+  if(!mobile.matches)return;
+  const top=Math.round(nav.getBoundingClientRect().top);
+  const max=Math.round(window.innerHeight);
+  if(top<250||top>max)return;
+  const value=top+'px';
+  if(shop.style.getPropertyValue('--facility-shop-visible-height')!==value)
+   shop.style.setProperty('--facility-shop-visible-height',value);
+ }
+ function schedule(){requestAnimationFrame(sync);}
+ schedule();
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('facility:viewchange',schedule);
+ window.addEventListener('load',schedule);
+ window.addEventListener('resize',schedule,{passive:true});
+ window.addEventListener('hashchange',schedule);
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',schedule,{passive:true});
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(schedule).observe(nav);
+})();
 /* Smartphone: Lupe in der unteren Navigation oeffnet die vorhandene
    Artikelsuche als aufklappbares Feld. Suche/Filter bleiben dieselben. */
 (function(){
