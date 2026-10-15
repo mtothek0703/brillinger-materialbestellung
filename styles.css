@@ -2398,3 +2398,24 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    padding-left:48px!important;
  }
 }
+
+
+/* PC: Suchfeld und Sonderartikelbutton pixelgenau gleich hoch.
+   Beide stehen zentriert in derselben Grid-Zeile. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls > .product-search {
+   align-self:center!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search #article-search,
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   box-sizing:border-box!important;
+   height:38px!important;
+   min-height:38px!important;
+   max-height:38px!important;
+ }
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   align-self:center!important;
+   margin:0!important;
+   padding:0 16px!important;
+ }
+}
