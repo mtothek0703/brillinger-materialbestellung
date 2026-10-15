@@ -2964,7 +2964,8 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    Ein eigener Hintergrund hinter der Statusleiste ist auf jeder App-Seite
    vorhanden - unabhaengig davon, ob Shop- oder Facility-Header sichtbar ist. */
 @media (max-width:720px) {
- html, html body { background-color:#1c398d!important; }
+ html { background-color:#1c398d!important; }
+ html body { background-color:#f3f6f8!important; }
  html body::before {
    content:""!important;
    display:block!important;
