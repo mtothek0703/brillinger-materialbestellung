@@ -1144,30 +1144,57 @@ window.addEventListener('pageshow',()=>{
  reset();
 })();
 </script><script>
-/* Warenkorb: Zurueck-Button reagiert auf Scrollrichtung. */
+/* Warenkorb: Zurueck-Button bei Aufwaertswisch ausblenden,
+   bei Abwaertswisch wieder anzeigen – auch wenn iOS kein Scroll-Event ausloest. */
 (function(){
- const main=document.querySelector('#shop-view > main');
- const link=document.querySelector('#shop-view .shop-layout > .mobile-back-to-shop');
+ const shop=document.getElementById('shop-view');
+ const main=shop?.querySelector(':scope > main');
+ const link=shop?.querySelector('.shop-layout > .mobile-back-to-shop');
  if(!main||!link)return;
- let last=0,travel=0,dir=0;
- function reset(){
-  last=main.scrollTop||0;travel=0;dir=0;
-  link.classList.remove('cart-back-hidden');
- }
- main.addEventListener('scroll',()=>{
-  if(!document.body.classList.contains('mobile-cart-view')||innerWidth>720)return;
-  const now=Math.max(0,main.scrollTop);
-  const delta=now-last;last=now;
-  if(now<=5){link.classList.remove('cart-back-hidden');travel=0;dir=0;return;}
-  if(Math.abs(delta)<1)return;
+ const active=()=>document.body.classList.contains('mobile-cart-view')&&
+   !shop.hidden&&window.matchMedia('(max-width:720px)').matches;
+ let last=0,travel=0,dir=0,touchY=null,touchX=null;
+ function show(){link.classList.remove('cart-back-hidden');}
+ function hide(){link.classList.add('cart-back-hidden');}
+ function reset(){last=main.scrollTop||0;travel=0;dir=0;touchY=null;touchX=null;show();}
+ function direction(delta){
+  if(Math.abs(delta)<2)return;
   const next=Math.sign(delta);
   if(next!==dir){dir=next;travel=0;}
   travel+=Math.abs(delta);
-  if(dir>0&&travel>=22){link.classList.add('cart-back-hidden');travel=0;}
-  if(dir<0&&travel>=10){link.classList.remove('cart-back-hidden');travel=0;}
- },{passive:true});
+  if(next>0&&travel>=13){hide();travel=0;}
+  else if(next<0&&travel>=9){show();travel=0;}
+ }
+ function onScroll(){
+  if(!active())return;
+  const now=Math.max(0,main.scrollTop);
+  const delta=now-last;last=now;
+  if(now<=3){show();travel=0;return;}
+  direction(delta);
+ }
+ function touchStart(event){
+  if(!active()||event.touches.length!==1)return;
+  touchY=event.touches[0].clientY;touchX=event.touches[0].clientX;
+ }
+ function touchMove(event){
+  if(!active()||touchY===null||event.touches.length!==1)return;
+  const y=event.touches[0].clientY,x=event.touches[0].clientX;
+  const dy=y-touchY,dx=x-touchX;
+  touchY=y;touchX=x;
+  if(Math.abs(dx)>Math.abs(dy)*1.3)return;
+  if(Math.abs(dy)<2)return;
+  // Finger nach oben: Button verbergen. Finger nach unten: anzeigen.
+  direction(-dy);
+ }
+ main.addEventListener('scroll',onScroll,{passive:true});
+ shop.addEventListener('scroll',onScroll,{passive:true});
+ main.addEventListener('touchstart',touchStart,{passive:true});
+ main.addEventListener('touchmove',touchMove,{passive:true});
+ main.addEventListener('touchend',()=>{touchY=null;touchX=null;},{passive:true});
+ main.addEventListener('touchcancel',()=>{touchY=null;touchX=null;},{passive:true});
  document.addEventListener('facility:viewchange',reset);
  window.addEventListener('hashchange',()=>requestAnimationFrame(reset));
  window.addEventListener('pageshow',reset);
+ reset();
 })();
 </script></body></html>
