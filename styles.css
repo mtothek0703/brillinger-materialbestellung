@@ -3281,3 +3281,21 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 @media(max-width:720px){
  html body.custom-entry-view #shop-view:not([hidden]) .mobile-back-to-shop{display:none!important}
 }
+
+/* Warenkorb: Zurueck zu den Artikeln bleibt direkt unter dem Shop-Header
+   fest im Viewport statt mit der Bestellliste zu scrollen. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+  position:fixed!important;
+  top:102px!important;
+  left:16px!important;
+  right:auto!important;
+  bottom:auto!important;
+  z-index:1150!important;
+  margin:0!important;
+  transform:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  padding-top:74px!important;
+ }
+}
