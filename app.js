@@ -241,6 +241,18 @@ function shopRankProducts(query){
  return {items:hits.map(hit=>hit.product),fuzzy:fuzzy&&hits.length>0};
 }
 
+const CATEGORY_ICONS={
+ 'Alle':'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+ 'Allgemein':'<path d="M3 7 12 2l9 5v10l-9 5-9-5z"/><path d="m3 7 9 5 9-5M12 12v10"/>',
+ 'Büromaterial':'<path d="m8 13 6.7-6.7a3 3 0 0 1 4.2 4.2l-8.5 8.5a5 5 0 0 1-7.1-7.1l8.5-8.5"/>',
+ 'Fahrzeugzubehör':'<path d="M3 6h12v11H3zM15 10h4l3 4v3h-7z"/><circle cx="7.5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/>',
+ 'Reinigung & Hygiene':'<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/>',
+ 'Küche':'<path d="M4 8h13v7a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6zM17 9h2a3 3 0 0 1 0 6h-2M3 21h16"/>',
+ 'Versand':'<rect x="3" y="9" width="8" height="8" rx="1"/><rect x="13" y="9" width="8" height="8" rx="1"/><path d="M8 9V3h8v6M3 17h18"/>'
+};
+function categoryIcon(category){
+ return '<span class="category-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(CATEGORY_ICONS[category]||CATEGORY_ICONS.Alle)+'</svg></span>';
+}
 const CATEGORIES=['Alle','Allgemein','Büromaterial','Fahrzeugzubehör','Reinigung & Hygiene','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
@@ -294,7 +306,7 @@ function renderProducts(){
   const categoryProducts=activeCategory===null?[]:activeCategory==='Alle'?PRODUCTS:PRODUCTS.filter(product=>product.category===activeCategory);
   const filtered=matching?matching.items:categoryProducts.slice().sort(shopProductSort);
   renderShopSearchSuggestions(matching);
-  $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${category}</button>`).join('');
+  $('category-filters').innerHTML=CATEGORIES.map(category=>`<button type="button" class="category-button ${category===activeCategory?'active':''}" data-category="${category}" aria-pressed="${category===activeCategory}">${categoryIcon(category)}<span class="category-tile-label">${category}</span></button>`).join('');
 
   $('products').innerHTML=filtered.map(p=>`<article class="product"><div class="product-top">${p.image?`<img class="product-image${p.id==='BM-007'?' product-image-milk':''}" src="${p.image}" alt="${p.name} – Produktabbildung">`:`<span class="product-symbol" aria-hidden="true">${p.symbol}</span>`}</div><div class="product-body"><h3>${p.id==='BM-037'?'Großraumtüte (Europack)<br>1.300 × 2.300 mm, 1.000 l':p.id==='BM-038'?'Matratzentüte auf Rolle<br>105 × 20 × 230 cm':p.id==='VS-010'?'Luftpolstertasche 18/H<br>265 × 360 mm, braun':p.id==='VS-016'?'Umreifungsband, Großrolle<br>12,7 × 0,5 mm':p.name}</h3>${p.unit?`<div class="unit">${p.unit}</div>`:''}${p.min?`<div class="unit">Mindestbestellmenge: ${p.min}</div>`:''}${['BM-028','BM-029'].includes(p.id)?`<label class="battery-label" for="pack-${p.id}">Packungsgröße auswählen</label><select class="battery-type" id="pack-${p.id}"><option value="" disabled ${!cableTiePackSizes[p.id]?'selected':''}></option>${['50','100'].map(n=>`<option value="${n}" ${cableTiePackSizes[p.id]===n?'selected':''}>${n} Stück</option>`).join('')}</select>`:''}${p.id==='BU-001'?`<label class="battery-label" for="edding3000-color">Farbe auswählen</label><select class="battery-type" id="edding3000-color">${['Schwarz','Blau','Rot','Grün'].map(c=>`<option value="${c}" ${edding3000Color===c?'selected':''}>${c}</option>`).join('')}</select>`:''}${p.id==='BU-002'?`<label class="battery-label" for="edding400-color">Farbe auswählen</label><select class="battery-type" id="edding400-color">${['Schwarz','Blau','Rot','Grün'].map(c=>`<option value="${c}" ${edding400Color===c?'selected':''}>${c}</option>`).join('')}</select>`:''}${p.id==='BM-022'?`<label class="battery-label" for="battery-type">Batterietyp / Größe</label><input class="battery-type" id="battery-type" type="text" maxlength="80" placeholder="z. B. AA, AAA, 9 V" value="${escapeHtml(batteryType)}" required><label class="battery-label" for="battery-pack-size">Packungsgröße</label><select class="battery-type" id="battery-pack-size"><option value="8" ${batteryPackSize==='8'?'selected':''}>8er-Pack</option><option value="24" ${batteryPackSize==='24'?'selected':''}>24er-Pack</option><option value="40" ${batteryPackSize==='40'?'selected':''}>40er-Pack</option></select>`:''}<div class="product-action">${quantityControl(p,minimum(p),'product')}<button type="button" class="primary" data-add="${p.id}">In den Warenkorb</button></div></div></article>`).join('');
   if(activeCategory===null&&!searchTerm)$('products').innerHTML='';
