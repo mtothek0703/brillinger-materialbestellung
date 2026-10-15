@@ -2546,3 +2546,26 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    margin-top:-2px!important;
  }
 }
+
+
+/* PC: Such-/Kategorienleiste bleibt dauerhaft unter dem festen Header.
+   Eigene gemessene linke Kante verhindert horizontales Verrutschen. */
+@media (min-width:721px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
+   padding-top:calc(var(--desktop-fixed-filters-height,132px) + 24px)!important;
+   overflow:visible!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main > .mobile-sticky-controls {
+   position:fixed!important;
+   top:var(--desktop-filters-top,var(--desktop-shop-header-height,96px))!important;
+   left:var(--desktop-filters-left,24px)!important;
+   right:auto!important;
+   width:var(--desktop-filters-width,calc(100% - 48px))!important;
+   max-width:none!important;
+   transform:none!important;
+   margin:0!important;
+   z-index:1100!important;
+   background:#f3f6f8!important;
+   box-sizing:border-box!important;
+ }
+}
