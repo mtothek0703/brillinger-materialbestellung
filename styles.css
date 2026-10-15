@@ -3328,3 +3328,13 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
  }
 }
 html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
+
+/* Smartphone-Warenkorb: Bestellkachel direkt unter den fixierten Zurueck-Button ruecken. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  padding-top:0!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > main{
+  padding-top:86px!important;
+ }
+}
