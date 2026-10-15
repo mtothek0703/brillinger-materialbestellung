@@ -1425,8 +1425,10 @@ html body #facility-blue-header .facility-header-brand img{
  html body:has(#shop-view:not([hidden])) #facility-home-nav{
   display:flex!important;justify-content:center!important;align-items:center!important;
  }
+ /* Der Shop hat ein eigenes Scrollfenster. Hier darf kein zusaetzlicher
+    unterer Abstand stehen: sonst schrumpft die Artikelliste sichtbar. */
  html body:has(#shop-view:not([hidden])) #shop-view{
-  padding-bottom:calc(110px + env(safe-area-inset-bottom))!important;
+  padding-bottom:0!important;
  }
  html body:has(#shop-view:not([hidden])) #shop-view > header #profile-edit{display:none!important}
 }
