@@ -2816,3 +2816,85 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   text-align:center!important;
  }
 }
+
+
+/* Reparatur Mobile-Navigation: aeltere Regeln mit :has(...) erzwingen
+   display:flex. Alle Zustandsvarianten muessen stattdessen dasselbe
+   4-Spalten-Grid verwenden, auch beim Scrollen im Shop. */
+@media (max-width:720px) {
+ html body #facility-home-nav,
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav {
+   display:grid!important;
+   grid-template-columns:repeat(4,minmax(0,1fr))!important;
+   grid-template-rows:minmax(48px,auto)!important;
+   gap:0!important;
+   align-items:center!important;
+   justify-items:stretch!important;
+   justify-content:stretch!important;
+   padding-left:8px!important;
+   padding-right:8px!important;
+ }
+ html body #facility-home-nav > a,
+ html body #facility-home-nav > button,
+ html body #facility-home-nav > #facility-profile-slot {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr)!important;
+   grid-template-rows:30px 17px!important;
+   gap:3px!important;
+   align-items:center!important;
+   justify-items:center!important;
+   align-content:center!important;
+   justify-content:center!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:none!important;
+   height:50px!important;
+   min-height:50px!important;
+   padding:0!important;
+   margin:0!important;
+   box-sizing:border-box!important;
+   align-self:center!important;
+   justify-self:stretch!important;
+   flex:none!important;
+   text-align:center!important;
+ }
+ html body #facility-home-nav > a > svg,
+ html body #facility-home-nav > button > svg {
+   grid-row:1!important;
+   width:29px!important;
+   height:29px!important;
+   margin:0!important;
+   align-self:center!important;
+   justify-self:center!important;
+ }
+ html body #facility-home-nav > a > strong,
+ html body #facility-home-nav > a > span,
+ html body #facility-home-nav > button > .facility-search-label,
+ html body #facility-home-nav #facility-profile-slot > .facility-profile-label {
+   grid-row:2!important;
+   display:block!important;
+   margin:0!important;
+   padding:0!important;
+   font-size:12px!important;
+   font-weight:700!important;
+   line-height:17px!important;
+   white-space:nowrap!important;
+   text-align:center!important;
+ }
+ html body #facility-home-nav #facility-profile-slot #profile-edit {
+   grid-row:1!important;
+   align-self:center!important;
+   justify-self:center!important;
+   width:30px!important;
+   min-width:30px!important;
+   max-width:30px!important;
+   height:30px!important;
+   min-height:30px!important;
+   max-height:30px!important;
+   flex:none!important;
+   margin:0!important;
+   padding:0!important;
+ }
+}
