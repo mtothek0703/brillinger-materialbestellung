@@ -3461,3 +3461,18 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   stroke-width:3.4!important;
  }
 }
+
+/* Untere Navigation: Zurueck-Taste zwischen Start und Suche. */
+@media(max-width:720px){
+ html body #facility-home-nav{gap:0!important;justify-content:space-around!important}
+ html body #facility-home-nav > #facility-back-nav{
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  justify-content:center!important;gap:3px!important;flex:1 1 0!important;
+  min-width:0!important;padding:4px 2px!important;border:0!important;
+  background:transparent!important;color:#001b79!important;
+  font:inherit!important;cursor:pointer;
+ }
+ html body #facility-home-nav > #facility-back-nav svg{width:29px!important;height:29px!important}
+ html body #facility-home-nav > #facility-back-nav span{font-size:11px!important;font-weight:700!important;line-height:1.2!important}
+}
+@media(min-width:721px){#facility-home-nav > #facility-back-nav{display:none!important}}
