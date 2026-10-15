@@ -2419,3 +2419,25 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    padding:0 16px!important;
  }
 }
+
+
+/* Desktop: Suche, Sonderartikel und Kategorien dauerhaft am oberen Fensterrand.
+   Der normale Dokument-Scroll bleibt aktiv; nur die PC-Ansicht ist betroffen. */
+@media (min-width:721px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
+   padding-top:calc(10px + var(--desktop-fixed-filters-height,132px))!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .mobile-sticky-controls {
+   position:fixed!important;
+   top:var(--desktop-shop-header-height,96px)!important;
+   left:50%!important;
+   right:auto!important;
+   width:calc(100% - 48px)!important;
+   max-width:1280px!important;
+   margin:0!important;
+   transform:translateX(-50%)!important;
+   z-index:1100!important;
+   background:#f3f6f8!important;
+   box-sizing:border-box!important;
+ }
+}
