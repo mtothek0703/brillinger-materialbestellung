@@ -3161,8 +3161,11 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    Symbolen und Beschriftungen; Abmessungen und Raster unveraendert. */
 @media(max-width:720px){
  html body #facility-home-nav{
-   background:#0346ae!important;
-   border-color:#0346ae!important;
+   background:linear-gradient(180deg,#063895 0%,#001b79 100%)!important;
+   border-color:transparent!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav{
+   background:linear-gradient(180deg,#20469b 0%,#07176b 100%)!important;
  }
  html body #facility-home-nav > a[href="#start"],
  html body #facility-home-nav > #facility-search-toggle,
