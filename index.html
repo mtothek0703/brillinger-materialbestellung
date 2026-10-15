@@ -231,6 +231,27 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  window.addEventListener('hashchange',()=>requestAnimationFrame(alignDesktopSearchAction));
  document.addEventListener('DOMContentLoaded',start);
 })();
+/* PC: Abstand fuer die fixierte Such- und Kategorienleiste messen.
+   Auch bei anderen Browser-Zoomstufen und geaenderten Kategorien korrekt. */
+(function(){
+ function measure(){
+  if(!window.matchMedia('(min-width:721px)').matches)return;
+  const controls=document.querySelector('#shop-view .mobile-sticky-controls');
+  if(!controls||getComputedStyle(controls).display==='none')return;
+  const height=Math.ceil(controls.getBoundingClientRect().height);
+  if(height>0)document.documentElement.style.setProperty('--desktop-fixed-filters-height',height+'px');
+ }
+ function init(){
+  measure();
+  requestAnimationFrame(measure);
+  const controls=document.querySelector('#shop-view .mobile-sticky-controls');
+  if(controls&&typeof ResizeObserver!=='undefined')new ResizeObserver(measure).observe(controls);
+ }
+ document.addEventListener('DOMContentLoaded',init);
+ window.addEventListener('load',measure);
+ window.addEventListener('resize',measure,{passive:true});
+ window.addEventListener('hashchange',()=>requestAnimationFrame(measure));
+})();
 async function refreshFacilityApp(button){
  if(button)button.disabled=true;
  try{await window.facilityApplyUpdates?.();}
