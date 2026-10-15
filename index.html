@@ -353,6 +353,23 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  if(window.visualViewport)window.visualViewport.addEventListener('resize',schedule,{passive:true});
  if(typeof ResizeObserver!=='undefined')new ResizeObserver(schedule).observe(nav);
 })();
+/* Smartphone: Bestell-/Statusmeldungen sind vom scrollbaren
+   Shopinhalt unabhaengig und erscheinen unterhalb des blauen Headers. */
+(function(){
+ const feedback=document.getElementById('feedback');
+ const main=document.querySelector('#shop-view > main');
+ if(!feedback||!main)return;
+ const mobile=window.matchMedia('(max-width:720px)');
+ function sync(){
+  if(mobile.matches){
+   if(feedback.parentElement!==document.body)document.body.appendChild(feedback);
+  }else if(feedback.parentElement!==main){
+   main.appendChild(feedback);
+  }
+ }
+ sync();
+ window.addEventListener('resize',sync,{passive:true});
+})();
 /* Smartphone-Warenkorb: Original-Bestellbutton ausserhalb des
    scrollenden main positionieren. Das form-Attribut stellt sicher,
    dass weiterhin dasselbe Bestellformular abgeschickt wird. */
