@@ -2357,7 +2357,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    und unten mit der Suchleiste ausrichten. Smartphone unveraendert. */
 @media (min-width:721px) {
  html body #shop-view .mobile-sticky-controls > .custom-entry-link {
-   align-self:end!important;
+   align-self:center!important;
    box-sizing:border-box!important;
    height:36px!important;
    min-height:36px!important;
