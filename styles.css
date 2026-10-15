@@ -3523,3 +3523,60 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   color:#0346ae!important;
  }
 }
+
+/* Korrektur: Mobile Bottom-Navigation strikt einzeilig mit fuenf Spalten.
+   Auch alte Flex/Grid-Zuweisungen fuer die Einzelelemente neutralisieren. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:50px!important;
+  grid-auto-flow:row!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  align-content:center!important;
+  justify-content:stretch!important;
+  gap:0!important;
+  flex-wrap:nowrap!important;
+  background:#fff!important;
+  padding-left:5px!important;
+  padding-right:5px!important;
+ }
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-custom-entry-nav,
+ html body #facility-home-nav > #facility-profile-slot{
+  grid-row:1!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:29px 17px!important;
+  place-items:center!important;
+  align-content:center!important;
+  gap:3px!important;
+  width:100%!important;
+  min-width:0!important;
+  height:50px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
+ html body #facility-home-nav > #facility-back-nav > svg{
+  grid-column:1!important;grid-row:1!important;
+  width:29px!important;height:29px!important;
+  justify-self:center!important;align-self:center!important;
+ }
+ html body #facility-home-nav > #facility-back-nav > span{
+  grid-column:1!important;grid-row:2!important;
+  font-size:12px!important;line-height:17px!important;
+  font-weight:700!important;color:#0346ae!important;
+  white-space:nowrap!important;text-align:center!important;
+ }
+}
