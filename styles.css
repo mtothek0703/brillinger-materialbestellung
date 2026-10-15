@@ -3396,3 +3396,10 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
   white-space:nowrap!important;
  }
 }
+
+/* Artikelansicht: Hintergrund hinter den Produktkacheln wieder weiss. */
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main,
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout,
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .products{
+ background:#fff!important;
+}
