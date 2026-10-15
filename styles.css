@@ -2677,3 +2677,23 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   border:0!important;
  }
 }
+
+
+/* Smartphone: alte obere "Artikel nicht gefunden?"-Kachel definitiv entfernen.
+   Der neue Navigationspunkt Artikelwunsch bleibt erhalten. */
+@media (max-width:720px){
+ html body:not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls > a.custom-entry-link,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls > a.custom-entry-link {
+   display:none!important;
+   visibility:hidden!important;
+   position:absolute!important;
+   width:0!important;
+   height:0!important;
+   min-height:0!important;
+   max-height:0!important;
+   padding:0!important;
+   margin:0!important;
+   border:0!important;
+   overflow:hidden!important;
+ }
+}
