@@ -330,8 +330,14 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  const shop=document.getElementById('shop-view');
  if(!button||!input||!shop)return;
  const isMobile=()=>window.matchMedia('(max-width:720px)').matches;
+ const searchBox=shop.querySelector('.product-search');
+ const originalParent=searchBox?.parentElement;
+ const originalNext=searchBox?.nextSibling;
  function setOpen(open){
   open=Boolean(open&&isMobile()&&!shop.hidden&&!document.body.classList.contains('mobile-cart-view')&&!document.body.classList.contains('custom-entry-view'));
+  if(open&&searchBox&&searchBox.parentElement!==document.body)document.body.appendChild(searchBox);
+  if(!open&&searchBox&&originalParent&&searchBox.parentElement!==originalParent)
+   originalParent.insertBefore(searchBox,originalNext&&originalNext.parentNode===originalParent?originalNext:null);
   document.body.classList.toggle('facility-search-open',open);
   button.setAttribute('aria-expanded',String(open));
   button.setAttribute('aria-label',open?'Artikelsuche schließen':'Artikelsuche öffnen');
