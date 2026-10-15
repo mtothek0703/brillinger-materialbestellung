@@ -3260,3 +3260,11 @@ html body:has(#shop-view:not([hidden])){background:#1c398d!important}
 html body #shop-view:not([hidden]),
 html body #shop-view:not([hidden]) > main{background:#1c398d!important}
 html body #shop-view:not([hidden]) .mobile-sticky-controls{background:#1c398d!important}
+
+/* Kategorien ohne aeussere Kachel: einzelne Kategorie-Buttons bleiben unveraendert. */
+html body #shop-view .category-nav{
+ background:transparent!important;
+ border:0!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+}
