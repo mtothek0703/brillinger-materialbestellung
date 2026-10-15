@@ -3476,3 +3476,50 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
  html body #facility-home-nav > #facility-back-nav span{font-size:11px!important;font-weight:700!important;line-height:1.2!important}
 }
 @media(min-width:721px){#facility-home-nav > #facility-back-nav{display:none!important}}
+
+/* Farbkonzept beibehalten: weisse untere Leiste, alle fuenf Symbole
+   identisch Brillinger-blau und gleichmaessig verteilt. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  background:#fff!important;
+  column-gap:0!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
+ html body #facility-home-nav > #facility-back-nav{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:29px 17px!important;
+  align-items:center!important;
+  justify-items:center!important;
+  align-content:center!important;
+  gap:3px!important;
+  width:100%!important;
+  height:50px!important;
+  min-height:50px!important;
+  max-height:50px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-back-nav svg{
+  grid-row:1!important;
+  width:29px!important;height:29px!important;
+  stroke:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-back-nav span{
+  grid-row:2!important;
+  font-size:12px!important;
+  line-height:17px!important;
+  font-weight:700!important;
+  color:#0346ae!important;
+ }
+}
