@@ -3038,3 +3038,37 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    box-shadow:none!important;
  }
 }
+
+
+/* Smartphone: Bestellen bleibt im Warenkorb dauerhaft oberhalb der
+   unteren vierteiligen Navigation. Nur der Warenkorbinhalt scrollt. */
+@media(max-width:720px){
+ html body.mobile-cart-view > #order-button {
+   display:flex!important;
+   position:fixed!important;
+   inset:auto 16px var(--mobile-order-bottom,100px) 16px!important;
+   z-index:1250!important;
+   box-sizing:border-box!important;
+   width:calc(100% - 32px)!important;
+   max-width:688px!important;
+   min-height:52px!important;
+   height:52px!important;
+   margin:0 auto!important;
+   padding:10px 16px!important;
+   justify-content:center!important;
+   align-items:center!important;
+   text-align:center!important;
+   border-radius:12px!important;
+   background:#071b7c!important;
+   color:white!important;
+   box-shadow:0 3px 14px #092a5b28!important;
+ }
+ html body.mobile-cart-view > #order-button:disabled {
+   background:#9daaba!important;
+   color:#fff!important;
+   box-shadow:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > main {
+   padding-bottom:calc(185px + env(safe-area-inset-bottom))!important;
+ }
+}
