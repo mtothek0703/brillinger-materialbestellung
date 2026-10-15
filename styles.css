@@ -3036,3 +3036,18 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    box-shadow:none!important;
  }
 }
+
+
+/* Smartphone: Artikel-Scrollbereich endet physisch oberhalb der unteren
+   Navigation, statt hinter ihrem weissen Hintergrund abgeschnitten zu werden.
+   Die Innenpolsterung wird zurueckgenommen, damit der letzte Artikel nicht
+   durch einen doppelten unteren Abstand aus dem Blick geraet. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main {
+   margin:0 0 var(--facility-bottom-nav-height,calc(78px + env(safe-area-inset-bottom)))!important;
+   padding-bottom:18px!important;
+   min-height:0!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:contain!important;
+ }
+}
