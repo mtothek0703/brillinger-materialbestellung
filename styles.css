@@ -3276,3 +3276,8 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   pointer-events:none!important;
  }
 }
+
+/* Artikelwunsch: Zurueck-zu-den-Artikeln-Button hier nicht anzeigen. */
+@media(max-width:720px){
+ html body.custom-entry-view #shop-view:not([hidden]) .mobile-back-to-shop{display:none!important}
+}
