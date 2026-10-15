@@ -2464,3 +2464,32 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    z-index:2!important;
  }
 }
+
+
+/* DESKTOP LAYOUT REPAIR: die Suchleiste wieder im normalen Main-Layout
+   verankern. Sticky fixiert sie beim Scrollen unterhalb des festen Headers,
+   ohne den Viewport-Offset/translateX der vorherigen Version. */
+@media (min-width:721px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
+   padding-top:10px!important;
+   overflow:visible!important;
+   max-width:1328px!important;
+   margin-left:auto!important;
+   margin-right:auto!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main > .mobile-sticky-controls {
+   position:sticky!important;
+   top:var(--desktop-shop-header-height,96px)!important;
+   left:auto!important;
+   right:auto!important;
+   width:100%!important;
+   max-width:none!important;
+   margin:0 0 14px!important;
+   transform:none!important;
+   z-index:1100!important;
+   box-sizing:border-box!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
+   top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
+ }
+}
