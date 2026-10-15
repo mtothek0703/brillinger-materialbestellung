@@ -2754,14 +2754,14 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 .category-tile-icon{display:none}
 @media(max-width:720px){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav{
-  padding:5px 10px!important;
+  padding:3px 8px!important;
   margin:0!important;
   background:transparent!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:5px!important;
+  gap:4px!important;
   align-items:stretch!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
@@ -2769,13 +2769,13 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   flex-direction:column!important;
   align-items:center!important;
   justify-content:center!important;
-  gap:3px!important;
+  gap:2px!important;
   width:100%!important;
   min-width:0!important;
-  min-height:64px!important;
+  min-height:56px!important;
   height:auto!important;
   margin:0!important;
-  padding:6px 2px!important;
+  padding:4px 2px!important;
   border:1px solid #d9e4f0!important;
   border-radius:10px!important;
   background:#fff!important;
@@ -2795,17 +2795,17 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
   display:flex!important;
-  width:20px!important;
-  height:20px!important;
-  flex:0 0 20px!important;
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
   align-items:center!important;
   justify-content:center!important;
   color:#0346ae!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
   display:block!important;
-  width:19px!important;
-  height:19px!important;
+  width:17px!important;
+  height:17px!important;
  }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-label{
   display:block!important;
