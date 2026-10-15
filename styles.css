@@ -3242,3 +3242,15 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   top:calc(-1 * var(--facility-pull-distance,0px) / 2 - 21px)!important;
  }
 }
+
+/* Smartphone-Suche: keine zusaetzliche Kachel um die Eingabeleiste.
+   Position und Suchfunktion bleiben unveraendert. */
+@media(max-width:720px){
+ html body.facility-search-open > .product-search{
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+ }
+}
