@@ -2421,189 +2421,76 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 
 
-/* Desktop: Suche, Sonderartikel und Kategorien dauerhaft am oberen Fensterrand.
-   Der normale Dokument-Scroll bleibt aktiv; nur die PC-Ansicht ist betroffen. */
+/* Einheitliches Desktop-Layout. Die Smartphone-Regeln bleiben unangetastet.
+   Suchleiste wird als komplettes Element direkt unter den fixierten Shopkopf
+   gesetzt. Der Artikelbereich bleibt im normalen Dokumentfluss. */
 @media (min-width:721px) {
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
-   padding-top:calc(10px + var(--desktop-fixed-filters-height,132px))!important;
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) {
+   overflow:visible!important;
  }
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .mobile-sticky-controls {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr) auto!important;
+   align-items:center!important;
    position:fixed!important;
-   top:var(--desktop-shop-header-height,96px)!important;
-   left:50%!important;
-   right:auto!important;
-   width:calc(100% - 48px)!important;
-   max-width:1280px!important;
-   margin:0!important;
-   transform:translateX(-50%)!important;
-   z-index:1100!important;
-   background:#f3f6f8!important;
-   box-sizing:border-box!important;
- }
-}
-
-
-/* Desktop: Bestelluebersicht rechts beim Scrollen sichtbar halten.
-   Die beiden fixierten oberen Leisten bestimmen die freie Bildschirmhoehe.
-   Nur der Warenkorb selbst scrollt, falls sein Inhalt zu lang wird. */
-@media (min-width:721px) {
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout {
-   align-items:start!important;
-   overflow:visible!important;
- }
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
-   position:sticky!important;
-   top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
-   align-self:start!important;
-   max-height:calc(100dvh - var(--desktop-shop-header-height,96px) - var(--desktop-fixed-filters-height,132px) - 24px)!important;
-   min-height:0!important;
-   overflow-y:auto!important;
-   overflow-x:hidden!important;
-   overscroll-behavior-y:contain!important;
-   scrollbar-width:thin;
-   z-index:2!important;
- }
-}
-
-
-/* DESKTOP LAYOUT REPAIR: die Suchleiste wieder im normalen Main-Layout
-   verankern. Sticky fixiert sie beim Scrollen unterhalb des festen Headers,
-   ohne den Viewport-Offset/translateX der vorherigen Version. */
-@media (min-width:721px) {
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
-   padding-top:10px!important;
-   overflow:visible!important;
-   max-width:1328px!important;
-   margin-left:auto!important;
-   margin-right:auto!important;
- }
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main > .mobile-sticky-controls {
-   position:sticky!important;
-   top:var(--desktop-shop-header-height,96px)!important;
-   left:auto!important;
-   right:auto!important;
-   width:100%!important;
+   inset:auto!important;
+   top:var(--desktop-filters-top,var(--desktop-shop-header-height,96px))!important;
+   left:var(--desktop-filters-left,24px)!important;
+   width:var(--desktop-filters-width,calc(100% - 48px))!important;
    max-width:none!important;
-   margin:0 0 14px!important;
+   height:auto!important;
+   padding:8px 0 10px!important;
+   margin:0!important;
    transform:none!important;
-   z-index:1100!important;
    box-sizing:border-box!important;
+   background:#f3f6f8!important;
+   z-index:1140!important;
  }
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
-   top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls .category-nav {
+   grid-column:1 / -1!important;
  }
-}
-
-
-/* PC: Warenkorb immer rechts im Sichtbereich halten.
-   Die Grid-Spalte bleibt reserviert, waehrend der Kasten selbst viewport-fixiert
-   ist. Desktop-Dialog und die gesamte Smartphone-Ansicht bleiben unberuehrt. */
-@media (min-width:721px) {
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
+   box-sizing:border-box!important;
+   max-width:1328px!important;
+   width:100%!important;
+   margin:0 auto!important;
+   padding:calc(var(--desktop-fixed-filters-height,132px) + 24px) 24px 60px!important;
+   height:auto!important;
+   overflow:visible!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .shop-layout {
+   display:grid!important;
    grid-template-columns:minmax(0,1fr) 370px!important;
+   align-items:start!important;
+   gap:30px!important;
+   overflow:visible!important;
  }
  html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
    position:fixed!important;
-   top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
-   right:max(24px,calc((100vw - 1328px)/2 + 24px))!important;
+   top:var(--desktop-cart-top,260px)!important;
+   right:var(--desktop-cart-right,24px)!important;
    left:auto!important;
    bottom:auto!important;
-   width:370px!important;
-   max-width:370px!important;
-   max-height:calc(100dvh - var(--desktop-shop-header-height,96px) - var(--desktop-fixed-filters-height,132px) - 24px)!important;
+   width:var(--desktop-cart-width,370px)!important;
+   max-width:var(--desktop-cart-width,370px)!important;
+   max-height:calc(100dvh - var(--desktop-cart-top,260px) - 12px)!important;
    overflow-y:auto!important;
    overflow-x:hidden!important;
    box-sizing:border-box!important;
    transform:none!important;
-   z-index:1050!important;
- }
-}
-@media (min-width:721px) and (max-width:1050px) {
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout {
-   grid-template-columns:minmax(0,1fr) 330px!important;
- }
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
-   width:330px!important;
-   max-width:330px!important;
- }
-}
-
-
-/* Desktop-Korrektur: Warenkorb unter der tatsaechlich sichtbaren
-   Such-/Kategorienleiste ausrichten, nicht an einer geratenen Pixelzahl.
-   Titel bleibt im eigenstaendig scrollbaren Warenkorb stets sichtbar. */
-@media (min-width:721px) {
- html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
-   top:var(--desktop-cart-top,260px)!important;
-   max-height:calc(100dvh - var(--desktop-cart-top,260px) - 12px)!important;
+   z-index:1090!important;
  }
  html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) #warenkorb > .section-heading {
    position:sticky!important;
    top:-1px!important;
-   background:#fff!important;
-   z-index:3!important;
-   padding:2px 0 12px!important;
-   margin-top:-2px!important;
+   background:white!important;
+   z-index:2!important;
+   padding:2px 0 10px!important;
  }
 }
-
-
-/* PC: Such-/Kategorienleiste bleibt dauerhaft unter dem festen Header.
-   Eigene gemessene linke Kante verhindert horizontales Verrutschen. */
-@media (min-width:721px) {
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
-   padding-top:calc(var(--desktop-fixed-filters-height,132px) + 24px)!important;
-   overflow:visible!important;
- }
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main > .mobile-sticky-controls {
-   position:fixed!important;
-   top:var(--desktop-filters-top,var(--desktop-shop-header-height,96px))!important;
-   left:var(--desktop-filters-left,24px)!important;
-   right:auto!important;
-   width:var(--desktop-filters-width,calc(100% - 48px))!important;
-   max-width:none!important;
-   transform:none!important;
-   margin:0!important;
-   z-index:1100!important;
-   background:#f3f6f8!important;
-   box-sizing:border-box!important;
- }
-}
-
-
-/* Definitive PC-Kopfzone: Filter sind nun ein GESCHWISTER von main.
-   Sticky bleibt im Seitenfluss (keine Scrollfalle und kein Overlay).
-   Nur Desktop; die mobile Darstellung wird nicht beeinflusst. */
-@media (min-width:721px) {
- html body #shop-view:not([hidden]) {
-   overflow:visible!important;
- }
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls {
-   display:grid!important;
-   position:sticky!important;
-   top:var(--desktop-shop-header-height,96px)!important;
-   inset-block-start:var(--desktop-shop-header-height,96px)!important;
-   left:auto!important;
-   right:auto!important;
-   bottom:auto!important;
-   width:calc(100% - 48px)!important;
-   max-width:1280px!important;
-   height:auto!important;
-   margin:0 auto 0!important;
-   transform:none!important;
-   overflow:visible!important;
-   z-index:1100!important;
-   box-sizing:border-box!important;
-   background:#f3f6f8!important;
- }
- html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
-   padding-top:14px!important;
-   max-width:1328px!important;
-   margin:0 auto!important;
-   overflow:visible!important;
- }
- html body.custom-entry-view #shop-view:not([hidden]) > .mobile-sticky-controls {
-   display:none!important;
+@media (min-width:721px) and (max-width:1050px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .shop-layout {
+   grid-template-columns:minmax(0,1fr) 330px!important;
+   gap:20px!important;
  }
 }
