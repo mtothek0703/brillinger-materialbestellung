@@ -2455,8 +2455,8 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    max-width:1328px!important;
    width:100%!important;
    margin:0 auto!important;
-   /* Fixed controls are out of document flow: reserve their height once. */
-   padding:calc(var(--desktop-fixed-filters-height,132px) + 14px) 24px 60px!important;
+   /* Der Shop selbst besitzt bereits den Abstand zur fixierten Kopfzone. */
+   padding:14px 24px 60px!important;
    height:auto!important;
    overflow:visible!important;
  }
