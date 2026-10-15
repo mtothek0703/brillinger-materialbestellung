@@ -287,8 +287,18 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   const top=Math.max(headerRect.bottom,controlsRect.bottom)+14;
   const bounded=Math.min(Math.round(top),Math.max(0,innerHeight-120));
   const value=bounded+'px';
-  if(document.documentElement.style.getPropertyValue('--desktop-cart-top')!==value)
-   document.documentElement.style.setProperty('--desktop-cart-top',value);
+  const layout=shop.querySelector('.shop-layout');
+  const layoutRect=layout?.getBoundingClientRect();
+  const width=innerWidth<=1050?330:370;
+  const right=layoutRect?Math.max(12,Math.round(innerWidth-layoutRect.right)):24;
+  const values={
+   '--desktop-cart-top':value,
+   '--desktop-cart-right':right+'px',
+   '--desktop-cart-width':width+'px'
+  };
+  for(const [key,next] of Object.entries(values))
+   if(document.documentElement.style.getPropertyValue(key)!==next)
+    document.documentElement.style.setProperty(key,next);
  }
  function schedule(){
   if(pending)return;
