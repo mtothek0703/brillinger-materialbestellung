@@ -393,9 +393,25 @@ function syncMobileShopView(){
       backLink.textContent='←';
       backLink.setAttribute('aria-label','Zurück zu den Artikeln');
       backLink.setAttribute('title','Zurück zu den Artikeln');
+      // iOS: direkte Styles am echten Header-Button verhindern konkurrierende CSS-Regeln.
+      const fixedStyle={
+        display:'inline-flex',alignItems:'center',justifyContent:'center',
+        position:'relative',width:'40px',minWidth:'40px',maxWidth:'40px',height:'40px',
+        padding:'0',background:'#ffffff',backgroundColor:'#ffffff',
+        color:'#1c398d',webkitTextFillColor:'#1c398d',
+        border:'1px solid #ffffff',borderRadius:'10px',
+        fontSize:'24px',fontWeight:'700',lineHeight:'1',
+        textDecoration:'none',boxShadow:'none'
+      };
+      for(const [key,value] of Object.entries(fixedStyle)){
+        backLink.style.setProperty(key.replace(/[A-Z]/g,c=>'-'+c.toLowerCase()),value,'important');
+      }
     }else{
       backLink.textContent='← Zurück zu den Artikeln';
       backLink.removeAttribute('title');
+      for(const name of ['align-items','justify-content','position','width','min-width','max-width','height','padding','background','background-color','color','-webkit-text-fill-color','border','border-radius','font-size','font-weight','line-height','text-decoration','box-shadow']){
+        backLink.style.removeProperty(name);
+      }
     }
     backLink.style.setProperty('display',isCustom?'none':'','important');
     if(!isCustom)backLink.style.removeProperty('display');
