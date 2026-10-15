@@ -3580,3 +3580,36 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   white-space:nowrap!important;text-align:center!important;
  }
 }
+
+/* Fuenf Navigationspunkte: dem langen Titel Artikelwunsch genug Platz geben,
+   ohne dass die Beschriftung den Profil-Button ueberlappt. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  grid-template-columns:minmax(0,.95fr) minmax(0,.85fr) minmax(0,.85fr) minmax(0,1.45fr) minmax(0,.75fr)!important;
+  overflow:visible!important;
+ }
+ html body #facility-home-nav > #facility-custom-entry-nav > .facility-custom-entry-label{
+  display:block!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  font-size:12px!important;
+  line-height:17px!important;
+  font-weight:700!important;
+  letter-spacing:-.2px!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  width:100%!important;
+  min-width:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  font-size:12px!important;
+ }
+}
