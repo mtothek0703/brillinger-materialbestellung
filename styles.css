@@ -2351,3 +2351,23 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
     z-index:1050!important;
   }
 }
+
+
+/* PC: "Artikel nicht gefunden?" exakt so flach wie das Suchfeld
+   und unten mit der Suchleiste ausrichten. Smartphone unveraendert. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   align-self:end!important;
+   box-sizing:border-box!important;
+   height:36px!important;
+   min-height:36px!important;
+   max-height:36px!important;
+   padding:0 16px!important;
+   margin:0!important;
+   display:inline-flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   line-height:1.2!important;
+   white-space:nowrap!important;
+ }
+}
