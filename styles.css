@@ -2371,3 +2371,30 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    white-space:nowrap!important;
  }
 }
+
+
+/* Nur PC: vorhandene Lupe in das Suchfeld versetzen.
+   Mobile Icon-Position und Suchfeld bleiben vollkommen unveraendert. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls .product-search {
+   position:relative!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search > label[for="article-search"] {
+   position:absolute!important;
+   left:34px!important;
+   bottom:16px!important;
+   top:auto!important;
+   width:23px!important;
+   height:23px!important;
+   margin:0!important;
+   display:flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   color:#203947!important;
+   pointer-events:none!important;
+   z-index:2!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search #article-search {
+   padding-left:48px!important;
+ }
+}
