@@ -353,6 +353,39 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  if(window.visualViewport)window.visualViewport.addEventListener('resize',schedule,{passive:true});
  if(typeof ResizeObserver!=='undefined')new ResizeObserver(schedule).observe(nav);
 })();
+/* Smartphone-Warenkorb: Original-Bestellbutton ausserhalb des
+   scrollenden main positionieren. Das form-Attribut stellt sicher,
+   dass weiterhin dasselbe Bestellformular abgeschickt wird. */
+(function(){
+ const button=document.getElementById('order-button');
+ const form=document.getElementById('order-form');
+ const nav=document.getElementById('facility-home-nav');
+ if(!button||!form||!nav)return;
+ const mobile=window.matchMedia('(max-width:720px)');
+ button.setAttribute('form','order-form');
+ function sync(){
+  const show=mobile.matches&&document.body.classList.contains('mobile-cart-view');
+  if(show){
+   if(button.parentElement!==document.body)document.body.appendChild(button);
+   const rect=nav.getBoundingClientRect();
+   const below=Math.max(0,window.innerHeight-rect.top);
+   const bottom=Math.max(68,Math.min(180,Math.ceil(below+10)))+'px';
+   if(document.documentElement.style.getPropertyValue('--mobile-order-bottom')!==bottom)
+    document.documentElement.style.setProperty('--mobile-order-bottom',bottom);
+  }else if(button.parentElement!==form){
+   form.appendChild(button);
+  }
+ }
+ function later(){requestAnimationFrame(sync)}
+ sync();
+ document.addEventListener('facility:viewchange',later);
+ window.addEventListener('hashchange',later);
+ window.addEventListener('pageshow',later);
+ window.addEventListener('DOMContentLoaded',later);
+ window.addEventListener('resize',later,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',later,{passive:true});
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(later).observe(nav);
+})();
 /* Smartphone: Lupe in der unteren Navigation oeffnet die vorhandene
    Artikelsuche als aufklappbares Feld. Suche/Filter bleiben dieselben. */
 (function(){
