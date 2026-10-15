@@ -2493,3 +2493,37 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
  }
 }
+
+
+/* PC: Warenkorb immer rechts im Sichtbereich halten.
+   Die Grid-Spalte bleibt reserviert, waehrend der Kasten selbst viewport-fixiert
+   ist. Desktop-Dialog und die gesamte Smartphone-Ansicht bleiben unberuehrt. */
+@media (min-width:721px) {
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout {
+   grid-template-columns:minmax(0,1fr) 370px!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
+   position:fixed!important;
+   top:calc(var(--desktop-shop-header-height,96px) + var(--desktop-fixed-filters-height,132px) + 12px)!important;
+   right:max(24px,calc((100vw - 1328px)/2 + 24px))!important;
+   left:auto!important;
+   bottom:auto!important;
+   width:370px!important;
+   max-width:370px!important;
+   max-height:calc(100dvh - var(--desktop-shop-header-height,96px) - var(--desktop-fixed-filters-height,132px) - 24px)!important;
+   overflow-y:auto!important;
+   overflow-x:hidden!important;
+   box-sizing:border-box!important;
+   transform:none!important;
+   z-index:1050!important;
+ }
+}
+@media (min-width:721px) and (max-width:1050px) {
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout {
+   grid-template-columns:minmax(0,1fr) 330px!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
+   width:330px!important;
+   max-width:330px!important;
+ }
+}
