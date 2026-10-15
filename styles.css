@@ -3294,3 +3294,11 @@ html body #shop-view .category-nav{
   opacity:1!important;
  }
 }
+
+/* Warenkorb: aeussere Kachel um den Zurueck-Button entfernen,
+   Button selbst und seine fixe Position unveraendert lassen. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+  box-shadow:none!important;
+ }
+}
