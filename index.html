@@ -236,10 +236,26 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
 (function(){
  function measure(){
   if(!window.matchMedia('(min-width:721px)').matches)return;
-  const controls=document.querySelector('#shop-view .mobile-sticky-controls');
-  if(!controls||getComputedStyle(controls).display==='none')return;
+  const shop=document.getElementById('shop-view');
+  const controls=shop?.querySelector('.mobile-sticky-controls');
+  const main=shop?.querySelector(':scope > main');
+  const header=shop?.querySelector(':scope > header');
+  if(!shop||shop.hidden||!controls||!main||!header||getComputedStyle(controls).display==='none')return;
+  const root=document.documentElement;
   const height=Math.ceil(controls.getBoundingClientRect().height);
-  if(height>0)document.documentElement.style.setProperty('--desktop-fixed-filters-height',height+'px');
+  const rect=main.getBoundingClientRect();
+  const style=getComputedStyle(main);
+  const left=Math.round(rect.left+parseFloat(style.paddingLeft||0));
+  const width=Math.max(200,Math.round(rect.width-parseFloat(style.paddingLeft||0)-parseFloat(style.paddingRight||0)));
+  const top=Math.ceil(header.getBoundingClientRect().bottom);
+  const vars={
+   '--desktop-fixed-filters-height':height+'px',
+   '--desktop-filters-left':left+'px',
+   '--desktop-filters-width':width+'px',
+   '--desktop-filters-top':top+'px'
+  };
+  for(const [key,value] of Object.entries(vars))
+   if(root.style.getPropertyValue(key)!==value)root.style.setProperty(key,value);
  }
  function init(){
   measure();
