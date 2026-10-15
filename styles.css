@@ -3264,3 +3264,15 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   gap:8px!important;
  }
 }
+
+/* Nur der Zurueck-Button wird ein-/ausgeblendet; Bestellen bleibt fixiert. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+  transition:opacity .16s ease,visibility .16s ease!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop.cart-back-hidden{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+ }
+}
