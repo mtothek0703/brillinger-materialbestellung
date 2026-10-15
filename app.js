@@ -413,8 +413,11 @@ function syncMobileShopView(){
         backLink.style.removeProperty(name);
       }
     }
-    backLink.style.setProperty('display',isCustom?'none':'','important');
-    if(!isCustom)backLink.style.removeProperty('display');
+    // Der obere Pfeil wird im mobilen Warenkorb nicht mehr angezeigt.
+    // Zurueck geht weiterhin ueber die untere Navigationsleiste.
+    if(mobile&&isCart)backLink.style.setProperty('display','none','important');
+    else if(isCustom)backLink.style.setProperty('display','none','important');
+    else backLink.style.removeProperty('display');
   }
   if(isCustom){
     resetCustomEntryScroll();
