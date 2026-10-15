@@ -252,6 +252,50 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  window.addEventListener('resize',measure,{passive:true});
  window.addEventListener('hashchange',()=>requestAnimationFrame(measure));
 })();
+/* PC: Warenkorb immer direkt unter der sichtbaren Such-/Kategorienleiste.
+   Koordinaten im Viewport statt addierter fixer CSS-Hoehen verwenden. */
+(function(){
+ let pending=false;
+ function syncDesktopCartPosition(){
+  pending=false;
+  if(!window.matchMedia('(min-width:721px)').matches)return;
+  const shop=document.getElementById('shop-view');
+  if(!shop||shop.hidden||document.body.classList.contains('desktop-cart-open'))return;
+  const controls=shop.querySelector('.mobile-sticky-controls');
+  const header=shop.querySelector(':scope > header');
+  const cart=shop.querySelector('#warenkorb');
+  if(!controls||!header||!cart||document.body.classList.contains('custom-entry-view'))return;
+  const controlsRect=controls.getBoundingClientRect();
+  const headerRect=header.getBoundingClientRect();
+  if(controlsRect.height<=0||headerRect.height<=0)return;
+  const top=Math.max(headerRect.bottom,controlsRect.bottom)+14;
+  const bounded=Math.min(Math.round(top),Math.max(0,innerHeight-120));
+  const value=bounded+'px';
+  if(document.documentElement.style.getPropertyValue('--desktop-cart-top')!==value)
+   document.documentElement.style.setProperty('--desktop-cart-top',value);
+ }
+ function schedule(){
+  if(pending)return;
+  pending=true;
+  requestAnimationFrame(syncDesktopCartPosition);
+ }
+ function init(){
+  schedule();
+  const shop=document.getElementById('shop-view');
+  const controls=shop?.querySelector('.mobile-sticky-controls');
+  const header=shop?.querySelector(':scope > header');
+  if(typeof ResizeObserver!=='undefined'&&controls&&header){
+   const observer=new ResizeObserver(schedule);
+   observer.observe(controls);
+   observer.observe(header);
+  }
+ }
+ document.addEventListener('DOMContentLoaded',init);
+ window.addEventListener('load',schedule);
+ window.addEventListener('resize',schedule,{passive:true});
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('hashchange',schedule);
+})();
 async function refreshFacilityApp(button){
  if(button)button.disabled=true;
  try{await window.facilityApplyUpdates?.();}
