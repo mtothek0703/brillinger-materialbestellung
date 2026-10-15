@@ -389,6 +389,14 @@ function syncMobileShopView(){
     }else if((!mobile||!isCart)&&layout&&cart&&backLink.parentElement!==layout){
       layout.insertBefore(backLink,cart);
     }
+    if(mobile&&isCart){
+      backLink.textContent='←';
+      backLink.setAttribute('aria-label','Zurück zu den Artikeln');
+      backLink.setAttribute('title','Zurück zu den Artikeln');
+    }else{
+      backLink.textContent='← Zurück zu den Artikeln';
+      backLink.removeAttribute('title');
+    }
     backLink.style.setProperty('display',isCustom?'none':'','important');
     if(!isCustom)backLink.style.removeProperty('display');
   }
