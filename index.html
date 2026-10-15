@@ -193,6 +193,44 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  });
  document.addEventListener('DOMContentLoaded',syncDesktopHeaderHeight);
 })();
+/* Desktop: Abmessungen des Sonderartikelbuttons aus dem tatsaechlichen Suchfeld
+   uebernehmen. So bleiben beide unabhaengig von Schrift-/Browser-Skalierung
+   pixelgenau auf gleicher Hoehe und derselben horizontalen Linie. */
+(function(){
+ function alignDesktopSearchAction(){
+  const button=document.querySelector('#shop-view .mobile-sticky-controls > a.custom-entry-link');
+  const input=document.getElementById('article-search');
+  if(!button||!input)return;
+  if(!window.matchMedia('(min-width:721px)').matches){
+   button.style.removeProperty('height');
+   button.style.removeProperty('min-height');
+   button.style.removeProperty('max-height');
+   button.style.removeProperty('transform');
+   return;
+  }
+  const search=input.getBoundingClientRect();
+  if(search.height<=0)return;
+  const size=search.height+'px';
+  for(const property of ['height','min-height','max-height'])
+   button.style.setProperty(property,size,'important');
+  button.style.setProperty('transform','none','important');
+  const rect=button.getBoundingClientRect();
+  const offset=search.top-rect.top;
+  if(Math.abs(offset)>.25)button.style.setProperty('transform','translateY('+offset+'px)','important');
+ }
+ function start(){
+  alignDesktopSearchAction();
+  requestAnimationFrame(alignDesktopSearchAction);
+  const input=document.getElementById('article-search');
+  if(input&&typeof ResizeObserver!=='undefined'){
+   new ResizeObserver(alignDesktopSearchAction).observe(input);
+  }
+ }
+ window.addEventListener('load',start);
+ window.addEventListener('resize',alignDesktopSearchAction,{passive:true});
+ window.addEventListener('hashchange',()=>requestAnimationFrame(alignDesktopSearchAction));
+ document.addEventListener('DOMContentLoaded',start);
+})();
 async function refreshFacilityApp(button){
  if(button)button.disabled=true;
  try{await window.facilityApplyUpdates?.();}
