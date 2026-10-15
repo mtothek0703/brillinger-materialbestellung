@@ -3441,3 +3441,23 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   text-decoration:none!important;
  }
 }
+
+/* Warenkorb: Zurueck-Pfeil gleich hoch wie Warenkorb-Button. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  width:46px!important;
+  min-width:46px!important;
+  max-width:46px!important;
+  height:46px!important;
+  flex:0 0 46px!important;
+  padding:0!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop svg{
+  display:block!important;
+  width:29px!important;
+  height:29px!important;
+  color:#1c398d!important;
+  stroke:#1c398d!important;
+  stroke-width:3.4!important;
+ }
+}
