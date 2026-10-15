@@ -376,6 +376,13 @@ function syncMobileShopView(){
   const isCustom=window.location.hash==='#sonderartikel';
   document.body.classList.toggle('mobile-cart-view',mobile&&isCart);
   document.body.classList.toggle('custom-entry-view',isCustom);
+  // Auf der Artikelwunsch-Seite gibt es keinen unteren Zurueck-Button.
+  // Im Warenkorb wird er weiterhin normal angezeigt.
+  const backLink=document.querySelector('#shop-view .shop-layout > .mobile-back-to-shop');
+  if(backLink){
+    backLink.style.setProperty('display',isCustom?'none':'','important');
+    if(!isCustom)backLink.style.removeProperty('display');
+  }
   if(isCustom){
     resetCustomEntryScroll();
     requestAnimationFrame(resetCustomEntryScroll);
