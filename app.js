@@ -378,8 +378,15 @@ function syncMobileShopView(){
   document.body.classList.toggle('custom-entry-view',isCustom);
   // Auf der Artikelwunsch-Seite gibt es keinen unteren Zurueck-Button.
   // Im Warenkorb wird er weiterhin normal angezeigt.
-  const backLink=document.querySelector('#shop-view .shop-layout > .mobile-back-to-shop');
+  const backLink=document.querySelector('#shop-view .mobile-back-to-shop');
   if(backLink){
+    // Aus dem scrollbaren Main herausnehmen, damit position:fixed am iPhone greift.
+    if(mobile&&isCart&&backLink.parentElement!==document.body)document.body.appendChild(backLink);
+    else if((!mobile||!isCart)&&backLink.parentElement===document.body){
+      const layout=document.querySelector('#shop-view .shop-layout');
+      const cart=layout?.querySelector('#warenkorb');
+      if(layout&&cart)layout.insertBefore(backLink,cart);
+    }
     backLink.style.setProperty('display',isCustom?'none':'','important');
     if(!isCustom)backLink.style.removeProperty('display');
   }
