@@ -3403,3 +3403,14 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .products{
  background:#fff!important;
 }
+
+/* Warenkorb: Zurueck-Pfeil in der blauen Kopfzeile weiss mit blauer Schrift. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  background:#fff!important;
+  background-color:#fff!important;
+  color:#1c398d!important;
+  -webkit-text-fill-color:#1c398d!important;
+  border:1px solid #fff!important;
+ }
+}
