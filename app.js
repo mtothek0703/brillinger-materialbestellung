@@ -390,7 +390,7 @@ function syncMobileShopView(){
       layout.insertBefore(backLink,cart);
     }
     if(mobile&&isCart){
-      backLink.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>';
+      backLink.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="29" height="29" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 4 11l5 5"/><path d="M4 11h9c4.5 0 7 2.7 7 7"/></svg>';
       backLink.setAttribute('aria-label','Zurück zu den Artikeln');
       backLink.setAttribute('title','Zurück zu den Artikeln');
       // iOS: direkte Styles am echten Header-Button verhindern konkurrierende CSS-Regeln.
