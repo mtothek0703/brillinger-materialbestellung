@@ -3029,5 +3029,10 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    height:auto!important;
    margin:0 auto!important;
    overflow:visible!important;
+   border:1px solid #d7e2e9!important;
+   border-top:1px solid #d7e2e9!important;
+   border-radius:16px!important;
+   background:#fff!important;
+   box-shadow:none!important;
  }
 }
