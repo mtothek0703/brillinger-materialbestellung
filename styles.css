@@ -1622,7 +1622,7 @@ html body #home-view .home-tiles a{background:#fff!important}
  html body #shop-view:not([hidden]) .mobile-sticky-controls{
   background:#e8f0f8!important;
   border-bottom:2px solid #0a3b91!important;
-  border-radius:0 0 12px 12px!important;
+  border-radius:0!important;
  }
 }
 
@@ -1729,7 +1729,7 @@ html body #home-view .home-tiles a{background:#fff!important}
    overflow:visible!important;
    background:#e8f0f8!important;
    border-bottom:4px solid #0a3b91!important;
-   border-radius:0 0 12px 12px!important;
+   border-radius:0!important;
    box-shadow:0 5px 12px #142c381a!important;
  }
  html body #shop-view:not([hidden]) {
@@ -1790,7 +1790,7 @@ html body #home-view .home-tiles a{background:#fff!important}
    z-index:10!important;
    background:#e8f0f8!important;
    border-bottom:4px solid #0a3b91!important;
-   border-radius:0 0 12px 12px!important;
+   border-radius:0!important;
    box-shadow:0 5px 12px #142c381a!important;
  }
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main {
