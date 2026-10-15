@@ -3335,6 +3335,6 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
   padding-top:0!important;
  }
  html body.mobile-cart-view #shop-view:not([hidden]) > main{
-  padding-top:86px!important;
+  padding-top:20px!important;
  }
 }
