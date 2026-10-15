@@ -3254,3 +3254,9 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
   box-shadow:none!important;
  }
 }
+
+/* Bestellshop: blauer Seitenhintergrund, bestehende Artikel- und Warenkorb-Kacheln bleiben weiss. */
+html body:has(#shop-view:not([hidden])){background:#1c398d!important}
+html body #shop-view:not([hidden]),
+html body #shop-view:not([hidden]) > main{background:#1c398d!important}
+html body #shop-view:not([hidden]) .mobile-sticky-controls{background:#1c398d!important}
