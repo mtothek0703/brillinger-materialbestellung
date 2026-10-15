@@ -2576,3 +2576,18 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    background:#eaf2fb!important;
  }
 }
+
+/* Mobile Suchfeld vollständig aus dem oberen App-Bereich entfernen.
+   Nur beim Öffnen über die Lupe wird das Overlay sichtbar. */
+@media(max-width:720px){
+ html body:not(.facility-search-open) > .product-search {
+   display:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls > .product-search{
+   display:none!important;
+   height:0!important;
+   margin:0!important;
+   padding:0!important;
+   border:0!important;
+ }
+}
