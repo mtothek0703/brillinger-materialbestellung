@@ -3072,3 +3072,21 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    padding-bottom:calc(185px + env(safe-area-inset-bottom))!important;
  }
 }
+
+
+/* Smartphone-Warenkorb: Rueckweg dauerhaft am oberen Rand des
+   Warenkorb-Scrollbereichs halten, ohne die Karte oder ihre Hoehe zu bewegen. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb > .mobile-back-to-shop {
+   display:inline-flex!important;
+   position:sticky!important;
+   top:0!important;
+   z-index:20!important;
+   align-items:center!important;
+   width:max-content!important;
+   max-width:100%!important;
+   margin:0 0 20px!important;
+   background:#f3f8fb!important;
+   box-shadow:0 0 0 10px #fff!important;
+ }
+}
