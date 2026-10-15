@@ -2945,3 +2945,16 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 @media(max-width:720px){
  html body #shop-view .category-button .category-mobile-break{display:block!important}
 }
+
+
+/* Smartphone/PWA: iPhone-Statusbereich oben durchgehend Brillinger-Blau.
+   Die Seiteninhalte behalten ihren hellen Hintergrund und ihre Abstaende.
+   Die PC-Ansicht bleibt unveraendert. */
+@media (max-width:720px) {
+ html {
+   background-color:#1c398d!important;
+ }
+ html body {
+   background-color:#f3f6f8!important;
+ }
+}
