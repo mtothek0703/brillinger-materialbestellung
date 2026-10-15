@@ -3281,3 +3281,16 @@ html body #shop-view .category-nav{
  html body.mobile-cart-view #shop-view:not([hidden]) button.submit *,
  html body #shop-view:not([hidden]) #submit-order *{color:#1c398d!important}
 }
+
+/* Tatsächlicher fixierter Bestellbutton wird per JS direkt unter body verschoben. */
+@media(max-width:720px){
+ html body.mobile-cart-view > button#order-button,
+ html body.mobile-cart-view > button#order-button:disabled{
+  background:#fff!important;
+  background-color:#fff!important;
+  color:#1c398d!important;
+  -webkit-text-fill-color:#1c398d!important;
+  border:1px solid #dce5eb!important;
+  opacity:1!important;
+ }
+}
