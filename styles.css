@@ -3770,3 +3770,9 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   display:none!important;
  }
 }
+
+/* Kategorien: aeusseren duennen Rahmen entfernen, einzelne Buttons beibehalten. */
+html body #shop-view:not([hidden]) .category-nav{
+ border:none!important;
+ box-shadow:none!important;
+}
