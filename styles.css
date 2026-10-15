@@ -2273,3 +2273,46 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    scroll-margin-top:20px!important;
  }
 }
+
+
+/* Desktop-Fix: mobile Scrollsperren galten bislang versehentlich auch am PC.
+   Auf Desktop scrollt wieder die normale Browserseite. Die Dialoge behalten
+   bei geoeffneter Historie / Warenkorb ihre gewollte Scrollsperre. */
+@media (min-width:721px) {
+ html:has(#home-view:not([hidden])),
+ html:has(#shop-view:not([hidden])),
+ html:has(#waste-view:not([hidden])),
+ html:has(#overview-menu-view:not([hidden])),
+ html:has(#order-overview-view:not([hidden])),
+ html:has(#waste-overview-view:not([hidden])) {
+   height:auto!important;
+   min-height:100%!important;
+   max-height:none!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body:not(.desktop-cart-open):not(.pickup-history-open):not(.order-history-open) {
+   height:auto!important;
+   min-height:100vh!important;
+   max-height:none!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]),
+ html body #shop-view:not([hidden]) {
+   height:auto!important;
+   min-height:0!important;
+   max-height:none!important;
+   overflow-y:visible!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body #shop-view:not([hidden]) > main {
+   height:auto!important;
+   max-height:none!important;
+   overflow-y:visible!important;
+ }
+}
