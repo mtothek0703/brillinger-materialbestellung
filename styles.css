@@ -3868,3 +3868,10 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   width:14px!important;height:14px!important;
  }
 }
+
+/* Nur Smartphone: Artikelkacheln mit feinem Brillinger-blauem Rand. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) #products > .product{
+  border:1px solid #0346ae!important;
+ }
+}
