@@ -135,3 +135,34 @@ test('Kleine Smartphoneansicht hat keine horizontale Seitenverschiebung', async 
   }));
   expect(after.scrollWidth).toBeLessThanOrEqual(after.viewport + 2);
 });
+
+
+test('Bereich und Artikel: ohne Außenkachel, gleich groß wie Jahr und Monat', async ({ page, isMobile }) => {
+  if (!isMobile) return;
+  await page.goto('/#bestelluebersicht', { waitUntil: 'domcontentloaded' });
+  const year = page.locator('#order-overview-view .pickup-top-row .pickup-year-selector');
+  const month = page.locator('#order-month-filter');
+  const department = page.locator('#order-dept-filter');
+  const article = page.locator('#order-article-filter');
+  await expect(year).toBeVisible();
+  await expect(month).toBeVisible();
+  await expect(department).toBeVisible();
+  await expect(article).toBeVisible();
+  const [yearBox, monthBox, deptBox, articleBox] = await Promise.all(
+    [year, month, department, article].map(locator => locator.boundingBox())
+  );
+  expect(deptBox).not.toBeNull();
+  expect(articleBox).not.toBeNull();
+  for (const box of [deptBox, articleBox]) {
+    expect(Math.abs(box.width - yearBox.width)).toBeLessThanOrEqual(3);
+    expect(Math.abs(box.width - monthBox.width)).toBeLessThanOrEqual(3);
+    expect(Math.abs(box.height - monthBox.height)).toBeLessThanOrEqual(3);
+  }
+  const outer = await page.locator('#order-filter-panel').evaluate(el => {
+    const styles = getComputedStyle(el);
+    return { background: styles.backgroundColor, border: styles.borderTopWidth, shadow: styles.boxShadow };
+  });
+  expect(outer.background).toBe('rgba(0, 0, 0, 0)');
+  expect(outer.border).toBe('0px');
+  expect(outer.shadow).toBe('none');
+});
