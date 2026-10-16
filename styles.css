@@ -3809,3 +3809,16 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-search-toggle{grid-column:3!important}
  html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-profile-slot{grid-column:4!important}
 }
+
+/* Mobile Kategorie-Kacheln ohne Einzelrahmen */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  border:none!important;
+  box-shadow:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  background:#e2edfc!important;
+  color:#173a52!important;
+ }
+}
