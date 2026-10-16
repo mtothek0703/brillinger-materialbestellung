@@ -33,11 +33,13 @@
  html body #facility-home-nav > #facility-back-nav > span,
  html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
  html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  font-family:inherit!important;
   font-size:var(--fm-nav-label-size)!important;
   font-weight:var(--fm-nav-label-weight)!important;
   line-height:1.2!important;
   text-align:center!important;
   letter-spacing:0!important;
+  white-space:nowrap!important;
  }
  #facility-home-nav :is(a,button){touch-action:manipulation}
 }
