@@ -4208,11 +4208,12 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   min-width:0!important;
   width:100%!important;
   box-sizing:border-box!important;
-  padding:10px 12px!important;
-  background:#fff!important;
-  border:1px solid #d7e4ed!important;
-  border-radius:14px!important;
-  gap:5px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  gap:0!important;
  }
  html body #order-overview-view #order-mobile-month-slot label{
   display:block!important;
@@ -4280,15 +4281,15 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  }
  html body #order-overview-view #order-mobile-month-slot{
   justify-content:center!important;
-  padding-top:14px!important;
-  padding-bottom:14px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
  }
 }
 
-/* Monatsauswahl Bestellungen: groesseres Auswahlfeld innerhalb der bestehenden Kachel (mobil). */
+/* Monatsauswahl Bestellungen: Auswahlfeld ohne umgebende Kachel (mobil). */
 @media(max-width:720px){
  html body #order-overview-view #order-mobile-month-slot{
-  padding:7px 9px!important;
+  padding:0!important;
  }
  html body #order-overview-view #order-mobile-month-slot select#order-month-filter{
   min-height:52px!important;
