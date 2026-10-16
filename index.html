@@ -426,9 +426,11 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   if(resultsPanel.hidden||!isMobile())return;
   const header=shop.querySelector(':scope > header');
   const top=Math.max(86,Math.round(header?.getBoundingClientRect().bottom||86))+8;
-  const searchTop=searchBox?.getBoundingClientRect().top||window.innerHeight-170;
+  const viewport=window.visualViewport;
+  const visibleBottom=viewport?viewport.offsetTop+viewport.height:window.innerHeight;
+  const searchTop=searchBox?.getBoundingClientRect().top||visibleBottom-80;
   resultsPanel.style.top=top+'px';
-  resultsPanel.style.height=Math.max(100,Math.round(searchTop-top-12))+'px';
+  resultsPanel.style.height=Math.max(90,Math.round(Math.min(searchTop,visibleBottom)-top-12))+'px';
  }
  function syncResults(open){
   if(!products||!productsParent)return;
@@ -454,8 +456,10 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    document.body.appendChild(searchBox);
   if(!isMobile()&&searchBox&&originalParent&&searchBox.parentElement!==originalParent)
    originalParent.insertBefore(searchBox,originalNext&&originalNext.parentNode===originalParent?originalNext:null);
+  const wasOpen=document.body.classList.contains('facility-search-open');
   document.body.classList.toggle('facility-search-open',open);
-  syncResults(open);
+  if(open!==wasOpen||!open&&products?.parentElement===resultsPanel)syncResults(open);
+  else if(open)requestAnimationFrame(positionResults);
   button.setAttribute('aria-expanded',String(open));
   button.setAttribute('aria-label',open?'Artikelsuche schließen':'Artikelsuche öffnen');
  }
@@ -493,7 +497,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   if(main&&main.scrollTop>0)main.scrollTop=0;
   if(shop.scrollTop>0)shop.scrollTop=0;
  }
- input.addEventListener('input',()=>requestAnimationFrame(()=>{resultsPanel.scrollTop=0;positionResults();}));
+ input.addEventListener('input',()=>requestAnimationFrame(()=>{if(!resultsPanel.hidden){resultsPanel.scrollTop=0;positionResults();}}));
  if(window.visualViewport)window.visualViewport.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
  window.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
   input.setAttribute('enterkeyhint','done');
@@ -507,15 +511,14 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    const previous=previousPositions.get(container)??current;
    previousPositions.set(container,current);
    if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
-   if(Math.abs(current-previous)<2||document.activeElement===input)return;
-   setOpen(false);
-   input.blur();
+   // Scrolling im Hintergrund soll die mobile Suche nicht unerwartet schliessen.
+   if(Math.abs(current-previous)<2)return;
   },{passive:true});
  }
  window.addEventListener('hashchange',()=>{
   if(location.hash!=='#artikel'&&location.hash!=='#shop')setOpen(false);
  });
- window.addEventListener('resize',()=>{if(!isMobile())setOpen(false);else setOpen(document.body.classList.contains('facility-search-open'));},{passive:true});
+ window.addEventListener('resize',()=>{if(!isMobile())setOpen(false);else requestAnimationFrame(positionResults);},{passive:true});
  setOpen(false);
  document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&document.body.classList.contains('facility-search-open'))setOpen(false);
