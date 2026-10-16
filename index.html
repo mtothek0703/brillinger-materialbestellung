@@ -1375,7 +1375,8 @@ window.addEventListener('pageshow',()=>{
    const selectors='h1,h2,h3,.home-tiles a,.waste-option,.pickup-type-button,#order-type-buttons button,#pickup-types button,.pickup-hint,.waste-heading p,.home-top p';
    root.querySelectorAll(selectors).forEach(el=>{
     if(el.closest('[hidden],#order-history-section,#pickup-history-section'))return;
-    add(el.innerText||el.textContent,name,route,el);
+    const label=el.matches('.waste-option')?(el.querySelector('strong')?.textContent||el.textContent):(el.innerText||el.textContent);
+    add(label,name,route,el);
    });
    root.querySelectorAll('select').forEach(el=>Array.from(el.options).forEach(opt=>{
     if(opt.value&&opt.value!=='all')add(opt.textContent,name+' – Filter',route,el);
