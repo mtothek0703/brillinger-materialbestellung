@@ -8,18 +8,20 @@ test.beforeEach(async ({ page }) => {
       name: 'Test Mitarbeiter', site: 'Handwerkerpark 25', dept: 'Logistik'
     }));
   });
-  await page.route('**/supabase.co/**', async route => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ orders: [], waste: [], success: true })
-    });
-  });
+  // Auch Safari/WebKit benötigt für die lokale Testseite eine gültige CORS-Antwort.
+  const cors = {
+    'access-control-allow-origin': '*',
+    'access-control-allow-methods': 'GET, POST, OPTIONS',
+    'access-control-allow-headers': 'content-type,apikey,authorization'
+  };
   // Externe Produktbilder sind fuer Funktionstests nicht noetig und duerfen CI nicht blockieren.
   await page.route('**/*', route => {
     const url = new URL(route.request().url());
     if (url.hostname === '127.0.0.1' || url.hostname === 'localhost') return route.continue();
-    if (url.hostname.endsWith('supabase.co')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ orders: [], waste: [], success: true }) });
+    if (url.hostname.endsWith('supabase.co')) {
+      if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+      return route.fulfill({ status: 200, contentType: 'application/json', headers: cors, body: JSON.stringify({ orders: [], waste: [], success: true }) });
+    }
     return route.abort();
   });
   await page.goto('/#start', { waitUntil: 'domcontentloaded' });
@@ -95,8 +97,17 @@ test('Warenkorb bleibt nach Aktualisieren erhalten', async ({ page, isMobile }) 
 test('Bestellvorschlag liefert korrekte Bestätigung ohne echten Versand', async ({ page, isMobile }) => {
   let received = null;
   await page.route('**/functions/v1/facility-send-mail', async route => {
+    const cors = {
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'POST, OPTIONS',
+      'access-control-allow-headers': 'content-type,apikey,authorization'
+    };
+    if (route.request().method() === 'OPTIONS') {
+      await route.fulfill({ status: 204, headers: cors });
+      return;
+    }
     received = route.request().postDataJSON();
-    await route.fulfill({ status: 202, contentType: 'application/json', body: '{"success":true,"queued":true}' });
+    await route.fulfill({ status: 202, headers: cors, contentType: 'application/json', body: '{"success":true,"queued":true}' });
   });
   await page.locator('#home-view a[href="#shop"]').click();
   if (isMobile) await page.locator('#facility-search-toggle').click();
