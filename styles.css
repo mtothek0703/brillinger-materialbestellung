@@ -4316,3 +4316,26 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   transform:none!important;
  }
 }
+
+/* Bestellübersicht: Jahreswechsel auf Smartphones besser lesbar und antippbar. */
+@media(max-width:720px){
+ html body #order-overview-view .pickup-top-row .pickup-year-selector{
+  padding:6px 8px!important;
+  gap:4px!important;
+ }
+ html body #order-overview-view .pickup-top-row .pickup-year-selector button{
+  width:44px!important;
+  min-width:44px!important;
+  height:48px!important;
+  font-size:34px!important;
+  line-height:1!important;
+  padding:0!important;
+  flex-shrink:0!important;
+ }
+ html body #order-overview-view .pickup-top-row .pickup-year-selector strong{
+  font-size:clamp(23px,6.6vw,30px)!important;
+  font-weight:750!important;
+  line-height:1.1!important;
+  min-width:0!important;
+ }
+}
