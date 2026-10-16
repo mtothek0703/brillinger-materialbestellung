@@ -3833,17 +3833,3 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  }
 }
 
-/* App-Ansicht: wirklich keinerlei Kontur an den einzelnen Kategorien,
-   auch nicht im aktiven oder fokussierten Zustand. */
-@media(max-width:720px){
- html body #shop-view:not([hidden]) #category-filters.category-filters > button.category-button,
- html body #shop-view:not([hidden]) #category-filters.category-filters > button.category-button.active,
- html body #shop-view:not([hidden]) #category-filters.category-filters > button.category-button:focus,
- html body #shop-view:not([hidden]) #category-filters.category-filters > button.category-button:focus-visible{
-  border:0 solid transparent!important;
-  border-color:transparent!important;
-  outline:0!important;
-  box-shadow:none!important;
-  -webkit-box-shadow:none!important;
- }
-}
