@@ -276,14 +276,19 @@ shopSuggestionPanel.id='shop-search-suggestions';
 shopSuggestionPanel.hidden=true;
 $('products').before(shopSuggestionPanel);
 function renderShopSearchSuggestions(matching){
- if(!matching?.fuzzy||!matching.items.length){
+ const mobile=window.matchMedia('(max-width:720px)').matches;
+ const typed=searchInput.value.trim().toLocaleLowerCase('de');
+ const list=mobile&&typed.length>=2
+  ? PRODUCTS.filter(p=>p.name.toLocaleLowerCase('de').includes(typed))
+  : matching?.fuzzy?matching.items:[];
+ if(!list.length){
   shopSuggestionPanel.hidden=true;
   shopSuggestionPanel.replaceChildren();
   return;
  }
- const suggested=[...new Set(matching.items.map(product=>product.name))].slice(0,3);
+ const suggested=[...new Set(list.map(product=>product.name))].slice(0,4);
  const intro=document.createElement('span');
- intro.textContent='Meintest du:';
+ intro.textContent=matching?.fuzzy?'Meintest du:':'Artikelvorschläge:';
  shopSuggestionPanel.replaceChildren(intro);
  for(const name of suggested){
   const button=document.createElement('button');
