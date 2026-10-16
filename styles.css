@@ -4043,3 +4043,19 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   padding-bottom:80px!important;
  }
 }
+
+/* Smartphone: X direkt im Namensfeld des Mitarbeiterprofils. */
+@media(max-width:720px){
+ .profile-name-clear-wrap{position:relative!important;width:100%!important}
+ .profile-name-clear-wrap #profile-name{padding-right:46px!important}
+ .profile-name-clear-wrap #profile-name-clear{
+  position:absolute!important;right:8px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  width:34px!important;height:34px!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border:0!important;border-radius:8px!important;background:transparent!important;
+  color:#0346ae!important;font-size:27px!important;font-weight:500!important;
+ }
+ .profile-name-clear-wrap #profile-name-clear[hidden]{display:none!important}
+}
+@media(min-width:721px){.profile-name-clear-wrap #profile-name-clear{display:none!important}}
