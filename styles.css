@@ -4077,3 +4077,14 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   max-width:100%!important;
  }
 }
+
+/* Mobile Artikelsuche: Kategorie-Leiste waehrend der Suche ausblenden,
+   damit Treffer nicht hinter der fixierten Leiste verschwinden. */
+@media(max-width:720px){
+ html body.facility-search-open #shop-view:not([hidden]) > .mobile-sticky-controls{
+  display:none!important;
+ }
+ html body.facility-search-open #shop-view:not([hidden]) #products > .product{
+  scroll-margin-top:105px!important;
+ }
+}
