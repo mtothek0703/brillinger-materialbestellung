@@ -348,10 +348,16 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  resultsPanel.id='facility-mobile-search-results';
  resultsPanel.hidden=true;
  document.body.appendChild(resultsPanel);
+ // iOS-Layout und umgebrochene Kategorien können ihre Höhe zeitversetzt ändern.
+ const stickyControls=shop.querySelector('.mobile-sticky-controls');
+ if(stickyControls&&typeof ResizeObserver!=='undefined'){
+  const observer=new ResizeObserver(()=>requestAnimationFrame(positionResults));
+  observer.observe(stickyControls);
+ }
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
   const header=shop.querySelector(':scope > header');
-  const categories=shop.querySelector(':scope > main > .mobile-sticky-controls');
+  const categories=shop.querySelector('.mobile-sticky-controls');
   // Kategorien beginnen unter dem Header und bleiben waehrend der Suche fest.
   const headerBottom=header?.getBoundingClientRect().bottom||86;
   const categoryHeight=categories?.offsetHeight||0;
@@ -373,7 +379,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   const usableBottom=Math.min(searchTop,viewportBottom);
   const available=Math.max(0,Math.floor(usableBottom-usableTop-8));
   const contentHeight=products?products.scrollHeight+24:available;
-  resultsPanel.style.top=usableTop+'px';
+  resultsPanel.style.setProperty('top',usableTop+'px','important');
   resultsPanel.style.height=Math.max(0,Math.min(available,contentHeight))+'px';
   resultsPanel.style.removeProperty('display');
  }
