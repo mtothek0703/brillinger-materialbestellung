@@ -9,7 +9,14 @@ test.beforeEach(async ({ page }) => {
       body: JSON.stringify({ orders: [], waste: [], success: true })
     });
   });
-  await page.goto('/#start');
+  // Externe Produktbilder sind fuer Funktionstests nicht noetig und duerfen CI nicht blockieren.
+  await page.route('**/*', route => {
+    const url = new URL(route.request().url());
+    if (url.hostname === '127.0.0.1' || url.hostname === 'localhost' || url.hostname.endsWith('supabase.co')) return route.continue();
+    return route.abort();
+  });
+  await page.goto('/#start', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#category-filters .category-button')).toHaveCount(7);
 });
 
 test('Startseite zeigt alle drei Bereiche', async ({ page }) => {
@@ -47,7 +54,7 @@ test('Artikel kann zum Warenkorb hinzugefügt werden', async ({ page, isMobile }
 });
 
 test('Bestellübersicht: Jahr und Monatsfilter vorhanden', async ({ page }) => {
-  await page.goto('/#bestelluebersicht');
+  await page.goto('/#bestelluebersicht', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#order-selected-year')).toHaveText(/20\d\d/);
   await expect(page.locator('#order-month-filter option')).toHaveCount(13);
 });
