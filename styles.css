@@ -4061,3 +4061,19 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   text-align:center!important;
  }
 }
+
+/* iPhone Warenkorb: 16px im Anmerkungsfeld verhindert Safari-Autozoom.
+   Karte und Formular bleiben in der normalen Viewportbreite. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb #note{
+  font-size:16px!important;
+  line-height:1.45!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb,
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  min-width:0!important;
+  max-width:100%!important;
+ }
+}
