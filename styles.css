@@ -4506,3 +4506,13 @@ html body #order-overview-view .order-sticky-tools > .order-filter-wrap{
 }
 /* Die fixierten Bedienelemente dürfen im Bestellverlauf nicht über dem
    geöffneten Historien-Dialog liegen; dieser besitzt z-index:3500. */
+
+/* Desktop: die Browserseite ist der Scrollcontainer. Ein älteres overflow:auto
+   am body verhinderte position:sticky innerhalb der Bestellübersicht.
+   Für offene Bestellhistorien bleibt die bestehende Scrollsperre erhalten. */
+@media(min-width:721px){
+ html body:has(#order-overview-view:not([hidden])):not(.order-history-open){
+  overflow-x:clip!important;
+  overflow-y:visible!important;
+ }
+}
