@@ -1,0 +1,3017 @@
+
+
+/* Alle fünf Entsorgungskacheln etwas tiefer, Überschrift bleibt unverändert. */
+html body #waste-view .waste-options{margin-top:12px!important}
+
+/* Gleiche Pull-to-refresh-Bewegung auch im internen Bestellshop. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:translateY(var(--facility-pull-distance))!important;
+  transition:transform .14s ease-out!important;
+  overscroll-behavior-y:contain;
+ }
+}
+
+/* Entsorgungskacheln etwas weiter nach unten, Überschrift unverändert. */
+html body #waste-view .waste-options{margin-top:22px!important}
+
+/* Bestellshop: auch fixierte Kopfzeile beim Pull-to-refresh sichtbar mitbewegen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) > header{
+  transform:translateY(var(--facility-pull-distance))!important;
+  transition:transform .14s ease-out!important;
+ }
+}
+
+/* Fünf Entsorgungskacheln auf Wunsch etwas tiefer; Überschrift bleibt stehen. */
+html body #waste-view .waste-options{margin-top:38px!important}
+
+/* Profil unten neben Startseite; auf allen Facility-Seiten einheitlich. */
+html body #facility-home-nav{gap:58px!important}
+html body #facility-home-nav #facility-profile-slot{display:flex!important;align-items:center!important;justify-content:center!important}
+html body #facility-home-nav #facility-profile-slot #profile-edit{
+ display:flex!important;position:static!important;width:48px!important;min-width:48px!important;max-width:48px!important;
+ height:48px!important;min-height:48px!important;max-height:48px!important;flex:0 0 48px!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:12px!important;
+ background:transparent!important;color:transparent!important;font-size:0!important;
+ box-shadow:none!important;align-items:center!important;justify-content:center!important;
+}
+html body #facility-home-nav #facility-profile-slot #profile-edit::after{
+ content:""!important;display:block!important;width:29px!important;height:29px!important;
+ background:center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230346ae'%3E%3Ccircle cx='12' cy='7.5' r='4'/%3E%3Cpath d='M4 21v-2.5a8 8 0 0 1 16 0V21z'/%3E%3C/svg%3E")!important;
+}
+
+/* Profilbeschriftung unter dem Symbol, bündig zur Startseiten-Beschriftung. */
+html body #facility-home-nav #facility-profile-slot{flex-direction:column!important;gap:3px!important}
+html body #facility-home-nav #facility-profile-slot #profile-edit{height:29px!important;min-height:29px!important;max-height:29px!important;flex:0 0 29px!important}
+html body #facility-home-nav #facility-profile-slot .facility-profile-label{display:block;color:#0346ae;font-size:12px;font-weight:700;line-height:1.2;text-align:center}
+
+/* Brillinger-Logo horizontal exakt mittig in der blauen Leiste. */
+html body #facility-blue-header .facility-header-brand{width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;margin:0 auto!important;text-align:center!important}
+html body #facility-blue-header .facility-header-brand img{display:block!important;margin-left:auto!important;margin-right:auto!important;align-self:center!important}
+
+/* Logo wirklich unabhängig vom Container-Padding zur Bildschirmmitte ausrichten. */
+html body #facility-blue-header .facility-header-brand{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:max-content!important;max-width:100%!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;align-items:center!important}
+html body #facility-blue-header .facility-header-brand img{margin:0 auto!important;align-self:center!important}
+
+/* Sichtbares Logo optisch zur Displaymitte ausrichten (SVG mit asymmetrischem Innenabstand). */
+html body #facility-blue-header .facility-header-brand img{
+ transform:translateX(14px)!important;
+}
+
+
+/* Müllentsorgung: Überschrift und Kacheln gemeinsam etwas tiefer; nach Displayhöhe angepasst. */
+@media(max-width:720px){
+ html body #waste-view:not([hidden]) .waste-heading{
+  margin-top:clamp(18px,3.5dvh,38px)!important;
+ }
+ html body #waste-view:not([hidden]) .waste-options{
+  margin-top:38px!important;
+ }
+}
+
+/* Übersicht: Inhalt auf dieselbe obere Ausrichtung wie Müllentsorgung setzen. */
+@media(max-width:720px){
+ html body #overview-menu-view:not([hidden]){padding-top:15px!important}
+ html body #overview-menu-view:not([hidden]) .waste-heading{margin-top:clamp(18px,3.5dvh,38px)!important;margin-bottom:20px!important}
+ html body #overview-menu-view:not([hidden]) .waste-options{margin-top:38px!important}
+}
+
+/* Bestellübersicht: Überschrift gleich groß wie Müllentsorgung auf Smartphones. */
+@media(max-width:720px){html body #order-overview-view h1{font-size:24px!important;line-height:1.2!important}}
+
+/* Smartphone: dieselbe untere Startseite/Profil-Navigation auch im Bestellshop. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav{
+  display:flex!important;justify-content:center!important;align-items:center!important;
+ }
+ /* Der Shop hat ein eigenes Scrollfenster. Hier darf kein zusaetzlicher
+    unterer Abstand stehen: sonst schrumpft die Artikelliste sichtbar. */
+ html body:has(#shop-view:not([hidden])) #shop-view{
+  padding-bottom:0!important;
+ }
+ html body:has(#shop-view:not([hidden])) #shop-view > header #profile-edit{display:none!important}
+}
+
+/* Bestellübersicht: kompakte Überschrift in Anlehnung an Müllentsorgung. */
+@media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:24px!important;line-height:normal!important;font-weight:700!important;color:#153443!important;margin:3px 0!important}}
+
+/* Startseite: Symbole, Überschriften und Untertitel aller Kacheln auf gleiche Höhe bringen. */
+html body #home-view .home-tiles a{
+ display:grid!important;
+ grid-template-rows:65px 54px 26px!important;
+ align-content:center!important;
+ justify-items:center!important;
+ row-gap:8px!important;
+}
+html body #home-view .home-tiles a > span{
+ position:static!important;top:auto!important;
+ align-self:center!important;line-height:1!important;
+}
+html body #home-view .home-tiles a > strong{
+ position:static!important;top:auto!important;
+ align-self:center!important;display:flex!important;align-items:center!important;
+ justify-content:center!important;min-height:54px!important;
+ margin:0!important;text-align:center!important;line-height:1.2!important;
+}
+html body #home-view .home-tiles a > small{
+ position:static!important;top:auto!important;
+ align-self:center!important;margin:0!important;text-align:center!important;
+}
+
+/* Pull-to-refresh im Shop: nur den Inhaltsbereich leicht bewegen.
+   Die fixierte Kopfzeile bleibt an ihrem Platz, kein großer Leerraum darüber. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){transform:none!important;transition:none!important}
+ html body #shop-view:not([hidden]) > header{
+  transform:none!important;transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-pull-refresh{
+  top:calc(86px + env(safe-area-inset-top))!important;
+ }
+}
+
+/* iPhone Bestellshop: eigenes Scrollfenster verhindert Safari-Gummiband/Leerraum
+   und hält den fixierten Kopfbereich stabil. */
+@media(max-width:720px){
+ html:has(#shop-view:not([hidden])){height:100%!important;overflow:hidden!important;overscroll-behavior-y:none!important}
+ html body:has(#shop-view:not([hidden])){
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;overscroll-behavior-y:none!important;
+  padding-bottom:0!important;
+ }
+ html body #shop-view:not([hidden]){
+  box-sizing:border-box!important;
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch;
+  transform:none!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+ }
+}
+
+/* Startseiten-Kacheln: kompaktere Abstände zwischen Icon, Titel und Untertitel. */
+html body #home-view .home-tiles a{
+ grid-template-rows:52px 43px 22px!important;
+ row-gap:3px!important;
+}
+html body #home-view .home-tiles a > strong{min-height:43px!important}
+
+/* Shop Pull-to-refresh: komplette Shop-Ansicht samt fixer Kopfzeile bewegen.
+   Bottom-Navigation bleibt am Platz, maximal 44px Ziehweg. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:none!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
+  transition:transform .13s ease-out!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-pull-refresh{
+  top:calc(12px + env(safe-area-inset-top))!important;
+ }
+}
+
+/* Startseite: Abstände in allen drei Kacheln noch leicht kompakter. */
+html body #home-view .home-tiles a{grid-template-rows:49px 41px 21px!important;row-gap:2px!important}
+html body #home-view .home-tiles a > strong{min-height:41px!important}
+
+/* iPhone-Shop: fixierten Header NICHT über einen transformierten Vorfahren bewegen.
+   Header und Inhalt separat um höchstens 36px versetzen; kein Leerraum durch position:fixed. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]){
+  transform:none!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  transform:translate3d(0,min(var(--facility-pull-distance),36px),0)!important;
+  transition:transform .12s ease-out!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  transform:translate3d(0,min(var(--facility-pull-distance),36px),0)!important;
+  transition:transform .12s ease-out!important;
+ }
+}
+
+/* Startseite: drei Kacheln mit sehr dezenter hellblauer Fläche. */
+html body #home-view .home-tiles a{background:#fff!important}
+
+/* Müllentsorgung: fünf Kacheln minimal nach oben; Überschrift unverändert. */
+@media(max-width:720px){html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}}
+
+/* Mobil: Such- und Kategorienbereich bleibt im normalen Seitenfluss.
+   Dadurch überdeckt er beim Scrollen keine Produktkarten mehr. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:relative!important;
+  top:auto!important;
+  inset-block-start:auto!important;
+  z-index:1!important;
+  transform:none!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{
+  position:relative!important;
+  z-index:1!important;
+  margin-top:0!important;
+ }
+}
+
+/* Müllentsorgung: Überschrift und fünf Kacheln gemeinsam etwas höher setzen. */
+@media(max-width:720px){
+ html body #waste-view:not([hidden]) .waste-heading{margin-top:8px!important}
+ html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}
+}
+
+/* FIX MOBILE SHOP 2026-10-14: Verhindert Überlagerung durch frühere hochspezifische Sticky-Regeln. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:static!important;
+  top:auto!important;bottom:auto!important;
+  inset-block-start:auto!important;
+  transform:none!important;
+  z-index:auto!important;
+  margin-top:0!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  padding-top:0!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{
+  clear:both!important;
+  margin-top:0!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  position:fixed!important;top:0!important;
+ }
+}
+
+/* Ladekreis im mobilen Bestellshop näher an den oberen Bildschirmrand setzen. */
+/* Beim Ziehen sitzt der Kreis mittig in der Lücke oberhalb der Shop-Kopfzeile. */
+@media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:0!important}}
+
+/* Shop: Brillinger-blauer Header mit weißem Original-Logo. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) > header{
+  background:linear-gradient(180deg,#093b9a 0%,#001b79 100%)!important;
+  border-color:transparent!important;
+ }
+ html body #shop-view:not([hidden]) > header .brand-logo{
+  filter:brightness(0) invert(1)!important;
+ }
+}
+
+/* Warenkorb-Button in der blauen Shop-Kopfzeile weiß darstellen. */
+@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link{background:#fff!important;background-color:#fff!important;border-color:#fff!important}}
+
+/* Warenkorb-Zaehler ohne hellblauen Kreis im mobilen Shop. */
+@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link #cart-count{background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
+
+/* Mobile Shop: Such- und Kategoriezone dezent hellblau vom Artikelsortiment absetzen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  background:#e8f0f8!important;
+  border-bottom:2px solid #0a3b91!important;
+  border-radius:0!important;
+ }
+}
+
+/* Shop 2026-10-14: curved blue header and inline search icon */
+@media(max-width:720px){
+ #shop-view>header{
+  background:linear-gradient(180deg,#20469b 0%,#07176b 100%)!important;
+  border-bottom:0!important;
+  border-radius:0!important;
+  overflow:visible!important;
+ }
+ #shop-view>header .brand-logo{filter:brightness(0) invert(1)!important}
+ #shop-view .product-search{position:relative!important}
+ #shop-view .product-search>label{
+  position:absolute!important;left:26px!important;top:50%!important;
+  transform:translateY(-50%)!important;margin:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:26px!important;height:26px!important;z-index:2!important;
+  pointer-events:none!important;color:#203947!important;
+ }
+ #shop-view .product-search .search-input-wrap{max-width:none!important}
+ #shop-view .product-search #article-search{
+  padding-left:68px!important;min-height:46px!important;
+ }
+}
+
+/* Mobile: Suchfeld, Sonderartikel-Button und Kategorien beim Zurueckscrollen wieder sichtbar. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls{
+  position:sticky!important;
+  top:var(--shop-mobile-header-height, 0px)!important;
+  inset-block-start:var(--shop-mobile-header-height, 0px)!important;
+  z-index:15!important;
+  transform:none!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
+}
+
+/* Korrektur: iOS-Shop scrollt im #shop-view, nicht im Dokument. Bei Aufwaertsbewegung Filter als Overlay unter der Kopfzeile anzeigen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
+  position:fixed!important;
+  top:var(--mobile-header-height, 110px)!important;
+  inset-block-start:var(--mobile-header-height, 110px)!important;
+  left:0!important;right:0!important;
+  width:100%!important;box-sizing:border-box!important;
+  z-index:80!important;
+  transform:none!important;
+  max-height:calc(100dvh - 190px)!important;
+  overflow-y:auto!important;
+  box-shadow:0 8px 18px #102a4b24!important;
+ }
+}
+
+/* Sichtbare Suchkacheln beim Aufwaertswischen: hoehere Prioritaet als alte static-Regeln. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
+  position:sticky!important;top:86px!important;inset-block-start:86px!important;
+  z-index:1090!important;left:auto!important;right:auto!important;width:auto!important;
+  max-height:none!important;overflow:visible!important;
+  margin-bottom:16px!important;box-shadow:0 8px 18px #102a4b24!important;
+ }
+}
+
+/* Shop: Filter und Sonderartikel wieder sichtbar; nur den Rahmen um die Artikelsuche entfernen. */
+@media(max-width:720px){html body #shop-view .mobile-sticky-controls{display:block!important}html body #shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}}
+@media(min-width:721px){#shop-view .mobile-sticky-controls{display:grid!important}#shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important}}
+
+/* 2026-10-14: Such-/Filterbereich dauerhaft unter dem fixierten Shop-Header halten. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
+  display:block!important;position:sticky!important;
+  top:var(--shop-mobile-header-height, 0px)!important;
+  inset-block-start:var(--shop-mobile-header-height, 0px)!important;
+  left:auto!important;right:auto!important;width:auto!important;
+  z-index:1090!important;transform:none!important;
+  max-height:none!important;overflow:visible!important;
+  margin-bottom:16px!important;
+ }
+ html body #shop-view:not([hidden]) > main{isolation:isolate!important}
+ html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
+}
+
+/* 2026-10-14: STABILE Shop-Fixierung: Das Filterfeld ist auf Mobilgeräten
+   DIREKTES Kind des scrollenden #shop-view, nicht mehr Kind des bewegten main.
+   Damit bleibt position:sticky auch in iOS-Safari verlässlich wirksam. */
+@media (max-width:720px) {
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls {
+   display:block!important;
+   position:-webkit-sticky!important;
+   position:sticky!important;
+   top:86px!important;
+   inset-block-start:86px!important;
+   z-index:1050!important;
+   left:auto!important;right:auto!important;
+   width:100%!important;
+   max-width:none!important;
+   box-sizing:border-box!important;
+   padding:8px 16px 9px!important;
+   margin:0 0 16px!important;
+   transform:none!important;
+   overflow:visible!important;
+   background:#e8f0f8!important;
+   border-bottom:4px solid #0a3b91!important;
+   border-radius:0!important;
+   box-shadow:0 5px 12px #142c381a!important;
+ }
+ html body #shop-view:not([hidden]) {
+   padding-top:86px!important;
+   overflow-y:auto!important;
+ }
+ html body #shop-view:not([hidden]) > main {
+   padding-top:0!important;
+   isolation:auto!important;
+ }
+ html body.mobile-cart-view #shop-view > .mobile-sticky-controls,
+ html body.custom-entry-view #shop-view > .mobile-sticky-controls {
+   display:none!important;
+ }
+}
+
+/* 2026-10-14 – Shop mobile: feste Kopf-/Filterzone, nur Artikelliste scrollt.
+   Die Filter wurden per JS direkt vor main in #shop-view verschoben.
+   Darum sind weder sticky noch ein schwebendes Overlay erforderlich. */
+@media (max-width:720px) {
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) {
+   position:relative!important;
+   display:flex!important;
+   flex-direction:column!important;
+   height:var(--facility-shop-visible-height,calc(100dvh - 88px))!important;
+   max-height:var(--facility-shop-visible-height,calc(100dvh - 88px))!important;
+   min-height:0!important;
+   padding:86px 0 0!important;
+   margin:0!important;
+   box-sizing:border-box!important;
+   overflow:hidden!important;
+   transform:none!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > header {
+   position:fixed!important;
+   top:0!important;left:0!important;right:0!important;
+   flex:0 0 86px!important;
+   height:86px!important;min-height:86px!important;max-height:86px!important;
+   width:100%!important;
+   margin:0!important;
+   z-index:1100!important;
+   transform:none!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls {
+   position:relative!important;
+   top:auto!important;bottom:auto!important;
+   inset-block-start:auto!important;
+   left:auto!important;right:auto!important;
+   display:block!important;
+   flex:0 0 auto!important;
+   width:100%!important;
+   max-width:none!important;
+   padding:8px 16px 9px!important;
+   margin:0!important;
+   max-height:none!important;
+   overflow:visible!important;
+   transform:none!important;
+   z-index:10!important;
+   background:#e8f0f8!important;
+   border-bottom:4px solid #0a3b91!important;
+   border-radius:0!important;
+   box-shadow:0 5px 12px #142c381a!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main {
+   display:block!important;
+   flex:1 1 0%!important;
+   min-height:0!important;
+   height:auto!important;max-height:none!important;
+   overflow-y:auto!important;
+   overflow-x:hidden!important;
+   overscroll-behavior-y:contain!important;
+   -webkit-overflow-scrolling:touch;
+   position:relative!important;
+   width:100%!important;
+   padding:12px 16px 18px!important;
+   margin:0 auto!important;
+   isolation:auto!important;
+   transform:none!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main .shop-layout {
+   margin:0!important;
+   position:relative!important;
+   z-index:auto!important;
+ }
+}
+
+/* Shop-Artikelsuche: duenne blaue Kontur nur am Eingabefeld. */
+html body #shop-view .product-search #article-search{
+  border:1px solid #0a3b91!important;
+  box-shadow:none!important;
+}
+html body #shop-view .product-search #article-search:focus{
+  border:1px solid #0a3b91!important;
+  outline:none!important;
+}
+
+/* Mobile Artikelsuche: exakt dieselbe Breite und Hoehe wie "Artikel nicht gefunden?". */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search .search-input-wrap {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search #article-search,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  height:44px!important;
+  min-height:44px!important;
+  max-height:44px!important;
+  box-sizing:border-box!important;
+  border-radius:11px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search #article-search {
+  width:100%!important;
+  max-width:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 10px!important;
+ }
+}
+
+/* Sonderartikel-Button: Plus durch nach rechts gerichteten Pfeil ersetzen. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link {
+  position:relative!important;
+  font-size:0!important;
+  text-align:center!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link::before {
+  content:"Artikel nicht gefunden?";
+  display:inline-block;
+  font-size:16px;
+  line-height:1.25;
+  font-weight:700;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link::after {
+  content:"\2192";
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:22px;
+  line-height:1;
+  font-weight:600;
+  pointer-events:none;
+ }
+}
+
+/* Kategorien-Kachel: dünner blauer Rahmen wie bei der Artikelsuche. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav {
+  border:1px solid #0a3b91!important;
+  border-radius:11px!important;
+  box-sizing:border-box!important;
+ }
+}
+
+/* Pull-to-refresh Bestellshop: Beim aktiven Ziehen die GESAMTE Shop-Ansicht
+   verschieben (Header, Suche, Kategorien und Artikel zusammen).
+   Nur während des Ziehens wird ein Transform auf dem Shop gesetzt. */
+@media (max-width:720px) {
+ html body #shop-view:not([hidden]) {
+  transition:transform .16s ease-out!important;
+ }
+ html body #shop-view:not([hidden]).facility-shop-pulling,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling {
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:transform .08s ease-out!important;
+ }
+ html body #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls {
+  transform:none!important;
+  transition:none!important;
+ }
+}
+
+/* Intelligente Suche: dezente Vorschlaege nur bei erkannten Tippfehlern. */
+#shop-search-suggestions[hidden]{display:none!important}
+#shop-search-suggestions{
+ display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+ margin:0 0 12px;padding:9px 12px;box-sizing:border-box;
+ background:#eaf2fa;color:#24465c;border:1px solid #c5d7eb;
+ border-radius:11px;font-size:14px;
+}
+#shop-search-suggestions>span{font-weight:600}
+#shop-search-suggestions .shop-search-suggestion{
+ appearance:none;background:#fff;color:#0a3b91;
+ border:1px solid #0a3b91;border-radius:18px;
+ padding:6px 11px;min-height:34px;max-width:100%;
+ font:inherit;font-weight:600;line-height:1.3;
+ text-align:left;cursor:pointer;
+}
+#shop-search-suggestions .shop-search-suggestion:focus-visible{
+ outline:2px solid #0a3b91;outline-offset:2px;
+}
+@media(max-width:720px){
+ #shop-search-suggestions{gap:6px;padding:8px 10px;font-size:13px}
+ #shop-search-suggestions .shop-search-suggestion{font-size:13px}
+}
+
+/* Auf der Startseite ist horizontaler Zurueck-Swipe kein Navigationsziel.
+   Vertikales Scrollen und Tippen auf die Kacheln bleiben moeglich. */
+@media(max-width:720px){
+ html:has(#home-view:not([hidden])),
+ body:has(#home-view:not([hidden])){
+  overscroll-behavior-x:none!important;
+ }
+ html body #home-view:not([hidden]),
+ html body:has(#home-view:not([hidden])) #facility-home-nav{
+  touch-action:pan-y!important;
+  overscroll-behavior-x:none!important;
+ }
+}
+
+/* Shop Mobil: Bedienbereich gleitet beim Runterscrollen unter den
+   feststehenden blauen Header und erscheint beim Hochscrollen wieder.
+   Negative untere Margin gibt den Platz an die Artikelliste zurueck. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls{
+  transition:transform .19s ease,margin-bottom .19s ease!important;
+  will-change:transform;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls.facility-reveal-controls{
+  transform:translate3d(0,-100%,0)!important;
+  margin-bottom:calc(-1 * var(--facility-shop-controls-height,0px))!important;
+  pointer-events:none!important;
+  box-shadow:none!important;
+ }
+}
+@media(max-width:720px) and (prefers-reduced-motion:reduce){
+ html body #shop-view:not([hidden]) > .mobile-sticky-controls{
+  transition:none!important;
+ }
+}
+
+/* iOS: Wisch-Navigation ohne lange graue Kachel-Markierungen.
+   Hover-Stile gelten auf Touchscreens nicht als permanente Auswahl. */
+@media(max-width:720px){
+ html,body,a,button,[role="button"],.home-tiles a,.waste-option,
+ .pickup-type-button,.category-button{
+  -webkit-tap-highlight-color:transparent!important;
+ }
+ html body #home-view:not([hidden]) .home-tiles a,
+ html body .waste-option{
+  touch-action:pan-y!important;
+ }
+}
+@media(max-width:720px) and (hover:none){
+ html body #home-view .home-tiles a:hover{
+  background:#fff!important;
+  box-shadow:0 5px 21px #112a4610!important;
+ }
+ html body .waste-option:hover{
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:0 6px 22px #142c3810!important;
+ }
+ html body #order-overview-view #order-type-buttons .pickup-type-button:hover{
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
+  transform:none!important;
+ }
+ html body #waste-overview-view #pickup-types .pickup-type-button:hover:not([aria-pressed="true"]){
+  background:#fff!important;
+  border-color:#dce5eb!important;
+  box-shadow:none!important;
+  transform:none!important;
+ }
+}
+
+/* Untere Startseite/Profil-Leiste: beim Scrollen wie die Suchleiste ein- und
+   ausfahren. Im Shop wird exakt der Zustand der Suchleiste verwendet. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  transform:translate3d(0,0,0)!important;
+  transition:transform .19s ease!important;
+  will-change:transform;
+ }
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  transform:translate3d(0,calc(100% + 12px),0)!important;
+  pointer-events:none!important;
+ }
+}
+@media(max-width:720px) and (prefers-reduced-motion:reduce){
+ html body #facility-home-nav{
+  transition:none!important;
+ }
+}
+
+/* Mobile Zurueckwisch-Geste: horizontale Browser-Back-/Forward-Gesten
+   nach Moeglichkeit unterbinden, vertikales Scrollen und Zoom erhalten. */
+@media(max-width:720px){
+ html,html body,
+ html body #home-view,
+ html body #waste-view,
+ html body #overview-menu-view,
+ html body #order-overview-view,
+ html body #waste-overview-view,
+ html body #shop-view,
+ html body #shop-view > main,
+ html body #facility-home-nav{
+  overscroll-behavior-x:none!important;
+  touch-action:pan-y pinch-zoom!important;
+ }
+}
+
+/* Beim Scrollen die untere Navigation vollstaendig ausblenden.
+   Der bisherige Schatten ragte trotz weggeschobener Leiste noch ein
+   paar Pixel ins Bild und erschien als grauer Rand am unteren Bildschirm. */
+@media (max-width:720px) {
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
+  transform:translate3d(0,calc(100% + 48px),0)!important;
+  box-shadow:none!important;
+  -webkit-box-shadow:none!important;
+  border-color:transparent!important;
+  outline:none!important;
+  filter:none!important;
+  pointer-events:none!important;
+ }
+}
+
+
+/* Mehr Platz fuer die Artikelliste auf Smartphones:
+   Der ausgeblendete Such-/Kategorieblock darf nicht weiter die Hoehe
+   des Scrollfensters belegen. Der frei werdende Platz gehoert den Artikeln. */
+@media (max-width:720px) {
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls {
+    min-height:0!important;
+    flex-shrink:0!important;
+    transition:max-height .19s ease,padding .19s ease,border-width .19s ease,margin .19s ease!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > .mobile-sticky-controls.facility-reveal-controls {
+    max-height:0!important;
+    height:0!important;
+    min-height:0!important;
+    padding-top:0!important;
+    padding-bottom:0!important;
+    border-width:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+    transform:none!important;
+    box-shadow:none!important;
+    pointer-events:none!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main {
+    padding-top:6px!important;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > main {
+    padding-bottom:calc(22px + env(safe-area-inset-bottom))!important;
+  }
+}
+@media (max-width:720px) and (prefers-reduced-motion:reduce) {
+  html body #shop-view:not([hidden]) > .mobile-sticky-controls {
+    transition:none!important;
+  }
+}
+
+
+/* Startseite: horizontale Browser-Gesten und seitliches Gummiband vermeiden.
+   Auf iOS bleiben vertikales Scrollen und normale Kachel-Taps erhalten. */
+@media (max-width:720px) {
+ html:has(#home-view:not([hidden])),
+ html body:has(#home-view:not([hidden])),
+ html body #home-view:not([hidden]),
+ html body #home-view:not([hidden]) .home-tiles,
+ html body #home-view:not([hidden]) .home-tiles a {
+   overscroll-behavior-x:none!important;
+   touch-action:pan-y pinch-zoom!important;
+ }
+ html:has(#home-view:not([hidden])),
+ html body:has(#home-view:not([hidden])) {
+   background:#f3f6f8!important;
+   overflow-x:clip!important;
+ }
+}
+
+
+/* Mobiler Shop: stabiles Listenende statt nachgebender Gesamtseite.
+   Gleicher unterer Abstand bei sichtbaren/versteckten Filtern verhindert,
+   dass scrollHeight am Ende umspringt und Safari den Inhalt verschiebt. */
+@media (max-width:720px) {
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main,
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > main {
+    padding-bottom:calc(86px + env(safe-area-inset-bottom))!important;
+    overscroll-behavior-y:none!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) {
+    overflow:hidden!important;
+    overscroll-behavior-y:none!important;
+  }
+}
+
+
+/* 2026-10-15: Untere Navigation auf Smartphones dauerhaft fixieren.
+   Sie bleibt beim Scrollen von Artikeln und Filtern sichtbar, auch wenn
+   aeltere JS-Logik die Klasse facility-bottom-nav-hidden setzt. */
+@media (max-width:720px) {
+ html body #facility-home-nav,
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
+   display:flex!important;
+   position:fixed!important;
+   inset:auto 0 0 0!important;
+   bottom:0!important;
+   width:100%!important;
+   transform:none!important;
+   transition:none!important;
+   animation:none!important;
+   will-change:auto!important;
+   opacity:1!important;
+   visibility:visible!important;
+   pointer-events:auto!important;
+   box-shadow:0 -4px 20px #102d4a12!important;
+   border-color:transparent!important;
+   background:#fff!important;
+   z-index:900!important;
+ }
+}
+
+
+/* Sonderartikel: eingebettetes X fuer Artikelbezeichnung und Weitere Angaben. */
+#custom-product-form .custom-field-clear-wrap {
+ position:relative;
+ width:100%;
+ min-width:0;
+}
+#custom-product-form .custom-field-clear-wrap > input,
+#custom-product-form .custom-field-clear-wrap > textarea {
+ width:100%;
+ padding-right:54px!important;
+ box-sizing:border-box;
+}
+#custom-product-form .custom-field-clear {
+ position:absolute;
+ top:9px;
+ right:8px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:38px;
+ height:38px;
+ padding:0;
+ border:0;
+ border-radius:50%;
+ background:transparent;
+ color:#607480;
+ font-size:28px;
+ font-weight:400;
+ line-height:1;
+ cursor:pointer;
+ z-index:2;
+ -webkit-tap-highlight-color:transparent;
+ touch-action:manipulation;
+}
+#custom-product-form .custom-field-clear[hidden] {display:none!important}
+#custom-product-form .custom-field-clear:active {background:#e9f1f7}
+#custom-product-form .custom-field-clear:focus-visible {outline:2px solid #005c80;outline-offset:2px}
+
+/* Loeschen-X nicht wie einen regulaeren Formularbutton verschieben. */
+body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!important;min-height:0!important;max-width:38px!important;}
+
+
+/* Sonderartikel nach Reload: der fixe 86px-Kopf darf niemals die Ueberschrift
+   oder den Zurueck-Link verdecken. Nur die eigene Formularansicht betreffen. */
+@media (max-width:720px) {
+  html body.custom-entry-view #shop-view:not([hidden]) {
+    padding-top:86px!important;
+    box-sizing:border-box!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-y:contain!important;
+  }
+  html body.custom-entry-view #shop-view:not([hidden]) > main {
+    padding-top:14px!important;
+    padding-bottom:calc(110px + env(safe-area-inset-bottom))!important;
+    margin-top:0!important;
+  }
+  html body.custom-entry-view #sonderartikel {
+    scroll-margin-top:108px!important;
+  }
+}
+
+
+/* Sonderartikel-Kachel wie in der Referenz:
+   20px unter dem blauen Header, seitlich gleichmaessig eingerueckt,
+   unteres Ende oberhalb der dauerhaft fixierten Navigation.
+   Auf kleineren Displays bleibt das Formular bei Bedarf scrollbar. */
+@media (max-width:720px) {
+ html body.custom-entry-view #shop-view:not([hidden]) {
+   padding-top:86px!important;
+   padding-bottom:0!important;
+   height:100dvh!important;
+   max-height:100dvh!important;
+   overflow:hidden!important;
+ }
+ html body.custom-entry-view #shop-view:not([hidden]) > main {
+   box-sizing:border-box!important;
+   height:calc(100dvh - 86px)!important;
+   max-height:calc(100dvh - 86px)!important;
+   min-height:0!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:contain!important;
+   padding:20px 16px calc(110px + env(safe-area-inset-bottom))!important;
+   margin:0!important;
+ }
+ html body.custom-entry-view #shop-view:not([hidden]) .shop-layout,
+ html body.custom-entry-view #shop-view:not([hidden]) #artikel {
+   width:100%!important;
+   max-width:720px!important;
+   min-width:0!important;
+   margin:0 auto!important;
+ }
+ html body.custom-entry-view #shop-view:not([hidden]) #sonderartikel {
+   box-sizing:border-box!important;
+   width:100%!important;
+   margin:0 auto!important;
+   scroll-margin-top:20px!important;
+ }
+}
+
+
+/* Desktop-Fix: mobile Scrollsperren galten bislang versehentlich auch am PC.
+   Auf Desktop scrollt wieder die normale Browserseite. Die Dialoge behalten
+   bei geoeffneter Historie / Warenkorb ihre gewollte Scrollsperre. */
+@media (min-width:721px) {
+ html:has(#home-view:not([hidden])),
+ html:has(#shop-view:not([hidden])),
+ html:has(#waste-view:not([hidden])),
+ html:has(#overview-menu-view:not([hidden])),
+ html:has(#order-overview-view:not([hidden])),
+ html:has(#waste-overview-view:not([hidden])) {
+   height:auto!important;
+   min-height:100%!important;
+   max-height:none!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body:not(.desktop-cart-open):not(.pickup-history-open):not(.order-history-open) {
+   height:auto!important;
+   min-height:100vh!important;
+   max-height:none!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]),
+ html body #shop-view:not([hidden]) {
+   height:auto!important;
+   min-height:0!important;
+   max-height:none!important;
+   overflow-y:visible!important;
+   overscroll-behavior-y:auto!important;
+ }
+ html body #shop-view:not([hidden]) > main {
+   height:auto!important;
+   max-height:none!important;
+   overflow-y:visible!important;
+ }
+}
+
+
+/* PC: obere Kopfzeile auf allen Seiten dauerhaft sichtbar halten.
+   Keine Aenderung am mobilen Layout. Die Browserseite bleibt scrollbar. */
+@media (min-width:721px) {
+  html body:not(:has(#shop-view:not([hidden]))) #facility-blue-header {
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    z-index:1150!important;
+    transform:none!important;
+  }
+  html body:not(:has(#shop-view:not([hidden]))) {
+    padding-top:174px!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view > header {
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    z-index:1150!important;
+    transform:none!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view {
+    padding-top:var(--desktop-shop-header-height,96px)!important;
+  }
+  html body:has(#shop-view:not([hidden])) #shop-view .mobile-sticky-controls {
+    position:sticky!important;
+    top:var(--desktop-shop-header-height,96px)!important;
+    z-index:1050!important;
+  }
+}
+
+
+/* PC: "Artikel nicht gefunden?" exakt so flach wie das Suchfeld
+   und unten mit der Suchleiste ausrichten. Smartphone unveraendert. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   align-self:center!important;
+   box-sizing:border-box!important;
+   height:36px!important;
+   min-height:36px!important;
+   max-height:36px!important;
+   padding:0 16px!important;
+   margin:0!important;
+   display:inline-flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   line-height:1.2!important;
+   white-space:nowrap!important;
+ }
+}
+
+
+/* Nur PC: vorhandene Lupe in das Suchfeld versetzen.
+   Mobile Icon-Position und Suchfeld bleiben vollkommen unveraendert. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls .product-search {
+   position:relative!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search > label[for="article-search"] {
+   position:absolute!important;
+   left:34px!important;
+   bottom:16px!important;
+   top:auto!important;
+   width:23px!important;
+   height:23px!important;
+   margin:0!important;
+   display:flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   color:#203947!important;
+   pointer-events:none!important;
+   z-index:2!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search #article-search {
+   padding-left:48px!important;
+ }
+}
+
+
+/* PC: Suchfeld und Sonderartikelbutton pixelgenau gleich hoch.
+   Beide stehen zentriert in derselben Grid-Zeile. */
+@media (min-width:721px) {
+ html body #shop-view .mobile-sticky-controls > .product-search {
+   align-self:center!important;
+ }
+ html body #shop-view .mobile-sticky-controls .product-search #article-search,
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   box-sizing:border-box!important;
+   height:38px!important;
+   min-height:38px!important;
+   max-height:38px!important;
+ }
+ html body #shop-view .mobile-sticky-controls > .custom-entry-link {
+   align-self:center!important;
+   margin:0!important;
+   padding:0 16px!important;
+ }
+}
+
+
+/* Einheitliches Desktop-Layout. Die Smartphone-Regeln bleiben unangetastet.
+   Suchleiste wird als komplettes Element direkt unter den fixierten Shopkopf
+   gesetzt. Der Artikelbereich bleibt im normalen Dokumentfluss. */
+@media (min-width:721px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) {
+   overflow:visible!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr) auto!important;
+   align-items:center!important;
+   position:fixed!important;
+   inset:auto!important;
+   top:var(--desktop-filters-top,var(--desktop-shop-header-height,96px))!important;
+   left:var(--desktop-filters-left,24px)!important;
+   right:auto!important;
+   width:var(--desktop-filters-width,calc(100% - 48px))!important;
+   max-width:none!important;
+   height:auto!important;
+   padding:8px 0 10px!important;
+   margin:0!important;
+   transform:none!important;
+   box-sizing:border-box!important;
+   background:#f3f6f8!important;
+   z-index:1140!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > .mobile-sticky-controls .category-nav {
+   grid-column:1 / -1!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) > main {
+   box-sizing:border-box!important;
+   max-width:1328px!important;
+   width:100%!important;
+   margin:0 auto!important;
+   /* Der Shop selbst besitzt bereits den Abstand zur fixierten Kopfzone. */
+   padding:14px 24px 60px!important;
+   height:auto!important;
+   overflow:visible!important;
+ }
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .shop-layout {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr) 370px!important;
+   align-items:start!important;
+   gap:30px!important;
+   overflow:visible!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout > #warenkorb {
+   position:fixed!important;
+   top:var(--desktop-cart-top,260px)!important;
+   right:var(--desktop-cart-right,24px)!important;
+   left:auto!important;
+   bottom:auto!important;
+   width:var(--desktop-cart-width,370px)!important;
+   max-width:var(--desktop-cart-width,370px)!important;
+   max-height:calc(100dvh - var(--desktop-cart-top,260px) - 12px)!important;
+   overflow-y:auto!important;
+   overflow-x:hidden!important;
+   box-sizing:border-box!important;
+   transform:none!important;
+   z-index:1090!important;
+ }
+ html body:not(.desktop-cart-open):not(.custom-entry-view) #shop-view:not([hidden]) #warenkorb > .section-heading {
+   position:sticky!important;
+   top:-1px!important;
+   background:white!important;
+   z-index:2!important;
+   padding:2px 0 10px!important;
+ }
+}
+@media (min-width:721px) and (max-width:1050px) {
+ html body:not(.custom-entry-view):not(.mobile-cart-view) #shop-view:not([hidden]) .shop-layout {
+   grid-template-columns:minmax(0,1fr) 330px!important;
+   gap:20px!important;
+ }
+}
+
+
+/* Smartphone: Artikelsuche nur ueber die Lupe der unteren Navigation.
+   Kategorien und Sonderartikel-Kachel bleiben oben bestehen.
+   Die PC-Ansicht bleibt unveraendert. */
+#facility-search-toggle {display:none}
+@media (max-width:720px) {
+ html body #facility-home-nav {
+   gap:0!important;
+   justify-content:center!important;
+   column-gap:clamp(28px,8vw,65px)!important;
+ }
+ html body #facility-home-nav #facility-search-toggle {
+   display:flex!important;
+   position:relative!important;
+   align-items:center!important;
+   justify-content:center!important;
+   flex:0 0 44px!important;
+   width:44px!important;
+   height:44px!important;
+   min-height:44px!important;
+   margin:0!important;
+   padding:6px!important;
+   border:0!important;
+   border-radius:12px!important;
+   box-shadow:none!important;
+   background:transparent!important;
+   color:#0346ae!important;
+   cursor:pointer;
+   -webkit-tap-highlight-color:transparent;
+ }
+ html body #facility-home-nav #facility-search-toggle svg {
+   width:30px!important;
+   height:30px!important;
+   stroke:currentColor!important;
+ }
+ html body #shop-view .mobile-sticky-controls > .product-search {
+   display:none!important;
+ }
+ html body.facility-search-open > .product-search {
+   display:block!important;
+   position:fixed!important;
+   bottom:calc(88px + env(safe-area-inset-bottom))!important;
+   left:12px!important;
+   right:12px!important;
+   top:auto!important;
+   width:auto!important;
+   max-width:none!important;
+   height:auto!important;
+   margin:0!important;
+   padding:12px!important;
+   z-index:2100!important;
+   border:1px solid #dce5eb!important;
+   border-radius:16px!important;
+   background:#fff!important;
+   box-shadow:0 6px 26px #142c3833!important;
+ }
+ html body.facility-search-open > .product-search > label {
+   display:none!important;
+ }
+ html body.facility-search-open > .product-search .search-input-wrap {
+   position:relative!important;
+   width:100%!important;
+   max-width:none!important;
+ }
+ html body.facility-search-open > .product-search #article-search {
+   display:block!important;
+   width:100%!important;
+   min-height:48px!important;
+   box-sizing:border-box!important;
+   border:1px solid #1a419c!important;
+   border-radius:11px!important;
+   background:white!important;
+   padding:10px 48px 10px 16px!important;
+   font-size:16px!important;
+ }
+ html body.facility-search-open #facility-home-nav #facility-search-toggle {
+   background:#eaf2fb!important;
+ }
+}
+
+/* Mobile Suchfeld vollständig aus dem oberen App-Bereich entfernen.
+   Nur beim Öffnen über die Lupe wird das Overlay sichtbar. */
+@media(max-width:720px){
+ html body:not(.facility-search-open) > .product-search {
+   display:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls > .product-search{
+   display:none!important;
+   height:0!important;
+   margin:0!important;
+   padding:0!important;
+   border:0!important;
+ }
+}
+
+/* Smartphone: "Suche" unter der Lupe wie Startseite und Profil. */
+@media(max-width:720px){
+ html body #facility-home-nav #facility-search-toggle{
+  flex-direction:column!important;
+  gap:3px!important;
+  height:auto!important;
+  min-height:44px!important;
+  flex-basis:48px!important;
+  width:48px!important;
+  padding:0!important;
+  align-self:center!important;
+ }
+ html body #facility-home-nav #facility-search-toggle .facility-search-label{
+  display:block!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  color:#0346ae!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+ }
+}
+
+
+/* Mobile Navigation: Artikelwunsch direkt zwischen Suche und Profil.
+   Bestandsfarben und Iconstil der anderen drei Eintraege uebernehmen.
+   Die bisherige Artikel-nicht-gefunden-Kachel nur mobil entfernen. */
+#facility-custom-entry-nav{display:none!important}
+@media(max-width:720px){
+ html body #facility-home-nav{
+  justify-content:space-evenly!important;
+  gap:0!important;
+  column-gap:0!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
+ }
+ html body #facility-home-nav > a,
+ html body #facility-home-nav > button,
+ html body #facility-home-nav > #facility-profile-slot {
+  min-width:0!important;
+  flex:0 1 25%!important;
+ }
+ html body #facility-home-nav #facility-custom-entry-nav{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:3px!important;
+  height:auto!important;
+  min-height:44px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#0346ae!important;
+  text-align:center!important;
+  text-decoration:none!important;
+  -webkit-tap-highlight-color:transparent;
+ }
+ html body #facility-home-nav #facility-custom-entry-nav svg{
+  width:29px!important;
+  height:29px!important;
+  stroke:#0346ae!important;
+  fill:none!important;
+  flex:0 0 29px!important;
+ }
+ html body #facility-home-nav #facility-custom-entry-nav .facility-custom-entry-label{
+  display:block!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  color:#0346ae!important;
+  white-space:nowrap!important;
+ }
+ html body #shop-view .mobile-sticky-controls > a.custom-entry-link{
+  display:none!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+ }
+}
+
+
+/* Smartphone: alte obere "Artikel nicht gefunden?"-Kachel definitiv entfernen.
+   Der neue Navigationspunkt Artikelwunsch bleibt erhalten. */
+@media (max-width:720px){
+ html body:not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls > a.custom-entry-link,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls > a.custom-entry-link {
+   display:none!important;
+   visibility:hidden!important;
+   position:absolute!important;
+   width:0!important;
+   height:0!important;
+   min-height:0!important;
+   max-height:0!important;
+   padding:0!important;
+   margin:0!important;
+   border:0!important;
+   overflow:hidden!important;
+ }
+}
+
+
+/* Smartphone: vier gleich breite Navigationsplaetze, Icons und Texte zentriert.
+   Grid verhindert ungleiche Abstaende durch verschiedene Beschriftungslaengen. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:1fr!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  justify-content:stretch!important;
+  gap:0!important;
+  column-gap:0!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
+ }
+ html body #facility-home-nav > a,
+ html body #facility-home-nav > button,
+ html body #facility-home-nav > #facility-profile-slot{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  justify-self:stretch!important;
+  align-self:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  flex:none!important;
+  gap:3px!important;
+  box-sizing:border-box!important;
+ }
+ html body #facility-home-nav #facility-search-toggle{
+  width:100%!important;
+  height:auto!important;
+  min-height:44px!important;
+  flex-basis:auto!important;
+ }
+ html body #facility-home-nav #facility-custom-entry-nav{
+  width:100%!important;
+  flex-basis:auto!important;
+ }
+ html body #facility-home-nav #facility-profile-slot{
+  width:100%!important;
+  min-width:0!important;
+  flex-basis:auto!important;
+ }
+}
+
+
+/* Smartphone: Kategorieauswahl als Brillinger-Minikacheln mit Symbolen.
+   Desktop-Buttons bleiben im bisherigen Erscheinungsbild. */
+.category-tile-icon{display:none}
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav{
+  padding:3px 8px!important;
+  margin:0!important;
+  background:transparent!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:4px!important;
+  align-items:stretch!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:2px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:56px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:4px 2px!important;
+  border:1px solid #d9e4f0!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  color:#173a52!important;
+  box-shadow:none!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  line-height:1.2!important;
+  text-align:center!important;
+  white-space:normal!important;
+  transition:background-color .15s,border-color .15s!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  background:#e2edfc!important;
+  color:#173a52!important;
+  border-color:#0346ae!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
+  display:flex!important;
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#0346ae!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
+  display:block!important;
+  width:17px!important;
+  height:17px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-label{
+  display:block!important;
+  max-width:100%!important;
+  overflow-wrap:break-word!important;
+  hyphens:auto!important;
+  font-size:10px!important;
+  text-align:center!important;
+ }
+}
+
+
+/* Smartphone: stabiles Navigationsraster ohne Wechsel zwischen flex/grid.
+   Vier feste gleichbreite Slots, auch bei Tap, Seitenwechsel und Wischen. */
+@media (max-width:720px) {
+ html body #facility-home-nav,
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav {
+   display:grid!important;
+   grid-template-columns:repeat(4,minmax(0,1fr))!important;
+   grid-template-rows:50px!important;
+   align-content:center!important;
+   align-items:center!important;
+   justify-content:stretch!important;
+   justify-items:stretch!important;
+   column-gap:0!important;
+   row-gap:0!important;
+   padding-left:8px!important;
+   padding-right:8px!important;
+   box-sizing:border-box!important;
+   position:fixed!important;
+   left:0!important;
+   right:0!important;
+   bottom:0!important;
+   width:100%!important;
+   transform:none!important;
+   transition:none!important;
+ }
+ html body #facility-home-nav > a[href="#start"] {grid-column:1!important}
+ html body #facility-home-nav > #facility-search-toggle {grid-column:2!important}
+ html body #facility-home-nav > #facility-custom-entry-nav {grid-column:3!important}
+ html body #facility-home-nav > #facility-profile-slot {grid-column:4!important}
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-custom-entry-nav,
+ html body #facility-home-nav > #facility-profile-slot {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr)!important;
+   grid-template-rows:29px 17px!important;
+   align-items:center!important;
+   justify-items:center!important;
+   align-content:center!important;
+   justify-content:center!important;
+   gap:3px!important;
+   box-sizing:border-box!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:none!important;
+   height:50px!important;
+   min-height:50px!important;
+   max-height:50px!important;
+   padding:0!important;
+   margin:0!important;
+   flex:none!important;
+   border:0!important;
+   border-radius:0!important;
+   background:transparent!important;
+   box-shadow:none!important;
+   transform:none!important;
+   transition:none!important;
+   animation:none!important;
+   text-align:center!important;
+   -webkit-tap-highlight-color:transparent!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > svg,
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-custom-entry-nav > svg {
+   display:block!important;
+   grid-row:1!important;
+   grid-column:1!important;
+   width:29px!important;
+   height:29px!important;
+   min-width:29px!important;
+   min-height:29px!important;
+   max-width:29px!important;
+   max-height:29px!important;
+   align-self:center!important;
+   justify-self:center!important;
+   margin:0!important;
+   transform:none!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-custom-entry-nav > .facility-custom-entry-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label {
+   display:block!important;
+   grid-row:2!important;
+   grid-column:1!important;
+   width:100%!important;
+   margin:0!important;
+   padding:0!important;
+   line-height:17px!important;
+   font-size:12px!important;
+   font-weight:700!important;
+   color:#0346ae!important;
+   text-align:center!important;
+   white-space:nowrap!important;
+   align-self:center!important;
+   justify-self:center!important;
+   transform:none!important;
+ }
+ html body #facility-home-nav > #facility-profile-slot > #profile-edit {
+   grid-row:1!important;
+   grid-column:1!important;
+   align-self:center!important;
+   justify-self:center!important;
+   box-sizing:border-box!important;
+   width:29px!important;
+   min-width:29px!important;
+   max-width:29px!important;
+   height:29px!important;
+   min-height:29px!important;
+   max-height:29px!important;
+   flex:none!important;
+   margin:0!important;
+   padding:0!important;
+   transform:none!important;
+ }
+ html body #facility-home-nav > #facility-profile-slot > #profile-edit::after {
+   width:29px!important;
+   height:29px!important;
+ }
+}
+/* Nur Smartphone: Reinigung und Hygiene in der Kategorie auf zwei Zeilen. */
+.category-mobile-break{display:none}
+@media(max-width:720px){
+ html body #shop-view .category-button .category-mobile-break{display:block!important}
+}
+
+
+/* Smartphone: Facility-Header exakt wie Shop-Header am Viewportanfang
+   verankern. Anders als ein Overlay faerbt der echte blaue Header damit
+   auch den von iOS dargestellten oberen Systembereich. Der bisherige
+   Headerplatz wird am Body reserviert: kein doppelter Balken oder Sprung
+   der Start-/Uebersichtsseiten. Nur Nicht-Shop-Seiten. */
+@media (max-width:720px) {
+ html body:not(:has(#shop-view:not([hidden]))) {
+   padding-top:166px!important;
+ }
+ html body:not(:has(#shop-view:not([hidden]))) #facility-blue-header {
+   position:fixed!important;
+   top:0!important;
+   left:0!important;
+   right:0!important;
+   width:100%!important;
+   height:166px!important;
+   min-height:166px!important;
+   max-height:166px!important;
+   z-index:1100!important;
+   margin:0!important;
+   isolation:auto!important;
+ }
+}
+
+
+/* Smartphone Warenkorb: wie Artikelwunsch eine eingerueckte Karte zwischen
+   fixiertem blauem Header und unterer Navigation. Nur main scrollt;
+   der Zurueck-Link und der Kartenrand bleiben nicht mehr verdeckt. */
+@media (max-width:720px) {
+ html body.mobile-cart-view #shop-view:not([hidden]){
+   display:flex!important;
+   flex-direction:column!important;
+   box-sizing:border-box!important;
+   width:100%!important;
+   height:100dvh!important;
+   min-height:0!important;
+   max-height:100dvh!important;
+   padding:86px 0 0!important;
+   margin:0!important;
+   overflow:hidden!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header{
+   position:fixed!important;
+   inset:0 0 auto 0!important;
+   width:100%!important;
+   z-index:1100!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > main{
+   display:block!important;
+   flex:1 1 0%!important;
+   box-sizing:border-box!important;
+   width:100%!important;
+   height:auto!important;
+   min-height:0!important;
+   max-height:none!important;
+   margin:0!important;
+   padding:20px 16px calc(115px + env(safe-area-inset-bottom))!important;
+   overflow-x:hidden!important;
+   overflow-y:auto!important;
+   overscroll-behavior-y:contain!important;
+   -webkit-overflow-scrolling:touch;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+   display:block!important;
+   width:100%!important;
+   max-width:720px!important;
+   min-width:0!important;
+   margin:0 auto!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb{
+   display:block!important;
+   position:relative!important;
+   inset:auto!important;
+   box-sizing:border-box!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:none!important;
+   max-height:none!important;
+   height:auto!important;
+   margin:0 auto!important;
+   overflow:visible!important;
+   border:1px solid #d7e2e9!important;
+   border-top:1px solid #d7e2e9!important;
+   border-radius:16px!important;
+   background:#fff!important;
+   box-shadow:none!important;
+ }
+}
+
+
+/* Smartphone: Bestellen bleibt im Warenkorb dauerhaft oberhalb der
+   unteren vierteiligen Navigation. Nur der Warenkorbinhalt scrollt. */
+@media(max-width:720px){
+ html body.mobile-cart-view > #order-button {
+   display:flex!important;
+   position:fixed!important;
+   inset:auto 16px var(--mobile-order-bottom,100px) 16px!important;
+   z-index:1250!important;
+   box-sizing:border-box!important;
+   width:calc(100% - 32px)!important;
+   max-width:688px!important;
+   min-height:52px!important;
+   height:52px!important;
+   margin:0 auto!important;
+   padding:10px 16px!important;
+   justify-content:center!important;
+   align-items:center!important;
+   text-align:center!important;
+   border-radius:12px!important;
+   background:#071b7c!important;
+   color:white!important;
+   box-shadow:0 3px 14px #092a5b28!important;
+ }
+ html body.mobile-cart-view > #order-button:disabled {
+   background:#9daaba!important;
+   color:#fff!important;
+   box-shadow:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > main {
+   padding-bottom:calc(185px + env(safe-area-inset-bottom))!important;
+ }
+}
+
+
+/* Smartphone-Warenkorb: Rueckweg dauerhaft am oberen Rand des
+   Warenkorb-Scrollbereichs halten, ohne die Karte oder ihre Hoehe zu bewegen. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb > .mobile-back-to-shop {
+   display:inline-flex!important;
+   position:sticky!important;
+   top:0!important;
+   z-index:20!important;
+   align-items:center!important;
+   width:max-content!important;
+   max-width:100%!important;
+   margin:0 0 20px!important;
+   background:#f3f8fb!important;
+   box-shadow:0 0 0 10px #fff!important;
+ }
+}
+
+
+/* Kleine Artikelbilder ausschliesslich im Smartphone-Warenkorb.
+   Bezeichnungen, Mengensteuerung und Entfernen bleiben unveraendert;
+   auf PC werden die Bilder nicht eingeblendet. */
+.cart-item-product > .cart-item-image{display:none}
+.cart-item-product > .cart-item-details{display:contents}
+@media(max-width:720px){
+ html body.mobile-cart-view #cart-items > .cart-item-product{
+   display:grid!important;
+   grid-template-columns:48px minmax(0,1fr)!important;
+   column-gap:11px!important;
+   align-items:start!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-image{
+   display:block!important;
+   box-sizing:border-box!important;
+   width:48px!important;
+   height:54px!important;
+   object-fit:contain!important;
+   padding:3px!important;
+   border:1px solid #e5edf3!important;
+   border-radius:8px!important;
+   background:#fff!important;
+   grid-column:1!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-symbol{
+   display:flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   font-size:25px!important;
+ }
+ html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-details{
+   display:block!important;
+   grid-column:2!important;
+   min-width:0!important;
+ }
+}
+
+
+/* Smartphone-Warenkorb: Zurueck-Link ausserhalb der Bestellkachel.
+   Bleibt beim Scrollen direkt unter dem Header sichtbar. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+   display:inline-flex!important;
+   position:sticky!important;
+   top:0!important;
+   z-index:50!important;
+   box-sizing:border-box!important;
+   width:max-content!important;
+   max-width:100%!important;
+   align-items:center!important;
+   justify-content:center!important;
+   margin:0 0 14px!important;
+   padding:11px 14px!important;
+   border:1px solid #bfd0da!important;
+   border-radius:10px!important;
+   background:#f3f8fb!important;
+   color:#075775!important;
+   box-shadow:0 0 0 7px #f3f6f8!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > #warenkorb{
+   margin-top:0!important;
+ }
+}
+
+
+/* Smartphone: Bestell- und Statusmeldung deutlich hoeher, sichtbar direkt
+   unter dem blauen Header statt unten hinter Bestellbutton/Navigation. */
+@media(max-width:720px){
+ html body > #feedback.live-message:not(:empty){
+   position:fixed!important;
+   top:106px!important;
+   bottom:auto!important;
+   left:50%!important;
+   right:auto!important;
+   transform:translateX(-50%)!important;
+   z-index:1500!important;
+   box-sizing:border-box!important;
+   width:max-content!important;
+   max-width:calc(100vw - 32px)!important;
+   padding:13px 17px!important;
+   text-align:center!important;
+   white-space:normal!important;
+ }
+}
+
+/* Einheitliches Pull-to-refresh 2026-10-15: Kopfbereich und aktive Seite folgen exakt demselben Ziehweg.
+   Keine Einzelanimation waehrend der Fingerbewegung, damit kein Spalt entsteht. */
+@media(max-width:720px){
+ html body #facility-blue-header,
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]){
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+  will-change:transform;
+ }
+ /* Der Shop ist ein eigenes Scrollfenster: den kompletten Container bewegen,
+    nicht den fixierten Header und den Inhalt ein zweites Mal. */
+ html body #shop-view:not([hidden]),
+ html body #shop-view:not([hidden]).facility-shop-pulling,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-pulling{
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+ }
+ html body #shop-view:not([hidden]) > header,
+ html body #shop-view:not([hidden]) > main,
+ html body #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls{
+  transform:none!important;
+  transition:none!important;
+ }
+}
+
+/* Einheitliches Pull-to-refresh: gesamtes Dokument inklusive Kopfzeile,
+   Warenkorb, Seiteninhalt und unterer Navigation verschieben. */
+@media(max-width:720px){
+ html:has(body.facility-whole-page-pulling){
+  background:#1c398d!important;
+  overscroll-behavior-y:none!important;
+ }
+ html body.facility-whole-page-pulling{
+  transform:translate3d(0,var(--facility-pull-distance,0px),0)!important;
+  transition:none!important;
+  will-change:transform;
+ }
+ html body.facility-whole-page-pulling #facility-blue-header,
+ html body.facility-whole-page-pulling #home-view:not([hidden]),
+ html body.facility-whole-page-pulling #waste-view:not([hidden]),
+ html body.facility-whole-page-pulling #overview-menu-view:not([hidden]),
+ html body.facility-whole-page-pulling #order-overview-view:not([hidden]),
+ html body.facility-whole-page-pulling #waste-overview-view:not([hidden]),
+ html body.facility-whole-page-pulling #shop-view:not([hidden]),
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > header,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > main,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > header,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > main,
+ html body.facility-whole-page-pulling #shop-view:not([hidden]).facility-shop-pulling > .mobile-sticky-controls{
+  transform:none!important;
+  transition:none!important;
+ }
+ html body.facility-whole-page-pulling #facility-pull-refresh{
+  top:calc(-1 * var(--facility-pull-distance,0px) / 2 - 21px)!important;
+ }
+}
+
+/* Muellentsorgung: etwas groessere Kacheln, angepasst an die Displayhoehe.
+   Auf kleinen Smartphones kompakt, damit alle fuenf sichtbar bleiben. */
+@media(max-width:720px){
+ html body #waste-view:not([hidden]) .waste-options{
+  gap:clamp(8px,1.1dvh,12px)!important;
+ }
+ html body #waste-view:not([hidden]) .waste-option{
+  min-height:clamp(78px,9.7dvh,94px)!important;
+  padding:clamp(14px,1.8dvh,19px) 17px!important;
+  border-radius:15px!important;
+ }
+}
+@media(max-width:720px) and (max-height:740px){
+ html body #waste-view:not([hidden]) .waste-option{
+  min-height:76px!important;
+  padding:12px 16px!important;
+ }
+ html body #waste-view:not([hidden]) .waste-options{
+  gap:8px!important;
+ }
+}
+
+/* Nur der Zurueck-Button wird ein-/ausgeblendet; Bestellen bleibt fixiert. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+  transition:opacity .16s ease,visibility .16s ease!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop.cart-back-hidden{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+ }
+}
+
+/* Artikelwunsch: Zurueck-zu-den-Artikeln-Button hier nicht anzeigen. */
+@media(max-width:720px){
+ html body.custom-entry-view #shop-view:not([hidden]) .mobile-back-to-shop{display:none!important}
+}
+
+/* Warenkorb: Zurueck zu den Artikeln bleibt direkt unter dem Shop-Header
+   fest im Viewport statt mit der Bestellliste zu scrollen. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
+  position:fixed!important;
+  top:102px!important;
+  left:16px!important;
+  right:auto!important;
+  bottom:auto!important;
+  z-index:1150!important;
+  margin:0!important;
+  transform:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  padding-top:74px!important;
+ }
+}
+
+/* Warenkorb-Link liegt nun direkt unter body ausserhalb der scrollbaren Shop-Ansicht. */
+@media(max-width:720px){
+ html body.mobile-cart-view > a.mobile-back-to-shop{
+  display:inline-flex!important;
+  position:fixed!important;
+  top:102px!important;
+  left:16px!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:max-content!important;
+  max-width:calc(100vw - 32px)!important;
+  margin:0!important;
+  padding:11px 14px!important;
+  border:1px solid #bfd0da!important;
+  border-radius:10px!important;
+  background:#f3f8fb!important;
+  color:#075775!important;
+  text-decoration:none!important;
+  font-weight:700!important;
+  z-index:1200!important;
+  box-shadow:none!important;
+  transition:opacity .16s ease,visibility .16s ease!important;
+ }
+ html body.mobile-cart-view > a.mobile-back-to-shop.cart-back-hidden{
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+ }
+}
+html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
+
+/* Smartphone-Warenkorb: Bestellkachel direkt unter den fixierten Zurueck-Button ruecken. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  padding-top:0!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > main{
+  padding-top:20px!important;
+ }
+}
+
+/* Warenkorb: Zurueck direkt in der blauen Kopfzeile links vom Warenkorb. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  display:inline-flex!important;
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+  flex:0 1 auto!important;
+  min-width:0!important;
+  width:auto!important;
+  max-width:calc(100vw - 235px)!important;
+  margin:0 8px 0 auto!important;
+  padding:8px 9px!important;
+  border:1px solid rgba(255,255,255,.5)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.12)!important;
+  color:white!important;
+  box-shadow:none!important;
+  font-size:clamp(10px,2.6vw,13px)!important;
+  line-height:1.2!important;
+  text-align:center!important;
+  white-space:normal!important;
+  text-decoration:none!important;
+  z-index:auto!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop.cart-back-hidden{
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header .cart-link{
+  flex-shrink:0!important;
+ }
+}
+
+/* Zurueck-Pfeil kompakt links neben dem Warenkorb im blauen Header. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:relative!important;
+  inset:auto!important;
+  flex:0 0 40px!important;
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  margin:0 8px 0 auto!important;
+  padding:0!important;
+  color:#fff!important;
+  background:rgba(255,255,255,.12)!important;
+  border:1px solid rgba(255,255,255,.5)!important;
+  border-radius:10px!important;
+  font-size:23px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+ }
+}
+
+/* Artikelansicht: Hintergrund hinter den Produktkacheln wieder weiss. */
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main,
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .shop-layout,
+html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .products{
+ background:#fff!important;
+}
+
+/* Warenkorb: Zurueck-Pfeil in der blauen Kopfzeile weiss mit blauer Schrift. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  background:#fff!important;
+  background-color:#fff!important;
+  color:#1c398d!important;
+  -webkit-text-fill-color:#1c398d!important;
+  border:1px solid #fff!important;
+ }
+}
+
+/* Verbindliche Gestaltung des Zurueck-Pfeils im mobilen Warenkorb. */
+@media(max-width:720px){
+ body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop,
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:link,
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:visited{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  padding:0!important;
+  background:#fff!important;
+  background-color:#fff!important;
+  color:#1c398d!important;
+  -webkit-text-fill-color:#1c398d!important;
+  border:1px solid #fff!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+  font-size:24px!important;
+  font-weight:700!important;
+  line-height:1!important;
+  text-decoration:none!important;
+ }
+}
+
+/* Warenkorb: Zurueck-Pfeil gleich hoch wie Warenkorb-Button. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
+  width:46px!important;
+  min-width:46px!important;
+  max-width:46px!important;
+  height:46px!important;
+  flex:0 0 46px!important;
+  padding:0!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop svg{
+  display:block!important;
+  width:29px!important;
+  height:29px!important;
+  color:#1c398d!important;
+  stroke:#1c398d!important;
+  stroke-width:3.4!important;
+ }
+}
+
+/* Untere Navigation: Zurueck-Taste zwischen Start und Suche. */
+@media(max-width:720px){
+ html body #facility-home-nav{gap:0!important;justify-content:space-around!important}
+ html body #facility-home-nav > #facility-back-nav{
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  justify-content:center!important;gap:3px!important;flex:1 1 0!important;
+  min-width:0!important;padding:4px 2px!important;border:0!important;
+  background:transparent!important;color:#001b79!important;
+  font:inherit!important;cursor:pointer;
+ }
+ html body #facility-home-nav > #facility-back-nav svg{width:29px!important;height:29px!important}
+ html body #facility-home-nav > #facility-back-nav span{font-size:11px!important;font-weight:700!important;line-height:1.2!important}
+}
+@media(min-width:721px){#facility-home-nav > #facility-back-nav{display:none!important}}
+
+/* Farbkonzept beibehalten: weisse untere Leiste, alle fuenf Symbole
+   identisch Brillinger-blau und gleichmaessig verteilt. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  background:#fff!important;
+  column-gap:0!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
+ html body #facility-home-nav > #facility-back-nav{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:29px 17px!important;
+  align-items:center!important;
+  justify-items:center!important;
+  align-content:center!important;
+  gap:3px!important;
+  width:100%!important;
+  height:50px!important;
+  min-height:50px!important;
+  max-height:50px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-back-nav svg{
+  grid-row:1!important;
+  width:29px!important;height:29px!important;
+  stroke:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-back-nav span{
+  grid-row:2!important;
+  font-size:12px!important;
+  line-height:17px!important;
+  font-weight:700!important;
+  color:#0346ae!important;
+ }
+}
+
+/* Korrektur: Mobile Bottom-Navigation strikt einzeilig mit fuenf Spalten.
+   Auch alte Flex/Grid-Zuweisungen fuer die Einzelelemente neutralisieren. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:50px!important;
+  grid-auto-flow:row!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  align-content:center!important;
+  justify-content:stretch!important;
+  gap:0!important;
+  flex-wrap:nowrap!important;
+  background:#fff!important;
+  padding-left:5px!important;
+  padding-right:5px!important;
+ }
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-custom-entry-nav,
+ html body #facility-home-nav > #facility-profile-slot{
+  grid-row:1!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:29px 17px!important;
+  place-items:center!important;
+  align-content:center!important;
+  gap:3px!important;
+  width:100%!important;
+  min-width:0!important;
+  height:50px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
+ html body #facility-home-nav > #facility-back-nav > svg{
+  grid-column:1!important;grid-row:1!important;
+  width:29px!important;height:29px!important;
+  justify-self:center!important;align-self:center!important;
+ }
+ html body #facility-home-nav > #facility-back-nav > span{
+  grid-column:1!important;grid-row:2!important;
+  font-size:12px!important;line-height:17px!important;
+  font-weight:700!important;color:#0346ae!important;
+  white-space:nowrap!important;text-align:center!important;
+ }
+}
+
+/* Fuenf Navigationspunkte: dem langen Titel Artikelwunsch genug Platz geben,
+   ohne dass die Beschriftung den Profil-Button ueberlappt. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  grid-template-columns:minmax(0,.95fr) minmax(0,.85fr) minmax(0,.85fr) minmax(0,1.45fr) minmax(0,.75fr)!important;
+  overflow:visible!important;
+ }
+ html body #facility-home-nav > #facility-custom-entry-nav > .facility-custom-entry-label{
+  display:block!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  font-size:12px!important;
+  line-height:17px!important;
+  font-weight:700!important;
+  letter-spacing:-.2px!important;
+  color:#0346ae!important;
+ }
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  width:100%!important;
+  min-width:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  font-size:12px!important;
+ }
+}
+
+/* Finale Ausrichtung: fuenf exakt gleich breite Felder in EINER Zeile. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:50px!important;
+  gap:0!important;
+  padding-left:4px!important;
+  padding-right:4px!important;
+ }
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-custom-entry-nav,
+ html body #facility-home-nav > #facility-profile-slot{
+  justify-self:stretch!important;
+  min-width:0!important;
+  max-width:100%!important;
+ }
+ html body #facility-home-nav > #facility-custom-entry-nav > .facility-custom-entry-label{
+  font-size:clamp(9px,2.55vw,11px)!important;
+  letter-spacing:-.35px!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  font-size:clamp(10px,2.9vw,12px)!important;
+ }
+}
+
+/* Warenkorb: oberen Zurueck-Pfeil ausblenden; Navigation unten bleibt. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{display:none!important}
+}
+
+/* Einheitliche Bottom-Navigation: Icons und Texte auf einer gemeinsamen Achse,
+   fuenf gleich breite Klickflaechen und identische vertikale Abstaende. */
+@media(max-width:720px){
+ html body #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  justify-items:stretch!important;
+  align-items:center!important;
+  column-gap:0!important;
+  row-gap:0!important;
+  padding-inline:6px!important;
+  background:#fff!important;
+ }
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-custom-entry-nav,
+ html body #facility-home-nav > #facility-profile-slot{
+  display:grid!important;
+  grid-row:1!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:30px 18px!important;
+  align-content:center!important;
+  align-items:center!important;
+  justify-content:center!important;
+  justify-items:center!important;
+  gap:4px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  padding:0!important;
+  margin:0!important;
+  transform:none!important;
+  text-align:center!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
+ html body #facility-home-nav > a[href="#start"] > svg,
+ html body #facility-home-nav > #facility-back-nav > svg,
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-custom-entry-nav > svg,
+ html body #facility-home-nav > #facility-profile-slot > #profile-edit{
+  grid-row:1!important;grid-column:1!important;
+  justify-self:center!important;align-self:center!important;
+  width:29px!important;height:29px!important;
+  min-width:29px!important;min-height:29px!important;
+  max-width:29px!important;max-height:29px!important;
+  margin:0!important;transform:none!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-custom-entry-nav > .facility-custom-entry-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  grid-row:2!important;grid-column:1!important;
+  justify-self:center!important;align-self:center!important;
+  display:block!important;
+  width:100%!important;max-width:100%!important;
+  margin:0!important;padding:0!important;
+  line-height:18px!important;
+  font-size:clamp(10px,2.6vw,12px)!important;
+  font-weight:700!important;
+  letter-spacing:-.25px!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  color:#0346ae!important;
+  transform:none!important;
+ }
+}
+
+/* Shop-spezifische alte Vier-Spalten-Regel ueberstimmen:
+   identische fuenfteilige Navigation wie auf allen anderen Seiten. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  justify-items:stretch!important;
+  align-items:center!important;
+  gap:0!important;
+  padding-inline:6px!important;
+  background:#fff!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > a[href="#start"]{grid-column:1!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-back-nav{grid-column:2!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle{grid-column:3!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:5!important;grid-row:1!important}
+}
+
+/* Smartphone: Warenkorb-Ueberschrift oberhalb statt innerhalb der ganzen Kachel. */
+.mobile-cart-outside-title{display:none}
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-cart-outside-title{
+  display:block!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:720px!important;
+  margin:0 auto 14px!important;
+  padding:0 2px!important;
+  font-size:24px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  color:#153443!important;
+  text-align:left!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb > .section-heading > #cart-title{
+  display:none!important;
+ }
+}
+
+/* Kategorien: aeusseren duennen Rahmen entfernen, einzelne Buttons beibehalten. */
+html body #shop-view:not([hidden]) .category-nav{
+ border:none!important;
+ box-shadow:none!important;
+}
+
+/* Nur Smartphone: Kategorie-Minikacheln etwas kompakter. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  gap:3px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  min-height:49px!important;
+  padding:3px 2px!important;
+  gap:1px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
+  width:16px!important;height:16px!important;flex-basis:16px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
+  width:15px!important;height:15px!important;
+ }
+}
+
+/* Artikelwunsch nur im Bestellshop anbieten (Smartphone und PC).
+   Ausserhalb des Shops faellt der Navigationsplatz vollstaendig weg. */
+html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custom-entry-nav{
+ display:none!important;
+}
+@media(max-width:720px){
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ }
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+}
+
+/* Mobile Kategorie-Kacheln ohne Einzelrahmen */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  border:none!important;
+  box-shadow:none!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  background:#e2edfc!important;
+  color:#173a52!important;
+ }
+}
+
+/* Nur Smartphone: laengere Beschriftung Artikelsuche sauber zentrieren. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
+  font-size:clamp(9px,2.35vw,11px)!important;
+  letter-spacing:-.25px!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+ }
+}
+
+
+/* Nur App: aeussere Gesamt-Kachel der Kategorien ohne Rahmen.
+   Die kleinen einzelnen Kategorie-Kacheln behalten ihre Rahmen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls nav.category-nav{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  border:1px solid #d9e4f0!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  border:1px solid #0346ae!important;
+ }
+}
+
+/* Smartphone: Kategorie-Kacheln noch etwas kompakter, Rahmen unveraendert. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  min-height:44px!important;
+  padding:2px 2px!important;
+  gap:1px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  gap:3px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
+  width:15px!important;height:15px!important;flex-basis:15px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
+  width:14px!important;height:14px!important;
+ }
+}
+
+
+
+/* Smartphone: alle Navigationssymbole nutzen dieselbe vertikale Rasterposition. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
+  position:static!important;
+  top:auto!important;
+ }
+}
+
+/* Smartphone: Artikelwunsch oberhalb der Artikel statt im unteren Menue. */
+.mobile-article-wish-button{display:none}
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-custom-entry-nav{display:none!important}
+ html body #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;box-sizing:border-box!important;
+  min-height:43px!important;margin:0 0 12px!important;padding:9px 14px!important;
+  border:1px solid #0346ae!important;border-radius:10px!important;
+  background:#fff!important;color:#0346ae!important;
+  font-size:14px!important;font-weight:700!important;text-decoration:none!important;
+  text-align:center!important;
+ }
+}
+
+/* Vier gleich breite Navigationsfelder: identische Symbol-/Text-Ausrichtung
+   auch im Shop und beim Ein-/Ausblenden der unteren Leiste. */
+@media(max-width:720px){
+ html body #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  gap:0!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  padding-inline:6px!important;
+ }
+ html body #facility-home-nav > #facility-custom-entry-nav{display:none!important}
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-profile-slot{
+  display:grid!important;
+  grid-row:1!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:29px 18px!important;
+  align-items:center!important;
+  justify-items:center!important;
+  align-content:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  width:100%!important;
+  min-width:0!important;
+  height:52px!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+ html body #facility-home-nav > a[href="#start"] > svg,
+ html body #facility-home-nav > #facility-back-nav > svg,
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-profile-slot > #profile-edit{
+  grid-row:1!important;
+  grid-column:1!important;
+  width:29px!important;
+  height:29px!important;
+  margin:0!important;
+  position:static!important;
+  transform:none!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  grid-row:2!important;
+  grid-column:1!important;
+  align-self:center!important;
+  justify-self:center!important;
+  line-height:18px!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:center!important;
+  position:static!important;
+  transform:none!important;
+ }
+}
+
+/* Abschliessende Navigation: auch Shop-spezifische alte 5.-Spalte
+   ueberstimmen. Alle vier Tabs exakt in einer Zeile und einem Raster. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  grid-auto-rows:0!important;
+  gap:0!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > a[href="#start"]{grid-column:1!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-back-nav{grid-column:2!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle{grid-column:3!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:4!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{display:none!important}
+}
+
+/* Smartphone: Artikel-nicht-gefunden-Button Brillinger-Blau mit weisser Schrift. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
+  background:#0346ae!important;
+  color:#fff!important;
+  border-color:#0346ae!important;
+  -webkit-text-fill-color:#fff!important;
+ }
+}
+
+/* Smartphone: Artikelsuche-Lupe exakt 1px tiefer */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > svg{
+  position:relative!important;
+  top:1px!important;
+ }
+}
+
+/* Sichtbare Feinausrichtung: NUR Lupe, 3px nach unten, auch im Shop.
+   Transform ueberschreibt alte position/transform:none-Regeln. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle > svg{
+  position:relative!important;
+  top:0!important;
+  transform:translateY(3px)!important;
+ }
+}
+
+
+/* Smartphone: X direkt im Namensfeld des Mitarbeiterprofils. */
+@media(max-width:720px){
+ .profile-name-clear-wrap{position:relative!important;width:100%!important}
+ .profile-name-clear-wrap #profile-name{padding-right:46px!important}
+ .profile-name-clear-wrap #profile-name-clear{
+  position:absolute!important;right:8px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  width:34px!important;height:34px!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border:0!important;border-radius:8px!important;background:transparent!important;
+  color:#0346ae!important;font-size:27px!important;font-weight:500!important;
+ }
+ .profile-name-clear-wrap #profile-name-clear[hidden]{display:none!important}
+}
+@media(min-width:721px){.profile-name-clear-wrap #profile-name-clear{display:none!important}}
+
+/* Smartphone: Artikel-nicht-gefunden direkt unter den Kategorie-Kacheln. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls .category-nav > .mobile-article-wish-button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:43px!important;
+  margin:10px 0 0!important;
+  padding:9px 14px!important;
+  border:1px solid #0346ae!important;
+  border-radius:10px!important;
+  background:#0346ae!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-size:14px!important;
+  font-weight:700!important;
+  text-decoration:none!important;
+  text-align:center!important;
+ }
+}
+
+/* iPhone Warenkorb: 16px im Anmerkungsfeld verhindert Safari-Autozoom.
+   Karte und Formular bleiben in der normalen Viewportbreite. */
+@media(max-width:720px){
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb #note{
+  font-size:16px!important;
+  line-height:1.45!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+ }
+ html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb,
+ html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
+  min-width:0!important;
+  max-width:100%!important;
+ }
+}
+
+/* Smartphone: Kategorien und Artikelwunsch bleiben auch bei aktiver Suche sichtbar. */
+@media(max-width:720px){
+ html body.facility-search-open #shop-view:not([hidden]) > .mobile-sticky-controls{
+  display:block!important;
+ }
+}
+
+/* Smartphone: ueberfluessigen Zurueck-zu-den-Artikeln-Button
+   unterhalb der Artikelliste ausblenden; untere Navigation bleibt. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-back-to-shop{
+  display:none!important;
+ }
+}
+
+/* iPhone Artikelsuche: eigenstaendige scrollbare Trefferansicht
+   ueber Suchfeld und Tastatur, statt Treffer hinter Kategorien zu schieben. */
+#facility-mobile-search-results{display:none}
+@media(max-width:720px){
+ html body.facility-search-open #facility-mobile-search-results:not([hidden]){
+  display:block!important;
+  position:fixed!important;
+  left:12px!important;
+  right:12px!important;
+  width:auto!important;
+  box-sizing:border-box!important;
+  z-index:2050!important;
+  padding:8px 4px 16px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  -webkit-overflow-scrolling:touch;
+  background:#f3f6f8!important;
+  border-radius:14px!important;
+  box-shadow:0 4px 20px #142c3820!important;
+ }
+ html body.facility-search-open #facility-mobile-search-results #products{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  width:100%!important;
+ }
+ html body.facility-search-open #facility-mobile-search-results #products > .product{
+  width:100%!important;
+  min-width:0!important;
+ }
+}
+
+/* Nur Smartphone: den zusaetzlichen Zur-Uebersicht-Link
+   oberhalb von "Uebersicht Bestellungen" entfernen. */
+@media(max-width:720px){
+ html body #order-overview-view > a.waste-back{
+  display:none!important;
+ }
+}
+
+/* Nur Smartphone, Uebersicht Bestellungen: blauer Kopfbereich
+   wie im Bestellshop kompakt (86px), Logo links, ohne zweite Titelzeile. */
+@media(max-width:720px){
+ html body:has(#order-overview-view:not([hidden])){
+  padding-top:86px!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
+  box-sizing:border-box!important;
+  height:86px!important;
+  min-height:86px!important;
+  max-height:86px!important;
+  padding:7px 12px!important;
+  display:flex!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  border-radius:0!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-brand{
+  position:static!important;
+  transform:none!important;
+  width:auto!important;
+  max-width:70%!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-brand img{
+  width:195px!important;
+  max-width:100%!important;
+  height:auto!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-subtitle{
+  display:none!important;
+ }
+}
+
+/* Smartphone: Artikelvorschlags-Leiste ueber Suchtreffern ausblenden.
+   Die eigentlichen Artikel-Suchergebnisse bleiben sichtbar. */
+@media(max-width:720px){
+ html body #shop-search-suggestions{
+  display:none!important;
+ }
+}
+
+/* Mobile Bestellübersicht: blaue Kopfzeile unten gerade statt gebogen. */
+@media(max-width:720px){
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
+  border-radius:0!important;
+  border-bottom-left-radius:0!important;
+  border-bottom-right-radius:0!important;
+  clip-path:none!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header::before,
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header::after{
+  display:none!important;
+  content:none!important;
+ }
+}
+
+/* Bestellübersicht: nur mobil Monatsfilter anstelle der Gesamtbestellungen. */
+#order-mobile-month-slot{display:none}
+@media(max-width:720px){
+ html body #order-overview-view #order-all-history{display:none!important}
+ html body #order-overview-view #order-mobile-month-slot{
+  display:flex!important;
+  grid-column:2!important;
+  grid-row:1!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:center!important;
+  min-width:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:10px 12px!important;
+  background:#fff!important;
+  border:1px solid #d7e4ed!important;
+  border-radius:14px!important;
+  gap:5px!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot label{
+  display:block!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  line-height:1.1!important;
+  margin:0!important;
+  color:#153443!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot select{
+  box-sizing:border-box!important;
+  display:block!important;
+  min-width:0!important;
+  width:100%!important;
+  min-height:36px!important;
+  padding:6px 7px!important;
+  font-size:14px!important;
+  background:#fff!important;
+  color:#153443!important;
+  border:1px solid #cddde7!important;
+  border-radius:8px!important;
+ }
+ html body #order-overview-view #order-filter-panel{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ }
+ html body #order-overview-view #order-filter-panel label[for="order-dept-filter"]{
+  grid-column:1!important;grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-dept-filter{
+  grid-column:1!important;grid-row:2!important;
+ }
+ html body #order-overview-view #order-filter-panel label[for="order-article-filter"]{
+  grid-column:2!important;grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-article-filter{
+  grid-column:2!important;grid-row:2!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-filter-reset{
+  grid-column:2!important;grid-row:3!important;justify-self:end!important;
+ }
+}
+
+/* Smartphone: waehrend der Artikelsuche Kategorien samt Artikelwunsch
+   am festen Platz halten. Die Treffer beginnen erst unter deren Unterkante. */
+@media(max-width:720px){
+ html body.facility-search-open #shop-view:not([hidden]) > .mobile-sticky-controls{
+  position:fixed!important;
+  top:86px!important;
+  inset-block-start:86px!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  z-index:2030!important;
+  display:block!important;
+  transform:none!important;
+  visibility:visible!important;
+ }
+}
+
+/* Nur Smartphone: Monatsauswahl ohne Ueberschrift 'Monat'. */
+@media(max-width:720px){
+ html body #order-overview-view #order-mobile-month-slot label{
+  display:none!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot{
+  justify-content:center!important;
+  padding-top:14px!important;
+  padding-bottom:14px!important;
+ }
+}
+
+/* Monatsauswahl Bestellungen: groesseres Auswahlfeld innerhalb der bestehenden Kachel (mobil). */
+@media(max-width:720px){
+ html body #order-overview-view #order-mobile-month-slot{
+  padding:7px 9px!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot select#order-month-filter{
+  min-height:52px!important;
+  height:52px!important;
+  font-size:18px!important;
+  font-weight:650!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  line-height:1.2!important;
+  touch-action:manipulation;
+ }
+}
+
+/* iPhone: beim Tippen die bestehende Shopansicht nicht verschieben.
+   Suchfeld bleibt knapp oberhalb der eingeblendeten Tastatur. */
+@media(max-width:720px){
+ html body.facility-search-open.facility-search-keyboard-open > .product-search{
+  bottom:calc(var(--facility-search-keyboard-inset, 0px) + 10px)!important;
+ }
+ html body.facility-search-keyboard-open #facility-home-nav{
+  visibility:hidden!important;
+  pointer-events:none!important;
+ }
+ html body.facility-search-keyboard-open #shop-view:not([hidden]) > .mobile-sticky-controls{
+  transform:none!important;
+ }
+}
+
+/* Bestellübersicht: Jahreswechsel auf Smartphones besser lesbar und antippbar. */
+@media(max-width:720px){
+ html body #order-overview-view .pickup-top-row .pickup-year-selector{
+  padding:6px 8px!important;
+  gap:4px!important;
+ }
+ html body #order-overview-view .pickup-top-row .pickup-year-selector button{
+  width:44px!important;
+  min-width:44px!important;
+  height:48px!important;
+  font-size:34px!important;
+  line-height:1!important;
+  padding:0!important;
+  flex-shrink:0!important;
+ }
+ html body #order-overview-view .pickup-top-row .pickup-year-selector strong{
+  font-size:clamp(23px,6.6vw,30px)!important;
+  font-weight:750!important;
+  line-height:1.1!important;
+  min-width:0!important;
+ }
+}
+
+/* Einheitliche Schrift unter allen vier Navigationssymbolen auf Smartphones. */
+@media(max-width:720px){
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  font-family:inherit!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+ }
+}
