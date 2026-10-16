@@ -65,3 +65,59 @@ test('Bestellübersicht: Jahr und Monatsfilter vorhanden', async ({ page }) => {
   await expect(page.locator('#order-selected-year')).toHaveText(/20\d\d/);
   await expect(page.locator('#order-month-filter option')).toHaveCount(13);
 });
+
+test('Navigation und Profil bleiben beim Zurückgehen bedienbar', async ({ page }) => {
+  await page.locator('#home-view a[href="#entsorgungsuebersicht"]').click();
+  await expect(page.locator('#overview-menu-view')).toBeVisible();
+  await page.locator('#overview-menu-view a[href="#bestelluebersicht"]').click();
+  await expect(page.locator('#order-overview-view')).toBeVisible();
+  await page.locator('#facility-back-nav').click();
+  await expect(page.locator('#overview-menu-view')).toBeVisible();
+  await page.locator('#profile-edit').click();
+  await expect(page.locator('#profile-popup')).toBeVisible();
+  await page.locator('#profile-back').click();
+  await expect(page.locator('#profile-popup')).toBeHidden();
+});
+
+test('Warenkorb bleibt nach Aktualisieren erhalten', async ({ page, isMobile }) => {
+  await page.locator('#home-view a[href="#shop"]').click();
+  if (isMobile) await page.locator('#facility-search-toggle').click();
+  await page.locator('#article-search').fill('Hafermilch');
+  await page.locator('#products .product button[data-add]').first().click();
+  await expect(page.locator('#cart-count')).toHaveText('1');
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#cart-count')).toHaveText('1');
+});
+
+test('Bestellvorschlag liefert korrekte Bestätigung ohne echten Versand', async ({ page, isMobile }) => {
+  let received = null;
+  await page.route('**/functions/v1/facility-send-mail', async route => {
+    received = route.request().postDataJSON();
+    await route.fulfill({ status: 202, contentType: 'application/json', body: '{"success":true,"queued":true}' });
+  });
+  await page.locator('#home-view a[href="#shop"]').click();
+  if (isMobile) await page.locator('#facility-search-toggle').click();
+  await page.locator('#article-search').fill('Hafermilch');
+  await page.locator('#products .product button[data-add]').first().click();
+  if (isMobile) await page.goto('/#warenkorb', { waitUntil: 'domcontentloaded' });
+  else await page.locator('#shop-view > header .cart-link').click();
+  await page.locator('#order-button').click();
+  await expect(page.locator('#feedback')).toContainText('Bestellvorschlag erfasst');
+  expect(received?.typ).toBe('bestellung');
+  expect(received?.items?.some(item => /Hafermilch/i.test(item.name))).toBeTruthy();
+});
+
+test('Kleine Smartphoneansicht hat keine horizontale Seitenverschiebung', async ({ page, isMobile }) => {
+  if (!isMobile) return;
+  const before = await page.evaluate(() => ({
+    viewport: window.innerWidth,
+    scrollWidth: document.documentElement.scrollWidth
+  }));
+  expect(before.scrollWidth).toBeLessThanOrEqual(before.viewport + 2);
+  await page.locator('#home-view a[href="#shop"]').click();
+  const after = await page.evaluate(() => ({
+    viewport: window.innerWidth,
+    scrollWidth: document.documentElement.scrollWidth
+  }));
+  expect(after.scrollWidth).toBeLessThanOrEqual(after.viewport + 2);
+});
