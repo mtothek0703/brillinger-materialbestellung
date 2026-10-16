@@ -424,19 +424,26 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  document.body.appendChild(resultsPanel);
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
+  const viewport=window.visualViewport;
+  const visibleTop=viewport?.offsetTop||0;
+  const visibleBottom=visibleTop+(viewport?.height||window.innerHeight);
   const header=shop.querySelector(':scope > header');
   const categories=shop.querySelector(':scope > .mobile-sticky-controls');
-  const headerBottom=header?.getBoundingClientRect().bottom||86;
-  const categoriesBottom=categories?.getBoundingClientRect().bottom||headerBottom;
-  const top=Math.round(Math.max(headerBottom,categoriesBottom)+14);
-  const viewport=window.visualViewport;
-  const visibleBottom=viewport?viewport.offsetTop+viewport.height:window.innerHeight;
-  const searchTop=searchBox?.getBoundingClientRect().top||visibleBottom-80;
-  const available=Math.max(90,Math.round(Math.min(searchTop,visibleBottom)-top-16));
-  // Trefferfeld nicht mehr bildschirmhoch: bei wenigen Treffern nur so hoch wie der Inhalt.
-  const contentHeight=products?products.scrollHeight+28:available;
+  const headerBottom=Math.max(86,header?.getBoundingClientRect().height||86)+visibleTop;
+  const categoryHeight=categories?.getBoundingClientRect().height||0;
+  const top=Math.round(headerBottom+categoryHeight+8);
+  // Eingabe direkt oberhalb der iOS-Tastatur verankern.
+  const searchHeight=searchBox?.offsetHeight||72;
+  const searchTop=Math.max(top+100,visibleBottom-searchHeight-8);
+  if(searchBox){
+   searchBox.style.setProperty('top',Math.round(searchTop)+'px','important');
+   searchBox.style.setProperty('bottom','auto','important');
+  }
+  const available=Math.max(0,Math.round(searchTop-top-8));
+  const contentHeight=products?products.scrollHeight+24:available;
   resultsPanel.style.top=top+'px';
-  resultsPanel.style.height=Math.min(available,Math.max(120,contentHeight))+'px';
+  resultsPanel.style.height=Math.min(available,contentHeight)+'px';
+  resultsPanel.style.display=available<60?'none':'';
  }
  function syncResults(open){
   if(!products||!productsParent)return;
