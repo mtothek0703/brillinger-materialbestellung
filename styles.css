@@ -3822,3 +3822,13 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   color:#173a52!important;
  }
 }
+
+/* Nur Smartphone: laengere Beschriftung Artikelsuche sauber zentrieren. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
+  font-size:clamp(9px,2.35vw,11px)!important;
+  letter-spacing:-.25px!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+ }
+}
