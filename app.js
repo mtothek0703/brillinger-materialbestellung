@@ -256,6 +256,8 @@ function categoryIcon(category){
 const CATEGORIES=['Alle','Allgemein','Büromaterial','Fahrzeugzubehör','Reinigung & Hygiene','Küche','Versand'];
 let activeCategory='Alle';
 let searchTerm='';
+/* Artikelkatalog fuer die globale Navigation nutzbar machen (ohne Shop-Suchverhalten zu veraendern). */
+window.facilitySearchCatalog=PRODUCTS.map(p=>({name:p.name,category:p.category}));
 const searchInput=$('article-search');
 const clearSearchButton=$('clear-article-search');
 function updateSearch(){
