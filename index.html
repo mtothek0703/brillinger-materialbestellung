@@ -414,6 +414,35 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  const searchBox=shop.querySelector('.product-search');
  const originalParent=searchBox?.parentElement;
  const originalNext=searchBox?.nextSibling;
+ const products=document.getElementById('products');
+ const productsParent=products?.parentElement;
+ const productsNext=products?.nextSibling;
+ const resultsPanel=document.createElement('div');
+ resultsPanel.id='facility-mobile-search-results';
+ resultsPanel.hidden=true;
+ document.body.appendChild(resultsPanel);
+ function positionResults(){
+  if(resultsPanel.hidden||!isMobile())return;
+  const header=shop.querySelector(':scope > header');
+  const top=Math.max(86,Math.round(header?.getBoundingClientRect().bottom||86))+8;
+  const searchTop=searchBox?.getBoundingClientRect().top||window.innerHeight-170;
+  resultsPanel.style.top=top+'px';
+  resultsPanel.style.height=Math.max(100,Math.round(searchTop-top-12))+'px';
+ }
+ function syncResults(open){
+  if(!products||!productsParent)return;
+  if(open){
+   if(products.parentElement!==resultsPanel)resultsPanel.appendChild(products);
+   resultsPanel.hidden=false;
+   resultsPanel.scrollTop=0;
+   requestAnimationFrame(positionResults);
+  }else{
+   resultsPanel.hidden=true;
+   if(products.parentElement!==productsParent)
+    productsParent.insertBefore(products,productsNext&&productsNext.parentNode===productsParent?productsNext:null);
+  }
+ }
+
  function setOpen(open){
   open=Boolean(open&&isMobile()&&!shop.hidden&&!document.body.classList.contains('mobile-cart-view')&&!document.body.classList.contains('custom-entry-view'));
   // Mobil liegt das Suchfeld dauerhaft ausserhalb der oberen Steuerleiste.
@@ -423,6 +452,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   if(!isMobile()&&searchBox&&originalParent&&searchBox.parentElement!==originalParent)
    originalParent.insertBefore(searchBox,originalNext&&originalNext.parentNode===originalParent?originalNext:null);
   document.body.classList.toggle('facility-search-open',open);
+  syncResults(open);
   button.setAttribute('aria-expanded',String(open));
   button.setAttribute('aria-label',open?'Artikelsuche schließen':'Artikelsuche öffnen');
  }
@@ -460,7 +490,10 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   if(main&&main.scrollTop>0)main.scrollTop=0;
   if(shop.scrollTop>0)shop.scrollTop=0;
  }
- input.setAttribute('enterkeyhint','done');
+ input.addEventListener('input',()=>requestAnimationFrame(()=>{resultsPanel.scrollTop=0;positionResults();}));
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
+ window.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
+  input.setAttribute('enterkeyhint','done');
  input.addEventListener('keydown',event=>{
   if(event.key==='Enter'){event.preventDefault();input.blur();}
  });
