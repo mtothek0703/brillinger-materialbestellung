@@ -3869,23 +3869,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  }
 }
 
-/* Nur Smartphone: Artikelkacheln mit feinem Brillinger-blauem Rand. */
-@media(max-width:720px){
- html body #shop-view:not([hidden]) #products > .product{
-  border:1px solid #0346ae!important;
- }
-}
 
-/* Smartphone: feine blaue Kontur um die GESAMTE Artikelkachel,
-   einschliesslich Bild, Bezeichnung und Bestellbedienung. */
-@media(max-width:720px){
- html body #shop-view:not([hidden]) .shop-layout #artikel #products.products > article.product{
-  border:1px solid #0346ae!important;
-  border-radius:15px!important;
-  box-shadow:0 0 0 0.25px #0346ae!important;
-  overflow:hidden!important;
- }
-}
 
 /* Smartphone: Artikelsuche-Symbol und Text minimal tiefer ausrichten. */
 @media(max-width:720px){
