@@ -351,7 +351,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
   const header=shop.querySelector(':scope > header');
-  const categories=shop.querySelector(':scope > .mobile-sticky-controls');
+  const categories=shop.querySelector(':scope > main > .mobile-sticky-controls');
   // Kategorien beginnen unter dem Header und bleiben waehrend der Suche fest.
   const headerBottom=header?.getBoundingClientRect().bottom||86;
   const categoryHeight=categories?.offsetHeight||0;
