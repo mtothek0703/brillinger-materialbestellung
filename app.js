@@ -528,7 +528,7 @@ for(const id of ['site','department']){
  updatePlaceholder();
 }
 /* Fehlende Artikel auch ohne Warenkorb als eigenständige Anfrage senden. */
-$('request-custom-product').addEventListener('click',()=>{
+$('request-custom-product').addEventListener('click',async()=>{
  const name=$('custom-product-name').value.trim();
  const amount=quantity($('custom-product-amount').value);
  const details=$('custom-product-details').value.trim();
@@ -542,10 +542,34 @@ $('request-custom-product').addEventListener('click',()=>{
  const lines=['Hallo,','','ich möchte folgenden Artikel für den internen Bestellshop anfragen:','', 'Artikel: '+name,'Gewünschte Menge: '+amount,...(details?['Weitere Angaben: '+details]:[]),...(productUrl?['Produktlink: '+productUrl]:[]),'',...(customer?['Angefragt von: '+customer]:[]),...(site?['Standort: '+site]:[]),...(department?['Bereich: '+department]:[]),'','Vielen Dank und freundliche Grüße'];
  const body=lines.join('\r\n');
  const subject='Artikelwunsch Brillinger – '+name.replace(/[\r\n]/g,' ');
- $('order-text').value=body;
- $('email-fallback').hidden=false;
- window.location.href='mailto:'+RECIPIENT+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
- notify('Artikelwunsch vorbereitet. Bitte im E-Mail-Programm absenden.');
+ const button=$('request-custom-product');
+ if(button.disabled)return;
+ button.disabled=true;
+ const previousText=button.textContent;
+ button.textContent='Wird gesendet…';
+ try{
+  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-article-wish',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({name,amount,details,productUrl,customer,site,department})
+  });
+  const result=await response.json();
+  if(!response.ok||result.success!==true)throw new Error(result.error||'Artikelwunsch konnte nicht gesendet werden.');
+  notify('Artikelwunsch gesendet');
+  $('custom-product-name').value='';
+  $('custom-product-amount').value='1';
+  $('custom-product-details').value='';
+  $('custom-product-url').value='';
+  for(const field of ['custom-product-name','custom-product-details']){
+   const input=$(field);
+   input.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+ }catch(error){
+  notify(error.message||'Artikelwunsch konnte nicht gesendet werden.');
+ }finally{
+  button.disabled=false;
+  button.textContent=previousText;
+ }
 });
 /* Abstand der fixierten Suche dynamisch an die Headerhöhe anpassen. */
 function updateMobileStickyOffset(){
