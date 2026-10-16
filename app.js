@@ -536,36 +536,48 @@ $('request-custom-product').addEventListener('click',async()=>{
  let productUrl='';
  if(urlInput){try{const u=new URL(urlInput);if(!['http:','https:'].includes(u.protocol))throw Error('protocol');const asin=/(?:\/dp\/|\/gp\/product\/)([A-Z0-9]{10})(?:[/?]|$)/i.exec(u.pathname);if(/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname)&&asin)productUrl=u.origin+'/dp/'+asin[1].toUpperCase();else{u.search='';u.hash='';productUrl=u.href;}}catch{notify('Bitte einen gültigen Produktlink eingeben.');return;}}
  if(!name||!amount){notify('Bitte Artikelbezeichnung und gültige Menge eingeben.');$('custom-product-name').focus();return;}
- const customer=$('customer').value.trim();
- const site=$('site').value.trim();
- const department=$('department').value.trim();
- const lines=['Hallo,','','ich möchte folgenden Artikel für den internen Bestellshop anfragen:','', 'Artikel: '+name,'Gewünschte Menge: '+amount,...(details?['Weitere Angaben: '+details]:[]),...(productUrl?['Produktlink: '+productUrl]:[]),'',...(customer?['Angefragt von: '+customer]:[]),...(site?['Standort: '+site]:[]),...(department?['Bereich: '+department]:[]),'','Vielen Dank und freundliche Grüße'];
- const body=lines.join('\r\n');
- const subject='Artikelwunsch Brillinger – '+name.replace(/[\r\n]/g,' ');
+ let customer=$('customer').value.trim();
+ let site=$('site').value.trim();
+ let department=$('department').value.trim();
+ if(!customer||!site||!department){
+  try{
+   const saved=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');
+   if(saved){
+    customer=customer||String(saved.name||'').trim();
+    site=site||String(saved.site||'').trim();
+    department=department||String(saved.dept||'').trim();
+   }
+  }catch(e){console.warn('Profil konnte nicht gelesen werden',e);}
+ }
+ if(!customer||!site||!department){
+  notify('Bitte unter Mein Profil Name, Standort und Bereich speichern.');
+  return;
+ }
  const button=$('request-custom-product');
  if(button.disabled)return;
  button.disabled=true;
  const previousText=button.textContent;
- button.textContent='Wird gesendet…';
+ button.textContent='Wird erfasst…';
  try{
-  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-article-wish',{
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({name,amount,details,productUrl,customer,site,department})
+  // Identische gesicherte Bestell-Warteschlange samt Spam-Schutz und Sammelversand.
+  // Als Artikelwunsch markieren, damit der Einkauf ihn klar unterscheiden kann.
+  const item={name:'ARTIKELWUNSCH: '+name,quantity:amount,
+   orderNote:[details?'Weitere Angaben: '+details:'',productUrl?'Produktlink: '+productUrl:''].filter(Boolean).join(' | ')};
+  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-send-mail',{
+   method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({id:crypto.randomUUID(),typ:'bestellung',name:customer,site,department,
+    items:[item],note:'Artikelwunsch zur Aufnahme in den internen Bestellshop – keine direkte Bestellung.'})
   });
   const result=await response.json();
-  if(!response.ok||result.success!==true)throw new Error(result.error||'Artikelwunsch konnte nicht gesendet werden.');
-  notify('Artikelwunsch gesendet');
-  $('custom-product-name').value='';
+  if(!response.ok||result.success!==true)throw new Error(result.error||'Artikelwunsch konnte nicht erfasst werden.');
+  notify('Artikelwunsch erfasst');
+  $('custom-product-form').reset();
   $('custom-product-amount').value='1';
-  $('custom-product-details').value='';
-  $('custom-product-url').value='';
   for(const field of ['custom-product-name','custom-product-details']){
-   const input=$(field);
-   input.dispatchEvent(new Event('input',{bubbles:true}));
+   $(field).dispatchEvent(new Event('input',{bubbles:true}));
   }
  }catch(error){
-  notify(error.message||'Artikelwunsch konnte nicht gesendet werden.');
+  notify(error.message||'Artikelwunsch konnte nicht erfasst werden.');
  }finally{
   button.disabled=false;
   button.textContent=previousText;
