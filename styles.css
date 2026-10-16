@@ -4124,3 +4124,11 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   min-width:0!important;
  }
 }
+
+/* Nur Smartphone: den zusaetzlichen Zur-Uebersicht-Link
+   oberhalb von "Uebersicht Bestellungen" entfernen. */
+@media(max-width:720px){
+ html body #order-overview-view > a.waste-back{
+  display:none!important;
+ }
+}
