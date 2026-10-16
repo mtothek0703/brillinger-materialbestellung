@@ -425,12 +425,15 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
   const header=shop.querySelector(':scope > header');
-  const top=Math.max(86,Math.round(header?.getBoundingClientRect().bottom||86))+8;
+  const top=Math.max(86,Math.round(header?.getBoundingClientRect().bottom||86))+22;
   const viewport=window.visualViewport;
   const visibleBottom=viewport?viewport.offsetTop+viewport.height:window.innerHeight;
   const searchTop=searchBox?.getBoundingClientRect().top||visibleBottom-80;
+  const available=Math.max(90,Math.round(Math.min(searchTop,visibleBottom)-top-16));
+  // Trefferfeld nicht mehr bildschirmhoch: bei wenigen Treffern nur so hoch wie der Inhalt.
+  const contentHeight=products?products.scrollHeight+28:available;
   resultsPanel.style.top=top+'px';
-  resultsPanel.style.height=Math.max(90,Math.round(Math.min(searchTop,visibleBottom)-top-12))+'px';
+  resultsPanel.style.height=Math.min(available,Math.max(120,contentHeight))+'px';
  }
  function syncResults(open){
   if(!products||!productsParent)return;
@@ -439,7 +442,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    if(products.parentElement!==resultsPanel)resultsPanel.appendChild(products);
    resultsPanel.hidden=false;
    resultsPanel.scrollTop=0;
-   requestAnimationFrame(positionResults);
+   requestAnimationFrame(()=>requestAnimationFrame(positionResults));
   }else{
    resultsPanel.hidden=true;
    if(suggestions&&suggestions.parentElement!==productsParent)productsParent.insertBefore(suggestions,products);
