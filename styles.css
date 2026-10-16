@@ -4010,3 +4010,21 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   top:1px!important;
  }
 }
+
+/* Nur Smartphone: alle Kategorie-Minikacheln blau, Symbole und Text weiss. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  background:#0346ae!important;
+  color:#fff!important;
+  border-color:#0346ae!important;
+  -webkit-text-fill-color:#fff!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg,
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-label{
+  color:#fff!important;
+  stroke:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+ }
+}
