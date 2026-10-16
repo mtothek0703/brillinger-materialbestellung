@@ -453,12 +453,22 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  // Tastatur-Oeffnen und Eingaben duerfen die Suche nicht unbeabsichtigt schliessen.
  function revealSearchResults(){
   if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
-  for(const container of scrollContainers)container.scrollTop=0;
-  window.scrollTo({top:0,left:0,behavior:'instant'});
+  const list=shop.querySelector('#products');
+  const first=list?.querySelector('article.product');
+  if(!first)return;
+  // #shop-view ist der tatsaechliche Scrollcontainer auf dem iPhone.
+  // Den ERSTEN Treffer relativ zur Shop-Ansicht positionieren, statt
+  // zur Seitenoberkante zu scrollen, wo nur der Kategorienbereich steht.
+  const targetTop=first.getBoundingClientRect().top-shop.getBoundingClientRect().top+shop.scrollTop;
+  shop.scrollTop=Math.max(0,targetTop-99);
+  const main=shop.querySelector(':scope > main');
+  if(main&&main.scrollHeight>main.clientHeight)main.scrollTop=0;
  }
- input.addEventListener('focus',()=>requestAnimationFrame(revealSearchResults));
- input.addEventListener('input',()=>requestAnimationFrame(revealSearchResults));
- const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
+ const scheduleReveal=()=>requestAnimationFrame(()=>requestAnimationFrame(revealSearchResults));
+ input.addEventListener('focus',scheduleReveal);
+ input.addEventListener('input',scheduleReveal);
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleReveal,{passive:true});
+  const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
  for(const container of scrollContainers){
   container.addEventListener('scroll',()=>{
    const current=container.scrollTop;
