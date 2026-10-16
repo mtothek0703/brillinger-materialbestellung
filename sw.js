@@ -22,7 +22,7 @@ self.addEventListener('fetch',event=>{
  event.respondWith((async()=>{
   try{
    const response=await fetch(new Request(request,{cache:'no-cache'}));
-   if(response.ok){const cache=await caches.open(STATIC_CACHE);await cache.put(request,response.clone());}
+   if(response.ok){try{const cache=await caches.open(STATIC_CACHE);await cache.put(request,response.clone());}catch(e){/* Cache voll: Online-Bild trotzdem ausliefern. */}}
    return response;
   }catch(error){
    const cache=await caches.open(STATIC_CACHE);
