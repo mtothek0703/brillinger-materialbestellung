@@ -4028,3 +4028,14 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   -webkit-text-fill-color:#fff!important;
  }
 }
+
+/* Sichtbare Feinausrichtung: NUR Lupe, 3px nach unten, auch im Shop.
+   Transform ueberschreibt alte position/transform:none-Regeln. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle > svg{
+  position:relative!important;
+  top:0!important;
+  transform:translateY(3px)!important;
+ }
+}
