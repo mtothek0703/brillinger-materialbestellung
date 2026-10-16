@@ -438,11 +438,18 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    searchBox.style.removeProperty('bottom');
   }
   const searchTop=searchBox?.getBoundingClientRect().top||window.innerHeight-160;
-  const available=Math.max(0,Math.floor(searchTop-top-12));
+  // Auch mit geoeffneter iPhone-Tastatur immer Treffer anzeigen.
+  // Vorher wurde bei <80px verfuegbarem Platz das komplette Ergebnis
+  // unsichtbar geschaltet; deshalb war der grosse Bereich leer.
+  const visibleViewport=window.visualViewport;
+  const viewportBottom=(visibleViewport?.offsetTop||0)+(visibleViewport?.height||window.innerHeight);
+  const usableTop=Math.max(86,top);
+  const usableBottom=Math.min(searchTop,viewportBottom);
+  const available=Math.max(0,Math.floor(usableBottom-usableTop-8));
   const contentHeight=products?products.scrollHeight+24:available;
-  resultsPanel.style.top=top+'px';
-  resultsPanel.style.height=Math.min(available,Math.max(0,contentHeight))+'px';
-  resultsPanel.style.display=available<80?'none':'';
+  resultsPanel.style.top=usableTop+'px';
+  resultsPanel.style.height=Math.max(0,Math.min(available,contentHeight))+'px';
+  resultsPanel.style.removeProperty('display');
  }
  function syncResults(open){
   if(!products||!productsParent)return;
