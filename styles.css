@@ -4193,3 +4193,65 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   content:none!important;
  }
 }
+
+/* Bestellübersicht: nur mobil Monatsfilter anstelle der Gesamtbestellungen. */
+#order-mobile-month-slot{display:none}
+@media(max-width:720px){
+ html body #order-overview-view #order-all-history{display:none!important}
+ html body #order-overview-view #order-mobile-month-slot{
+  display:flex!important;
+  grid-column:2!important;
+  grid-row:1!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:center!important;
+  min-width:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:10px 12px!important;
+  background:#fff!important;
+  border:1px solid #d7e4ed!important;
+  border-radius:14px!important;
+  gap:5px!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot label{
+  display:block!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  line-height:1.1!important;
+  margin:0!important;
+  color:#153443!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot select{
+  box-sizing:border-box!important;
+  display:block!important;
+  min-width:0!important;
+  width:100%!important;
+  min-height:36px!important;
+  padding:6px 7px!important;
+  font-size:14px!important;
+  background:#fff!important;
+  color:#153443!important;
+  border:1px solid #cddde7!important;
+  border-radius:8px!important;
+ }
+ html body #order-overview-view #order-filter-panel{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ }
+ html body #order-overview-view #order-filter-panel label[for="order-dept-filter"]{
+  grid-column:1!important;grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-dept-filter{
+  grid-column:1!important;grid-row:2!important;
+ }
+ html body #order-overview-view #order-filter-panel label[for="order-article-filter"]{
+  grid-column:2!important;grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-article-filter{
+  grid-column:2!important;grid-row:2!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-filter-reset{
+  grid-column:2!important;grid-row:3!important;justify-self:end!important;
+ }
+}
