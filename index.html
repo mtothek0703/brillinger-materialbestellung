@@ -471,7 +471,15 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   shop.scrollTop=Math.max(0,shop.scrollTop+firstTop-desiredTop);
  }
  const scheduleReveal=()=>requestAnimationFrame(()=>requestAnimationFrame(revealSearchResults));
- input.addEventListener('focus',scheduleReveal);
+ // iPhone: Pfeil-/Enter-Taste schliesst die Tastatur, der Treffer bleibt.
+ input.setAttribute('enterkeyhint','done');
+ input.addEventListener('keydown',event=>{
+  if(event.key==='Enter'){
+   event.preventDefault();
+   input.blur();
+  }
+ });
+  input.addEventListener('focus',scheduleReveal);
  input.addEventListener('input',scheduleReveal);
  if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleReveal,{passive:true});
   const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
@@ -1231,6 +1239,12 @@ window.addEventListener('pageshow',()=>{
  if(!back)return;
  const parents={'#warenkorb':'#artikel','#sonderartikel':'#artikel','#artikel':'#start','#shop':'#start','#muellentsorgung':'#start','#entsorgungsuebersicht':'#start','#bestelluebersicht':'#entsorgungsuebersicht','#leerungsuebersicht':'#entsorgungsuebersicht'};
  back.addEventListener('click',()=>{
+  // Bei aktiver Artikelsuche erst nur die Tastatur schliessen.
+  const search=document.getElementById('article-search');
+  if(search&&document.activeElement===search){
+   search.blur();
+   return;
+  }
   const destination=parents[location.hash]||'#start';
   if(location.hash===destination)return;
   history.replaceState(history.state,'',destination);
