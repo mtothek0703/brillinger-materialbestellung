@@ -33,7 +33,7 @@ function renderOrderStats(){
  if(selectedOrderDept!=='all'&&!departments.includes(selectedOrderDept))selectedOrderDept='all';
  deptSelect.value=selectedOrderDept;
  const articleSelect=document.getElementById('order-article-filter');
- const articleNames=[...new Set([...allCatalogArticleNames,...allYearOrders.flatMap(o=>(Array.isArray(o.items)?o.items:[]).map(item=>String(item.name||'').trim()).filter(Boolean))])].sort((a,b)=>a.localeCompare(b,'de'));
+ const articleNames=[...new Set([...(window.facilityCatalogArticleNames||allCatalogArticleNames),...allYearOrders.flatMap(o=>(Array.isArray(o.items)?o.items:[]).map(item=>String(item.name||'').trim()).filter(Boolean))])].sort((a,b)=>a.localeCompare(b,'de'));
  articleSelect.replaceChildren(new Option('Alle Artikel','all'),...articleNames.map(name=>new Option(name,name)));
  if(selectedOrderArticle!=='all'&&!articleNames.includes(selectedOrderArticle))selectedOrderArticle='all';
  articleSelect.value=selectedOrderArticle;
