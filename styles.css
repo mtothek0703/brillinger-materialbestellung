@@ -4170,3 +4170,11 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   display:none!important;
  }
 }
+
+/* Smartphone: Artikelvorschlags-Leiste ueber Suchtreffern ausblenden.
+   Die eigentlichen Artikel-Suchergebnisse bleiben sichtbar. */
+@media(max-width:720px){
+ html body #shop-search-suggestions{
+  display:none!important;
+ }
+}
