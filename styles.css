@@ -3992,3 +3992,13 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:4!important;grid-row:1!important}
  html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{display:none!important}
 }
+
+/* Smartphone: Artikel-nicht-gefunden-Button Brillinger-Blau mit weisser Schrift. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
+  background:#0346ae!important;
+  color:#fff!important;
+  border-color:#0346ae!important;
+  -webkit-text-fill-color:#fff!important;
+ }
+}
