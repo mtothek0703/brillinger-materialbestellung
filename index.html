@@ -414,6 +414,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  const searchBox=shop.querySelector('.product-search');
  const originalParent=searchBox?.parentElement;
  const originalNext=searchBox?.nextSibling;
+ const suggestions=document.getElementById('shop-search-suggestions');
  const products=document.getElementById('products');
  const productsParent=products?.parentElement;
  const productsNext=products?.nextSibling;
@@ -432,12 +433,14 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  function syncResults(open){
   if(!products||!productsParent)return;
   if(open){
+   if(suggestions&&suggestions.parentElement!==resultsPanel)resultsPanel.prepend(suggestions);
    if(products.parentElement!==resultsPanel)resultsPanel.appendChild(products);
    resultsPanel.hidden=false;
    resultsPanel.scrollTop=0;
    requestAnimationFrame(positionResults);
   }else{
    resultsPanel.hidden=true;
+   if(suggestions&&suggestions.parentElement!==productsParent)productsParent.insertBefore(suggestions,products);
    if(products.parentElement!==productsParent)
     productsParent.insertBefore(products,productsNext&&productsNext.parentNode===productsParent?productsNext:null);
   }
