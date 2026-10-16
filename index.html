@@ -1381,6 +1381,9 @@ window.addEventListener('pageshow',()=>{
     if(opt.value&&opt.value!=='all')add(opt.textContent,name+' – Filter',route,el);
    }));
   });
+  for(const product of window.facilitySearchCatalog||[]){
+   add(product.name,'Artikel im Bestellshop – '+product.category,'#artikel',null);
+  }
   add('Interner Bestellshop','Material bestellen','#shop',null);
   add('Artikelsuche im Bestellshop','Artikel finden','#artikel',null);
   add('Profil','Profil, Standort und Bereich bearbeiten',location.hash||'#start',null);
@@ -1390,8 +1393,24 @@ window.addEventListener('pageshow',()=>{
  function navigate(item){
   close();
   if(item.label==='Profil'){document.getElementById('profile-edit')?.click();return;}
+  const isProduct=(window.facilitySearchCatalog||[]).some(p=>p.name===item.label)&&item.route==='#artikel';
   if(location.hash!==item.route)location.hash=item.route;
   else window.dispatchEvent(new Event('hashchange'));
+  if(isProduct){
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const field=document.getElementById('article-search');
+    const toggle=document.getElementById('facility-search-toggle');
+    if(!field)return;
+    if(window.matchMedia('(max-width:720px)').matches&&!document.body.classList.contains('facility-search-open'))toggle?.click();
+    field.value=item.label;
+    field.dispatchEvent(new Event('input',{bubbles:true}));
+    const results=document.getElementById('facility-mobile-search-results');
+    if(results)results.scrollTop=0;
+    const main=document.querySelector('#shop-view > main');
+    if(main)main.scrollTop=0;
+   }));
+   return;
+  }
   if(item.element)setTimeout(()=>{if(item.element.isConnected)item.element.scrollIntoView({block:'center',behavior:'smooth'});},200);
  }
  function render(){
