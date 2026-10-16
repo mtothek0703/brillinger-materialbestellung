@@ -1,3 +1,4 @@
 /* Kompatibilitaetsdatei fuer alte Startseiten; die aktuelle App laedt die Dateien direkt. */
 @import url('./styles/base.css');
 @import url('./styles/refinements.css');
+@import url('./styles/design-system.css');
