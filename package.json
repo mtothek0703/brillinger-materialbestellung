@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "playwright test",
-    "test:syntax": "node --check app.js && node --check src/facility-core.js && node --check src/facility-ui.js"
+    "test:syntax": "node --check app.js && node --check src/facility-core.js && node --check src/facility-waste-stats.js && node --check src/facility-order-stats.js && node --check src/facility-ui.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0"
