@@ -3850,3 +3850,21 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   border:1px solid #0346ae!important;
  }
 }
+
+/* Smartphone: Kategorie-Kacheln noch etwas kompakter, Rahmen unveraendert. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  min-height:44px!important;
+  padding:2px 2px!important;
+  gap:1px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  gap:3px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
+  width:15px!important;height:15px!important;flex-basis:15px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
+  width:14px!important;height:14px!important;
+ }
+}
