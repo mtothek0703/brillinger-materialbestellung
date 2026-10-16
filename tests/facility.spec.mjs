@@ -2,6 +2,12 @@ import { test, expect } from '@playwright/test';
 
 // Keine Testbestellungen: sämtliche Supabase-Aufrufe werden abgefangen.
 test.beforeEach(async ({ page }) => {
+  // Testprofile verhindern, dass der verpflichtende Profil-Dialog Klicks blockiert.
+  await page.addInitScript(() => {
+    localStorage.setItem('facility-employee-profile-v1', JSON.stringify({
+      name: 'Test Mitarbeiter', site: 'Handwerkerpark 25', dept: 'Logistik'
+    }));
+  });
   await page.route('**/supabase.co/**', async route => {
     await route.fulfill({
       status: 200,
