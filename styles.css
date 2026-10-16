@@ -4372,3 +4372,81 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   height:100%!important;
  }
 }
+
+
+/* Bestellübersicht: Bereichs- und Artikelfilter als eigenständige
+   Auswahlbuttons ohne äußere Filterkachel. Leerungsfilter bleiben unverändert. */
+html body #order-overview-view #order-filter-panel{
+ background:transparent!important;
+ border:0!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+ padding:0!important;
+}
+@media(max-width:720px){
+ html body #order-overview-view .order-filter-wrap{
+  margin-top:0!important;
+ }
+ html body #order-overview-view #order-filter-panel{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:clamp(6px,2vw,12px)!important;
+  row-gap:8px!important;
+  margin-top:0!important;
+  padding:0!important;
+  align-items:stretch!important;
+ }
+ /* Visuell wie der Monatsfilter ohne Zusatzüberschriften;
+    die echten Labels bleiben für Screenreader erhalten. */
+ html body #order-overview-view #order-filter-panel label[for="order-dept-filter"],
+ html body #order-overview-view #order-filter-panel label[for="order-article-filter"]{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip-path:inset(50%)!important;
+  white-space:nowrap!important;
+  border:0!important;
+ }
+ html body #order-overview-view #order-filter-panel select#order-dept-filter,
+ html body #order-overview-view #order-filter-panel select#order-article-filter{
+  box-sizing:border-box!important;
+  display:block!important;
+  min-width:0!important;
+  max-width:100%!important;
+  width:100%!important;
+  min-height:62px!important;
+  height:62px!important;
+  padding:10px 8px!important;
+  border:1px solid #cddde7!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  color:#153443!important;
+  font-family:inherit!important;
+  font-size:clamp(14px,4.2vw,18px)!important;
+  font-weight:650!important;
+  line-height:1.2!important;
+  text-overflow:ellipsis!important;
+  touch-action:manipulation;
+ }
+ html body #order-overview-view #order-filter-panel select#order-dept-filter{
+  grid-column:1!important;
+  grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel select#order-article-filter{
+  grid-column:2!important;
+  grid-row:1!important;
+ }
+ html body #order-overview-view #order-filter-panel #order-filter-reset{
+  grid-column:1/-1!important;
+  grid-row:2!important;
+  justify-self:end!important;
+  width:auto!important;
+  margin:0!important;
+ }
+}
