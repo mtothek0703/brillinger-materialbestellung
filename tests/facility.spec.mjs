@@ -12,7 +12,8 @@ test.beforeEach(async ({ page }) => {
   // Externe Produktbilder sind fuer Funktionstests nicht noetig und duerfen CI nicht blockieren.
   await page.route('**/*', route => {
     const url = new URL(route.request().url());
-    if (url.hostname === '127.0.0.1' || url.hostname === 'localhost' || url.hostname.endsWith('supabase.co')) return route.continue();
+    if (url.hostname === '127.0.0.1' || url.hostname === 'localhost') return route.continue();
+    if (url.hostname.endsWith('supabase.co')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ orders: [], waste: [], success: true }) });
     return route.abort();
   });
   await page.goto('/#start', { waitUntil: 'domcontentloaded' });
