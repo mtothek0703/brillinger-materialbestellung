@@ -4178,3 +4178,18 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   display:none!important;
  }
 }
+
+/* Mobile Bestellübersicht: blaue Kopfzeile unten gerade statt gebogen. */
+@media(max-width:720px){
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
+  border-radius:0!important;
+  border-bottom-left-radius:0!important;
+  border-bottom-right-radius:0!important;
+  clip-path:none!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header::before,
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header::after{
+  display:none!important;
+  content:none!important;
+ }
+}
