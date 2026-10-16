@@ -3871,11 +3871,11 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 
 
-/* Smartphone: Artikelsuche-Symbol und Text minimal tiefer ausrichten. */
+/* Smartphone: alle Navigationssymbole nutzen dieselbe vertikale Rasterposition. */
 @media(max-width:720px){
  html body #facility-home-nav > #facility-search-toggle > svg,
  html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
-  position:relative!important;
-  top:2px!important;
+  position:static!important;
+  top:auto!important;
  }
 }
