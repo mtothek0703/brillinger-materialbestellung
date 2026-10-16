@@ -4450,3 +4450,14 @@ html body #order-overview-view #order-filter-panel{
   margin:0!important;
  }
 }
+
+/* Bestellübersicht: Beschriftung aller drei Auswahlfelder mittig,
+   native Dropdown-Pfeile und Filterfunktion bleiben erhalten. */
+@media(max-width:720px){
+ html body #order-overview-view #order-mobile-month-slot select#order-month-filter,
+ html body #order-overview-view #order-filter-panel select#order-dept-filter,
+ html body #order-overview-view #order-filter-panel select#order-article-filter{
+  text-align:center!important;
+  text-align-last:center!important;
+ }
+}
