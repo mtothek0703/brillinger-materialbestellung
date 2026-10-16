@@ -4092,3 +4092,35 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   display:none!important;
  }
 }
+
+/* iPhone Artikelsuche: eigenstaendige scrollbare Trefferansicht
+   ueber Suchfeld und Tastatur, statt Treffer hinter Kategorien zu schieben. */
+#facility-mobile-search-results{display:none}
+@media(max-width:720px){
+ html body.facility-search-open #facility-mobile-search-results:not([hidden]){
+  display:block!important;
+  position:fixed!important;
+  left:12px!important;
+  right:12px!important;
+  width:auto!important;
+  box-sizing:border-box!important;
+  z-index:2050!important;
+  padding:8px 4px 16px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+  -webkit-overflow-scrolling:touch;
+  background:#f3f6f8!important;
+  border-radius:14px!important;
+  box-shadow:0 4px 20px #142c3820!important;
+ }
+ html body.facility-search-open #facility-mobile-search-results #products{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  width:100%!important;
+ }
+ html body.facility-search-open #facility-mobile-search-results #products > .product{
+  width:100%!important;
+  min-width:0!important;
+ }
+}
