@@ -3879,3 +3879,28 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   top:auto!important;
  }
 }
+
+/* Smartphone: Artikelwunsch oberhalb der Artikel statt im unteren Menue. */
+.mobile-article-wish-button{display:none}
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-custom-entry-nav{display:none!important}
+ html body #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;box-sizing:border-box!important;
+  min-height:43px!important;margin:0 0 12px!important;padding:9px 14px!important;
+  border:1px solid #0346ae!important;border-radius:10px!important;
+  background:#fff!important;color:#0346ae!important;
+  font-size:14px!important;font-weight:700!important;text-decoration:none!important;
+  text-align:center!important;
+ }
+}
