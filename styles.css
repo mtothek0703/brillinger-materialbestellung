@@ -3776,3 +3776,21 @@ html body #shop-view:not([hidden]) .category-nav{
  border:none!important;
  box-shadow:none!important;
 }
+
+/* Nur Smartphone: Kategorie-Minikacheln etwas kompakter. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  gap:3px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  min-height:49px!important;
+  padding:3px 2px!important;
+  gap:1px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon{
+  width:16px!important;height:16px!important;flex-basis:16px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-button .category-tile-icon svg{
+  width:15px!important;height:15px!important;
+ }
+}
