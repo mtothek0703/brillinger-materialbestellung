@@ -3886,3 +3886,12 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   overflow:hidden!important;
  }
 }
+
+/* Smartphone: Artikelsuche-Symbol und Text minimal tiefer ausrichten. */
+@media(max-width:720px){
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
+  position:relative!important;
+  top:2px!important;
+ }
+}
