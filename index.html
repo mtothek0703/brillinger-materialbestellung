@@ -15,7 +15,15 @@ if ('serviceWorker' in navigator) {
  function hash(s){let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);return (h>>>0).toString(16)+':'+s.length;}
  async function getVersion(){
   const data=await Promise.all(FILES.map(async file=>{
-   const r=await fetch('./'+file+'?check='+Date.now(),{cache:'no-store'});
+   const url='./'+file+'?check='+Date.now();
+   // Moderne Hosts liefern einen Content-ETag ohne Download der ganzen CSS/JS-Datei.
+   // Fehlt der ETag, bleibt der inhaltsbasierte Vergleich unverändert erhalten.
+   try{
+    const head=await fetch(url,{method:'HEAD',cache:'no-store'});
+    const etag=head.ok?head.headers.get('etag'):null;
+    if(etag)return 'etag:'+etag;
+   }catch(e){}
+   const r=await fetch(url,{cache:'no-store'});
    if(!r.ok)throw Error('App-Datei nicht erreichbar');
    return hash(await r.text());
   }));
