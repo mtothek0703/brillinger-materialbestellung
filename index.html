@@ -436,17 +436,28 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    location.hash='#artikel';
    requestAnimationFrame(()=>{
     setOpen(true);
+    revealSearchResults();
     input.focus({preventScroll:true});
    });
   }else{
    setOpen(true);
-   requestAnimationFrame(()=>input.focus({preventScroll:true}));
+   revealSearchResults();
+   requestAnimationFrame(()=>{input.focus({preventScroll:true});revealSearchResults();});
   }
  });
  // Beim Scrollen der Artikelliste wird die aufgeklappte Suche geschlossen.
  // Ein normales Antippen oder Schreiben im Suchfeld schliesst sie nicht.
  const articleScroller=shop.querySelector(':scope > main');
  const scrollContainers=[articleScroller,shop].filter(Boolean);
+ // Bei Suche immer die ersten Treffer statt der zuvor gescrollten letzten Artikel zeigen.
+ // Tastatur-Oeffnen und Eingaben duerfen die Suche nicht unbeabsichtigt schliessen.
+ function revealSearchResults(){
+  if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
+  for(const container of scrollContainers)container.scrollTop=0;
+  window.scrollTo({top:0,left:0,behavior:'instant'});
+ }
+ input.addEventListener('focus',()=>requestAnimationFrame(revealSearchResults));
+ input.addEventListener('input',()=>requestAnimationFrame(revealSearchResults));
  const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
  for(const container of scrollContainers){
   container.addEventListener('scroll',()=>{
@@ -454,7 +465,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    const previous=previousPositions.get(container)??current;
    previousPositions.set(container,current);
    if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
-   if(Math.abs(current-previous)<2)return;
+   if(Math.abs(current-previous)<2||document.activeElement===input)return;
    setOpen(false);
    input.blur();
   },{passive:true});
