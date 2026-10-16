@@ -4272,3 +4272,15 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   visibility:visible!important;
  }
 }
+
+/* Nur Smartphone: Monatsauswahl ohne Ueberschrift 'Monat'. */
+@media(max-width:720px){
+ html body #order-overview-view #order-mobile-month-slot label{
+  display:none!important;
+ }
+ html body #order-overview-view #order-mobile-month-slot{
+  justify-content:center!important;
+  padding-top:14px!important;
+  padding-bottom:14px!important;
+ }
+}
