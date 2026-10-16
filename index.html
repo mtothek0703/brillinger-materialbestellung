@@ -753,7 +753,7 @@ function renderOrderStats(){
  const monthSelect=document.getElementById('order-month-filter');
  const deptSelect=document.getElementById('order-dept-filter');
  const monthNames=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
- monthSelect.replaceChildren(new Option('Alle Monate','all'),...monthNames.map((name,i)=>new Option(name,String(i))));
+ monthSelect.replaceChildren(new Option(window.matchMedia('(max-width:720px)').matches?'Alle':'Alle Monate','all'),...monthNames.map((name,i)=>new Option(name,String(i))));
  monthSelect.value=selectedOrderMonth;
  const departments=[...new Set(['Logistik','Werkstatt','Haustechnik',...allYearOrders.map(o=>String(o.department||o.dept||'').trim()).filter(Boolean)])].sort((a,b)=>a.localeCompare(b,'de'));
  deptSelect.replaceChildren(new Option('Alle Bereiche','all'),...departments.map(name=>new Option(name,name)));
