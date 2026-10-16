@@ -424,28 +424,25 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  document.body.appendChild(resultsPanel);
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
-  const viewport=window.visualViewport;
-  const visibleTop=viewport?.offsetTop||0;
-  const visibleBottom=visibleTop+(viewport?.height||window.innerHeight);
   const header=shop.querySelector(':scope > header');
   const categories=shop.querySelector(':scope > .mobile-sticky-controls');
-  // Tatsächliche untere Kante verwenden: iOS verschiebt den sichtbaren
-  // Viewport beim Öffnen der Tastatur, die Höhe allein reicht deshalb nicht.
+  // Kategorien beginnen unter dem Header und bleiben waehrend der Suche fest.
   const headerBottom=header?.getBoundingClientRect().bottom||86;
-  const categoryBottom=categories?.getBoundingClientRect().bottom||headerBottom;
-  const top=Math.round(Math.max(headerBottom,categoryBottom)+12);
-  // Eingabe direkt oberhalb der iOS-Tastatur verankern.
-  const searchHeight=searchBox?.offsetHeight||72;
-  const searchTop=Math.max(top+100,visibleBottom-searchHeight-8);
+  const categoryHeight=categories?.offsetHeight||0;
+  const categoryBottom=Math.max(headerBottom,categories?.getBoundingClientRect().bottom||0,86+categoryHeight);
+  const top=Math.ceil(categoryBottom+14);
+  // iOS-Klaviatur: Suchleiste nur an der tatsaechlich sichtbaren Unterkante halten.
+  // Kein Setzen von 'top' auf dem Suchfeld: dadurch sprang es bei jeder Eingabe.
   if(searchBox){
-   searchBox.style.setProperty('top',Math.round(searchTop)+'px','important');
-   searchBox.style.setProperty('bottom','auto','important');
+   searchBox.style.removeProperty('top');
+   searchBox.style.removeProperty('bottom');
   }
-  const available=Math.max(0,Math.round(searchTop-top-8));
+  const searchTop=searchBox?.getBoundingClientRect().top||window.innerHeight-160;
+  const available=Math.max(0,Math.floor(searchTop-top-12));
   const contentHeight=products?products.scrollHeight+24:available;
   resultsPanel.style.top=top+'px';
-  resultsPanel.style.height=Math.min(available,contentHeight)+'px';
-  resultsPanel.style.display=available<60?'none':'';
+  resultsPanel.style.height=Math.min(available,Math.max(0,contentHeight))+'px';
+  resultsPanel.style.display=available<80?'none':'';
  }
  function syncResults(open){
   if(!products||!productsParent)return;
