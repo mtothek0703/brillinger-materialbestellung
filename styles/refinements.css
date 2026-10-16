@@ -208,7 +208,7 @@ html body #home-view .home-tiles a > strong{min-height:41px!important}
 html body #home-view .home-tiles a{background:#fff!important}
 
 /* Müllentsorgung: fünf Kacheln minimal nach oben; Überschrift unverändert. */
-@media(max-width:720px){html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}}
+@media(max-width:720px){}
 
 /* Mobil: Such- und Kategorienbereich bleibt im normalen Seitenfluss.
    Dadurch überdeckt er beim Scrollen keine Produktkarten mehr. */
@@ -321,7 +321,6 @@ html body #home-view .home-tiles a{background:#fff!important}
   transform:none!important;
   margin-bottom:16px!important;
  }
- html body #shop-view:not([hidden]) .shop-layout{position:relative!important;z-index:1!important}
 }
 
 /* Korrektur: iOS-Shop scrollt im #shop-view, nicht im Dokument. Bei Aufwaertsbewegung Filter als Overlay unter der Kopfzeile anzeigen. */
@@ -2145,11 +2144,6 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   background:#fff!important;
   column-gap:0!important;
  }
- html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
- html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
- html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
- html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
- html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
  html body #facility-home-nav > #facility-back-nav{
   display:grid!important;
   grid-template-columns:minmax(0,1fr)!important;
@@ -2223,11 +2217,6 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   background:transparent!important;
   color:#0346ae!important;
  }
- html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
- html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
- html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
- html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
- html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
  html body #facility-home-nav > #facility-back-nav > svg{
   grid-column:1!important;grid-row:1!important;
   width:29px!important;height:29px!important;
@@ -2350,9 +2339,6 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   transform:none!important;
   text-align:center!important;
  }
- html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
- html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
- html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
  html body #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important}
  html body #facility-home-nav > #facility-profile-slot{grid-column:5!important}
  html body #facility-home-nav > a[href="#start"] > svg,
@@ -2403,9 +2389,6 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
   padding-inline:6px!important;
   background:#fff!important;
  }
- html body:has(#shop-view:not([hidden])) #facility-home-nav > a[href="#start"]{grid-column:1!important;grid-row:1!important}
- html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-back-nav{grid-column:2!important;grid-row:1!important}
- html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle{grid-column:3!important;grid-row:1!important}
  html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{grid-column:4!important;grid-row:1!important}
  html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:5!important;grid-row:1!important}
 }
@@ -2439,9 +2422,6 @@ html body #shop-view:not([hidden]) .category-nav{
 
 /* Nur Smartphone: Kategorie-Minikacheln etwas kompakter. */
 @media(max-width:720px){
- html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
-  gap:3px!important;
- }
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
   min-height:49px!important;
   padding:3px 2px!important;
@@ -2543,17 +2523,12 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 /* Smartphone: Artikelwunsch oberhalb der Artikel statt im unteren Menue. */
 .mobile-article-wish-button{display:none}
 @media(max-width:720px){
- html body #facility-home-nav > #facility-custom-entry-nav{display:none!important}
  html body #facility-home-nav,
  html body:has(#shop-view:not([hidden])) #facility-home-nav,
  html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
  }
- html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
- html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
- html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
- html body #facility-home-nav > #facility-profile-slot{grid-column:4!important}
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
   display:flex!important;align-items:center!important;justify-content:center!important;
   width:100%!important;box-sizing:border-box!important;
