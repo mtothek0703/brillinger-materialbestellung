@@ -4132,3 +4132,41 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   display:none!important;
  }
 }
+
+/* Nur Smartphone, Uebersicht Bestellungen: blauer Kopfbereich
+   wie im Bestellshop kompakt (86px), Logo links, ohne zweite Titelzeile. */
+@media(max-width:720px){
+ html body:has(#order-overview-view:not([hidden])){
+  padding-top:86px!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
+  box-sizing:border-box!important;
+  height:86px!important;
+  min-height:86px!important;
+  max-height:86px!important;
+  padding:7px 12px!important;
+  display:flex!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  border-radius:0!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-brand{
+  position:static!important;
+  transform:none!important;
+  width:auto!important;
+  max-width:70%!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-brand img{
+  width:195px!important;
+  max-width:100%!important;
+  height:auto!important;
+ }
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header .facility-header-subtitle{
+  display:none!important;
+ }
+}
