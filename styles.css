@@ -4021,3 +4021,25 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   transform:translateY(3px)!important;
  }
 }
+
+/* Smartphone: Artikelwunsch dauerhaft unten ueber der Navigation,
+   nur in der Artikelliste des Bestellshops. */
+@media(max-width:720px){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
+  display:flex!important;
+  position:fixed!important;
+  left:16px!important;
+  right:16px!important;
+  bottom:calc(88px + env(safe-area-inset-bottom, 0px))!important;
+  top:auto!important;
+  z-index:1150!important;
+  width:calc(100% - 32px)!important;
+  max-width:none!important;
+  margin:0!important;
+  min-height:46px!important;
+  box-shadow:0 3px 14px #102d4a20!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel{
+  padding-bottom:80px!important;
+ }
+}
