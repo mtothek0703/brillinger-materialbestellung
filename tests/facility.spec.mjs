@@ -46,9 +46,11 @@ test('Artikelsuche findet Hafermilch und verdeckt keine Kategorien', async ({ pa
   await expect(page.locator('#products .product h3').first()).toContainText(/Hafermilch/i);
   if (isMobile) {
     await expect(page.locator('#shop-view .mobile-sticky-controls')).toBeVisible();
-    const categories = await page.locator('#shop-view .mobile-sticky-controls').boundingBox();
-    const results = await page.locator('#facility-mobile-search-results').boundingBox();
-    if (categories && results) expect(results.y).toBeGreaterThanOrEqual(categories.y + categories.height - 2);
+    await expect.poll(async () => {
+      const categories = await page.locator('#shop-view .mobile-sticky-controls').boundingBox();
+      const results = await page.locator('#facility-mobile-search-results').boundingBox();
+      return categories && results ? results.y - categories.y - categories.height : -999;
+    }, { timeout: 8000 }).toBeGreaterThanOrEqual(-2);
   }
 });
 
@@ -66,12 +68,13 @@ test('Bestellübersicht: Jahr und Monatsfilter vorhanden', async ({ page }) => {
   await expect(page.locator('#order-month-filter option')).toHaveCount(13);
 });
 
-test('Navigation und Profil bleiben beim Zurückgehen bedienbar', async ({ page }) => {
+test('Navigation und Profil bleiben beim Zurückgehen bedienbar', async ({ page, isMobile }) => {
   await page.locator('#home-view a[href="#entsorgungsuebersicht"]').click();
   await expect(page.locator('#overview-menu-view')).toBeVisible();
   await page.locator('#overview-menu-view a[href="#bestelluebersicht"]').click();
   await expect(page.locator('#order-overview-view')).toBeVisible();
-  await page.locator('#facility-back-nav').click();
+  if (isMobile) await page.locator('#facility-back-nav').click();
+  else await page.locator('#order-overview-view .waste-back').click();
   await expect(page.locator('#overview-menu-view')).toBeVisible();
   await page.locator('#profile-edit').click();
   await expect(page.locator('#profile-popup')).toBeVisible();
