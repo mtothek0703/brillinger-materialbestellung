@@ -3794,3 +3794,18 @@ html body #shop-view:not([hidden]) .category-nav{
   width:15px!important;height:15px!important;
  }
 }
+
+/* Artikelwunsch nur im Bestellshop anbieten (Smartphone und PC).
+   Ausserhalb des Shops faellt der Navigationsplatz vollstaendig weg. */
+html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custom-entry-nav{
+ display:none!important;
+}
+@media(max-width:720px){
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ }
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+}
