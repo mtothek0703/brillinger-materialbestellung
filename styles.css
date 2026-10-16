@@ -3973,3 +3973,22 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   transform:none!important;
  }
 }
+
+/* Abschliessende Navigation: auch Shop-spezifische alte 5.-Spalte
+   ueberstimmen. Alle vier Tabs exakt in einer Zeile und einem Raster. */
+@media(max-width:720px){
+ html body:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
+ html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  grid-auto-rows:0!important;
+  gap:0!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > a[href="#start"]{grid-column:1!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-back-nav{grid-column:2!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle{grid-column:3!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-profile-slot{grid-column:4!important;grid-row:1!important}
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-custom-entry-nav{display:none!important}
+}
