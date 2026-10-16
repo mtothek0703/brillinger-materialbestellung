@@ -517,7 +517,23 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   if(shop.scrollTop>0)shop.scrollTop=0;
  }
  input.addEventListener('input',()=>requestAnimationFrame(()=>{if(!resultsPanel.hidden){resultsPanel.scrollTop=0;positionResults();}}));
- if(window.visualViewport)window.visualViewport.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
+ // iPhone-Tastatur: Suchfeld am sichtbaren Viewport ausrichten, ohne die App zu scrollen.
+ function syncSearchKeyboard(){
+  if(!isMobile())return;
+  const viewport=window.visualViewport;
+  const keyboardInset=viewport?Math.max(0,window.innerHeight-(viewport.offsetTop+viewport.height)):0;
+  const keyboardOpen=document.activeElement===input&&keyboardInset>100;
+  document.body.classList.toggle('facility-search-keyboard-open',keyboardOpen);
+  document.documentElement.style.setProperty('--facility-search-keyboard-inset',keyboardOpen?keyboardInset+'px':'0px');
+  positionResults();
+ }
+ if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',()=>requestAnimationFrame(syncSearchKeyboard),{passive:true});
+  window.visualViewport.addEventListener('scroll',()=>requestAnimationFrame(syncSearchKeyboard),{passive:true});
+ }
+ input.addEventListener('focus',()=>requestAnimationFrame(syncSearchKeyboard));
+ input.addEventListener('blur',()=>{requestAnimationFrame(syncSearchKeyboard);});
+
  window.addEventListener('resize',()=>requestAnimationFrame(positionResults),{passive:true});
   input.setAttribute('enterkeyhint','done');
  input.addEventListener('keydown',event=>{
