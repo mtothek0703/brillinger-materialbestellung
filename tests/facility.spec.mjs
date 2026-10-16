@@ -166,3 +166,33 @@ test('Bereich und Artikel: ohne Außenkachel, gleich groß wie Jahr und Monat', 
   expect(outer.border).toBe('0px');
   expect(outer.shadow).toBe('none');
 });
+
+
+test('Bestellübersicht: Überschrift und fünf Filter bleiben beim Scrollen fixiert', async ({ page, isMobile }) => {
+  await page.goto('/#bestelluebersicht', { waitUntil: 'domcontentloaded' });
+  const tools = page.locator('#order-overview-view > .order-sticky-tools');
+  await expect(tools).toBeVisible();
+  await expect(tools.locator('h1')).toContainText('Übersicht Bestellungen');
+  for (const selector of ['#order-selected-year', '#order-month-filter', '#order-dept-filter', '#order-article-filter', '#order-filter-reset']) {
+    await expect(page.locator(selector)).toBeAttached();
+  }
+  // Der Test macht die Artikelliste künstlich lang, ohne Einträge oder Daten anzulegen.
+  await page.locator('#order-type-buttons').evaluate(el => { el.style.minHeight = '1900px'; });
+  const scroll = async (top) => {
+    await page.evaluate(({top, isMobile}) => {
+      if (isMobile) document.getElementById('order-overview-view').scrollTop = top;
+      else window.scrollTo(0, top);
+    }, {top, isMobile});
+    await page.waitForTimeout(80);
+  };
+  await scroll(380);
+  const first = await tools.boundingBox();
+  await scroll(680);
+  const second = await tools.boundingBox();
+  expect(first).not.toBeNull();
+  expect(second).not.toBeNull();
+  expect(Math.abs(first.y - second.y)).toBeLessThanOrEqual(3);
+  const title = await tools.locator('h1').boundingBox();
+  const filters = await page.locator('#order-filter-panel').boundingBox();
+  expect(title.y + title.height).toBeLessThan(filters.y);
+});
