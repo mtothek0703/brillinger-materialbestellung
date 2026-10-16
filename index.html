@@ -459,10 +459,16 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   // #shop-view ist der tatsaechliche Scrollcontainer auf dem iPhone.
   // Den ERSTEN Treffer relativ zur Shop-Ansicht positionieren, statt
   // zur Seitenoberkante zu scrollen, wo nur der Kategorienbereich steht.
-  const targetTop=first.getBoundingClientRect().top-shop.getBoundingClientRect().top+shop.scrollTop;
-  shop.scrollTop=Math.max(0,targetTop-99);
   const main=shop.querySelector(':scope > main');
+  // Zuerst einen eventuell separat scrollenden Hauptbereich zuruecksetzen.
   if(main&&main.scrollHeight>main.clientHeight)main.scrollTop=0;
+  // Die fixe Kopfzeile darf den ersten Treffer niemals ueberdecken.
+  // Waehrend der Suche wird der Kategorienbereich ausgeblendet.
+  const header=shop.querySelector(':scope > header');
+  const headerBottom=header?.getBoundingClientRect().bottom||86;
+  const desiredTop=headerBottom+12;
+  const firstTop=first.getBoundingClientRect().top;
+  shop.scrollTop=Math.max(0,shop.scrollTop+firstTop-desiredTop);
  }
  const scheduleReveal=()=>requestAnimationFrame(()=>requestAnimationFrame(revealSearchResults));
  input.addEventListener('focus',scheduleReveal);
