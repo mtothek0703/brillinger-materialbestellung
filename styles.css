@@ -4084,3 +4084,11 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   display:block!important;
  }
 }
+
+/* Smartphone: ueberfluessigen Zurueck-zu-den-Artikeln-Button
+   unterhalb der Artikelliste ausblenden; untere Navigation bleibt. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-back-to-shop{
+  display:none!important;
+ }
+}
