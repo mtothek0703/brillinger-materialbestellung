@@ -442,7 +442,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
   }else{
    setOpen(true);
    revealSearchResults();
-   requestAnimationFrame(()=>{input.focus({preventScroll:true});revealSearchResults();});
+   requestAnimationFrame(()=>input.focus({preventScroll:true}));
   }
  });
  // Beim Scrollen der Artikelliste wird die aufgeklappte Suche geschlossen.
@@ -451,38 +451,20 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  const scrollContainers=[articleScroller,shop].filter(Boolean);
  // Bei Suche immer die ersten Treffer statt der zuvor gescrollten letzten Artikel zeigen.
  // Tastatur-Oeffnen und Eingaben duerfen die Suche nicht unbeabsichtigt schliessen.
+ // Keine automatische Scrollbewegung beim Tippen oder Oeffnen der Tastatur:
+ // iOS verschiebt sonst den Treffer unter die feststehende Kategorienleiste.
+ // Nur beim erstmaligen Oeffnen der Suche ggf. den Shop sanft an den Anfang bringen.
  function revealSearchResults(){
   if(!isMobile()||!document.body.classList.contains('facility-search-open'))return;
-  const list=shop.querySelector('#products');
-  const first=list?.querySelector('article.product');
-  if(!first)return;
-  // #shop-view ist der tatsaechliche Scrollcontainer auf dem iPhone.
-  // Den ERSTEN Treffer relativ zur Shop-Ansicht positionieren, statt
-  // zur Seitenoberkante zu scrollen, wo nur der Kategorienbereich steht.
   const main=shop.querySelector(':scope > main');
-  // Zuerst einen eventuell separat scrollenden Hauptbereich zuruecksetzen.
-  if(main&&main.scrollHeight>main.clientHeight)main.scrollTop=0;
-  // Die fixe Kopfzeile darf den ersten Treffer niemals ueberdecken.
-  // Waehrend der Suche wird der Kategorienbereich ausgeblendet.
-  const header=shop.querySelector(':scope > header');
-  const headerBottom=header?.getBoundingClientRect().bottom||86;
-  const desiredTop=headerBottom+12;
-  const firstTop=first.getBoundingClientRect().top;
-  shop.scrollTop=Math.max(0,shop.scrollTop+firstTop-desiredTop);
+  if(main&&main.scrollTop>0)main.scrollTop=0;
+  if(shop.scrollTop>0)shop.scrollTop=0;
  }
- const scheduleReveal=()=>requestAnimationFrame(()=>requestAnimationFrame(revealSearchResults));
- // iPhone: Pfeil-/Enter-Taste schliesst die Tastatur, der Treffer bleibt.
  input.setAttribute('enterkeyhint','done');
  input.addEventListener('keydown',event=>{
-  if(event.key==='Enter'){
-   event.preventDefault();
-   input.blur();
-  }
+  if(event.key==='Enter'){event.preventDefault();input.blur();}
  });
-  input.addEventListener('focus',scheduleReveal);
- input.addEventListener('input',scheduleReveal);
- if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleReveal,{passive:true});
-  const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
+ const previousPositions=new Map(scrollContainers.map(el=>[el,el.scrollTop]));
  for(const container of scrollContainers){
   container.addEventListener('scroll',()=>{
    const current=container.scrollTop;
