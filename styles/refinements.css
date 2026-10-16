@@ -3080,3 +3080,48 @@ html body #order-overview-view #order-filter-panel{
   text-align-last:center!important;
  }
 }
+
+
+/* Bestellübersicht: Überschrift und die fünf Bedienelemente beim Scrollen
+   als zusammenhängenden Kopfbereich sichtbar halten.
+   Die darunterliegende Artikelliste scrollt unabhängig weiter. */
+html body #order-overview-view:not([hidden]) > .order-sticky-tools{
+ position:sticky!important;
+ top:174px!important;
+ z-index:450!important;
+ box-sizing:border-box!important;
+ width:100%!important;
+ min-width:0!important;
+ padding:4px 0 10px!important;
+ background:#f4f7fb!important;
+ isolation:isolate;
+}
+html body #order-overview-view .order-sticky-tools > .order-filter-wrap{
+ position:static!important;
+ top:auto!important;
+ z-index:auto!important;
+}
+@media(max-width:720px){
+ /* Die Übersicht selbst ist das Scrollfenster unter der blauen Kopfzeile. */
+ html body #order-overview-view:not([hidden]) > .order-sticky-tools{
+  top:0!important;
+  padding:4px 0 10px!important;
+ }
+ html body #order-overview-view:not([hidden]) .order-sticky-tools > h1{
+  font-size:24px!important;
+  line-height:normal!important;
+  font-weight:700!important;
+  color:#153443!important;
+  margin:3px 0!important;
+ }
+ html body #order-overview-view .order-sticky-tools > .pickup-top-row{
+  margin-top:12px!important;
+  margin-bottom:12px!important;
+ }
+ html body #order-overview-view .order-sticky-tools > .order-filter-wrap{
+  margin-bottom:0!important;
+  top:auto!important;
+ }
+}
+/* Die fixierten Bedienelemente dürfen im Bestellverlauf nicht über dem
+   geöffneten Historien-Dialog liegen; dieser besitzt z-index:3500. */
