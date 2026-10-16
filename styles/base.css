@@ -1,0 +1,1341 @@
+:root{font-family:Inter,Arial,sans-serif;color:#142c38;background:#f3f6f8;font-synthesis:none;--blue:#005c80;--line:#dce5eb}*{box-sizing:border-box}body{margin:0}header{background:white;border-bottom:1px solid var(--line);padding:22px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}a{color:var(--blue)}.brand{display:flex;gap:13px;align-items:center;text-decoration:none;color:#142c38;font-weight:800;letter-spacing:1.5px;font-size:20px}.brandmark{background:var(--blue);color:white;border-radius:12px;padding:5px 13px;font-size:34px;letter-spacing:-3px}.brand small{display:block;font-size:13px;font-weight:400;letter-spacing:.3px;margin-top:4px}.cart-link{text-decoration:none;font-size:14px;font-weight:700;display:flex;gap:10px;align-items:center}.cart-link span{background:#e4f2f8;border-radius:30px;padding:6px 10px}main{max-width:1328px;margin:auto;padding:38px 24px 60px}.intro{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:34px}.eyebrow{font-size:20px;font-weight:800;letter-spacing:1.8px;color:var(--blue);margin:0 0 10px}h1{font-size:clamp(28px,3vw,40px);letter-spacing:-1.2px;line-height:1.2;margin:0 0 12px}.intro p:not(.eyebrow){color:#546a78;margin:0;line-height:1.6}.sample-badge{white-space:nowrap;background:#e4edf2;padding:10px 15px;border-radius:30px;font-size:14px}.shop-layout{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:30px;align-items:start}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-heading h2{font-size:20px;margin:0}.section-heading span,.catalog-note{font-size:13px;color:#5d717e}.catalog-note{line-height:1.5;margin:12px 0 20px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.product{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden}.product-top{background:#eaf2f7;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:12px}.product-symbol{font-size:42px;line-height:1.4}.product-category{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#476878}.product-body{padding:20px}.sku{font-size:12px;color:#627787;margin:0 0 7px}.product h3{font-size:18px;margin:0 0 8px}.description{font-size:14px;color:#526976;line-height:1.55;margin:0 0 18px;min-height:44px}.unit{font-size:13px;font-weight:700;margin-bottom:14px}.product-action{display:flex;gap:10px}.quantity{display:flex;border:1px solid #bbccd6;border-radius:8px;overflow:hidden;background:white;align-items:center}.quantity button{background:white;border:0;padding:10px;width:32px;color:#284c5d;font-size:18px}.quantity input{width:43px;text-align:center;border:0;padding:10px 0;font-size:14px;appearance:textfield;min-width:0}.quantity input::-webkit-inner-spin-button{appearance:none}button,input,textarea{font:inherit}button{cursor:pointer;font-weight:700}button:hover{filter:brightness(.94)}button:disabled{cursor:not-allowed;background:#d9e3e9;color:#6b7d87;filter:none}.primary,.secondary{border:0;border-radius:8px;padding:12px 14px;font-size:14px}.primary{background:var(--blue);color:white}.secondary{background:#e4eef3;color:var(--blue)}.product-action .primary{flex:1}aside{background:white;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:14px;padding:23px;position:sticky;top:20px}.empty{color:#617583;text-align:center;line-height:1.6;font-size:14px;padding:28px 8px;border:1px dashed #cedde5;border-radius:10px;margin:20px 0}.cart-item{padding:16px 0;border-bottom:1px solid var(--line)}.cart-item h3{font-size:14px;margin:0 0 5px}.cart-item p{font-size:12px;color:#627787;margin:0 0 10px}.cart-controls{display:flex;justify-content:space-between;align-items:center;gap:10px}.remove{border:0;background:none;color:#617583;font-size:13px;padding:8px}.summary{font-size:14px;color:#456373;padding:14px 0;border-bottom:1px solid var(--line)}form h3,#email-fallback h3{font-size:16px;margin:22px 0 18px}label{display:block;font-size:14px;font-weight:600;margin:14px 0 7px}label span{font-weight:400;color:#617583}form input,textarea{width:100%;border:1px solid #bccdd7;border-radius:7px;padding:11px;background:#fff;color:#142c38;font-size:14px}textarea{resize:vertical}input:focus,textarea:focus{outline:2px solid #008ab8;outline-offset:2px}.submit{width:100%;margin-top:18px}.email-note{font-size:12px;line-height:1.65;color:#607581;overflow-wrap:anywhere}.live-message{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#143745;color:white;padding:12px 20px;border-radius:10px;max-width:90vw;font-size:14px;box-shadow:0 6px 30px #142c3820}.live-message:empty{display:none}#email-fallback{border-top:1px solid var(--line);margin-top:20px}#email-fallback p{font-size:14px;line-height:1.5}#copy-order{margin-top:10px}footer{max-width:1280px;margin:0 auto;padding:24px;border-top:1px solid var(--line);font-size:12px;color:#637786;display:flex;justify-content:space-between;gap:20px}button:focus-visible,a:focus-visible{outline:3px solid #0099be;outline-offset:3px}@media(max-width:1050px){.shop-layout{grid-template-columns:minmax(0,1fr) 330px;gap:20px}.products{grid-template-columns:1fr}}@media(max-width:720px){header{padding:18px}.brand{font-size:17px}.shop-layout{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.intro{display:block}.sample-badge{display:inline-block;margin-top:18px}main{padding:28px 18px 40px}aside{position:static}.section-heading{flex-wrap:wrap}.product-body{padding:15px}.product-action{flex-wrap:wrap}.product-action .primary{flex-basis:100%}footer{flex-direction:column;gap:8px}}@media(max-width:420px){.products{grid-template-columns:1fr}.product-action{flex-wrap:nowrap}.product-action .primary{flex-basis:auto}.description{min-height:0}.brand small{font-size:12px}.cart-link{font-size:12px}}
+
+.category-nav{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 26px}.category-label{display:block;font-weight:800;font-size:14px;margin-bottom:13px}.category-filters{display:flex;gap:9px;flex-wrap:wrap}.category-button{border:1px solid #cbdbe3;border-radius:24px;background:#f5f8fa;color:#294c5d;padding:10px 17px;font-size:14px}.category-button.active{background:var(--blue);border-color:var(--blue);color:#fff}.category-button:focus-visible{outline:3px solid #0099be;outline-offset:2px}.category-empty{grid-column:1/-1;background:white;border:1px dashed #cedde5;border-radius:12px;padding:28px;color:#607581;line-height:1.5}@media(max-width:720px){.category-nav{padding:16px}.category-filters{gap:8px}.category-button{padding:10px 14px}}
+
+.brand{gap:15px;letter-spacing:normal}.brand-logo{width:225px;max-width:52vw;height:auto;display:block}.brand-subtitle{font-size:13px;font-weight:600;color:#46616f;letter-spacing:.1px}@media(max-width:600px){header{gap:10px}.brand{gap:6px;align-items:flex-start;flex-direction:column}.brand-logo{width:185px;max-width:58vw}.brand-subtitle{font-size:11px}.cart-link{white-space:nowrap}}
+
+/* Kopfbereich: Logo und Warenkorb ohne Überlappung */
+header{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:16px;min-width:0}.brand{flex:0 1 auto;min-width:0;display:flex;flex-direction:row;align-items:center}.brand-logo{display:block;width:210px;max-width:100%;height:auto;flex-shrink:1}.cart-link{flex:0 0 auto;white-space:nowrap;gap:7px}.cart-label{display:inline}.cart-link span#cart-count{flex-shrink:0}@media(max-width:600px){header{padding:14px 16px;gap:8px}.brand{flex:1 1 auto;min-width:0;flex-direction:row;align-items:center}.brand-logo{width:185px;max-width:100%;height:auto}.cart-link{font-size:13px;gap:5px}.cart-label{display:none}.cart-link span#cart-count{padding:5px 9px}}@media(max-width:360px){.brand-logo{width:160px}header{padding:12px}}
+
+/* Kompaktere Artikelauswahl */
+.product-top{min-height:95px;padding:10px 12px}.product-top:has(.product-image){min-height:110px}.product-image{width:55px;height:78px;object-fit:contain;margin:0}.product-symbol{font-size:26px}.product-body{padding:12px}.product h3{font-size:16px;margin-bottom:6px}.description{font-size:12px;line-height:1.4;margin-bottom:10px;min-height:0}.unit{font-size:12px;margin-bottom:10px}.product-action{gap:6px}.product-action .primary{font-size:12px;padding:9px 8px}.quantity button{width:27px;padding:7px}.quantity input{width:32px;padding:7px 0;font-size:12px}@media(max-width:720px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-body{padding:10px}.product-top{padding:8px;min-height:88px}.product-top:has(.product-image){min-height:96px}.product-image{width:45px;height:66px}.product-category{font-size:10px}.product-action{flex-wrap:wrap}.product-action .primary{flex-basis:100%}}@media(max-width:420px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-action{flex-wrap:wrap}.product-action .primary{flex-basis:100%}}
+
+/* Kleine Produktkacheln: etwa halbe Höhe, kein Strecken durch Nachbarkarte */
+.products{align-items:start}
+.product{align-self:start;min-height:0}
+.product-top,.product-top:has(.product-image){height:82px;min-height:0;padding:8px 12px;overflow:hidden}
+.product-image{height:65px;width:52px;max-width:52px;object-fit:contain;margin:0}
+.product-symbol{font-size:25px}
+.product-body{padding:10px 12px}
+.product h3{font-size:15px;line-height:1.2;margin:0 0 6px}
+.description{font-size:11px;line-height:1.35;margin:0 0 8px;min-height:0}
+.unit{font-size:11px;line-height:1.3;margin-bottom:8px}
+.product-action{display:flex;flex-direction:column;gap:7px}
+.product-action .primary{width:100%;flex:auto;padding:9px 4px;font-size:11px}
+.quantity{align-self:flex-start}
+@media(max-width:720px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}.product-top,.product-top:has(.product-image){height:76px;min-height:0;padding:7px}.product-image{height:60px;width:45px}.product-category{font-size:9px}.product-body{padding:9px}.product-action{flex-wrap:nowrap;flex-direction:column}.product-action .primary{flex-basis:auto}}
+@media(max-width:420px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Artikelsuche */
+.product-search{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:14px}
+.product-search label{font-weight:800;font-size:14px;margin:0 0 9px}
+.product-search input{display:block;width:100%;max-width:600px;border:1px solid #bccdd7;border-radius:9px;padding:12px 14px;font-size:15px;background:#fff;color:#142c38}
+.product-search input:focus{outline:2px solid #008ab8;outline-offset:2px}
+@media(max-width:720px){.product-search{padding:14px 16px}}
+
+/* Artikel übersichtlich untereinander statt in zwei Spalten */
+.products{grid-template-columns:minmax(0,1fr);gap:12px}
+.product{display:grid;grid-template-columns:115px minmax(0,1fr);align-items:stretch}
+.product-top,.product-top:has(.product-image){height:auto;min-height:112px;padding:12px;flex-direction:column;justify-content:center}
+.product-body{padding:14px 16px}
+.product-action{flex-direction:row;align-items:center;flex-wrap:wrap}
+.product-action .primary{width:auto;flex:0 1 auto;padding:9px 16px}
+@media(max-width:720px){.products{grid-template-columns:minmax(0,1fr);gap:10px}.product{grid-template-columns:90px minmax(0,1fr)}.product-top,.product-top:has(.product-image){height:auto;min-height:105px;padding:8px}.product-body{padding:12px}.product-action{flex-direction:row;flex-wrap:wrap}.product-action .primary{width:auto;flex:0 1 auto;padding:9px 12px}}
+
+/* Brillinger-Logo im Kopfbereich etwas größer */
+.brand-logo{width:250px;max-width:100%;height:auto}
+@media(max-width:720px){.brand-logo{width:205px;max-width:58vw}}
+@media(max-width:420px){.brand-logo{width:185px;max-width:58vw}}
+
+/* Angabe des Batterietyps */
+.battery-label{display:block;font-size:12px;font-weight:700;margin:8px 0 5px}
+.battery-type{display:block;width:100%;max-width:300px;border:1px solid #bccdd7;border-radius:8px;padding:9px 11px;margin-bottom:12px;font:inherit;font-size:14px;background:#fff;color:#142c38}
+.battery-type:focus{outline:2px solid #008ab8;outline-offset:2px}
+
+/* Größere, gut erkennbare Produktabbildungen in der Listenansicht */
+.product{grid-template-columns:175px minmax(0,1fr)}
+.product-top,.product-top:has(.product-image){min-height:175px;height:auto;padding:12px;background:#fff}
+.product-image{display:block;width:145px;max-width:100%;height:150px;object-fit:contain;margin:auto}
+.product-symbol{font-size:65px;line-height:1}
+.product-body{align-self:center}
+@media(max-width:720px){.product{grid-template-columns:118px minmax(0,1fr)}.product-top,.product-top:has(.product-image){min-height:135px;height:auto;padding:7px}.product-image{width:105px;height:118px}.product-symbol{font-size:48px}}
+
+/* Warenkorb unabhängig von der Artikelliste scrollbar */
+@media(min-width:721px){#warenkorb{position:sticky;top:16px;align-self:start;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin}#warenkorb:focus-within{scroll-behavior:auto}}
+@media(max-width:720px){#warenkorb{position:relative;top:auto;max-height:min(80dvh,720px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}}
+
+/* Smartphone: Warenkorb als eigene Ansicht statt unter der Artikelliste */
+.mobile-back-to-shop{display:none}
+@media(max-width:720px){
+ body.mobile-cart-view .intro,
+ body.mobile-cart-view .product-search,
+ body.mobile-cart-view .category-nav,
+ body.mobile-cart-view #artikel{display:none!important}
+ body:not(.mobile-cart-view) #warenkorb{display:none!important}
+ body.mobile-cart-view #warenkorb{display:block!important;position:static;max-height:none;overflow:visible;min-width:0;width:100%;box-sizing:border-box}
+ body.mobile-cart-view .shop-layout{display:block!important}
+ body.mobile-cart-view main{min-height:calc(100dvh - 170px)}
+ .mobile-back-to-shop{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:11px 14px;border:1px solid #bfd0da;border-radius:10px;background:#f3f8fb;color:#075775;text-decoration:none;font-weight:700;font-size:14px}
+ body.mobile-cart-view .cart-link{background:#e1f2f8}
+}
+
+/* Freie Eingabe für Artikel außerhalb des Sortiments */
+.custom-product{margin-top:24px;padding:22px;border:1px solid #d7e2e9;border-radius:16px;background:#fff}
+.custom-product h3{margin:0 0 7px;color:#153443}
+.custom-product p{margin:0 0 16px;color:#607480}
+.custom-product form{display:flex;flex-direction:column;gap:9px}
+.custom-product label{font-weight:700;font-size:14px}
+.custom-product label span{font-weight:400;color:#647985}
+.custom-product input,.custom-product textarea{width:100%;box-sizing:border-box;padding:11px 13px;border:1px solid #b8cedb;border-radius:9px;font:inherit;background:#fff;color:#153443}
+.custom-product input[type=number]{max-width:150px}
+.custom-product button{align-self:flex-start;margin-top:8px}
+@media(max-width:720px){.custom-product{padding:17px;margin-top:18px}.custom-product button{width:100%;text-align:center}}
+
+/* Kompakte, beim Scrollen sichtbare Smartphone-Navigation */
+@media(max-width:720px){
+ header{position:sticky;top:0;z-index:110;background:#fff;padding:8px 14px;box-shadow:0 2px 8px #142c3810}
+ .brand-logo{width:160px;max-width:50vw}
+ .cart-link{padding:8px 10px;border-radius:10px;background:#e4f2f8;font-size:17px}
+ .mobile-sticky-controls{position:sticky;top:var(--mobile-header-height,60px);z-index:100;background:#f3f6f8;padding:8px 0 9px;border-bottom:1px solid #dce5eb;box-shadow:0 5px 12px #142c380d;margin-bottom:12px}
+ main{padding-top:0}
+ .mobile-sticky-controls .intro{margin:0 0 7px;display:block}
+ .mobile-sticky-controls .eyebrow{font-size:14px;letter-spacing:.7px;margin:0 0 2px}
+ .mobile-sticky-controls .intro p:not(.eyebrow){font-size:11px;line-height:1.25}
+ .mobile-sticky-controls .product-search{padding:7px 10px;margin:0 0 7px;border-radius:10px}
+ .mobile-sticky-controls .product-search label{font-size:11px;margin:0 0 3px}
+ .mobile-sticky-controls .product-search input{padding:8px 10px;font-size:13px}
+ .mobile-sticky-controls .category-nav{margin:0;padding:5px 0}
+ .mobile-sticky-controls .category-label{font-size:11px;margin:0 0 4px}
+ .mobile-sticky-controls .category-filters{gap:5px}
+ .mobile-sticky-controls .category-filters button{padding:6px 9px;font-size:11px}
+ body.mobile-cart-view .mobile-sticky-controls{display:none!important}
+}
+
+/* Sonderartikel: oben als Button, Eingabe in eigener Ansicht */
+.custom-entry-link{display:inline-flex;align-items:center;justify-content:center;margin:0 0 12px;padding:11px 16px;border-radius:10px;border:1px solid #00618a;color:#005a7e;background:#fff;font-size:14px;font-weight:700;text-decoration:none}
+.custom-entry-link:hover{background:#e8f4fa}
+.custom-back-link{display:inline-flex;margin-bottom:20px;color:#005a7e;font-weight:700;text-decoration:none}
+.custom-product{display:none}
+body.custom-entry-view .mobile-sticky-controls,
+body.custom-entry-view #products,
+body.custom-entry-view #warenkorb{display:none!important}
+body.custom-entry-view .shop-layout{display:block!important}
+body.custom-entry-view #artikel{display:block!important;width:100%!important;max-width:720px;margin:0 auto}
+body.custom-entry-view .custom-product{display:block!important;margin-top:22px}
+body.custom-entry-view .custom-entry-link{display:none}
+@media(max-width:720px){
+ .custom-entry-link{display:flex;width:100%;box-sizing:border-box;margin:5px 0 8px;padding:10px;font-size:13px}
+ body.custom-entry-view .custom-product{margin-top:14px}
+}
+
+/* PC: Shop-Titel neben dem Logo und dauerhaft sichtbare Kopfzeile. */
+.desktop-shop-heading{display:none}
+@media(min-width:721px){
+ header{position:sticky;top:0;z-index:110;height:112px;background:#fff;box-shadow:0 2px 8px #142c3810}
+ header .brand{flex:0 0 250px}
+ .desktop-shop-heading{display:block;flex:1;min-width:0}
+ .desktop-shop-heading .eyebrow{font-size:20px;letter-spacing:1px;margin:0 0 6px}
+ .desktop-shop-heading p:not(.eyebrow){font-size:14px;line-height:1.4;color:#546a78;margin:0}
+ .mobile-sticky-controls .intro{display:none}
+ #warenkorb{top:128px;max-height:calc(100dvh - 144px);scroll-margin-top:128px}
+ #artikel,#sonderartikel{scroll-margin-top:128px}
+}
+@media(min-width:721px) and (max-width:1000px){
+ header{padding-left:20px;padding-right:20px;gap:16px}
+ header .brand{flex-basis:190px}
+ header .brand-logo{width:190px}
+ .desktop-shop-heading .eyebrow{font-size:17px}
+ .desktop-shop-heading p:not(.eyebrow){font-size:13px}
+}
+
+/* PC: Suche und Kategorien kompakt direkt unter der Kopfzeile fixieren. */
+@media(min-width:721px){
+ main{padding-top:10px}
+ .mobile-sticky-controls{position:sticky;top:112px;z-index:100;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 14px;background:#f3f6f8;padding:8px 0 10px;margin-bottom:14px;border-bottom:1px solid var(--line);box-shadow:0 5px 12px #142c380d}
+ .mobile-sticky-controls .product-search{margin:0;padding:10px 16px}
+ .mobile-sticky-controls .product-search label{margin-bottom:5px;font-size:13px}
+ .mobile-sticky-controls .product-search input{max-width:none;padding:9px 12px;font-size:14px}
+ .mobile-sticky-controls .custom-entry-link{margin:0}
+ .mobile-sticky-controls .category-nav{grid-column:1/-1;margin:0;padding:10px 16px}
+ .mobile-sticky-controls .category-label{font-size:13px;margin-bottom:7px}
+ .mobile-sticky-controls .category-button{padding:7px 14px;font-size:13px}
+ #warenkorb{top:calc(112px + var(--desktop-controls-height,174px) + 16px);max-height:calc(100dvh - 112px - var(--desktop-controls-height,174px) - 32px);scroll-margin-top:calc(112px + var(--desktop-controls-height,174px) + 16px)}
+ #artikel,#sonderartikel{scroll-margin-top:calc(112px + var(--desktop-controls-height,174px) + 16px)}
+}
+
+/* Suchtext mit einem gut erreichbaren X löschen. */
+.search-input-wrap{position:relative;max-width:600px}
+.product-search .search-input-wrap input{max-width:none;padding-right:48px}
+.search-clear{position:absolute;right:3px;top:50%;transform:translateY(-50%);width:40px;height:34px;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#476878;font-size:26px;line-height:1;padding:0}
+.search-clear[hidden]{display:none}
+.search-clear:hover{background:#e4eef3}
+#article-search::-webkit-search-cancel-button{appearance:none}
+@media(min-width:721px){.mobile-sticky-controls .search-input-wrap{max-width:none}.mobile-sticky-controls .search-input-wrap input{padding-right:48px}}
+@media(max-width:720px){.mobile-sticky-controls .search-input-wrap input{padding-right:46px}}
+
+/* iPhone Safari: 16px verhindert automatischen Zoom beim Fokussieren der Artikelsuche. */
+@media(max-width:720px){.mobile-sticky-controls .product-search input,#article-search{font-size:16px}}
+
+/* Haustechnik navigation */
+#home-view,#waste-view{max-width:1050px;margin:0 auto;padding:38px 22px}
+#home-view[hidden],#waste-view[hidden],#shop-view[hidden]{display:none!important}
+.home-top{text-align:center;margin:18px 0 36px}
+.home-top img{width:230px;max-width:70vw;margin-bottom:30px}
+.home-top h1{font-size:38px;color:#153443;margin:0 0 10px}
+.home-top p,#waste-view p{color:#607480;font-size:16px}
+.home-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.home-tiles a{background:#fff;border:1px solid #dce5eb;border-radius:18px;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;padding:22px;text-decoration:none;color:#153443;box-shadow:0 6px 22px #142c3810}
+.home-tiles a:hover{box-shadow:0 10px 28px #142c3820}
+.home-tiles a span{font-size:48px}
+.home-tiles a strong{font-size:22px}
+.home-tiles a small{font-size:14px;color:#607480}
+#waste-view h1{margin-top:50px}
+.shop-home-link,.mobile-home-link{color:#005c80;font-size:13px;font-weight:700;text-decoration:none}
+.shop-home-link{display:block;margin-bottom:5px}
+.mobile-home-link{display:none}
+@media(max-width:720px){.home-tiles{gap:12px}.home-tiles a{min-height:175px;padding:14px;gap:10px}.home-tiles a strong{font-size:17px}.home-tiles a span{font-size:38px}.home-tiles a small{font-size:12px}.mobile-home-link{display:block;padding:9px 0}.home-top h1{font-size:32px}}
+@media(max-width:360px){.home-tiles{grid-template-columns:1fr}}
+
+/* Müllentsorgung: Auswahl und E-Mail-Anforderung */
+.waste-back{display:inline-block;color:#005c80;text-decoration:none;font-weight:600;margin-bottom:26px}
+.waste-heading{text-align:center;margin:4px 0 28px}
+.waste-heading>span{font-size:48px}
+#waste-view .waste-heading h1{margin:8px 0 8px;font-size:32px;color:#153443}
+.waste-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.waste-option{display:flex;align-items:center;gap:17px;padding:25px 22px;background:#fff;border:1px solid #dce5eb;border-radius:17px;color:#153443;text-decoration:none;box-shadow:0 6px 22px #142c3810;min-height:150px}
+.waste-option-icon{font-size:40px;flex:none}
+.waste-option strong{display:block;font-size:22px;margin-bottom:8px}
+.waste-option small{display:block;font-size:14px;color:#607480;line-height:1.45}
+.waste-chevron{font-size:30px;margin-left:auto;color:#607480}
+.waste-option:hover,.waste-option:focus-visible{border-color:#005c80;box-shadow:0 10px 28px #142c3820}
+#waste-view .waste-note{font-size:13px;margin-top:23px;text-align:center}
+@media(max-width:720px){.waste-options{grid-template-columns:1fr;gap:13px}.waste-option{min-height:115px;padding:18px}.waste-option strong{font-size:19px}.waste-option-icon{font-size:34px}}
+
+/* Standortauswahl und Artikelwunsch */
+#order-form select{width:100%;min-height:46px;border:1px solid #cad8e0;border-radius:9px;padding:10px 12px;background:#fff;color:#142c38;font:inherit}
+#order-form select:focus-visible{outline:2px solid #005c80;outline-offset:2px}
+#request-custom-product{display:block;width:100%;margin-top:10px;min-height:44px;cursor:pointer}
+.article-request-hint{font-size:13px;color:#607480;line-height:1.45;margin:8px 0 0}
+
+/* iOS-Safari zeigt hidden Optionen im Picker: Platzhalter deshalb außerhalb des select. */
+.select-placeholder-wrap{position:relative}
+.select-placeholder-wrap::after{content:attr(data-select-placeholder);position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#607480;pointer-events:none;white-space:nowrap;max-width:calc(100% - 55px);overflow:hidden;text-overflow:ellipsis}
+.select-placeholder-wrap.has-selection::after{display:none}
+
+/* Stets sichtbare Navigation zur Facility-Management-Startseite. */
+.shop-start-link{display:inline-flex;align-items:center;justify-content:center;color:#005c80;font-size:14px;font-weight:700;text-decoration:none;padding:10px 12px;border-radius:10px;background:#eef5f8;white-space:nowrap;margin-left:auto}
+.shop-start-link:hover,.shop-start-link:focus-visible{background:#dcecf3}
+@media(max-width:720px){.shop-start-link{font-size:12px;padding:9px 7px;white-space:normal;text-align:center;line-height:1.15;max-width:115px;flex-shrink:1;margin-left:auto}header{gap:7px}.brand-logo{max-width:100%}}
+
+/* Aktualisieren-Button für die iPhone-Homescreen-App. */
+.shop-refresh{appearance:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid #dce5eb;background:#eef5f8;color:#005c80;border-radius:10px;font-size:27px;line-height:1;width:40px;height:40px;flex:none;cursor:pointer}
+.shop-refresh:disabled{opacity:.65}
+@media(max-width:720px){.shop-refresh{width:34px;height:36px;font-size:24px}.shop-start-link{max-width:100px}}
+
+/* Übersicht bestätigter Restmüll-Abholungen */
+#waste-overview-view{max-width:1050px;margin:0 auto;padding:38px 22px}
+#waste-overview-view[hidden]{display:none!important}
+#waste-overview-view h1{margin:4px 0 12px}
+#waste-overview-view>p{color:#607480;line-height:1.5}
+.pickup-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.pickup-stats>div{background:#fff;border:1px solid #dce5eb;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.pickup-stats strong{font-size:38px;color:#005c80}
+.pickup-stats span{font-size:14px;color:#607480}
+.pickup-form{background:#fff;border:1px solid #dce5eb;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.pickup-form h2{margin:0 0 4px}.pickup-form label{font-weight:600}
+.pickup-form input{font:inherit;padding:12px;border:1px solid #cad8e0;border-radius:9px;min-height:46px}
+.pickup-form button{cursor:pointer;min-height:44px}
+.pickup-list{background:#fff;border:1px solid #dce5eb;border-radius:14px;padding:8px 18px}
+.pickup-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #e4ebef}
+.pickup-row:last-child{border-bottom:0}.pickup-row button{background:none;border:0;color:#005c80;font:inherit;cursor:pointer;padding:9px}
+#waste-overview-view .pickup-hint{font-size:13px;margin-top:18px}
+@media(max-width:720px){.pickup-stats>div{padding:16px}.pickup-stats strong{font-size:32px}}
+
+/* Manuelles Aktualisieren auf der Facility-Management-Startseite. */
+.home-refresh{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding:11px 22px;border:1px solid #bfd1dc;border-radius:12px;background:#fff;color:#005c80;font:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px #142c3810}
+.home-refresh:hover,.home-refresh:focus-visible{background:#eaf3f8;border-color:#005c80}
+.home-refresh:disabled{opacity:.65}
+
+/* Kompakter Aktualisieren-Button auf der Startseite */
+.home-refresh{margin-top:12px;padding:6px 12px;border-radius:9px;font-size:12px;gap:4px;min-height:30px;box-shadow:none}
+
+/* Kompakter Refresh-Button oben rechts auf der Facility-Startseite */
+#home-view{position:relative}
+#home-view .home-refresh{position:absolute;top:14px;right:14px;margin:0;padding:5px 9px;min-height:28px;border-radius:8px;font-size:11px;font-weight:600;line-height:1.2;box-shadow:none;z-index:2}
+@media(max-width:720px){#home-view .home-refresh{top:10px;right:12px;padding:5px 8px;font-size:11px}}
+
+/* Normale Milch (BM-007): Produktbild etwas größer als andere Artikel. */
+.product-image.product-image-milk{width:215px;max-width:100%;height:210px}
+@media(max-width:720px){.product-image.product-image-milk{width:165px;max-width:100%;height:170px}}
+
+/* Artikelliste kompakter unterhalb der Kategorien; Hinweis direkt bei Überschrift. */
+#shop-view .shop-layout{margin-top:0}
+#shop-view #artikel{padding-top:0}
+#shop-view #catalog-title{margin:0 0 3px}
+#shop-view .product-image-disclaimer{margin:0 0 12px;font-size:13px;line-height:1.4;color:#607480}
+@media(max-width:720px){#shop-view .product-image-disclaimer{margin-bottom:9px}}
+
+/* Getrennte Übersichten: Auswahlseite und einzelne Auswertungen */
+#overview-menu-view{max-width:1050px;margin:0 auto;padding:38px 22px}
+#overview-menu-view[hidden],#order-overview-view[hidden]{display:none!important}
+#order-overview-view{max-width:1050px;margin:0 auto;padding:38px 22px}
+#order-overview-view h1{margin:4px 0 12px}
+#order-overview-view>p{color:#607480;line-height:1.5}
+#order-overview-view .pickup-hint{font-size:13px;margin-top:18px}
+
+/* Artikelbezogene Bestellstatistik mit Häufigkeit und Menge */
+.order-year-label{display:block;font-size:13px;color:#607480;margin:8px 0 6px;font-weight:600}
+.order-year-filter{font:inherit;padding:10px 12px;border:1px solid #cad8e0;border-radius:10px;background:#fff;color:#18313d;margin-bottom:14px;max-width:100%;min-height:42px}
+.order-article-table{background:#fff;border:1px solid #dce5eb;border-radius:14px;overflow:hidden}
+.order-article-head,.order-article-row{display:grid;grid-template-columns:minmax(0,1fr) 92px 68px;align-items:center;gap:10px;padding:13px 16px}
+.order-article-head{background:#edf3f7;color:#496373;font-size:12px;font-weight:700}
+.order-article-head span:not(:first-child),.order-article-row strong{text-align:right}
+.order-article-row{border-top:1px solid #e4ebef;font-size:14px}
+.order-article-row strong{color:#005c80;font-size:16px}
+.order-article-row span{overflow-wrap:anywhere}
+.order-article-empty{padding:16px;color:#607480;margin:0}
+@media(max-width:480px){.order-article-head,.order-article-row{grid-template-columns:minmax(0,1fr) 76px 52px;gap:6px;padding:12px 10px}.order-article-head{font-size:10px}.order-article-row{font-size:13px}}
+
+/* Einheitliches dunkles Brillinger-Blau für Aktionsbuttons. */
+:root{--blue:#001b79}
+.primary,.secondary,.home-refresh{background:#001b79;color:#fff;border-color:#001b79}
+.primary:hover,.secondary:hover,.home-refresh:hover,.home-refresh:focus-visible{background:#00299e;color:#fff;border-color:#00299e}
+button:disabled,.primary:disabled,.secondary:disabled{background:#d9e3e9;color:#6b7d87;border-color:#d9e3e9}
+
+/* Profil und Aktualisieren bündig untereinander ohne Überlappung. */
+#profile-toolbar .home-refresh{margin-top:0;align-self:center;white-space:nowrap}
+/* Aktualisieren bleibt auf allen Facility-Seiten sichtbar. */
+#profile-toolbar:not([hidden]) .home-refresh{display:inline-flex}
+
+/* Profil im Shop direkt neben Startseite und Warenkorb, mobil kompakt. */
+#shop-view>header #profile-edit{position:static!important;flex:0 0 auto;margin:0;border-radius:10px!important;padding:10px 12px!important;font-size:13px!important;white-space:nowrap}
+@media(max-width:720px){
+ #shop-view>header{gap:6px;padding:8px 10px}
+ #shop-view>header .brand{margin-right:auto;min-width:0}
+ #shop-view>header .brand-logo{width:clamp(105px,28vw,160px);max-width:100%}
+ #shop-view>header .shop-start-link{flex:0 1 auto;min-width:0;padding:7px 6px;font-size:11px;line-height:1.15;text-align:center}
+ #shop-view>header #profile-edit{padding:10px 7px!important;font-size:11px!important;border-radius:10px!important}
+ #shop-view>header .cart-link{flex:0 0 auto;padding:8px 6px;font-size:13px;white-space:nowrap}
+ #shop-view>header .cart-link .cart-label{display:none}
+}
+
+/* Profil außerhalb des Shops beim Scrollen oben sichtbar halten. */
+#profile-toolbar:not([hidden]){position:sticky;top:0;z-index:120;background:#f3f6f8}
+#profile-toolbar[hidden]{display:none!important}
+
+/* Smartphone: Kopfzeile bleibt ohne oberen Leerraum am Bildschirmrand. */
+@media(max-width:720px){
+ #shop-view{padding-top:64px}
+ #shop-view>header{position:fixed!important;top:0!important;left:0;right:0;width:100%;height:64px;min-height:64px;margin:0;z-index:1100;background:#fff;box-shadow:0 2px 8px #142c3810}
+ #shop-view .mobile-sticky-controls{top:64px!important}
+}
+
+/* Profil-Schaltfläche auch in der Leerungsübersicht dauerhaft sichtbar. */
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#waste-view:not([hidden])) #profile-toolbar{position:fixed!important;top:0;right:0;left:0;width:100%;display:flex;align-items:flex-end;z-index:1100;background:#f3f6f8;box-shadow:0 1px 4px #142c3810}
+body:has(#waste-overview-view:not([hidden])) #waste-overview-view,
+body:has(#order-overview-view:not([hidden])) #order-overview-view,
+body:has(#overview-menu-view:not([hidden])) #overview-menu-view,
+body:has(#waste-view:not([hidden])) #waste-view{padding-top:110px}
+
+/* Startseite: Profil oben rechts statt mittig. */
+body:has(#home-view:not([hidden])) #profile-toolbar{position:sticky!important;top:0;left:auto!important;right:0!important;margin-left:auto!important;margin-right:0!important;width:100%!important;align-items:flex-end!important;justify-content:flex-end!important;padding:10px 16px!important;z-index:120}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit{align-self:flex-end!important;margin-left:auto!important;margin-right:0!important}
+
+/* Größere, einheitliche Shop-Kopfzeile auf Smartphones. */
+@media(max-width:720px){
+ #shop-view{padding-top:82px!important}
+ #shop-view>header{height:82px!important;min-height:82px!important;padding:10px 12px!important;gap:7px!important}
+ #shop-view>header .brand{flex:1 1 auto!important;min-width:0!important;margin-right:0!important}
+ #shop-view>header .brand-logo{width:clamp(120px,30vw,190px)!important;max-width:100%!important;height:auto!important}
+ #shop-view>header .shop-start-link,
+ #shop-view>header .cart-link,
+ #shop-view>header #profile-edit{box-sizing:border-box!important;flex:0 0 clamp(78px,20vw,110px)!important;width:clamp(78px,20vw,110px)!important;min-width:0!important;height:48px!important;min-height:48px!important;max-height:48px!important;margin:0!important;padding:5px!important;border-radius:11px!important;font-size:11px!important;line-height:1.15!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:normal!important}
+ #shop-view>header .cart-link{gap:5px!important;white-space:nowrap!important}
+ #shop-view .mobile-sticky-controls{top:82px!important}
+}
+
+/* Startseite: beide Schaltflächen exakt rechtsbündig untereinander. */
+body:has(#home-view:not([hidden])) #profile-toolbar{display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:flex-start!important;gap:8px!important;width:100%!important;margin:0!important;padding:10px 16px!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{position:static!important;display:block!important;align-self:flex-end!important;box-sizing:border-box!important;width:185px!important;min-width:185px!important;max-width:185px!important;margin:0!important;padding:11px 8px!important;text-align:center!important;white-space:nowrap!important;border-radius:14px!important;font-size:14px!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+
+/* Einkaufswagen-Symbol und Warenkorbanzahl besser lesbar. */
+#shop-view>header .cart-link{font-size:20px!important;gap:7px!important}
+#shop-view>header .cart-link #cart-count{font-size:19px!important;font-weight:800!important;line-height:1!important}
+@media(max-width:720px){#shop-view>header .cart-link{font-size:21px!important;gap:6px!important}#shop-view>header .cart-link #cart-count{font-size:19px!important}}
+
+/* Startseite: Profil und Aktualisieren kompakt nebeneinander. */
+body:has(#home-view:not([hidden])) #profile-toolbar{flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;padding:10px 16px!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{width:auto!important;min-width:0!important;max-width:none!important;align-self:center!important;margin:0!important;padding:9px 12px!important;font-size:13px!important;border-radius:12px!important}
+
+/* Startseite: Profil und Aktualisieren exakt gleich groß. */
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+
+/* Müllentsorgung und Übersichten: kein zusätzlicher Rahmen um „Mein Profil“. */
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{background:transparent!important;box-shadow:none!important;border:none!important}
+
+/* Startseite: Profil und Aktualisieren unten am Bildschirmrand nebeneinander. */
+body:has(#home-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:0!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;z-index:1200!important}
+body:has(#home-view:not([hidden])) #home-view{padding-bottom:100px!important}
+
+/* Startseite: Logo exakt horizontal zentrieren; untere Buttons etwas anheben. */
+body:has(#home-view:not([hidden])) #home-view .home-logo,
+body:has(#home-view:not([hidden])) #home-view .home-brand,
+body:has(#home-view:not([hidden])) #home-view .brand-logo{display:block!important;margin-left:auto!important;margin-right:auto!important;float:none!important}
+body:has(#home-view:not([hidden])) #profile-toolbar{bottom:22px!important;padding-bottom:max(12px,env(safe-area-inset-bottom))!important}
+
+/* Tatsächliches Logo-Element auf der Startseite horizontal exakt zentrieren. */
+body:has(#home-view:not([hidden])) #home-view .home-top{width:100%!important;text-align:center!important}
+body:has(#home-view:not([hidden])) #home-view .home-top>img{display:block!important;width:230px!important;max-width:70vw!important;margin-left:auto!important;margin-right:auto!important;float:none!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important}
+
+/* Mehr Platz für das Brillinger-Logo in der fixierten Shop-Kopfzeile. */
+@media(max-width:720px){
+ #shop-view{padding-top:104px!important}
+ #shop-view>header{height:104px!important;min-height:104px!important;padding:12px 10px!important;gap:6px!important}
+ #shop-view>header .brand{flex:1 1 auto!important;min-width:0!important}
+ #shop-view>header .brand-logo{width:clamp(150px,31vw,205px)!important;max-width:100%!important;height:auto!important}
+ #shop-view>header .shop-start-link,#shop-view>header .cart-link,#shop-view>header #profile-edit{height:52px!important;min-height:52px!important;max-height:52px!important}
+ #shop-view .mobile-sticky-controls{top:104px!important}
+}
+
+/* Kompaktere Kopfzeile mit größerem Logo: Buttons bleiben gleich groß. */
+@media(max-width:720px){
+ #shop-view{padding-top:86px!important}
+ #shop-view>header{height:86px!important;min-height:86px!important;padding:7px 10px!important;gap:5px!important}
+ #shop-view>header .brand{flex:1 1 auto!important;min-width:0!important;display:flex!important;align-items:center!important}
+ #shop-view>header .brand-logo{width:100%!important;max-width:195px!important;height:auto!important;object-fit:contain!important}
+ #shop-view>header .shop-start-link,#shop-view>header .cart-link,#shop-view>header #profile-edit{height:48px!important;min-height:48px!important;max-height:48px!important;flex-basis:clamp(72px,19vw,100px)!important;width:clamp(72px,19vw,100px)!important}
+ #shop-view .mobile-sticky-controls{top:86px!important}
+}
+
+/* Startseite: Logo in der tatsächlichen Bildschirmmitte, unabhängig von anderen Elementen. */
+#home-view .home-top{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;box-sizing:border-box!important}
+#home-view .home-top>img{display:block!important;align-self:center!important;margin:0 auto 30px!important;position:static!important;transform:none!important;float:none!important;max-width:min(70vw,230px)!important;width:230px!important}
+
+/* Optische Logo-Zentrierung: Das SVG hat rechts mehr freien Innenraum als links. */
+body:has(#home-view:not([hidden])) #home-view .home-top>img{transform:translateX(9px)!important}
+
+/* Sonderartikel-Formular: Abstände auf Smartphones leicht reduzieren. */
+@media(max-width:720px){
+ body.custom-entry-view .custom-product{padding:16px!important}
+ body.custom-entry-view .custom-back-link{margin-bottom:14px!important}
+ body.custom-entry-view .custom-product h3{margin-bottom:5px!important}
+ body.custom-entry-view .custom-product p{margin-bottom:11px!important}
+ body.custom-entry-view .custom-product form{gap:6px!important}
+ body.custom-entry-view .custom-product form label{margin-top:9px!important;margin-bottom:4px!important}
+ body.custom-entry-view .custom-product form input,body.custom-entry-view .custom-product form textarea{padding-top:10px!important;padding-bottom:10px!important}
+ body.custom-entry-view .custom-product form button{margin-top:6px!important}
+}
+
+/* Profil-Button in Müllentsorgung und allen Übersichten an derselben unteren Position wie auf der Startseite. */
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:22px!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;z-index:1200!important;box-sizing:border-box!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;border-radius:12px!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden],body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+body:has(#waste-view:not([hidden])) #waste-view,body:has(#overview-menu-view:not([hidden])) #overview-menu-view,body:has(#order-overview-view:not([hidden])) #order-overview-view,body:has(#waste-overview-view:not([hidden])) #waste-overview-view{padding-bottom:110px!important}
+
+/* Sonderartikel: Zurück zum Sortiment als klar erkennbarer Button. */
+body.custom-entry-view .custom-back-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;background:#e5f0f6!important;border:1px solid #c4dce9!important;border-radius:11px!important;padding:11px 16px!important;color:#005a7e!important;font-weight:700!important;text-decoration:none!important;min-height:44px!important;width:auto!important;max-width:100%!important}
+body.custom-entry-view .custom-back-link:active{background:#d2e7f2!important}
+
+/* Mobil: Suche, Artikelwunsch und Kategorien dauerhaft unter dem fixierten Shop-Header halten. */
+@media(max-width:720px){
+ body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view .mobile-sticky-controls{position:sticky!important;top:86px!important;z-index:1050!important;background:#f3f6f8!important;transform:none!important;will-change:auto!important;align-self:stretch!important}
+ body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}
+}
+
+/* Kategorien-Überschrift bündig mit dem Text 'Artikel suchen' ausrichten. */
+#shop-view .mobile-sticky-controls .category-label{padding-left:10px!important;box-sizing:border-box!important}
+
+/* Kategorien-Buttons in der ersten und zweiten Zeile etwas nach rechts einrücken. */
+#shop-view .mobile-sticky-controls .category-nav{padding-left:10px!important;box-sizing:border-box!important}
+
+@media(max-width:720px){html,body{overscroll-behavior-y:none!important}#shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}#shop-view .mobile-sticky-controls{position:sticky!important;top:86px!important}}
+
+/* iOS: Auch bei Pull-to-refresh den Bereich oberhalb der Shop-Kopfzeile abdecken. */
+@media(max-width:720px){#shop-view>header::before{content:none!important}html,body{overscroll-behavior-y:none!important}}
+
+/* Shopkopf immer am oberen Rand: kein vererbter Sticky-Abstand. */
+@media(max-width:720px){#shop-view>header{position:fixed!important;top:0!important;inset-block-start:0!important;margin-top:0!important;transform:none!important}#shop-view{margin-top:0!important;scroll-margin-top:0!important}}
+
+/* Höhere Spezifität als die alte Sticky-Regel: Kopfzeile ist immer viewport-fixiert. */
+@media(max-width:720px){body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}body.mobile-cart-view #shop-view>header,body.custom-entry-view #shop-view>header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1100!important}}
+
+/* Sonderartikel: beide Aktionen exakt gleich breit und hoch. */
+@media(max-width:720px){body.custom-entry-view #custom-product-form>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:48px!important;height:48px!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important;padding:8px 12px!important;line-height:1.2!important}}
+
+/* Startseite: Brillinger-Logo größer darstellen. */
+#home-view .home-top img{width:300px!important;max-width:85vw!important;height:auto!important}
+
+/* iPhone: Doppeltippen auf Aktualisieren darf keinen Seitenzoom auslösen. */
+#home-refresh,#home-refresh *{touch-action:manipulation!important;-webkit-user-select:none!important;user-select:none!important;-webkit-tap-highlight-color:transparent}
+
+/* Desktop-Startseite: Logo größer; mobile Darstellung bleibt unverändert. */
+@media(min-width:721px){#home-view .home-top img{width:420px!important;max-width:80vw!important;height:auto!important}}
+
+/* PC: Beide Sonderartikel-Aktionsbuttons gleich breit und hoch. */
+@media(min-width:721px){#custom-product-form>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:46px!important;min-height:46px!important;box-sizing:border-box!important;padding:10px 16px!important;line-height:1.2!important;text-align:center!important}}
+
+/* Desktop: Warenkorb als einheitlicher Button statt einzelner Symbol-/Text-/Zahl-Pillen. */
+@media(min-width:721px){#shop-view>header a.cart-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;padding:11px 18px!important;background:#001b79!important;color:#fff!important;border-radius:11px!important;text-decoration:none!important;font-size:15px!important;font-weight:700!important;min-height:44px!important;box-sizing:border-box!important}#shop-view>header a.cart-link .cart-label,#shop-view>header a.cart-link #cart-count{display:inline!important;background:transparent!important;color:inherit!important;border:0!important;border-radius:0!important;padding:0!important;margin:0!important;font-size:inherit!important;line-height:inherit!important}#shop-view>header a.cart-link:hover{background:#12338e!important}}
+
+/* PC: Warenkorb und Zurück-zur-Startseite identisch groß und gleichfarbig. */
+@media(min-width:721px){#shop-view>header .shop-start-link,#shop-view>header a.cart-link{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important;margin:0!important;padding:8px 12px!important;border-radius:10px!important;background:#eef5f8!important;color:#005c80!important;font-size:14px!important;font-weight:700!important;line-height:1.2!important;text-align:center!important;text-decoration:none!important}#shop-view>header a.cart-link:hover,#shop-view>header .shop-start-link:hover{background:#dcecf3!important}#shop-view>header a.cart-link #cart-count,#shop-view>header a.cart-link .cart-label{color:inherit!important;background:transparent!important;padding:0!important;border:0!important;font-size:inherit!important}}
+
+/* PC: Mein Profil exakt so groß wie Warenkorb und Zurück zur Startseite. */
+@media(min-width:721px){#shop-view>header #profile-edit{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important;margin:0!important;padding:8px 12px!important;border-radius:10px!important;font-size:14px!important;font-weight:700!important;line-height:1.2!important;text-align:center!important}}
+
+/* Desktop: Profil in Müllentsorgung und Übersichten oben rechts statt unten. */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:12px!important;bottom:auto!important;left:auto!important;right:24px!important;width:auto!important;min-width:0!important;padding:0!important;margin:0!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;background:transparent!important;box-shadow:none!important;z-index:1200!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #home-refresh{display:none!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{flex:0 0 160px!important;width:160px!important;min-width:160px!important;max-width:160px!important;height:46px!important;min-height:46px!important;max-height:46px!important}
+}
+
+/* Desktop: Profilbutton bei Müllentsorgung und Übersichten rechts neben der Inhaltsmitte (markierte Position). */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:86px!important;bottom:auto!important;left:calc(50% + 280px)!important;right:auto!important;width:160px!important;padding:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;z-index:1200!important;display:flex!important;align-items:center!important;justify-content:center!important}
+}
+@media(min-width:721px) and (max-width:1150px){body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{left:auto!important;right:24px!important}}
+
+/* Desktop: Müllentsorgung und alle Übersichten – gleiche untere Buttonleiste wie Startseite. */
+@media(min-width:721px){
+body:has(#waste-view:not([hidden])) #profile-toolbar,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;top:auto!important;bottom:22px!important;left:0!important;right:0!important;width:100%!important;margin:0!important;padding:10px 16px max(12px,env(safe-area-inset-bottom))!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;background:#f3f6f8!important;box-shadow:none!important;z-index:1200!important;box-sizing:border-box!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #home-refresh,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit,
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #home-refresh{position:static!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;margin:0!important;padding:7px 8px!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;border-radius:24px!important}
+body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden],
+body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit[hidden]{display:none!important}
+}
+
+/* PC-Warenkorb: eigener Dialog statt Sidebar und Scrollsprung. */
+#desktop-cart-backdrop,#desktop-cart-close{display:none}
+@media(min-width:721px){
+ body.desktop-cart-open{overflow:hidden!important}
+ #desktop-cart-backdrop{position:fixed;inset:0;background:rgba(8,23,44,.58);z-index:2900}
+ body.desktop-cart-open #desktop-cart-backdrop{display:block}
+ body.desktop-cart-open #shop-view #warenkorb{
+  display:block!important;position:fixed!important;top:50%!important;left:50%!important;
+  right:auto!important;bottom:auto!important;transform:translate(-50%,-50%)!important;
+  width:min(640px,calc(100vw - 48px))!important;max-width:640px!important;
+  max-height:calc(100dvh - 64px)!important;overflow-y:auto!important;
+  margin:0!important;padding:30px!important;box-sizing:border-box!important;
+  background:#fff!important;border-radius:18px!important;
+  box-shadow:0 20px 65px rgba(0,0,0,.25)!important;z-index:2901!important;
+  scrollbar-gutter:auto!important
+ }
+ body.desktop-cart-open #desktop-cart-close{
+  display:flex!important;align-items:center;justify-content:center;
+  position:sticky;top:0;float:right;margin:-14px -14px 8px 8px;
+  width:40px;height:40px;border:0;border-radius:50%;
+  background:#eef3f7;color:#12354a;font-size:30px;line-height:1;cursor:pointer;z-index:2
+ }
+ body.desktop-cart-open #desktop-cart-close:hover{background:#dbeaf2}
+}
+
+/* Smartphone: alle fünf Entsorgungsarten kompakt auf einer Seite. */
+@media(max-width:720px){
+ #waste-view:not([hidden]){padding:12px 16px 108px!important}
+ #waste-view .waste-back{margin-bottom:7px!important;font-size:13px!important}
+ #waste-view .waste-heading{margin:0 0 12px!important}
+ #waste-view .waste-heading>span{font-size:27px!important;line-height:1!important}
+ #waste-view .waste-heading h1{font-size:24px!important;margin:3px 0!important}
+ #waste-view .waste-heading p{font-size:13px!important;margin:0!important}
+ #waste-view .waste-options{grid-template-columns:1fr!important;gap:8px!important}
+ #waste-view .waste-option{min-height:0!important;padding:12px 14px!important;gap:12px!important;border-radius:13px!important}
+ #waste-view .waste-option-icon{font-size:27px!important}
+ #waste-view .waste-option strong{font-size:17px!important;margin-bottom:3px!important}
+ #waste-view .waste-option small{font-size:12px!important;line-height:1.25!important}
+}
+
+/* Smartphone: Entsorgungskacheln etwas größer und weiterhin kompakt. */
+@media(max-width:720px){
+ #waste-view .waste-options{gap:10px!important}
+ #waste-view .waste-option{min-height:78px!important;padding:15px 16px!important;gap:13px!important}
+ #waste-view .waste-option-icon{font-size:30px!important}
+}
+
+/* Jahresnavigation in der Leerungsübersicht. */
+.pickup-year-selector{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:390px;margin:22px auto 18px;padding:10px 12px;background:#fff;border:1px solid #dce5eb;border-radius:16px;box-shadow:0 4px 16px #142c3809}
+.pickup-year-selector strong{font-size:26px;color:#153443;font-weight:800;font-variant-numeric:tabular-nums}
+.pickup-year-selector button{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border:1px solid #d3e0e8;border-radius:11px;background:#edf5fa;color:#005c80;font-size:34px;cursor:pointer;line-height:1}
+.pickup-year-selector button:hover{background:#dceef8}
+.pickup-year-selector button:focus-visible{outline:3px solid #007eaf;outline-offset:2px}
+@media(max-width:720px){.pickup-year-selector{margin:14px auto 12px}.pickup-year-selector strong{font-size:23px}.pickup-year-selector button{width:44px;height:44px}}
+
+/* Antippbare Entsorgungsarten filtern den Leerungsverlauf. */
+#pickup-types .pickup-type-button{width:100%;font:inherit;text-align:left;color:inherit;background:#fff;border:1px solid #dce5eb;cursor:pointer;transition:background .15s,border-color .15s}
+#pickup-types .pickup-type-button:hover{background:#f0f7fb;border-color:#8fb9cd}
+#pickup-types .pickup-type-button[aria-pressed="true"]{background:#e0f1fa;border-color:#007ba7;box-shadow:inset 4px 0 #007ba7}
+#pickup-types .pickup-type-button:focus-visible{outline:3px solid #007ba7;outline-offset:2px}
+
+/* Leerungsübersicht: Gesamtzahl direkt unter der Jahresauswahl statt zwei Statistik-Kacheln. */
+#waste-overview-view .pickup-year-total{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;margin:8px 0 22px;background:#fff;border:1px solid #dce5eb;border-radius:14px;color:#153443;font-size:17px;font-weight:650}
+#waste-overview-view .pickup-year-total strong{font-size:27px;color:#005c80;font-variant-numeric:tabular-nums}
+@media(max-width:720px){#waste-overview-view .pickup-year-total{padding:12px 15px;font-size:15px;margin-bottom:18px}#waste-overview-view .pickup-year-total strong{font-size:24px}}
+
+/* Leerungsübersicht: jede Entsorgungsart als eigenständige Schaltfläche. */
+#waste-overview-view #pickup-types{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:14px!important;
+ background:transparent!important;
+ border:0!important;
+ padding:0!important;
+ margin:12px 0 28px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:14px!important;
+ width:100%!important;
+ min-height:82px!important;
+ padding:20px 22px!important;
+ background:#fff!important;
+ border:1px solid #d7e4ed!important;
+ border-radius:16px!important;
+ box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
+ color:#163747!important;
+ font-size:18px!important;
+ font-weight:650!important;
+ text-align:left!important;
+ cursor:pointer!important;
+ transition:background .15s,border-color .15s,box-shadow .15s,transform .15s!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button strong{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-width:50px!important;
+ padding:8px 12px!important;
+ border-radius:11px!important;
+ background:#edf5fa!important;
+ color:#005c80!important;
+ font-size:18px!important;
+ font-weight:800!important;
+ white-space:nowrap!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button:hover{
+ background:#f2f9fd!important;
+ border-color:#8ebed5!important;
+ box-shadow:0 8px 22px rgba(18,48,69,.12)!important;
+ transform:translateY(-1px)!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{
+ background:#e4f3fc!important;
+ border:2px solid #007da8!important;
+ padding:19px 21px!important;
+ box-shadow:0 5px 20px rgba(0,104,148,.14)!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] strong{
+ background:#006e97!important;
+ color:white!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types{grid-template-columns:1fr!important;gap:10px!important;margin:10px 0 22px!important}
+ #waste-overview-view #pickup-types .pickup-type-button{min-height:68px!important;padding:15px 17px!important;border-radius:14px!important;font-size:16px!important}
+ #waste-overview-view #pickup-types .pickup-type-button strong{font-size:16px!important;min-width:45px!important;padding:7px 10px!important}
+ #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:14px 16px!important}
+}
+
+/* PC: Jahresauswahl linksbündig statt zentriert. */
+@media(min-width:721px){
+ #waste-overview-view .pickup-year-selector{
+  margin-left:0!important;
+  margin-right:auto!important;
+ }
+}
+
+/* Smartphone: Historie erst nach Auswahl einer Entsorgungsart anzeigen. */
+@media(max-width:720px){
+ #waste-overview-view #pickup-history-section[hidden]{display:none!important}
+ #waste-overview-view .pickup-hint{display:none!important}
+ #waste-overview-view #pickup-history-section:not([hidden]){margin-top:18px}
+}
+
+/* Gesamtleerungen als anklickbare Historien-Schaltfläche. */
+#waste-overview-view button.pickup-year-total{width:100%;font:inherit;font-weight:650;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+#waste-overview-view button.pickup-year-total:hover{background:#eff8fc;border-color:#87bbd3}
+#waste-overview-view button.pickup-year-total:focus-visible{outline:3px solid #007ba7;outline-offset:2px}
+#waste-overview-view button.pickup-year-total strong{margin-left:auto}
+#waste-overview-view button.pickup-year-total>span{font-size:26px;color:#005c80;line-height:1}
+#waste-overview-view #pickup-history-section{scroll-margin-top:24px}
+
+/* Prozentanteil dezent unter der Entsorgungsart, getrennt von der Anzahl. */
+#waste-overview-view #pickup-types .pickup-type-label{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;min-width:0!important}
+#waste-overview-view #pickup-types .pickup-type-share{display:block!important;font-size:13px!important;font-weight:500!important;line-height:1.3!important;color:#647d8c!important}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{color:#356f88!important}
+@media(max-width:720px){#waste-overview-view #pickup-types .pickup-type-share{font-size:12px!important}}
+
+/* Smartphone: Leerungsübersicht wie in der gewünschten Ansicht auf einer Seite.
+   Der Verlauf darf bei Auswahl weiterhin nach unten aufklappen. */
+@media(max-width:720px){
+ body:has(#waste-overview-view:not([hidden])) #waste-overview-view{
+  width:100%!important;max-width:100%!important;box-sizing:border-box!important;
+  padding:18px 16px calc(105px + env(safe-area-inset-bottom))!important;
+  margin:0 auto!important;
+ }
+ #waste-overview-view>.waste-back{display:inline-block!important;margin:0 0 22px!important;font-size:15px!important}
+ #waste-overview-view>h1{font-size:clamp(25px,7vw,34px)!important;line-height:1.14!important;margin:0 0 16px!important;letter-spacing:-.6px!important}
+ #waste-overview-view .pickup-year-selector{max-width:none!important;width:100%!important;box-sizing:border-box!important;margin:0 0 12px!important;padding:9px 12px!important;min-height:64px!important}
+ #waste-overview-view .pickup-year-selector button{width:44px!important;height:44px!important}
+ #waste-overview-view .pickup-year-selector strong{font-size:25px!important}
+ #waste-overview-view button.pickup-year-total{min-height:57px!important;margin:0 0 18px!important;padding:12px 15px!important;font-size:16px!important;border-radius:13px!important}
+ #waste-overview-view button.pickup-year-total strong{font-size:23px!important}
+ #waste-overview-view>h2{font-size:clamp(21px,6vw,28px)!important;line-height:1.18!important;margin:0 0 16px!important}
+ #waste-overview-view #pickup-types{display:grid!important;grid-template-columns:1fr!important;gap:9px!important;margin:0!important;padding:0!important}
+ #waste-overview-view #pickup-types .pickup-type-button{min-height:65px!important;padding:13px 16px!important;font-size:16px!important;border-radius:14px!important}
+ #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:12px 15px!important}
+ #waste-overview-view #pickup-types .pickup-type-button strong{font-size:15px!important}
+ body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:1200!important;padding:12px 12px max(14px,env(safe-area-inset-bottom))!important;background:#f3f6f8!important;justify-content:center!important}
+ #waste-overview-view #pickup-history-section:not([hidden]){margin-top:22px!important;scroll-margin-top:14px!important}
+}
+@media(max-width:720px) and (max-height:760px){
+ #waste-overview-view>.waste-back{margin-bottom:12px!important}
+ #waste-overview-view>h1{margin-bottom:12px!important}
+ #waste-overview-view .pickup-year-selector{min-height:55px!important}
+ #waste-overview-view button.pickup-year-total{min-height:52px!important;margin-bottom:12px!important}
+ #waste-overview-view>h2{margin-bottom:10px!important}
+ #waste-overview-view #pickup-types{gap:7px!important}
+ #waste-overview-view #pickup-types .pickup-type-button{min-height:56px!important;padding:10px 14px!important}
+ #waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"]{padding:9px 13px!important}
+}
+
+/* Jahresauswahl und Gesamtleerungen nebeneinander auf PC und Smartphone. */
+#waste-overview-view .pickup-top-row{display:grid!important;grid-template-columns:minmax(0,390px) minmax(0,1fr)!important;align-items:stretch!important;gap:14px!important;margin:16px 0 24px!important}
+#waste-overview-view .pickup-top-row .pickup-year-selector{width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;box-sizing:border-box!important}
+#waste-overview-view .pickup-top-row .pickup-year-total{width:100%!important;min-width:0!important;margin:0!important;box-sizing:border-box!important;align-self:stretch!important}
+@media(max-width:720px){
+ #waste-overview-view .pickup-top-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;margin:12px 0 18px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector{padding:7px 5px!important;gap:3px!important;border-radius:12px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector button{width:32px!important;height:36px!important;flex-shrink:0!important;font-size:25px!important;padding:0!important}
+ #waste-overview-view .pickup-top-row .pickup-year-selector strong{font-size:19px!important;min-width:0!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total{padding:9px 10px!important;gap:5px!important;border-radius:12px!important;font-size:12px!important;line-height:1.2!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total strong{font-size:19px!important}
+ #waste-overview-view .pickup-top-row .pickup-year-total>span{font-size:19px!important}
+}
+
+/* Leerungsverlauf als eigenständiges Fenster auf allen Geräten. */
+body.pickup-history-open{overflow:hidden!important}
+#pickup-history-backdrop[hidden],#pickup-history-section[hidden]{display:none!important}
+#pickup-history-backdrop:not([hidden]){display:block!important;position:fixed!important;inset:0!important;background:rgba(8,23,44,.58)!important;z-index:3500!important}
+#waste-overview-view #pickup-history-section:not([hidden]){display:block!important;position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:min(640px,calc(100vw - 32px))!important;max-height:calc(100dvh - 48px)!important;overflow-y:auto!important;z-index:3501!important;background:#fff!important;border-radius:18px!important;padding:24px!important;box-sizing:border-box!important;box-shadow:0 24px 70px rgba(0,0,0,.25)!important;margin:0!important}
+#waste-overview-view .pickup-history-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+#waste-overview-view .pickup-history-header h2{margin:0!important}
+#waste-overview-view #pickup-history-close{flex-shrink:0;width:42px;height:42px;border:0;border-radius:50%;background:#edf4f8;color:#12384c;font-size:29px;line-height:1;cursor:pointer}
+#waste-overview-view #pickup-history-close:hover{background:#d9eaf4}
+@media(max-width:720px){
+ #waste-overview-view #pickup-history-section:not([hidden]){padding:18px!important;max-height:calc(100dvh - 32px)!important}
+ #waste-overview-view #pickup-history-close{width:38px;height:38px}
+ #waste-overview-view #pickup-types + h2{font-size:18px!important}
+ #waste-overview-view h2:has(+ #pickup-types){font-size:clamp(14px,4.2vw,18px)!important;white-space:nowrap!important;letter-spacing:-.25px!important}
+}
+
+/* Prozentwert mittig im freien Bereich der Entsorgungskachel. */
+#waste-overview-view #pickup-types .pickup-type-button{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;align-items:center!important;column-gap:20px!important}
+#waste-overview-view #pickup-types .pickup-type-label{display:block!important;min-width:0!important}
+#waste-overview-view #pickup-types .pickup-type-share{display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;padding:7px 11px!important;border-radius:10px!important;background:#f2f7fa!important;color:#48778d!important;font-size:14px!important;font-weight:700!important;line-height:1.2!important}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{background:#d2eaf7!important;color:#00658b!important}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types .pickup-type-button{grid-template-columns:minmax(0,1fr) auto auto!important;column-gap:8px!important}
+ #waste-overview-view #pickup-types .pickup-type-share{font-size:12px!important;padding:6px 8px!important}
+}
+
+/* Prozent-Badges: weiter links und gleich hoch wie die Anzahl-Badges. */
+#waste-overview-view #pickup-types .pickup-type-button{
+ grid-template-columns:minmax(0,1fr) minmax(78px,1fr) auto!important;
+ column-gap:12px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-share{
+ justify-self:start!important;
+ min-height:40px!important;
+ min-width:64px!important;
+ padding:8px 12px!important;
+ box-sizing:border-box!important;
+ font-size:18px!important;
+ border-radius:11px!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types .pickup-type-button{
+  grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto!important;
+  column-gap:7px!important;
+ }
+ #waste-overview-view #pickup-types .pickup-type-share{
+  min-height:36px!important;
+  min-width:56px!important;
+  padding:7px 9px!important;
+  font-size:16px!important;
+ }
+}
+
+/* Bestellübersicht nutzt dieselbe Jahres- und Kachelanordnung wie Leerungen. */
+#order-overview-view .pickup-top-row{display:grid;grid-template-columns:minmax(0,390px) minmax(0,1fr);gap:14px;align-items:stretch;margin:16px 0 24px}
+#order-overview-view .pickup-top-row .pickup-year-selector{width:100%;max-width:none;margin:0;box-sizing:border-box}
+#order-overview-view .pickup-top-row .pickup-year-total{width:100%;margin:0;box-sizing:border-box}
+#order-overview-view button.pickup-year-total{font:inherit;font-weight:650;text-align:left;cursor:pointer}
+#order-overview-view button.pickup-year-total strong{margin-left:auto}
+#order-overview-view button.pickup-year-total>span{font-size:26px;color:#005c80}
+#order-overview-view #order-type-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;background:transparent;border:0;padding:0;margin:12px 0 28px}
+#order-overview-view #order-type-buttons .pickup-type-button{display:grid;grid-template-columns:minmax(0,1fr) minmax(78px,1fr) auto;align-items:center;column-gap:12px;width:100%;min-height:82px;padding:20px 22px;background:#fff;border:1px solid #d7e4ed;border-radius:16px;box-shadow:0 5px 18px rgba(18,48,69,.07);color:#163747;font:inherit;font-size:18px;font-weight:650;text-align:left;cursor:pointer}
+#order-overview-view #order-type-buttons .pickup-type-button:hover{background:#f2f9fd;border-color:#8ebed5}
+#order-overview-view #order-type-buttons .pickup-type-label{min-width:0;overflow-wrap:anywhere}
+#order-overview-view #order-type-buttons .pickup-type-share{justify-self:start;display:inline-flex;align-items:center;justify-content:center;min-height:40px;min-width:64px;box-sizing:border-box;padding:8px 12px;border-radius:11px;background:#f2f7fa;color:#48778d;font-size:18px;font-weight:700;white-space:nowrap}
+#order-overview-view #order-type-buttons .pickup-type-button strong{display:inline-flex;align-items:center;justify-content:center;min-width:50px;padding:8px 12px;border-radius:11px;background:#edf5fa;color:#005c80;font-size:18px;white-space:nowrap}
+body.order-history-open{overflow:hidden!important}
+#order-history-backdrop[hidden],#order-history-section[hidden]{display:none!important}
+#order-history-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:rgba(8,23,44,.58);z-index:3500}
+#order-overview-view #order-history-section:not([hidden]){display:block;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(640px,calc(100vw - 32px));max-height:calc(100dvh - 48px);overflow-y:auto;z-index:3501;background:#fff;border-radius:18px;padding:24px;box-sizing:border-box;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+#order-overview-view .pickup-history-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+#order-overview-view .pickup-history-header h2{margin:0}
+#order-history-close{flex-shrink:0;width:42px;height:42px;border:0;border-radius:50%;background:#edf4f8;color:#12384c;font-size:29px;cursor:pointer}
+#order-history-list .pickup-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+@media(max-width:720px){
+ #order-overview-view .pickup-top-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:12px 0 18px}
+ #order-overview-view .pickup-top-row .pickup-year-selector{padding:7px 5px;gap:3px;border-radius:12px}
+ #order-overview-view .pickup-top-row .pickup-year-selector button{width:32px;height:36px;flex-shrink:0;font-size:25px;padding:0}
+ #order-overview-view .pickup-top-row .pickup-year-selector strong{font-size:19px}
+ #order-overview-view .pickup-top-row .pickup-year-total{padding:9px 10px;gap:5px;border-radius:12px;font-size:12px;line-height:1.2}
+ #order-overview-view .pickup-top-row .pickup-year-total strong{font-size:19px}
+ #order-overview-view #order-type-buttons{grid-template-columns:1fr;gap:10px}
+ #order-overview-view #order-type-buttons .pickup-type-button{min-height:60px;padding:12px 14px;font-size:16px;grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto;column-gap:7px}
+ #order-overview-view #order-type-buttons .pickup-type-share{min-height:36px;min-width:56px;padding:7px 9px;font-size:16px}
+ #order-overview-view #order-type-buttons .pickup-type-button strong{font-size:16px}
+ #order-overview-view h2:has(+ #order-type-buttons){font-size:clamp(14px,4.2vw,18px);white-space:nowrap}
+ #order-overview-view #order-history-section:not([hidden]){padding:18px;max-height:calc(100dvh - 32px)}
+}
+
+/* Leerungen: Anzahl zuerst als Kachel, Prozentanteil rechts als reiner Text. */
+#waste-overview-view #pickup-types .pickup-type-button{
+ grid-template-columns:minmax(0,1fr) auto minmax(66px,auto)!important;
+ column-gap:18px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-share{
+ display:inline-block!important;
+ justify-self:end!important;
+ min-height:0!important;
+ min-width:66px!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#48778d!important;
+ font-size:17px!important;
+ font-weight:650!important;
+ text-align:right!important;
+ line-height:1.3!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{
+ background:transparent!important;
+ color:#00658b!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #pickup-types .pickup-type-button{
+  grid-template-columns:minmax(0,1fr) auto minmax(54px,auto)!important;
+  column-gap:9px!important;
+ }
+ #waste-overview-view #pickup-types .pickup-type-share{
+  min-width:54px!important;
+  font-size:14px!important;
+ }
+}
+
+/* Bestellübersicht: Gesamtzahl als hochwertige Kachel, Monats-/Bereichsfilter. */
+#order-overview-view #order-all-history{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:12px!important;min-height:68px!important;padding:15px 18px!important;
+ background:#fff!important;border:1px solid #d7e4ed!important;border-radius:16px!important;
+ box-shadow:0 5px 18px rgba(18,48,69,.07)!important;color:#163747!important;
+ font-size:17px!important;font-weight:650!important;
+}
+#order-overview-view #order-all-history:hover{background:#f2f9fd!important;border-color:#8ebed5!important}
+#order-overview-view #order-all-history strong{margin-left:auto!important;padding:8px 13px!important;border-radius:11px!important;background:#edf5fa!important;color:#005c80!important;font-size:22px!important}
+#order-overview-view #order-all-history>span{color:#005c80!important;font-size:26px!important}
+#order-overview-view .order-filter-wrap{position:relative;margin:0 0 22px}
+#order-overview-view #order-filter-toggle{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;padding:10px 17px;border:1px solid #d7e4ed;border-radius:13px;background:#fff;color:#005c80;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(18,48,69,.06)}
+#order-overview-view #order-filter-toggle:hover{background:#f2f9fd}
+#order-overview-view #order-filter-panel[hidden]{display:none!important}
+#order-overview-view #order-filter-panel{display:grid;grid-template-columns:auto minmax(140px,1fr) auto minmax(140px,1fr) auto;align-items:center;gap:12px;margin-top:12px;padding:17px;border:1px solid #d7e4ed;border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(18,48,69,.06)}
+#order-overview-view #order-filter-panel label{font-size:14px;font-weight:650}
+#order-overview-view #order-filter-panel select{width:100%;min-height:42px;padding:8px;border:1px solid #cddde7;border-radius:9px;background:#fff;font-size:15px}
+#order-overview-view #order-filter-reset{min-height:42px;padding:9px 13px;border:1px solid #cddde7;border-radius:9px;background:#edf5fa;color:#005c80;font-weight:650;cursor:pointer}
+@media(max-width:720px){
+ #order-overview-view #order-all-history{padding:9px 10px!important;min-height:55px!important;font-size:12px!important;gap:5px!important;border-radius:12px!important}
+ #order-overview-view #order-all-history strong{font-size:18px!important;padding:7px 9px!important}
+ #order-overview-view #order-all-history>span{font-size:19px!important}
+ #order-overview-view #order-filter-toggle{width:100%;min-height:44px}
+ #order-overview-view #order-filter-panel{grid-template-columns:1fr;gap:8px;padding:14px}
+ #order-overview-view #order-filter-panel label:not(:first-child){margin-top:7px}
+}
+
+/* Ständig sichtbare, beim Scrollen fixierte Filter für beide Übersichten. */
+#order-overview-view .order-filter-wrap,#waste-overview-view .waste-filter-wrap{
+ position:sticky!important;top:12px!important;z-index:110!important;
+ margin:0 0 22px!important;padding:0!important;
+}
+#order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel{
+ display:grid!important;grid-template-columns:auto minmax(130px,1fr) auto minmax(150px,1fr) auto!important;
+ align-items:center!important;gap:12px!important;
+ padding:14px 17px!important;border:1px solid #d7e4ed!important;border-radius:14px!important;
+ background:rgba(255,255,255,.98)!important;
+ box-shadow:0 5px 20px rgba(18,48,69,.11)!important;
+ backdrop-filter:blur(8px);
+}
+#order-overview-view #order-filter-panel label,#waste-overview-view #waste-filter-panel label{font-size:14px!important;font-weight:650!important;color:#153443!important}
+#order-overview-view #order-filter-panel select,#waste-overview-view #waste-filter-panel select{
+ width:100%!important;min-width:0!important;min-height:42px!important;padding:8px 10px!important;
+ border:1px solid #cddde7!important;border-radius:9px!important;background:#fff!important;
+ color:#153443!important;font-size:15px!important;
+}
+#order-overview-view #order-filter-reset,#waste-overview-view #waste-filter-reset{
+ min-height:42px!important;padding:9px 13px!important;border:1px solid #cddde7!important;
+ border-radius:9px!important;background:#edf5fa!important;color:#005c80!important;
+ font-size:14px!important;font-weight:650!important;cursor:pointer!important;
+}
+#order-overview-view #order-filter-reset:hover,#waste-overview-view #waste-filter-reset:hover{background:#dceef8!important}
+#waste-overview-view #pickup-types .pickup-type-button{
+ grid-template-columns:minmax(0,1fr) minmax(78px,1fr) auto!important;column-gap:12px!important;
+}
+#waste-overview-view #pickup-types .pickup-type-share{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ justify-self:start!important;min-height:40px!important;min-width:64px!important;
+ padding:8px 12px!important;box-sizing:border-box!important;border-radius:11px!important;
+ background:#f2f7fa!important;color:#48778d!important;font-size:18px!important;
+ font-weight:700!important;line-height:1.2!important;white-space:nowrap!important;
+}
+#waste-overview-view #pickup-types .pickup-type-button[aria-pressed="true"] .pickup-type-share{
+ background:#d2eaf7!important;color:#00658b!important;
+}
+@media(max-width:720px){
+ #order-overview-view .order-filter-wrap,#waste-overview-view .waste-filter-wrap{top:6px!important;margin-bottom:16px!important}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:6px 9px!important;
+  padding:10px!important;border-radius:12px!important;
+ }
+ #order-overview-view #order-filter-panel label,#waste-overview-view #waste-filter-panel label{font-size:12px!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(1),#waste-overview-view #waste-filter-panel label:nth-of-type(1){grid-column:1!important;grid-row:1!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(2),#waste-overview-view #waste-filter-panel label:nth-of-type(2){grid-column:2!important;grid-row:1!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(1),#waste-overview-view #waste-filter-panel select:nth-of-type(1){grid-column:1!important;grid-row:2!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(2),#waste-overview-view #waste-filter-panel select:nth-of-type(2){grid-column:2!important;grid-row:2!important}
+ #order-overview-view #order-filter-reset,#waste-overview-view #waste-filter-reset{grid-column:1/-1!important;grid-row:3!important;min-height:34px!important;padding:6px!important;font-size:12px!important}
+ #order-overview-view #order-filter-panel select,#waste-overview-view #waste-filter-panel select{min-height:36px!important;padding:6px!important;font-size:13px!important}
+ #waste-overview-view #pickup-types .pickup-type-button{grid-template-columns:minmax(0,1fr) minmax(64px,1fr) auto!important;column-gap:7px!important}
+ #waste-overview-view #pickup-types .pickup-type-share{min-height:36px!important;min-width:56px!important;padding:7px 9px!important;font-size:16px!important}
+}
+
+/* Leerungsfilter: Zurücksetzen separat rechts unterhalb der Filterauswahl. */
+#waste-overview-view #waste-filter-panel{
+ grid-template-columns:auto minmax(130px,1fr) auto minmax(150px,1fr)!important;
+}
+#waste-overview-view #waste-filter-reset{
+ grid-column:4!important;
+ grid-row:2!important;
+ justify-self:end!important;
+ margin-top:6px!important;
+}
+@media(max-width:720px){
+ #waste-overview-view #waste-filter-panel{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ }
+ #waste-overview-view #waste-filter-reset{
+  grid-column:2!important;
+  grid-row:3!important;
+  justify-self:end!important;
+  width:auto!important;
+  margin-top:4px!important;
+ }
+}
+
+/* Bestellfilter: Artikel als dritte Auswahl, Reset darunter rechts. */
+#order-overview-view #order-filter-panel{
+ grid-template-columns:auto minmax(110px,1fr) auto minmax(110px,1fr) auto minmax(150px,1fr)!important;
+}
+#order-overview-view #order-filter-reset{grid-column:6!important;grid-row:2!important;justify-self:end!important}
+@media(max-width:720px){
+ #order-overview-view #order-filter-panel{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+ #order-overview-view #order-filter-panel label:nth-of-type(3){grid-column:1!important;grid-row:3!important}
+ #order-overview-view #order-filter-panel select:nth-of-type(3){grid-column:1/-1!important;grid-row:4!important}
+ #order-overview-view #order-filter-reset{grid-column:2!important;grid-row:5!important;justify-self:end!important;width:auto!important}
+}
+
+/* Statistik-Kacheln ohne Prozent: Artikelname links, Anzahl rechts. */
+#order-overview-view #order-type-buttons .pickup-type-button,
+#waste-overview-view #pickup-types .pickup-type-button{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;
+}
+#order-overview-view #order-type-buttons .pickup-type-button .pickup-type-label,
+#waste-overview-view #pickup-types .pickup-type-button .pickup-type-label{flex:1!important;min-width:0!important}
+#order-overview-view #order-type-buttons .pickup-type-button strong,
+#waste-overview-view #pickup-types .pickup-type-button strong{flex-shrink:0!important}
+
+/* Leerungsfilter nur noch mit Monatsauswahl und Zurücksetzen. */
+#waste-overview-view #waste-filter-panel{
+ grid-template-columns:auto minmax(180px,1fr) auto!important;
+}
+#waste-overview-view #waste-filter-panel label:nth-of-type(1){grid-column:1!important;grid-row:1!important}
+#waste-overview-view #waste-month-filter{grid-column:2!important;grid-row:1!important}
+#waste-overview-view #waste-filter-reset{grid-column:3!important;grid-row:1!important;margin-top:0!important;justify-self:end!important}
+@media(max-width:720px){
+ #waste-overview-view #waste-filter-panel{grid-template-columns:auto minmax(0,1fr)!important}
+ #waste-overview-view #waste-filter-panel label:nth-of-type(1){grid-column:1!important;grid-row:1!important}
+ #waste-overview-view #waste-month-filter{grid-column:2!important;grid-row:1!important}
+ #waste-overview-view #waste-filter-reset{grid-column:2!important;grid-row:2!important;justify-self:end!important;margin-top:4px!important}
+}
+
+/* Desktop: Bestellbestaetigung weiter oben und ueber dem Warenkorb anzeigen */
+@media (min-width: 1051px) {
+  .live-message { top: 105px; bottom: auto; z-index: 10000; text-align: center; }
+}
+
+/* PC: Sonderartikel-Schaltflaeche auf Hoehe der gesamten Artikelsuche */
+@media (min-width: 1051px) {
+  .mobile-sticky-controls > .custom-entry-link { align-self: stretch; min-height: 80px; box-sizing: border-box; margin-bottom: 0; padding: 14px 20px; }
+}
+
+/* Smartphone: Bestelluebersicht auf dieselbe obere Position wie Leerungsuebersicht setzen */
+@media (max-width: 720px) {
+  #order-overview-view { padding-top: 12px !important; }
+}
+
+/* Standortauswahl in der Leerungsuebersicht: drei Filterfelder sauber anordnen */
+#waste-overview-view #waste-filter-panel{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px 14px!important;align-items:end!important}
+#waste-overview-view #waste-filter-panel label{grid-column:auto!important;grid-row:auto!important;margin:0!important}
+#waste-overview-view #waste-filter-panel select{grid-column:auto!important;grid-row:auto!important;min-width:0!important;width:100%!important}
+#waste-overview-view #waste-filter-panel label[for="waste-month-filter"]{grid-column:1!important;grid-row:1!important}
+#waste-overview-view #waste-month-filter{grid-column:1!important;grid-row:2!important}
+#waste-overview-view #waste-filter-panel label[for="waste-site-filter"]{grid-column:2!important;grid-row:1!important}
+#waste-overview-view #waste-site-filter{grid-column:2!important;grid-row:2!important}
+#waste-overview-view #waste-filter-reset{grid-column:1/-1!important;grid-row:3!important;justify-self:end!important;margin:2px 0 0!important}
+@media(max-width:720px){#waste-overview-view #waste-filter-panel{gap:8px!important}#waste-overview-view #waste-filter-panel select{font-size:13px!important}}
+
+/* Responsive smartphone baseline: 320px through large phones, portrait and landscape. */
+@media (max-width:720px) {
+ html,body {max-width:100%;overflow-x:clip}
+ *,*::before,*::after {box-sizing:border-box}
+ #start-view,#overview-menu-view,#order-overview-view,#waste-overview-view,#waste-view,#shop-view {max-width:100%;min-width:0}
+ #order-overview-view,#waste-overview-view,#overview-menu-view {padding-left:clamp(12px,4vw,22px)!important;padding-right:clamp(12px,4vw,22px)!important}
+ #order-overview-view h1,#waste-overview-view h1 {font-size:clamp(25px,6.2vw,38px)!important;line-height:1.14;overflow-wrap:anywhere}
+ #order-overview-view .pickup-top-row,#waste-overview-view .pickup-top-row {grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:clamp(6px,2vw,12px)!important}
+ #order-overview-view .pickup-top-row > *,#waste-overview-view .pickup-top-row > * {min-width:0!important;max-width:100%!important}
+ #order-overview-view select,#waste-overview-view select,#profile-popup select,#profile-popup input {max-width:100%;min-width:0}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel {min-width:0;max-width:100%}
+ #order-overview-view #order-type-buttons .pickup-type-button,
+ #waste-overview-view #pickup-types .pickup-type-button {min-width:0;overflow-wrap:anywhere}
+ #order-overview-view #order-type-buttons .pickup-type-label,
+ #waste-overview-view #pickup-types .pickup-type-label {overflow-wrap:anywhere}
+ .live-message {max-width:calc(100vw - 24px)}
+}
+@media (max-width:380px) {
+ #order-overview-view .pickup-top-row .pickup-year-selector button,
+ #waste-overview-view .pickup-top-row .pickup-year-selector button {width:28px!important;min-width:28px!important;font-size:21px!important}
+ #order-overview-view .pickup-top-row .pickup-year-selector,
+ #waste-overview-view .pickup-top-row .pickup-year-selector {padding:6px 3px!important;gap:2px!important}
+ #order-overview-view .pickup-top-row .pickup-year-total,
+ #waste-overview-view .pickup-top-row .pickup-year-total {padding:7px!important;gap:4px!important}
+ #order-overview-view #order-filter-panel,#waste-overview-view #waste-filter-panel {gap:7px!important;padding:10px!important}
+}
+
+/* Profil und Aktualisieren: identische Button-Abmessungen. */
+#profile-toolbar #profile-edit,#profile-toolbar #home-refresh{box-sizing:border-box;width:120px;min-height:40px;padding:10px 12px;border-radius:24px;font-size:14px;line-height:20px;font-weight:600;justify-content:center;align-items:center;white-space:nowrap}
+
+/* Beide Toolbar-Buttons exakt gleiche Pillenform, auch bei Hover/Fokus. */
+#profile-toolbar #profile-edit,#profile-toolbar #home-refresh{appearance:none!important;border:0!important;border-radius:24px!important;min-height:40px!important;height:40px!important;width:120px!important;padding:0 12px!important;font-size:14px!important;line-height:20px!important;box-shadow:none!important;display:inline-flex;align-items:center;justify-content:center}
+
+/* Global: Doppeltippen darf keine Browser-Zoomgeste auslösen; Pinch-Zoom bleibt möglich. */
+html,body,button,a,input,textarea,select,label,[role="button"],.home-tiles,.waste-options{touch-action:manipulation}
+
+/* Einheitliche Form und Maße für Profil/Aktualisieren auf allen Facility-Seiten. */
+#profile-toolbar #profile-edit,#profile-toolbar #home-refresh{box-sizing:border-box!important;flex:0 0 145px!important;width:145px!important;min-width:145px!important;max-width:145px!important;height:42px!important;min-height:42px!important;max-height:42px!important;padding:0 8px!important;margin:0!important;border:0!important;border-radius:12px!important;background:#001b79!important;color:#fff!important;font-size:13px!important;font-weight:700!important;line-height:1.2!important;box-shadow:none!important;appearance:none!important;align-items:center!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important}
+
+/* Facility Management 2026: freigegebener mobiler Entwurf. */
+body:has(#home-view:not([hidden])),body:has(#waste-view:not([hidden])),body:has(#overview-menu-view:not([hidden])),body:has(#order-overview-view:not([hidden])),body:has(#waste-overview-view:not([hidden])){background:#f4f7fb;padding-bottom:100px}
+#facility-blue-header{background:linear-gradient(135deg,#092878,#0744a5);height:205px;display:flex;justify-content:center;align-items:center;padding:34px 90px 38px;border-radius:0 0 24px 24px}
+#facility-blue-header img{display:block;width:min(310px,75vw);height:auto;filter:brightness(0) invert(1)}
+body:has(#shop-view:not([hidden])) #facility-blue-header{display:none}
+#home-view .home-top{margin:0 0 32px!important;padding-top:22px}
+#home-view .home-top img{display:none!important}
+#home-view .home-top p{font-size:clamp(16px,3.5vw,22px);margin:0;color:#62798a}
+#home-view{max-width:940px;margin:0 auto;padding:0 22px 45px}
+#home-view .home-tiles{gap:18px}
+#home-view .home-tiles a{min-height:210px;border-radius:22px;border:1px solid #dae4ee;background:#fff;box-shadow:0 10px 27px #132a4710;gap:14px}
+#home-view .home-tiles a strong{color:#102e42;text-align:center}
+#facility-home-nav{position:fixed;bottom:0;left:0;right:0;min-height:88px;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -4px 20px #102d4a12;display:flex;align-items:center;justify-content:center;z-index:80;padding:10px 18px max(12px,env(safe-area-inset-bottom))}
+#facility-home-nav a{color:#0750b2;text-decoration:none;display:flex;flex-direction:column;gap:2px;align-items:center;font-size:14px}
+#facility-home-nav a span{font-size:42px;line-height:1}
+body:has(#shop-view:not([hidden])) #facility-home-nav{display:none}
+body:has(#home-view:not([hidden])) #profile-toolbar,body:has(#waste-view:not([hidden])) #profile-toolbar,body:has(#overview-menu-view:not([hidden])) #profile-toolbar,body:has(#order-overview-view:not([hidden])) #profile-toolbar,body:has(#waste-overview-view:not([hidden])) #profile-toolbar{position:absolute!important;top:65px!important;right:24px!important;left:auto!important;width:56px!important;height:56px!important;background:transparent!important;box-shadow:none!important;padding:0!important;z-index:90;margin:0!important}
+body:has(#home-view:not([hidden])) #profile-toolbar #profile-edit,body:has(#waste-view:not([hidden])) #profile-toolbar #profile-edit,body:has(#overview-menu-view:not([hidden])) #profile-toolbar #profile-edit,body:has(#order-overview-view:not([hidden])) #profile-toolbar #profile-edit,body:has(#waste-overview-view:not([hidden])) #profile-toolbar #profile-edit{width:54px!important;min-width:54px!important;max-width:54px!important;height:54px!important;flex:0 0 54px!important;border-radius:50%!important;background:#ffffff32!important;font-size:0!important;padding:0!important}
+#profile-toolbar #profile-edit:not([hidden])::after{content:"♟";font-size:29px;color:white;line-height:1}
+body:has(#home-view:not([hidden])) #profile-toolbar #home-refresh,body:has(#waste-view:not([hidden])) #profile-toolbar #home-refresh,body:has(#overview-menu-view:not([hidden])) #profile-toolbar #home-refresh,body:has(#order-overview-view:not([hidden])) #profile-toolbar #home-refresh,body:has(#waste-overview-view:not([hidden])) #profile-toolbar #home-refresh{display:none!important}
+@media(max-width:720px){#facility-blue-header{height:195px;padding:36px 82px 30px}#facility-blue-header img{width:235px;max-width:65vw}#home-view{padding:0 16px 32px}#home-view .home-tiles{gap:12px}#home-view .home-tiles a{min-height:170px;padding:15px 9px;border-radius:19px}#home-view .home-tiles a strong{font-size:clamp(15px,4vw,20px)}#home-view .home-tiles a small{font-size:13px}#home-view .home-top{padding-top:24px;margin-bottom:24px!important}body:has(#home-view:not([hidden])) #profile-toolbar,body:has(#waste-view:not([hidden])) #profile-toolbar{top:60px!important;right:12px!important}body:has(#waste-view:not([hidden])) #waste-view{padding-top:16px!important}}
+
+/* FIX 2026-10: freigegebenes Startseitenlayout; existierende alte Regeln bewusst überschreiben. */
+html body #facility-blue-header{
+  display:flex!important;position:relative!important;box-sizing:border-box!important;
+  width:100%!important;height:205px!important;min-height:205px!important;
+  margin:0!important;padding:28px 76px 25px!important;
+  background:linear-gradient(180deg,#063895 0%,#001b79 100%)!important;
+  justify-content:center!important;align-items:center!important;
+  border-radius:0 0 27px 27px!important;z-index:1!important;
+}
+html body #facility-blue-header img{
+  display:block!important;position:static!important;
+  width:270px!important;max-width:65vw!important;height:auto!important;
+  margin:0!important;filter:brightness(0) invert(1)!important;
+}
+html body #facility-blue-header #profile-edit{
+ display:flex!important;position:absolute!important;top:28px!important;right:20px!important;
+ width:47px!important;height:47px!important;min-width:47px!important;min-height:47px!important;
+ border:0!important;border-radius:50%!important;background:rgba(255,255,255,.18)!important;
+ padding:0!important;align-items:center!important;justify-content:center!important;
+ box-shadow:none!important;color:transparent!important;font-size:0!important;cursor:pointer!important;
+}
+html body #facility-blue-header #profile-edit::after{
+ content:""!important;display:block!important;width:25px!important;height:25px!important;
+ background:center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Ccircle cx='12' cy='7.5' r='4'/%3E%3Cpath d='M4 21v-2.5a8 8 0 0 1 16 0V21z'/%3E%3C/svg%3E")!important;
+}
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{display:none!important}
+html body:has(#shop-view:not([hidden])) #facility-blue-header{display:none!important}
+html body:has(#shop-view:not([hidden])) #profile-toolbar{display:none!important}
+html body #home-view{display:block;max-width:760px!important;width:100%!important;margin:0 auto!important;padding:0 18px 110px!important;min-height:calc(100dvh - 205px)!important}
+html body #home-view[hidden]{display:none!important}
+html body #home-view .home-top{display:block!important;margin:0 0 28px!important;padding:25px 0 0!important;text-align:center!important}
+html body #home-view .home-top img{display:none!important}
+html body #home-view .home-top p{margin:0!important;font-size:18px!important;color:#657887!important}
+html body #home-view .home-tiles{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+html body #home-view .home-tiles a{min-height:185px!important;padding:16px 10px!important;border-radius:21px!important;background:#fff!important;box-shadow:0 5px 21px #112a4610!important}
+html body #facility-home-nav{display:flex!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;z-index:900!important;
+ min-height:89px!important;padding:12px 14px calc(12px + env(safe-area-inset-bottom))!important;
+ align-items:center!important;justify-content:center!important;background:white!important;border-radius:25px 25px 0 0!important}
+html body #facility-home-nav a{display:flex!important;flex-direction:column!important;align-items:center!important;gap:3px!important;color:#0346ae!important;text-decoration:none!important;font-size:14px!important}
+html body #facility-home-nav a svg{width:31px!important;height:31px!important}
+html body:has(#shop-view:not([hidden])) #facility-home-nav{display:none!important}
+@media(max-width:720px){
+ html body #facility-blue-header{height:190px!important;min-height:190px!important;padding:23px 55px 22px!important}
+ html body #facility-blue-header img{width:235px!important;max-width:62vw!important}
+ html body #facility-blue-header #profile-edit{top:25px!important;right:14px!important}
+ html body #home-view{padding:0 15px 105px!important;min-height:calc(100dvh - 190px)!important}
+ html body #home-view .home-tiles a{min-height:180px!important}
+ html body #waste-view{padding-top:15px!important}
+}
+
+/* Blauer Kopfbereich: gerade Unterkante ohne Rundung. */
+html body #facility-blue-header{border-radius:0!important;}
+
+/* 2026-10: Logo vergrößert und Untertitel im blauen Kopfbereich. */
+html body #facility-blue-header{height:220px!important;min-height:220px!important;padding:23px 67px!important}
+html body #facility-blue-header .facility-header-brand{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:12px!important;min-width:0!important;width:100%!important}
+html body #facility-blue-header .facility-header-brand img{width:325px!important;max-width:min(76vw,325px)!important;height:auto!important;filter:brightness(0) invert(1)!important}
+html body #facility-blue-header .facility-header-subtitle{color:#fff!important;font-size:19px!important;font-weight:600!important;letter-spacing:.65px!important;text-align:center!important;line-height:1.2!important}
+@media(max-width:720px){
+ html body #facility-blue-header{height:205px!important;min-height:205px!important;padding:20px 55px!important}
+ html body #facility-blue-header .facility-header-brand img{width:290px!important;max-width:76vw!important}
+ html body #facility-blue-header .facility-header-subtitle{font-size:17px!important}
+ html body #home-view{min-height:calc(100dvh - 205px)!important}
+}
+
+/* Profil im blauen Header, Aktualisieren als eigener kompakter Button darunter. */
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{
+ display:flex!important;position:relative!important;top:auto!important;right:auto!important;left:auto!important;
+ width:100%!important;min-height:0!important;height:auto!important;margin:0!important;
+ padding:8px 15px 0!important;align-items:flex-end!important;justify-content:flex-end!important;
+ background:transparent!important;box-shadow:none!important;z-index:5!important;
+}
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar #home-refresh{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:134px!important;min-width:134px!important;max-width:134px!important;height:38px!important;
+ min-height:38px!important;max-height:38px!important;flex:0 0 134px!important;
+ border-radius:11px!important;background:#e8effb!important;color:#073d9a!important;
+ border:1px solid #d2e0f9!important;font-size:13px!important;box-shadow:none!important;
+}
+html body #facility-blue-header #profile-edit:not([hidden]){display:flex!important}
+html body:has(#shop-view:not([hidden])) #profile-toolbar{display:none!important}
+
+/* Untere Startseiten-Leiste kompakter, Icon und Text mittig. */
+html body #facility-home-nav{min-height:66px!important;padding:7px 14px calc(7px + env(safe-area-inset-bottom))!important;border-radius:18px 18px 0 0!important}
+html body #facility-home-nav a{gap:1px!important;font-size:12px!important}
+html body #facility-home-nav a svg{width:26px!important;height:26px!important}
+
+/* Blauen Kopfbereich leicht flacher gestalten, ohne Logo und Profil zu verändern. */
+html body #facility-blue-header{height:198px!important;min-height:198px!important}
+@media(max-width:720px){html body #facility-blue-header{height:188px!important;min-height:188px!important}html body #home-view{min-height:calc(100dvh - 188px)!important}}
+
+/* Aktualisieren ist jetzt ein reines Icon in der festen unteren Leiste. */
+html body #facility-home-nav{justify-content:center!important;gap:56px!important}
+html body #facility-home-nav #facility-refresh-slot{display:flex!important;align-items:center!important;justify-content:center!important}
+html body #facility-home-nav #home-refresh,
+html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #home-refresh{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ position:static!important;box-sizing:border-box!important;
+ width:42px!important;min-width:42px!important;max-width:42px!important;
+ height:42px!important;min-height:42px!important;max-height:42px!important;
+ flex:0 0 42px!important;padding:6px!important;margin:0!important;
+ background:transparent!important;border:0!important;border-radius:12px!important;
+ color:#0346ae!important;box-shadow:none!important;line-height:1!important;
+}
+html body #facility-home-nav #home-refresh svg{width:27px!important;height:27px!important}
+html body:not(:has(#shop-view:not([hidden]))) #profile-toolbar{display:none!important}
+
+/* Pull-to-refresh: Seite bleibt beim Ziehen am oberen Rand ruhig. */
+html,body{overscroll-behavior-y:none}
+#facility-pull-refresh{
+ position:fixed;top:-65px;left:50%;transform:translate(-50%,0);z-index:1500;
+ padding:9px 16px;white-space:nowrap;border-radius:20px;
+ background:#fff;color:#001b79;font-size:13px;font-weight:700;
+ box-shadow:0 4px 16px #001b7922;pointer-events:none;
+ opacity:0;transition:opacity .12s ease;
+}
+#facility-pull-refresh.visible{opacity:1}
+#facility-pull-refresh.ready{background:#e7f0ff}
+
+/* Pull-to-refresh Status sofort sichtbar unter dem oberen Bildschirmrand. */
+html body #facility-pull-refresh{
+ top:calc(env(safe-area-inset-top) + 10px)!important;
+ z-index:3000!important;transform:translateX(-50%);
+ transition:opacity .1s ease!important;
+}
+
+/* Startseitenleiste wieder etwas höher und Startseite exakt mittig. */
+html body #facility-home-nav{min-height:78px!important;gap:0!important;justify-content:center!important;align-items:center!important;padding:10px 14px calc(10px + env(safe-area-inset-bottom))!important}
+html body #facility-home-nav a{align-items:center!important;text-align:center!important;gap:3px!important}
+html body #facility-home-nav a svg{width:29px!important;height:29px!important}
+html body #facility-home-nav #facility-refresh-slot{display:none!important}
+
+/* 2026-10-14: Startseite darf nicht über die Bildschirmhöhe hinausragen.
+   Bei wenig Platz scrollt ausschließlich der Kachelbereich, nicht die ganze Seite. */
+html:has(#home-view:not([hidden])){height:100%;overflow:hidden!important;overscroll-behavior-y:none}
+html body:has(#home-view:not([hidden])){
+ height:100dvh!important;min-height:0!important;max-height:100dvh!important;
+ overflow:hidden!important;overscroll-behavior-y:none!important;padding-bottom:0!important;
+}
+html body #home-view:not([hidden]){
+ height:calc(100dvh - 198px)!important;
+ min-height:0!important;max-height:calc(100dvh - 198px)!important;
+ overflow-y:auto!important;overscroll-behavior-y:contain!important;
+ -webkit-overflow-scrolling:touch;
+ padding-bottom:98px!important;
+}
+@media(max-width:720px){
+ html body #home-view:not([hidden]){
+  height:calc(100dvh - 188px)!important;
+  min-height:0!important;max-height:calc(100dvh - 188px)!important;
+ }
+}
+
+/* Horizontales Scrollen vermeiden; die gewünschte Zurück-Geste bleibt per JS erhalten. */
+html,body{overflow-x:hidden!important;overscroll-behavior-x:none!important}
+
+/* Freigegebener Entwurf: sanft geschwungene Unterkante, Schrift unverändert. */
+html body #facility-blue-header{
+ border-radius:0!important;
+ clip-path:polygon(0 0,100% 0,100% 84%,93.75% 87.75%,87.5% 91%,81.25% 93.75%,75% 96%,68.75% 97.75%,62.5% 99%,56.25% 99.75%,50% 100%,43.75% 99.75%,37.5% 99%,31.25% 97.75%,25% 96%,18.75% 93.75%,12.5% 91%,6.25% 87.75%,0 84%);
+}
+
+/* Kopfbereich etwas flacher und Logo leicht verkleinert; Schrift und Profil bleiben unverändert. */
+html body #facility-blue-header{height:174px!important;min-height:174px!important}
+html body #facility-blue-header .facility-header-brand img{width:285px!important;max-width:min(70vw,285px)!important}
+html body #home-view:not([hidden]){height:calc(100dvh - 174px)!important;max-height:calc(100dvh - 174px)!important}
+@media(max-width:720px){
+ html body #facility-blue-header{height:166px!important;min-height:166px!important;padding:16px 55px!important}
+ html body #facility-blue-header .facility-header-brand img{width:255px!important;max-width:68vw!important}
+ html body #home-view:not([hidden]){height:calc(100dvh - 166px)!important;max-height:calc(100dvh - 166px)!important}
+}
+
+/* Startseite: Inhalt der Müllentsorgungs-Kachel dezent nach oben setzen. */
+html body #home-view .home-tiles a[href="#muellentsorgung"] > *{position:relative;top:-8px}
+
+/* Müllentsorgung: etwas mehr Luft zwischen Überschrift und erster Restmüll-Kachel. */
+html body #waste-view .waste-heading{margin-bottom:20px!important}
+
+/* Pull-to-refresh: Seite folgt dem Finger und zeigt einen rotierenden Kreis. */
+:root{--facility-pull-distance:0px}
+@media(max-width:720px){
+ html body #facility-blue-header,
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]){
+  transform:translateY(var(--facility-pull-distance))!important;
+  transition:transform .14s ease-out!important;
+ }
+}
+html body #facility-pull-refresh{
+ display:flex!important;position:fixed!important;top:0!important;left:50%!important;
+ transform:translateX(-50%)!important;width:42px!important;height:42px!important;
+ border-radius:50%!important;background:transparent!important;box-shadow:none!important;
+ align-items:center!important;justify-content:center!important;padding:0!important;
+ z-index:1500!important;opacity:0!important;pointer-events:none!important;
+ transition:opacity .12s ease!important;
+}
+html body #facility-pull-refresh.visible{opacity:1!important}
+#facility-pull-refresh .facility-pull-spinner{
+ display:block;width:25px;height:25px;box-sizing:border-box;
+ border:3px solid #c3d5f0;border-top-color:#0346ae;border-radius:50%;
+ transform:rotate(0deg);
+}
+#facility-pull-refresh.ready .facility-pull-spinner,
+#facility-pull-refresh.loading .facility-pull-spinner{animation:facility-refresh-spin .7s linear infinite}
+@keyframes facility-refresh-spin{to{transform:rotate(360deg)}}
+
+/* Facility-Unterseiten: kein Verschieben der gesamten Seite nach oben.
+   Längere Inhalte scrollen innerhalb des jeweiligen Bereichs. */
+@media(max-width:720px){
+ html:has(#waste-view:not([hidden])),html:has(#overview-menu-view:not([hidden])),
+ html:has(#order-overview-view:not([hidden])),html:has(#waste-overview-view:not([hidden])){
+  height:100%!important;overflow:hidden!important;overscroll-behavior-y:none!important;
+ }
+ html body:has(#waste-view:not([hidden])),html body:has(#overview-menu-view:not([hidden])),
+ html body:has(#order-overview-view:not([hidden])),html body:has(#waste-overview-view:not([hidden])){
+  height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+  overflow:hidden!important;padding-bottom:0!important;overscroll-behavior-y:none!important;
+ }
+ html body #waste-view:not([hidden]),html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),html body #waste-overview-view:not([hidden]){
+  box-sizing:border-box!important;height:calc(100dvh - 166px)!important;
+  max-height:calc(100dvh - 166px)!important;min-height:0!important;
+  overflow-y:auto!important;overscroll-behavior-y:contain!important;
+  -webkit-overflow-scrolling:touch;padding-bottom:100px!important;
+ }
+}
