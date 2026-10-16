@@ -425,7 +425,10 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  function positionResults(){
   if(resultsPanel.hidden||!isMobile())return;
   const header=shop.querySelector(':scope > header');
-  const top=Math.max(86,Math.round(header?.getBoundingClientRect().bottom||86))+22;
+  const categories=shop.querySelector(':scope > .mobile-sticky-controls');
+  const headerBottom=header?.getBoundingClientRect().bottom||86;
+  const categoriesBottom=categories?.getBoundingClientRect().bottom||headerBottom;
+  const top=Math.round(Math.max(headerBottom,categoriesBottom)+14);
   const viewport=window.visualViewport;
   const visibleBottom=viewport?viewport.offsetTop+viewport.height:window.innerHeight;
   const searchTop=searchBox?.getBoundingClientRect().top||visibleBottom-80;
