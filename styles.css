@@ -3833,3 +3833,20 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
  }
 }
 
+
+/* Nur App: aeussere Gesamt-Kachel der Kategorien ohne Rahmen.
+   Die kleinen einzelnen Kategorie-Kacheln behalten ihre Rahmen. */
+@media(max-width:720px){
+ html body #shop-view:not([hidden]) .mobile-sticky-controls nav.category-nav{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  border:1px solid #d9e4f0!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
+  border:1px solid #0346ae!important;
+ }
+}
