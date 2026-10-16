@@ -4301,3 +4301,18 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
   touch-action:manipulation;
  }
 }
+
+/* iPhone: beim Tippen die bestehende Shopansicht nicht verschieben.
+   Suchfeld bleibt knapp oberhalb der eingeblendeten Tastatur. */
+@media(max-width:720px){
+ html body.facility-search-open.facility-search-keyboard-open > .product-search{
+  bottom:calc(var(--facility-search-keyboard-inset, 0px) + 10px)!important;
+ }
+ html body.facility-search-keyboard-open #facility-home-nav{
+  visibility:hidden!important;
+  pointer-events:none!important;
+ }
+ html body.facility-search-keyboard-open #shop-view:not([hidden]) > .mobile-sticky-controls{
+  transform:none!important;
+ }
+}
