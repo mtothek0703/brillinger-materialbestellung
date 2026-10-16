@@ -119,7 +119,7 @@ restoreCart();
 window.addEventListener('pagehide',persistCart);
 
 let feedbackTimer;
-function notify(message){$('feedback').textContent=message;clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{$('feedback').textContent='';},3500);}
+function notify(message){$('feedback').textContent=message;clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>{$('feedback').textContent='';},8000);}
 function minimum(product){return product.min||1;}
 function quantity(value){const number=Number(value);return Number.isInteger(number)&&number>=1&&number<=999?number:null;}
 function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
