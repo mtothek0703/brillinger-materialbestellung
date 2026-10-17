@@ -314,16 +314,14 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
     { date: `${year}-04-17T11:00:00Z`, department:'Logistik', items:[{name:'Glasreiniger',quantity:2}] },
     { date: `${year-1}-03-15T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:9},{name:'Rohrreiniger',quantity:1}] }
   ];
-  // WebKit kann Netzwerk-Routen bei Service-Worker- und Fokus-Wechseln
-  // anders behandeln. Deshalb ausschließlich die Statistik-RPC lokal
-  // abfangen, bevor das App-JavaScript initialisiert wird.
+  // Feste isolierte Bestellungen im Offline-Statistikmodus testen:
+  // kein echter Supabase-Aufruf und keine Service-Worker-/Fokus-Race in WebKit.
   await page.addInitScript(testOrders => {
+    localStorage.setItem('brillinger-bestellstatistik-v1',JSON.stringify(testOrders));
     const originalFetch = window.fetch.bind(window);
     window.fetch = (resource, options) => {
       if (String(resource).includes('/rest/v1/rpc/facility_statistics_summary')) {
-        return Promise.resolve(new Response(JSON.stringify({ orders:testOrders, waste:[] }), {
-          status:200, headers:{'content-type':'application/json'}
-        }));
+        return Promise.reject(new Error('Statistik-RPC im Filtertest deaktiviert'));
       }
       return originalFetch(resource, options);
     };
@@ -336,13 +334,11 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
   const article = page.locator('#order-article-filter');
   const itemLabels = page.locator('#order-type-buttons .pickup-type-label');
   await expect(yearLabel).toHaveText(String(year));
-  // Für Safari/WebKit die isolierten Testdaten explizit in den
-  // Statistikzustand übernehmen. Keine echten Bestellungen werden angelegt.
-  await page.evaluate(testOrders => {
-    sharedFacilityStats={ orders:testOrders, waste:[] };
-    sharedFacilityStatsReady=true;
+  // Den lokalen Statistikzustand nach dem Laden aktivieren.
+  await page.evaluate(() => {
+    sharedFacilityStatsReady=false;
     renderOrderStats();
-  }, orders);
+  });
   await expect(total).toHaveText('4');
   await expect(itemLabels).toHaveCount(4);
 
