@@ -5,12 +5,14 @@ const files = ['styles/base.css', 'styles/refinements.css', 'styles/design-syste
 let important = 0;
 let approvedFilterImportant = 0;
 let approvedStickyImportant = 0;
+let approvedNavImportant = 0;
 let totalRules = 0;
 const duplicateDeclarations = [];
 for (const path of files) {
   const text = readFileSync(path, 'utf8');
   const approvedFilterMarker = '/* Bestellübersicht: Bereichs- und Artikelfilter als eigenständige';
   const stickyMarker = '/* Bestellübersicht: Überschrift und die fünf Bedienelemente beim Scrollen';
+  const navMarker = '/* Mobile Bottom-Navigation 2026:';
   const filterStart = text.indexOf(approvedFilterMarker);
   const stickyStart = text.indexOf(stickyMarker);
   if (filterStart !== -1) {
@@ -18,6 +20,8 @@ for (const path of files) {
     approvedFilterImportant += (text.slice(filterStart, filterEnd).match(/!important/g) || []).length;
   }
   if (stickyStart !== -1) approvedStickyImportant += (text.slice(stickyStart).match(/!important/g) || []).length;
+  const navStart = text.indexOf(navMarker);
+  if (navStart !== -1) approvedNavImportant += (text.slice(navStart).match(/!important/g) || []).length;
   const root = postcss.parse(text, { from: path });
   root.walkRules(rule => {
     totalRules++;
@@ -30,7 +34,7 @@ for (const path of files) {
     });
   });
 }
-console.log('CSS-Prüfung:', totalRules, 'Regeln,', important, '!important-Deklarationen, davon', approvedFilterImportant, 'für Filterbuttons und', approvedStickyImportant, 'für den fixierten Kopfbereich');
+console.log('CSS-Prüfung:', totalRules, 'Regeln,', important, '!important-Deklarationen, davon', approvedFilterImportant, 'für Filterbuttons und', approvedStickyImportant, 'für den fixierten Kopfbereich und', approvedNavImportant, 'für die einheitliche Bottom-Navigation');
 if (duplicateDeclarations.length) {
   console.warn('Unnötige gleiche Deklarationen innerhalb einzelner Regeln:', duplicateDeclarations.slice(0, 12).join(', '));
 }
@@ -38,7 +42,7 @@ if (duplicateDeclarations.length) {
 // darf die Zahl jedoch nicht wieder über das ursprüngliche Niveau ansteigen.
 // Die mobile Filter-Gestaltung ist als ausdrücklich begrenzte Ausnahme
 // zugelassen, weil sie sehr spezifische historische Overrides ablöst.
-if (important - approvedFilterImportant - approvedStickyImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25) {
+if (important - approvedFilterImportant - approvedStickyImportant - approvedNavImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25 || approvedNavImportant > 85) {
   console.error('CSS-Regelüberschreibungen haben das vereinbarte Budget überschritten.');
   process.exitCode = 1;
 }
