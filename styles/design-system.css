@@ -466,3 +466,43 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
   padding:7px 12px calc(72px + env(safe-area-inset-bottom))!important;
  }
 }
+
+
+/* Querformat auf realem Smartphone: CSS-Viewport kann schmaler als die
+   physische Displaybreite sein (insbesondere nach iOS-Rotation). */
+@media (min-width:500px) and (max-width:1100px) and (max-height:550px){
+ html body:has(#home-view:not([hidden])) #facility-blue-header,
+ html body:has(#waste-view:not([hidden])) #facility-blue-header,
+ html body:has(#overview-menu-view:not([hidden])) #facility-blue-header,
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header,
+ html body:has(#waste-overview-view:not([hidden])) #facility-blue-header{
+  height:68px!important;
+  min-height:68px!important;
+  max-height:68px!important;
+  box-sizing:border-box!important;
+  padding:5px 18px!important;
+  border-radius:0!important;
+ }
+ html body:has(#home-view:not([hidden])) #home-view,
+ html body:has(#waste-view:not([hidden])) #waste-view,
+ html body:has(#overview-menu-view:not([hidden])) #overview-menu-view,
+ html body:has(#order-overview-view:not([hidden])) #order-overview-view,
+ html body:has(#waste-overview-view:not([hidden])) #waste-overview-view{
+  height:calc(100dvh - 68px)!important;
+  max-height:calc(100dvh - 68px)!important;
+  min-height:0!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]){
+  padding-top:64px!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > header,
+ html body #shop-view:not([hidden]) > header{
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  box-sizing:border-box!important;
+ }
+ html body #order-overview-view:not([hidden]) > .order-sticky-tools{
+  top:0!important;
+ }
+}
