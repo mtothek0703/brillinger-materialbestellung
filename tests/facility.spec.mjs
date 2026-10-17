@@ -251,3 +251,55 @@ test('Untere Navigation: vier ausgerichtete Symbole und Beschriftungen auf klein
     await expect(nav.locator('#facility-custom-entry-nav')).toBeHidden();
   }
 });
+
+
+test('Bestellübersicht zeigt Artikel als Textzeilen mit Trennlinien ohne Kacheln', async ({ page }) => {
+  await page.goto('/#bestelluebersicht', { waitUntil: 'domcontentloaded' });
+  const list = page.locator('#order-type-buttons');
+  await expect(list).toBeVisible();
+  await list.evaluate(el => {
+    el.replaceChildren();
+    for (const [name, count] of [['Glasreiniger', 3], ['Langes Artikellabel, zusätzlich getestet', 2]]) {
+      const row = document.createElement('button');
+      row.className = 'pickup-row pickup-type-button';
+      row.type = 'button';
+      const label = document.createElement('span');
+      label.className = 'pickup-type-label';
+      label.textContent = name;
+      const quantity = document.createElement('strong');
+      quantity.textContent = count + ' ›';
+      row.append(label, quantity);
+      el.appendChild(row);
+    }
+  });
+  const geometry = await list.evaluate(el => {
+    const rows = [...el.querySelectorAll('.pickup-type-button')];
+    const styles = rows.map(row => {
+      const cs = getComputedStyle(row);
+      const label = row.querySelector('.pickup-type-label').getBoundingClientRect();
+      const count = row.querySelector('strong').getBoundingClientRect();
+      const rect = row.getBoundingClientRect();
+      const countStyles = getComputedStyle(row.querySelector('strong'));
+      return {
+        x: rect.x, y: rect.y, width: rect.width, height: rect.height,
+        background: cs.backgroundColor, shadow: cs.boxShadow,
+        radius: cs.borderTopLeftRadius, borderBottom: cs.borderBottomWidth,
+        labelX: label.x, countX: count.x, countBg: countStyles.backgroundColor,
+        countRadius: countStyles.borderTopLeftRadius
+      };
+    });
+    return { container: getComputedStyle(el).display, gap: getComputedStyle(el).rowGap, styles };
+  });
+  const [first, second] = geometry.styles;
+  expect(geometry.container).toBe('flex');
+  expect(geometry.gap).toBe('0px');
+  expect(first.background).toBe('rgba(0, 0, 0, 0)');
+  expect(first.shadow).toBe('none');
+  expect(first.radius).toBe('0px');
+  expect(first.borderBottom).toBe('1px');
+  expect(first.countBg).toBe('rgba(0, 0, 0, 0)');
+  expect(first.countRadius).toBe('0px');
+  expect(first.labelX).toBeLessThan(first.countX);
+  expect(Math.abs(first.y + first.height - second.y)).toBeLessThan(2);
+  expect(Math.abs(first.width - second.width)).toBeLessThan(2);
+});
