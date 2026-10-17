@@ -432,3 +432,37 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
   min-width:0!important;
  }
 }
+
+/* Kurzdisplay: feste Shop-Kopfzeile muss genau einmal Platz belegen.
+   Hohe Spezifitaet neutralisiert alte Tablet/Desktop-Hoehenregeln. */
+@media (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]){
+  display:flex!important;
+  flex-direction:column!important;
+  padding-top:64px!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  min-height:0!important;
+  overflow:hidden!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls{
+  position:relative!important;
+  top:auto!important;
+  inset-block-start:auto!important;
+  flex:0 0 auto!important;
+  padding:5px 12px!important;
+  margin:0!important;
+  max-height:calc(100dvh - 180px)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+ }
+ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main{
+  flex:1 1 0%!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  padding:7px 12px calc(72px + env(safe-area-inset-bottom))!important;
+ }
+}
