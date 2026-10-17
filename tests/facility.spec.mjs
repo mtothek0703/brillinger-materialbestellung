@@ -417,7 +417,8 @@ test('Bestellübersicht: kleine Shopbilder vor jedem Artikel, weiterhin Textlist
   expect(style.labelX).toBeLessThan(style.numberX);
   expect(style.shadow).toBe('none');
   expect(style.radius).toBe('0px');
-  expect(style.border).toBe('1px');
+  // Zwischen den Einträgen bleibt eine Trennlinie; die letzte Zeile endet ohne Linie.
+  await expect.poll(() => rows.first().evaluate(el => getComputedStyle(el).borderBottomWidth)).toBe('1px');
   await milk.click();
   await expect(page.locator('#order-history-section')).toBeVisible();
   await expect(page.locator('#order-history-list')).toContainText('Milch × 2');
