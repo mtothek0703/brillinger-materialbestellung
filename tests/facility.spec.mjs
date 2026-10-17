@@ -314,12 +314,20 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
     { date: `${year}-04-17T11:00:00Z`, department:'Logistik', items:[{name:'Glasreiniger',quantity:2}] },
     { date: `${year-1}-03-15T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:9},{name:'Rohrreiniger',quantity:1}] }
   ];
-  await page.route('**/rest/v1/rpc/facility_statistics_summary', route => route.fulfill({
-    status:200,
-    contentType:'application/json',
-    headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type,apikey,authorization'},
-    body:JSON.stringify({ orders, waste:[] })
-  }));
+  // WebKit kann Netzwerk-Routen bei Service-Worker- und Fokus-Wechseln
+  // anders behandeln. Deshalb ausschließlich die Statistik-RPC lokal
+  // abfangen, bevor das App-JavaScript initialisiert wird.
+  await page.addInitScript(testOrders => {
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = (resource, options) => {
+      if (String(resource).includes('/rest/v1/rpc/facility_statistics_summary')) {
+        return Promise.resolve(new Response(JSON.stringify({ orders:testOrders, waste:[] }), {
+          status:200, headers:{'content-type':'application/json'}
+        }));
+      }
+      return originalFetch(resource, options);
+    };
+  }, orders);
   await page.goto('/#bestelluebersicht', { waitUntil:'domcontentloaded' });
   const yearLabel = page.locator('#order-selected-year');
   const total = page.locator('#order-count');
