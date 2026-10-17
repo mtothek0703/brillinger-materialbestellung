@@ -64,6 +64,21 @@ test('Artikel kann zum Warenkorb hinzugefügt werden', async ({ page, isMobile }
   await expect(page.locator('#cart-count')).toHaveText('1');
 });
 
+test('Manuell hinzugefügter Artikel zeigt Plus als Bildplatzhalter', async ({ page, isMobile }) => {
+  await page.goto('/#sonderartikel', { waitUntil: 'domcontentloaded' });
+  await page.locator('#custom-product-name').fill('Testartikel ohne Katalogeintrag');
+  await page.locator('#custom-product-amount').fill('2');
+  await page.locator('#custom-product-form button[type="submit"]').click();
+  await expect(page.locator('#cart-count')).toHaveText('2');
+  await page.goto('/#warenkorb', { waitUntil: 'domcontentloaded' });
+  const custom = page.locator('#cart-items .cart-item-custom');
+  await expect(custom).toContainText('Testartikel ohne Katalogeintrag');
+  await expect(custom.locator('.cart-item-custom-symbol')).toHaveText('+');
+  if (isMobile) await expect(custom.locator('.cart-item-custom-symbol')).toBeVisible();
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#cart-items .cart-item-custom .cart-item-custom-symbol')).toHaveText('+');
+});
+
 test('Bestellübersicht: Jahr und Monatsfilter vorhanden', async ({ page }) => {
   await page.goto('/#bestelluebersicht', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#order-selected-year')).toHaveText(/20\d\d/);
