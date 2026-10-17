@@ -314,18 +314,7 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
     { date: `${year}-04-17T11:00:00Z`, department:'Logistik', items:[{name:'Glasreiniger',quantity:2}] },
     { date: `${year-1}-03-15T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:9},{name:'Rohrreiniger',quantity:1}] }
   ];
-  // Feste isolierte Bestellungen im Offline-Statistikmodus testen:
-  // kein echter Supabase-Aufruf und keine Service-Worker-/Fokus-Race in WebKit.
-  await page.addInitScript(testOrders => {
-    localStorage.setItem('brillinger-bestellstatistik-v1',JSON.stringify(testOrders));
-    const originalFetch = window.fetch.bind(window);
-    window.fetch = (resource, options) => {
-      if (String(resource).includes('/rest/v1/rpc/facility_statistics_summary')) {
-        return Promise.reject(new Error('Statistik-RPC im Filtertest deaktiviert'));
-      }
-      return originalFetch(resource, options);
-    };
-  }, orders);
+  // Die Filterlogik wird mit festen Daten getestet, nicht der RPC-Transport.
   await page.goto('/#bestelluebersicht', { waitUntil:'domcontentloaded' });
   const yearLabel = page.locator('#order-selected-year');
   const total = page.locator('#order-count');
@@ -334,11 +323,13 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
   const article = page.locator('#order-article-filter');
   const itemLabels = page.locator('#order-type-buttons .pickup-type-label');
   await expect(yearLabel).toHaveText(String(year));
-  // Den lokalen Statistikzustand nach dem Laden aktivieren.
-  await page.evaluate(() => {
-    sharedFacilityStatsReady=false;
+  // In diesem Test die Statistikquelle gezielt durch einen unveränderlichen
+  // Datensatz ersetzen. Asynchrone RPC-Antworten können ihn nicht überschreiben.
+  await page.evaluate(testOrders => {
+    const fixture = structuredClone(testOrders);
+    readOrderStats = () => fixture;
     renderOrderStats();
-  });
+  }, orders);
   await expect(total).toHaveText('4');
   await expect(itemLabels).toHaveCount(4);
 
