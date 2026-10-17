@@ -1781,6 +1781,12 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    justify-content:center!important;
    font-size:25px!important;
  }
+ /* Nicht katalogisierte Artikel erhalten ein Plus als Bildplatzhalter. */
+ html body.mobile-cart-view #cart-items > .cart-item-custom > .cart-item-custom-symbol{
+   color:#001b79!important;
+   font-size:30px!important;
+   font-weight:700!important;
+ }
  html body.mobile-cart-view #cart-items > .cart-item-product > .cart-item-details{
    display:block!important;
    grid-column:2!important;
