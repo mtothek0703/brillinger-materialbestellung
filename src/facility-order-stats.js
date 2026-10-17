@@ -79,13 +79,14 @@ function renderOrderStats(){
   const main=document.createElement('span');main.className='order-article-main';
   const thumb=document.createElement('span');thumb.className='order-article-thumb';thumb.setAttribute('aria-hidden','true');
   const media=window.facilityCatalogArticleMedia?.[orderArticleKey(item.name)];
+  if(!media)thumb.classList.add('order-article-thumb-unknown');
   if(media?.image){
    const image=document.createElement('img');
    image.src=media.image;image.alt='';image.loading='lazy';image.decoding='async';
    image.addEventListener('error',()=>{image.remove();thumb.textContent=media.symbol||'📦';},{once:true});
    thumb.appendChild(image);
   }else{
-   thumb.textContent=media?.symbol||'📦';
+   thumb.textContent=media?.symbol||'+';
   }
   const label=document.createElement('span');label.className='pickup-type-label';label.textContent=item.name;
   main.append(thumb,label);
