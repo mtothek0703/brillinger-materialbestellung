@@ -21,23 +21,35 @@ function openOrderHistory(product){
  document.body.classList.add('order-history-open');
  document.getElementById('order-history-close').focus();
 }
+function orderArticleKey(name){return String(name||'').trim().toLocaleLowerCase('de-DE');}
+function orderMatchesArticle(order,articleKey){
+ return Array.isArray(order.items)&&order.items.some(item=>orderArticleKey(item.name)===articleKey);
+}
 function renderOrderStats(){
- const allYearOrders=readOrderStats().filter(o=>new Date(o.date).getFullYear()===selectedOrderYear);
+ const allOrders=readOrderStats().filter(o=>o&&o.date&&!isNaN(Date.parse(o.date)));
+ const allYearOrders=allOrders.filter(o=>new Date(o.date).getFullYear()===selectedOrderYear);
  const monthSelect=document.getElementById('order-month-filter');
  const deptSelect=document.getElementById('order-dept-filter');
  const monthNames=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
  monthSelect.replaceChildren(new Option('Alle Monate','all'),...monthNames.map((name,i)=>new Option(name,String(i))));
  monthSelect.value=selectedOrderMonth;
- const departments=[...new Set(['Logistik','Werkstatt','Haustechnik',...allYearOrders.map(o=>String(o.department||o.dept||'').trim()).filter(Boolean)])].sort((a,b)=>a.localeCompare(b,'de'));
+ const departments=[...new Set(['Logistik','Werkstatt','Haustechnik',...allOrders.map(o=>String(o.department||o.dept||'').trim()).filter(Boolean),...(selectedOrderDept!=='all'?[selectedOrderDept]:[])])].sort((a,b)=>a.localeCompare(b,'de'));
  deptSelect.replaceChildren(new Option('Alle Bereiche','all'),...departments.map(name=>new Option(name,name)));
  if(selectedOrderDept!=='all'&&!departments.includes(selectedOrderDept))selectedOrderDept='all';
  deptSelect.value=selectedOrderDept;
  const articleSelect=document.getElementById('order-article-filter');
- const articleNames=[...new Set([...(window.facilityCatalogArticleNames||allCatalogArticleNames),...allYearOrders.flatMap(o=>(Array.isArray(o.items)?o.items:[]).map(item=>String(item.name||'').trim()).filter(Boolean))])].sort((a,b)=>a.localeCompare(b,'de'));
+ const articleNames=[...new Set([...(window.facilityCatalogArticleNames||allCatalogArticleNames),...allOrders.flatMap(o=>(Array.isArray(o.items)?o.items:[]).map(item=>String(item.name||'').trim()).filter(Boolean)),...(selectedOrderArticle!=='all'?[selectedOrderArticle]:[])])].sort((a,b)=>a.localeCompare(b,'de'));
  articleSelect.replaceChildren(new Option('Alle Artikel','all'),...articleNames.map(name=>new Option(name,name)));
  if(selectedOrderArticle!=='all'&&!articleNames.includes(selectedOrderArticle))selectedOrderArticle='all';
  articleSelect.value=selectedOrderArticle;
- const orders=allYearOrders.filter(o=>(selectedOrderMonth==='all'||String(new Date(o.date).getMonth())===selectedOrderMonth)&&(selectedOrderDept==='all'||(String(o.department||o.dept||'Nicht zugeordnet').trim()||'Nicht zugeordnet')===selectedOrderDept)&&(selectedOrderArticle==='all'||(Array.isArray(o.items)?o.items:[]).some(item=>String(item.name||'').trim()===selectedOrderArticle))).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
+ // Die Filter greifen gleichzeitig: Jahr, Monat, Bereich und Artikel.
+ // Die Artikelauswahl schränkt sowohl Bestellungen als auch die gezeigten Positionen ein.
+ const selectedArticleKey=selectedOrderArticle==='all'?null:orderArticleKey(selectedOrderArticle);
+ const orders=allYearOrders.filter(o=>
+  (selectedOrderMonth==='all'||String(new Date(o.date).getMonth())===selectedOrderMonth)&&
+  (selectedOrderDept==='all'||(String(o.department||o.dept||'Nicht zugeordnet').trim()||'Nicht zugeordnet')===selectedOrderDept)&&
+  (!selectedArticleKey||orderMatchesArticle(o,selectedArticleKey))
+ ).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
  document.getElementById('order-selected-year').textContent=String(selectedOrderYear);
  document.getElementById('order-count').textContent=String(orders.length);
  const products=new Map();
@@ -46,7 +58,7 @@ function renderOrderStats(){
   (Array.isArray(order.items)?order.items:[]).forEach(item=>{
    const name=String(item.name||'Artikel').trim(),key=name.toLocaleLowerCase('de-DE');
    const quantity=Number(item.quantity)||0;
-   if(!name||quantity<=0)return;
+   if(!name||quantity<=0||(selectedArticleKey&&key!==selectedArticleKey))return;
    if(!products.has(key))products.set(key,{name,orders:0,quantity:0});
    const entry=products.get(key);entry.quantity+=quantity;
    if(!seen.has(key)){entry.orders++;seen.add(key);}
@@ -54,7 +66,7 @@ function renderOrderStats(){
  });
  const types=document.getElementById('order-type-buttons');types.replaceChildren();
  const ranked=[...products.values()].sort((a,b)=>b.orders-a.orders||a.name.localeCompare(b.name,'de'));
- if(!ranked.length){const empty=document.createElement('p');empty.textContent='Für '+selectedOrderYear+' wurden noch keine Bestellungen erfasst.';types.appendChild(empty);}
+ if(!ranked.length){const empty=document.createElement('p');empty.textContent=selectedOrderMonth!=='all'||selectedOrderDept!=='all'||selectedOrderArticle!=='all'?'Keine Bestellungen für die ausgewählten Filter.':'Für '+selectedOrderYear+' wurden noch keine Bestellungen erfasst.';types.appendChild(empty);}
  ranked.forEach(item=>{
   const row=document.createElement('button');row.type='button';row.className='pickup-row pickup-type-button';
   const label=document.createElement('span');label.className='pickup-type-label';label.textContent=item.name;
@@ -65,13 +77,14 @@ function renderOrderStats(){
  });
  const history=document.getElementById('order-history-list');history.replaceChildren();
  document.getElementById('order-history-title').textContent=selectedOrderProduct?'Bestellverlauf: '+selectedOrderProduct:'Bestellverlauf: Alle Bestellungen';
- const filtered=selectedOrderProduct?orders.filter(o=>(o.items||[]).some(item=>String(item.name||'').toLocaleLowerCase('de-DE')===selectedOrderProduct.toLocaleLowerCase('de-DE'))):orders;
- if(!filtered.length){const empty=document.createElement('p');empty.textContent='Keine Bestellungen im Jahr '+selectedOrderYear+'.';history.appendChild(empty);}
+ const historyArticleKey=selectedOrderProduct?orderArticleKey(selectedOrderProduct):selectedArticleKey;
+ const filtered=historyArticleKey?orders.filter(o=>orderMatchesArticle(o,historyArticleKey)):orders;
+ if(!filtered.length){const empty=document.createElement('p');empty.textContent='Keine Bestellungen für die ausgewählten Filter.';history.appendChild(empty);}
  filtered.forEach(order=>{
   const row=document.createElement('div');row.className='pickup-row';
   const date=document.createElement('strong');date.textContent=new Date(order.date).toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'short'});
   const details=document.createElement('span');
-  details.textContent=(Array.isArray(order.items)?order.items:[]).filter(item=>!selectedOrderProduct||String(item.name||'').toLocaleLowerCase('de-DE')===selectedOrderProduct.toLocaleLowerCase('de-DE')).map(item=>String(item.name||'Artikel')+' × '+(Number(item.quantity)||0)).join(', ');
+  details.textContent=(Array.isArray(order.items)?order.items:[]).filter(item=>!historyArticleKey||orderArticleKey(item.name)===historyArticleKey).map(item=>String(item.name||'Artikel')+' × '+(Number(item.quantity)||0)).join(', ');
   row.append(date,details);history.appendChild(row);
  });
 }
