@@ -278,3 +278,157 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
   gap:10px;
  }
 }
+
+
+/* Smartphone-Querformat 2026: kurze Displayhoehe darf die App nicht in
+   Desktop-Ansicht verwandeln oder den Inhalt unter festen Kopfzeilen verstecken. */
+@media (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
+ html, html body{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+ }
+ html body:not(:has(#shop-view:not([hidden]))){
+  padding-top:68px!important;
+ }
+ html body #facility-blue-header,
+ html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
+  box-sizing:border-box!important;
+  height:68px!important;
+  min-height:68px!important;
+  max-height:68px!important;
+  padding:6px 18px!important;
+  border-radius:0!important;
+ }
+ html body #facility-blue-header .facility-header-brand img{
+  width:185px!important;
+  max-width:35vw!important;
+  max-height:42px!important;
+  object-fit:contain;
+ }
+ html body #facility-blue-header .facility-header-subtitle{
+  font-size:13px!important;
+  line-height:1.1!important;
+ }
+ html body #home-view:not([hidden]),
+ html body #waste-view:not([hidden]),
+ html body #overview-menu-view:not([hidden]),
+ html body #order-overview-view:not([hidden]),
+ html body #waste-overview-view:not([hidden]){
+  box-sizing:border-box!important;
+  height:calc(100dvh - 68px)!important;
+  min-height:0!important;
+  max-height:calc(100dvh - 68px)!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  padding-bottom:calc(82px + env(safe-area-inset-bottom))!important;
+ }
+ html body #home-view .home-top{
+  margin-bottom:8px!important;
+  padding-top:8px!important;
+ }
+ html body #home-view .home-tiles{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+ }
+ html body #home-view .home-tiles a{
+  box-sizing:border-box!important;
+  min-width:0!important;
+  min-height:120px!important;
+  height:auto!important;
+  padding:9px 7px!important;
+  grid-template-rows:40px minmax(30px,auto) 17px!important;
+  row-gap:3px!important;
+ }
+ html body #home-view .home-tiles a > strong{
+  min-height:0!important;
+  font-size:clamp(12px,2.5vw,17px)!important;
+  line-height:1.12!important;
+ }
+ html body #home-view .home-tiles a > small{
+  font-size:11px!important;
+ }
+ html body #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  min-height:64px!important;
+  height:64px!important;
+  max-height:calc(64px + env(safe-area-inset-bottom))!important;
+  padding:4px max(10px,env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))!important;
+  border-radius:12px 12px 0 0!important;
+ }
+ html body #shop-view:not([hidden]){
+  display:flex!important;
+  flex-direction:column!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  overflow:hidden!important;
+ }
+ html body #shop-view:not([hidden]) > header{
+  box-sizing:border-box!important;
+  flex:0 0 64px!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  padding:5px 12px!important;
+ }
+ html body #shop-view:not([hidden]) > header .brand-logo{
+  width:auto!important;
+  max-width:min(200px,37vw)!important;
+  max-height:44px!important;
+  object-fit:contain;
+ }
+ html body #shop-view:not([hidden]) > .mobile-sticky-controls{
+  position:relative!important;
+  top:auto!important;
+  inset-block-start:auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  flex:0 0 auto!important;
+  min-height:0!important;
+  max-height:calc(100dvh - 140px)!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters{
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  gap:3px!important;
+ }
+ html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
+  min-height:48px!important;
+  height:auto!important;
+  padding:3px 1px!important;
+  font-size:clamp(10px,1.45vw,13px)!important;
+ }
+ html body #shop-view:not([hidden]) > main{
+  box-sizing:border-box!important;
+  display:block!important;
+  flex:1 1 0%!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  width:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:calc(78px + env(safe-area-inset-bottom))!important;
+ }
+ html body #order-overview-view:not([hidden]) > .order-sticky-tools{
+  top:0!important;
+  padding-top:3px!important;
+ }
+ html body.facility-search-open #facility-mobile-search-results:not([hidden]){
+  max-height:calc(100dvh - 140px)!important;
+ }
+}
+/* Sehr schmale Hochformat-Handys: Umbrueche statt seitlichem Scrollen. */
+@media (orientation:portrait) and (max-width:359px){
+ html body #home-view .home-tiles{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ html body #order-overview-view #order-filter-panel,
+ html body #order-overview-view .pickup-top-row{
+  min-width:0!important;
+ }
+}
