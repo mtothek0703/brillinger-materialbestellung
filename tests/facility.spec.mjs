@@ -201,3 +201,53 @@ test('Bestellübersicht: Überschrift und fünf Filter bleiben beim Scrollen fix
   const filters = await page.locator('#order-filter-panel').boundingBox();
   expect(title.y + title.height).toBeLessThan(filters.y);
 });
+
+
+test('Untere Navigation: vier ausgerichtete Symbole und Beschriftungen auf kleinen Smartphones', async ({ page, isMobile }) => {
+  if (!isMobile) return;
+  for (const hash of ['#start', '#shop']) {
+    await page.goto('/' + hash, { waitUntil: 'domcontentloaded' });
+    const nav = page.locator('#facility-home-nav');
+    await expect(nav).toBeVisible();
+    const ids = [
+      'a[href="#start"]',
+      '#facility-back-nav',
+      '#facility-search-toggle',
+      '#facility-profile-slot'
+    ];
+    const cells = nav.locator(':scope > a[href="#start"], :scope > #facility-back-nav, :scope > #facility-search-toggle, :scope > #facility-profile-slot');
+    const metrics = await cells.evaluateAll(nodes => nodes.map(node => {
+      const cell = node.getBoundingClientRect();
+      const icon = (node.querySelector('svg') || node.querySelector('#profile-edit')).getBoundingClientRect();
+      const label = node.querySelector('strong, span.facility-search-label, span.facility-profile-label, span:not([class])');
+      const labelBox = label.getBoundingClientRect();
+      const styles = getComputedStyle(label);
+      return {
+        width: cell.width,
+        cx: cell.x + cell.width / 2,
+        iconCx: icon.x + icon.width / 2,
+        iconY: icon.y,
+        iconSize: icon.width,
+        labelY: labelBox.y,
+        fontSize: parseFloat(styles.fontSize),
+        labelOverflow: label.scrollWidth - label.clientWidth,
+        labelCx: labelBox.x + labelBox.width / 2
+      };
+    }));
+    expect(metrics).toHaveLength(4);
+    for (const m of metrics) {
+      expect(Math.abs(m.width - metrics[0].width)).toBeLessThan(1.5);
+      expect(Math.abs(m.iconCx - m.cx)).toBeLessThan(2);
+      expect(Math.abs(m.labelCx - m.cx)).toBeLessThan(2);
+      expect(Math.abs(m.iconY - metrics[0].iconY)).toBeLessThan(2);
+      expect(Math.abs(m.labelY - metrics[0].labelY)).toBeLessThan(2);
+      expect(m.iconSize).toBeGreaterThanOrEqual(27);
+      expect(m.iconSize).toBeLessThanOrEqual(29);
+      expect(m.fontSize).toBeGreaterThanOrEqual(11);
+      expect(m.fontSize).toBeLessThanOrEqual(12.5);
+      expect(m.labelOverflow).toBeLessThanOrEqual(1);
+    }
+    expect(await nav.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 255, 255)');
+    await expect(nav.locator('#facility-custom-entry-nav')).toBeHidden();
+  }
+});
