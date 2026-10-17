@@ -160,3 +160,74 @@
   transform:none!important;
  }
 }
+
+
+/* Bestellartikel als Zeilenliste 2026: keine Einzelkacheln.
+   Die Schaltflächen und der Klick auf den Bestellverlauf bleiben erhalten. */
+html body #order-overview-view #order-type-buttons{
+ display:flex!important;
+ flex-direction:column!important;
+ grid-template-columns:none!important;
+ gap:0!important;
+ margin:12px 0 28px!important;
+ padding:0!important;
+ background:transparent!important;
+ border:0!important;
+ box-shadow:none!important;
+}
+html body #order-overview-view #order-type-buttons > .pickup-type-button{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:12px!important;
+ min-height:56px!important;
+ width:100%!important;
+ margin:0!important;
+ padding:12px 4px!important;
+ border:0!important;
+ border-bottom:1px solid #d7e4ed!important;
+ border-radius:0!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#153443!important;
+ text-align:left!important;
+ font-size:16px!important;
+ font-weight:600!important;
+ line-height:1.35!important;
+ cursor:pointer;
+}
+html body #order-overview-view #order-type-buttons > .pickup-type-button:last-child{
+ border-bottom:0!important;
+}
+html body #order-overview-view #order-type-buttons > .pickup-type-button > .pickup-type-label{
+ flex:1 1 auto!important;
+ min-width:0!important;
+ overflow-wrap:anywhere!important;
+}
+html body #order-overview-view #order-type-buttons > .pickup-type-button > strong{
+ display:block!important;
+ flex:0 0 auto!important;
+ min-width:0!important;
+ margin-left:auto!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#005c80!important;
+ font-size:16px!important;
+ font-weight:700!important;
+ line-height:1.35!important;
+ white-space:nowrap!important;
+}
+html body #order-overview-view #order-type-buttons > .pickup-type-button:hover{
+ border-color:#d7e4ed!important;
+ background:transparent!important;
+ box-shadow:none!important;
+}
+@media(max-width:720px){
+ html body #order-overview-view #order-type-buttons > .pickup-type-button{
+  min-height:52px!important;
+  padding:12px 2px!important;
+ }
+}
