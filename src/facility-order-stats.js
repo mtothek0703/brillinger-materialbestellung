@@ -4,9 +4,16 @@ let selectedOrderMonth="all";
 let selectedOrderDept="all";
 let selectedOrderArticle="all";
 const allCatalogArticleNames=["Milch","Hafermilch","Glasreiniger","AdBlue (10 Liter)","Scheibenreiniger (Sommer)","Scheibenreiniger (Winter)","Geschirrtücher","Klarspüler","Vileda MicroTuff Universal Mikrofasertuch, 38 × 38 cm","Putztücher","Scheuermilch","Scheuerschwamm","Spülmaschinensalz","Spülmittel","Spülmaschinen Tabs","Batterien","Desinfektionsreiniger","Flüssigseife","Kleber (UHU)","Sekundenkleber","Hygienebeutel","Rohrreiniger","Kabelbinder klein","Kabelbinder groß (7,6 × 450 mm)","Empfangsbestätigung","Allplastik-Blitzbinder, 240 mm, rot","Cuttermesser Wedo Safety Standard","Cuttermesser Westcott Cutter Premium","Dymo-Schriftbandkassette für LabelWriter","Dymo Etiketten 54x101 mm , weiß","Großraumtüte (Europack), 1.300 × 2.300 mm, 1.000 l","Matratzentüte auf Rolle, 105 × 20 × 230 cm","Edding 3000, 1,5–3 mm","Edding 400, 1 mm","Schere","Locher","Tesafilm-Rolle, 10 m × 19 mm","Tacker","Laminierfolie, klein, DIN A5","Laminierfolie, groß, DIN A4","Gummiringe, 85 mm","Würfelzucker 500 g","Kartonagen 600×400×300 mm (1)","Kartonagen 400×300×200 mm (2)","Kartonagen 310×230×100–160 mm (3)","Kartonagen 400×400×300 mm (4)","Kartonagen 240×200×100 mm (5)","Kartonagen 600×300×200 mm (6)","Natronkraftpapier auf Rolle (90 g)","PVC-Klebeband, 50 mm","Luftpolstertasche 18/H, 265 × 360 mm, braun","Begleitpapiertasche","DPD-Express-Klebeband","Thermo-Haftetiketten auf Rolle 105×148 mm, Kern 40 mm","Stretchfolie klein","Stretchfolie groß","Umreifungsband, Großrolle, 12,7 × 0,5 mm","Verschlusshülsen für Umreifungsband, 13 × 28 × 0,5 mm","Handabroller"];
+function isCartOrder(order){
+ if(!order||!order.date||isNaN(Date.parse(order.date)))return false;
+ // Frühere eigenständige Artikelwünsche zählen auch rückwirkend nicht als Bestellung.
+ if(String(order.note||'').startsWith('Artikelwunsch zur Aufnahme in den internen Bestellshop'))return false;
+ const items=Array.isArray(order.items)?order.items:[];
+ return !(items.length===1&&String(items[0]?.name||'').startsWith('ARTIKELWUNSCH:'));
+}
 function readOrderStats(){
- if(sharedFacilityStatsReady)return sharedFacilityStats.orders;
- try{const data=JSON.parse(localStorage.getItem('brillinger-bestellstatistik-v1')||'[]');return Array.isArray(data)?data.filter(o=>o&&o.date&&!isNaN(Date.parse(o.date))):[];}catch{return [];}
+ if(sharedFacilityStatsReady)return sharedFacilityStats.orders.filter(isCartOrder);
+ try{const data=JSON.parse(localStorage.getItem('brillinger-bestellstatistik-v1')||'[]');return Array.isArray(data)?data.filter(isCartOrder):[];}catch{return [];}
 }
 function closeOrderHistory(){
  document.getElementById('order-history-section').hidden=true;
