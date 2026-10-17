@@ -62,6 +62,11 @@ const PRODUCTS = Object.freeze([
 ]);
 /* Die Filter der Bestellstatistik nutzen künftig dieselben Artikelnamen wie der Shop. */
 window.facilityCatalogArticleNames=PRODUCTS.map(product=>product.name);
+// Die Bestellübersicht übernimmt dasselbe Artikelbild (bzw. Symbol) wie der Shop.
+window.facilityCatalogArticleMedia=Object.fromEntries(PRODUCTS.map(product=>[
+ String(product.name||'').trim().toLocaleLowerCase('de-DE'),
+ {image:product.image||'',symbol:product.symbol||'📦'}
+]));
 if(typeof window.renderOrderStats==='function')window.renderOrderStats();
 
 const RECIPIENT='michael.kohler@brillinger.de';
