@@ -328,6 +328,13 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
   const article = page.locator('#order-article-filter');
   const itemLabels = page.locator('#order-type-buttons .pickup-type-label');
   await expect(yearLabel).toHaveText(String(year));
+  // Für Safari/WebKit die isolierten Testdaten explizit in den
+  // Statistikzustand übernehmen. Keine echten Bestellungen werden angelegt.
+  await page.evaluate(testOrders => {
+    sharedFacilityStats={ orders:testOrders, waste:[] };
+    sharedFacilityStatsReady=true;
+    renderOrderStats();
+  }, orders);
   await expect(total).toHaveText('4');
   await expect(itemLabels).toHaveCount(4);
 
