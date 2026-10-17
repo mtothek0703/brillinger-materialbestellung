@@ -49,3 +49,114 @@
   animation-duration:0.01ms!important;
  }
 }
+
+
+/* Mobile Bottom-Navigation 2026: vier identische Navigationsfelder.
+   Gemeinsame Maße statt der älteren seitenabhängigen Korrekturregeln. */
+@media(max-width:720px){
+ :root{
+  --fm-nav-label-size:clamp(11px,3.25vw,12px);
+  --fm-nav-icon-size:28px;
+  --fm-nav-color:#0346ae;
+ }
+ html body #facility-home-nav,
+ html body:has(#shop-view:not([hidden])) #facility-home-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:52px!important;
+  grid-auto-rows:0!important;
+  column-gap:0!important;
+  row-gap:0!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  padding-left:max(8px,env(safe-area-inset-left))!important;
+  padding-right:max(8px,env(safe-area-inset-right))!important;
+  background:#fff!important;
+ }
+ html body #facility-home-nav > a[href="#start"],
+ html body #facility-home-nav > #facility-back-nav,
+ html body #facility-home-nav > #facility-search-toggle,
+ html body #facility-home-nav > #facility-profile-slot{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:28px 16px!important;
+  grid-row:1!important;
+  align-items:center!important;
+  align-content:center!important;
+  justify-content:center!important;
+  justify-items:center!important;
+  gap:5px!important;
+  height:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:center!important;
+  background:transparent!important;
+  border:0!important;
+ }
+ html body #facility-home-nav > a[href="#start"]{grid-column:1!important}
+ html body #facility-home-nav > #facility-back-nav{grid-column:2!important}
+ html body #facility-home-nav > #facility-search-toggle{grid-column:3!important}
+ html body #facility-home-nav > #facility-profile-slot{grid-column:4!important}
+ html body #facility-home-nav > a[href="#start"] > svg,
+ html body #facility-home-nav > #facility-back-nav > svg,
+ html body #facility-home-nav > #facility-search-toggle > svg,
+ html body #facility-home-nav > #facility-profile-slot > #profile-edit{
+  grid-column:1!important;
+  grid-row:1!important;
+  position:static!important;
+  top:auto!important;
+  align-self:center!important;
+  justify-self:center!important;
+  width:var(--fm-nav-icon-size)!important;
+  height:var(--fm-nav-icon-size)!important;
+  min-width:var(--fm-nav-icon-size)!important;
+  min-height:var(--fm-nav-icon-size)!important;
+  max-width:var(--fm-nav-icon-size)!important;
+  max-height:var(--fm-nav-icon-size)!important;
+  margin:0!important;
+  padding:0!important;
+  transform:none!important;
+  color:var(--fm-nav-color)!important;
+ }
+ html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle > svg{
+  transform:none!important;
+  position:static!important;
+  top:auto!important;
+ }
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  grid-row:2!important;
+  grid-column:1!important;
+  display:block!important;
+  align-self:center!important;
+  justify-self:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:var(--fm-nav-label-size)!important;
+  font-weight:700!important;
+  line-height:16px!important;
+  letter-spacing:0!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+  color:var(--fm-nav-color)!important;
+  transform:none!important;
+ }
+ html body #facility-home-nav #facility-profile-slot #profile-edit::after{
+  content:""!important;
+  display:block!important;
+  width:var(--fm-nav-icon-size)!important;
+  height:var(--fm-nav-icon-size)!important;
+  background:center / contain no-repeat url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230346ae%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%224%22%2F%3E%3Cpath%20d%3D%22M4%2021a8%208%200%200%201%2016%200%22%2F%3E%3C%2Fsvg%3E")!important;
+  transform:none!important;
+ }
+}
