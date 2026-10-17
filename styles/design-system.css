@@ -254,6 +254,12 @@ html body #order-overview-view #order-type-buttons .order-article-thumb{
  background:transparent;
  overflow:hidden;
 }
+/* Unbekannter Artikel: klares Plus statt beliebigem Produktbild. */
+html body #order-overview-view #order-type-buttons .order-article-thumb-unknown{
+ color:#001b79;
+ font-weight:700;
+ font-size:26px;
+}
 html body #order-overview-view #order-type-buttons .order-article-thumb img{
  display:block;
  width:100%;
