@@ -69,9 +69,21 @@ function renderOrderStats(){
  if(!ranked.length){const empty=document.createElement('p');empty.textContent=selectedOrderMonth!=='all'||selectedOrderDept!=='all'||selectedOrderArticle!=='all'?'Keine Bestellungen für die ausgewählten Filter.':'Für '+selectedOrderYear+' wurden noch keine Bestellungen erfasst.';types.appendChild(empty);}
  ranked.forEach(item=>{
   const row=document.createElement('button');row.type='button';row.className='pickup-row pickup-type-button';
+  const main=document.createElement('span');main.className='order-article-main';
+  const thumb=document.createElement('span');thumb.className='order-article-thumb';thumb.setAttribute('aria-hidden','true');
+  const media=window.facilityCatalogArticleMedia?.[orderArticleKey(item.name)];
+  if(media?.image){
+   const image=document.createElement('img');
+   image.src=media.image;image.alt='';image.loading='lazy';image.decoding='async';
+   image.addEventListener('error',()=>{image.remove();thumb.textContent=media.symbol||'📦';},{once:true});
+   thumb.appendChild(image);
+  }else{
+   thumb.textContent=media?.symbol||'📦';
+  }
   const label=document.createElement('span');label.className='pickup-type-label';label.textContent=item.name;
+  main.append(thumb,label);
   const count=document.createElement('strong');count.textContent=item.orders+' ›';
-  row.append(label,count);
+  row.append(main,count);
   row.addEventListener('click',()=>openOrderHistory(item.name));
   types.appendChild(row);
  });
