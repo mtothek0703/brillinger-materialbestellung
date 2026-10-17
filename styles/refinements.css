@@ -4,7 +4,7 @@
 html body #waste-view .waste-options{margin-top:12px!important}
 
 /* Gleiche Pull-to-refresh-Bewegung auch im internen Bestellshop. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]){
   transform:translateY(var(--facility-pull-distance))!important;
   transition:transform .14s ease-out!important;
@@ -16,7 +16,7 @@ html body #waste-view .waste-options{margin-top:12px!important}
 html body #waste-view .waste-options{margin-top:22px!important}
 
 /* Bestellshop: auch fixierte Kopfzeile beim Pull-to-refresh sichtbar mitbewegen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) > header{
   transform:translateY(var(--facility-pull-distance))!important;
   transition:transform .14s ease-out!important;
@@ -61,7 +61,7 @@ html body #facility-blue-header .facility-header-brand img{
 
 
 /* Müllentsorgung: Überschrift und Kacheln gemeinsam etwas tiefer; nach Displayhöhe angepasst. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #waste-view:not([hidden]) .waste-heading{
   margin-top:clamp(18px,3.5dvh,38px)!important;
  }
@@ -71,17 +71,17 @@ html body #facility-blue-header .facility-header-brand img{
 }
 
 /* Übersicht: Inhalt auf dieselbe obere Ausrichtung wie Müllentsorgung setzen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #overview-menu-view:not([hidden]){padding-top:15px!important}
  html body #overview-menu-view:not([hidden]) .waste-heading{margin-top:clamp(18px,3.5dvh,38px)!important;margin-bottom:20px!important}
  html body #overview-menu-view:not([hidden]) .waste-options{margin-top:38px!important}
 }
 
 /* Bestellübersicht: Überschrift gleich groß wie Müllentsorgung auf Smartphones. */
-@media(max-width:720px){html body #order-overview-view h1{font-size:24px!important;line-height:1.2!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body #order-overview-view h1{font-size:24px!important;line-height:1.2!important}}
 
 /* Smartphone: dieselbe untere Startseite/Profil-Navigation auch im Bestellshop. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:has(#shop-view:not([hidden])) #facility-home-nav{
   display:flex!important;justify-content:center!important;align-items:center!important;
  }
@@ -94,7 +94,7 @@ html body #facility-blue-header .facility-header-brand img{
 }
 
 /* Bestellübersicht: kompakte Überschrift in Anlehnung an Müllentsorgung. */
-@media(max-width:720px){html body #order-overview-view:not([hidden]) > h1{font-size:24px!important;line-height:normal!important;font-weight:700!important;color:#153443!important;margin:3px 0!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body #order-overview-view:not([hidden]) > h1{font-size:24px!important;line-height:normal!important;font-weight:700!important;color:#153443!important;margin:3px 0!important}}
 
 /* Startseite: Symbole, Überschriften und Untertitel aller Kacheln auf gleiche Höhe bringen. */
 html body #home-view .home-tiles a{
@@ -121,7 +121,7 @@ html body #home-view .home-tiles a > small{
 
 /* Pull-to-refresh im Shop: nur den Inhaltsbereich leicht bewegen.
    Die fixierte Kopfzeile bleibt an ihrem Platz, kein großer Leerraum darüber. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]){transform:none!important;transition:none!important}
  html body #shop-view:not([hidden]) > header{
   transform:none!important;transition:none!important;
@@ -137,7 +137,7 @@ html body #home-view .home-tiles a > small{
 
 /* iPhone Bestellshop: eigenes Scrollfenster verhindert Safari-Gummiband/Leerraum
    und hält den fixierten Kopfbereich stabil. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html:has(#shop-view:not([hidden])){height:100%!important;overflow:hidden!important;overscroll-behavior-y:none!important}
  html body:has(#shop-view:not([hidden])){
   height:100dvh!important;max-height:100dvh!important;min-height:0!important;
@@ -165,7 +165,7 @@ html body #home-view .home-tiles a > strong{min-height:43px!important}
 
 /* Shop Pull-to-refresh: komplette Shop-Ansicht samt fixer Kopfzeile bewegen.
    Bottom-Navigation bleibt am Platz, maximal 44px Ziehweg. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]){
   transform:translate3d(0,min(var(--facility-pull-distance),44px),0)!important;
   transition:transform .13s ease-out!important;
@@ -189,7 +189,7 @@ html body #home-view .home-tiles a > strong{min-height:41px!important}
 
 /* iPhone-Shop: fixierten Header NICHT über einen transformierten Vorfahren bewegen.
    Header und Inhalt separat um höchstens 36px versetzen; kein Leerraum durch position:fixed. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]){
   transform:none!important;
   transition:none!important;
@@ -208,11 +208,11 @@ html body #home-view .home-tiles a > strong{min-height:41px!important}
 html body #home-view .home-tiles a{background:#fff!important}
 
 /* Müllentsorgung: fünf Kacheln minimal nach oben; Überschrift unverändert. */
-@media(max-width:720px){}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){}
 
 /* Mobil: Such- und Kategorienbereich bleibt im normalen Seitenfluss.
    Dadurch überdeckt er beim Scrollen keine Produktkarten mehr. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls{
   position:relative!important;
   top:auto!important;
@@ -229,13 +229,13 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Müllentsorgung: Überschrift und fünf Kacheln gemeinsam etwas höher setzen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #waste-view:not([hidden]) .waste-heading{margin-top:8px!important}
  html body #waste-view:not([hidden]) .waste-options{margin-top:28px!important}
 }
 
 /* FIX MOBILE SHOP 2026-10-14: Verhindert Überlagerung durch frühere hochspezifische Sticky-Regeln. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls,
  html body #shop-view:not([hidden]) .mobile-sticky-controls{
   position:static!important;
@@ -260,10 +260,10 @@ html body #home-view .home-tiles a{background:#fff!important}
 
 /* Ladekreis im mobilen Bestellshop näher an den oberen Bildschirmrand setzen. */
 /* Beim Ziehen sitzt der Kreis mittig in der Lücke oberhalb der Shop-Kopfzeile. */
-@media(max-width:720px){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:0!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body:has(#shop-view:not([hidden])) #facility-pull-refresh{top:0!important}}
 
 /* Shop: Brillinger-blauer Header mit weißem Original-Logo. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) > header{
   background:linear-gradient(180deg,#093b9a 0%,#001b79 100%)!important;
   border-color:transparent!important;
@@ -274,13 +274,13 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Warenkorb-Button in der blauen Shop-Kopfzeile weiß darstellen. */
-@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link{background:#fff!important;background-color:#fff!important;border-color:#fff!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body #shop-view:not([hidden]) > header .cart-link{background:#fff!important;background-color:#fff!important;border-color:#fff!important}}
 
 /* Warenkorb-Zaehler ohne hellblauen Kreis im mobilen Shop. */
-@media(max-width:720px){html body #shop-view:not([hidden]) > header .cart-link #cart-count{background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body #shop-view:not([hidden]) > header .cart-link #cart-count{background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}}
 
 /* Mobile Shop: Such- und Kategoriezone dezent hellblau vom Artikelsortiment absetzen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls{
   background:#e8f0f8!important;
   border-bottom:2px solid #0a3b91!important;
@@ -289,7 +289,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Shop 2026-10-14: curved blue header and inline search icon */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  #shop-view>header{
   background:linear-gradient(180deg,#20469b 0%,#07176b 100%)!important;
   border-bottom:0!important;
@@ -312,7 +312,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Mobile: Suchfeld, Sonderartikel-Button und Kategorien beim Zurueckscrollen wieder sichtbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls{
   position:sticky!important;
   top:var(--shop-mobile-header-height, 0px)!important;
@@ -324,7 +324,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Korrektur: iOS-Shop scrollt im #shop-view, nicht im Dokument. Bei Aufwaertsbewegung Filter als Overlay unter der Kopfzeile anzeigen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
   position:fixed!important;
   top:var(--mobile-header-height, 110px)!important;
@@ -340,7 +340,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Sichtbare Suchkacheln beim Aufwaertswischen: hoehere Prioritaet als alte static-Regeln. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
   position:sticky!important;top:86px!important;inset-block-start:86px!important;
   z-index:1090!important;left:auto!important;right:auto!important;width:auto!important;
@@ -350,11 +350,11 @@ html body #home-view .home-tiles a{background:#fff!important}
 }
 
 /* Shop: Filter und Sonderartikel wieder sichtbar; nur den Rahmen um die Artikelsuche entfernen. */
-@media(max-width:720px){html body #shop-view .mobile-sticky-controls{display:block!important}html body #shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}}
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){html body #shop-view .mobile-sticky-controls{display:block!important}html body #shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}}
 @media(min-width:721px){#shop-view .mobile-sticky-controls{display:grid!important}#shop-view .product-search{background:transparent!important;border:0!important;box-shadow:none!important}}
 
 /* 2026-10-14: Such-/Filterbereich dauerhaft unter dem fixierten Shop-Header halten. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls,
  html body #shop-view:not([hidden]) .mobile-sticky-controls.facility-reveal-controls{
   display:block!important;position:sticky!important;
@@ -372,7 +372,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 /* 2026-10-14: STABILE Shop-Fixierung: Das Filterfeld ist auf Mobilgeräten
    DIREKTES Kind des scrollenden #shop-view, nicht mehr Kind des bewegten main.
    Damit bleibt position:sticky auch in iOS-Safari verlässlich wirksam. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls {
    display:block!important;
    position:-webkit-sticky!important;
@@ -410,7 +410,7 @@ html body #home-view .home-tiles a{background:#fff!important}
 /* 2026-10-14 – Shop mobile: feste Kopf-/Filterzone, nur Artikelliste scrollt.
    Die Filter wurden per JS direkt vor main in #shop-view verschoben.
    Darum sind weder sticky noch ein schwebendes Overlay erforderlich. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) {
    position:relative!important;
    display:flex!important;
@@ -489,7 +489,7 @@ html body #shop-view .product-search #article-search:focus{
 }
 
 /* Mobile Artikelsuche: exakt dieselbe Breite und Hoehe wie "Artikel nicht gefunden?". */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .product-search,
  html body #shop-view:not([hidden]) .mobile-sticky-controls .custom-entry-link {
   display:block!important;
@@ -524,7 +524,7 @@ html body #shop-view .product-search #article-search:focus{
 }
 
 /* Sonderartikel-Button: Plus durch nach rechts gerichteten Pfeil ersetzen. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls a.custom-entry-link {
   position:relative!important;
   font-size:0!important;
@@ -551,7 +551,7 @@ html body #shop-view .product-search #article-search:focus{
 }
 
 /* Kategorien-Kachel: dünner blauer Rahmen wie bei der Artikelsuche. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav {
   border:1px solid #0a3b91!important;
   border-radius:11px!important;
@@ -562,7 +562,7 @@ html body #shop-view .product-search #article-search:focus{
 /* Pull-to-refresh Bestellshop: Beim aktiven Ziehen die GESAMTE Shop-Ansicht
    verschieben (Header, Suche, Kategorien und Artikel zusammen).
    Nur während des Ziehens wird ein Transform auf dem Shop gesetzt. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) {
   transition:transform .16s ease-out!important;
  }
@@ -601,14 +601,14 @@ html body #shop-view .product-search #article-search:focus{
 #shop-search-suggestions .shop-search-suggestion:focus-visible{
  outline:2px solid #0a3b91;outline-offset:2px;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  #shop-search-suggestions{gap:6px;padding:8px 10px;font-size:13px}
  #shop-search-suggestions .shop-search-suggestion{font-size:13px}
 }
 
 /* Auf der Startseite ist horizontaler Zurueck-Swipe kein Navigationsziel.
    Vertikales Scrollen und Tippen auf die Kacheln bleiben moeglich. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html:has(#home-view:not([hidden])),
  body:has(#home-view:not([hidden])){
   overscroll-behavior-x:none!important;
@@ -623,7 +623,7 @@ html body #shop-view .product-search #article-search:focus{
 /* Shop Mobil: Bedienbereich gleitet beim Runterscrollen unter den
    feststehenden blauen Header und erscheint beim Hochscrollen wieder.
    Negative untere Margin gibt den Platz an die Artikelliste zurueck. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls{
   transition:transform .19s ease,margin-bottom .19s ease!important;
@@ -645,7 +645,7 @@ html body #shop-view .product-search #article-search:focus{
 
 /* iOS: Wisch-Navigation ohne lange graue Kachel-Markierungen.
    Hover-Stile gelten auf Touchscreens nicht als permanente Auswahl. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html,body,a,button,[role="button"],.home-tiles a,.waste-option,
  .pickup-type-button,.category-button{
   -webkit-tap-highlight-color:transparent!important;
@@ -681,7 +681,7 @@ html body #shop-view .product-search #article-search:focus{
 
 /* Untere Startseite/Profil-Leiste: beim Scrollen wie die Suchleiste ein- und
    ausfahren. Im Shop wird exakt der Zustand der Suchleiste verwendet. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   transform:translate3d(0,0,0)!important;
   transition:transform .19s ease!important;
@@ -701,7 +701,7 @@ html body #shop-view .product-search #article-search:focus{
 
 /* Mobile Zurueckwisch-Geste: horizontale Browser-Back-/Forward-Gesten
    nach Moeglichkeit unterbinden, vertikales Scrollen und Zoom erhalten. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html,html body,
  html body #home-view,
  html body #waste-view,
@@ -719,7 +719,7 @@ html body #shop-view .product-search #article-search:focus{
 /* Beim Scrollen die untere Navigation vollstaendig ausblenden.
    Der bisherige Schatten ragte trotz weggeschobener Leiste noch ein
    paar Pixel ins Bild und erschien als grauer Rand am unteren Bildschirm. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.facility-bottom-nav-hidden #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
   transform:translate3d(0,calc(100% + 48px),0)!important;
@@ -736,7 +736,7 @@ html body #shop-view .product-search #article-search:focus{
 /* Mehr Platz fuer die Artikelliste auf Smartphones:
    Der ausgeblendete Such-/Kategorieblock darf nicht weiter die Hoehe
    des Scrollfensters belegen. Der frei werdende Platz gehoert den Artikeln. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
   html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls,
   html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls.facility-reveal-controls {
     min-height:0!important;
@@ -773,7 +773,7 @@ html body #shop-view .product-search #article-search:focus{
 
 /* Startseite: horizontale Browser-Gesten und seitliches Gummiband vermeiden.
    Auf iOS bleiben vertikales Scrollen und normale Kachel-Taps erhalten. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html:has(#home-view:not([hidden])),
  html body:has(#home-view:not([hidden])),
  html body #home-view:not([hidden]),
@@ -793,7 +793,7 @@ html body #shop-view .product-search #article-search:focus{
 /* Mobiler Shop: stabiles Listenende statt nachgebender Gesamtseite.
    Gleicher unterer Abstand bei sichtbaren/versteckten Filtern verhindert,
    dass scrollHeight am Ende umspringt und Safari den Inhalt verschiebt. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
   html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) > main,
   html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]).facility-shop-controls-hidden > main {
     padding-bottom:calc(86px + env(safe-area-inset-bottom))!important;
@@ -810,7 +810,7 @@ html body #shop-view .product-search #article-search:focus{
 /* 2026-10-15: Untere Navigation auf Smartphones dauerhaft fixieren.
    Sie bleibt beim Scrollen von Artikeln und Filtern sichtbar, auch wenn
    aeltere JS-Logik die Klasse facility-bottom-nav-hidden setzt. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav,
  html body.facility-bottom-nav-hidden #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav {
@@ -878,7 +878,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Sonderartikel nach Reload: der fixe 86px-Kopf darf niemals die Ueberschrift
    oder den Zurueck-Link verdecken. Nur die eigene Formularansicht betreffen. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
   html body.custom-entry-view #shop-view:not([hidden]) {
     padding-top:86px!important;
     box-sizing:border-box!important;
@@ -903,7 +903,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    20px unter dem blauen Header, seitlich gleichmaessig eingerueckt,
    unteres Ende oberhalb der dauerhaft fixierten Navigation.
    Auf kleineren Displays bleibt das Formular bei Bedarf scrollbar. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.custom-entry-view #shop-view:not([hidden]) {
    padding-top:86px!important;
    padding-bottom:0!important;
@@ -1164,7 +1164,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    Kategorien und Sonderartikel-Kachel bleiben oben bestehen.
    Die PC-Ansicht bleibt unveraendert. */
 #facility-search-toggle {display:none}
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav {
    gap:0!important;
    justify-content:center!important;
@@ -1241,7 +1241,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Mobile Suchfeld vollständig aus dem oberen App-Bereich entfernen.
    Nur beim Öffnen über die Lupe wird das Overlay sichtbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.facility-search-open) > .product-search {
    display:none!important;
  }
@@ -1255,7 +1255,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 
 /* Smartphone: "Suche" unter der Lupe wie Startseite und Profil. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav #facility-search-toggle{
   flex-direction:column!important;
   gap:3px!important;
@@ -1282,7 +1282,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    Bestandsfarben und Iconstil der anderen drei Eintraege uebernehmen.
    Die bisherige Artikel-nicht-gefunden-Kachel nur mobil entfernen. */
 #facility-custom-entry-nav{display:none!important}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   justify-content:space-evenly!important;
   gap:0!important;
@@ -1343,7 +1343,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone: alte obere "Artikel nicht gefunden?"-Kachel definitiv entfernen.
    Der neue Navigationspunkt Artikelwunsch bleibt erhalten. */
-@media (max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.custom-entry-view) #shop-view:not([hidden]) > .mobile-sticky-controls > a.custom-entry-link,
  html body #shop-view:not([hidden]) .mobile-sticky-controls > a.custom-entry-link {
    display:none!important;
@@ -1363,7 +1363,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone: vier gleich breite Navigationsplaetze, Icons und Texte zentriert.
    Grid verhindert ungleiche Abstaende durch verschiedene Beschriftungslaengen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
@@ -1414,7 +1414,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 /* Smartphone: Kategorieauswahl als Brillinger-Minikacheln mit Symbolen.
    Desktop-Buttons bleiben im bisherigen Erscheinungsbild. */
 .category-tile-icon{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-nav{
   padding:3px 8px!important;
   margin:0!important;
@@ -1482,7 +1482,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone: stabiles Navigationsraster ohne Wechsel zwischen flex/grid.
    Vier feste gleichbreite Slots, auch bei Tap, Seitenwechsel und Wischen. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav,
  html body.facility-bottom-nav-hidden #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav,
@@ -1604,7 +1604,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 /* Nur Smartphone: Reinigung und Hygiene in der Kategorie auf zwei Zeilen. */
 .category-mobile-break{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view .category-button .category-mobile-break{display:block!important}
 }
 
@@ -1614,7 +1614,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    auch den von iOS dargestellten oberen Systembereich. Der bisherige
    Headerplatz wird am Body reserviert: kein doppelter Balken oder Sprung
    der Start-/Uebersichtsseiten. Nur Nicht-Shop-Seiten. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(:has(#shop-view:not([hidden]))) {
    padding-top:166px!important;
  }
@@ -1637,7 +1637,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 /* Smartphone Warenkorb: wie Artikelwunsch eine eingerueckte Karte zwischen
    fixiertem blauem Header und unterer Navigation. Nur main scrollt;
    der Zurueck-Link und der Kartenrand bleiben nicht mehr verdeckt. */
-@media (max-width:720px) {
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]){
    display:flex!important;
    flex-direction:column!important;
@@ -1701,7 +1701,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone: Bestellen bleibt im Warenkorb dauerhaft oberhalb der
    unteren vierteiligen Navigation. Nur der Warenkorbinhalt scrollt. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view > #order-button {
    display:flex!important;
    position:fixed!important;
@@ -1735,7 +1735,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone-Warenkorb: Rueckweg dauerhaft am oberen Rand des
    Warenkorb-Scrollbereichs halten, ohne die Karte oder ihre Hoehe zu bewegen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb > .mobile-back-to-shop {
    display:inline-flex!important;
    position:sticky!important;
@@ -1756,7 +1756,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
    auf PC werden die Bilder nicht eingeblendet. */
 .cart-item-product > .cart-item-image{display:none}
 .cart-item-product > .cart-item-details{display:contents}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #cart-items > .cart-item-product{
    display:grid!important;
    grid-template-columns:48px minmax(0,1fr)!important;
@@ -1791,7 +1791,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone-Warenkorb: Zurueck-Link ausserhalb der Bestellkachel.
    Bleibt beim Scrollen direkt unter dem Header sichtbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
    display:inline-flex!important;
    position:sticky!important;
@@ -1818,7 +1818,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Smartphone: Bestell- und Statusmeldung deutlich hoeher, sichtbar direkt
    unter dem blauen Header statt unten hinter Bestellbutton/Navigation. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body > #feedback.live-message:not(:empty){
    position:fixed!important;
    top:106px!important;
@@ -1838,7 +1838,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Einheitliches Pull-to-refresh 2026-10-15: Kopfbereich und aktive Seite folgen exakt demselben Ziehweg.
    Keine Einzelanimation waehrend der Fingerbewegung, damit kein Spalt entsteht. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-blue-header,
  html body #home-view:not([hidden]),
  html body #waste-view:not([hidden]),
@@ -1870,7 +1870,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Einheitliches Pull-to-refresh: gesamtes Dokument inklusive Kopfzeile,
    Warenkorb, Seiteninhalt und unterer Navigation verschieben. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html:has(body.facility-whole-page-pulling){
   background:#1c398d!important;
   overscroll-behavior-y:none!important;
@@ -1904,7 +1904,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 
 /* Muellentsorgung: etwas groessere Kacheln, angepasst an die Displayhoehe.
    Auf kleinen Smartphones kompakt, damit alle fuenf sichtbar bleiben. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #waste-view:not([hidden]) .waste-options{
   gap:clamp(8px,1.1dvh,12px)!important;
  }
@@ -1925,7 +1925,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 
 /* Nur der Zurueck-Button wird ein-/ausgeblendet; Bestellen bleibt fixiert. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
   transition:opacity .16s ease,visibility .16s ease!important;
  }
@@ -1937,13 +1937,13 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 
 /* Artikelwunsch: Zurueck-zu-den-Artikeln-Button hier nicht anzeigen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.custom-entry-view #shop-view:not([hidden]) .mobile-back-to-shop{display:none!important}
 }
 
 /* Warenkorb: Zurueck zu den Artikeln bleibt direkt unter dem Shop-Header
    fest im Viewport statt mit der Bestellliste zu scrollen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-back-to-shop{
   position:fixed!important;
   top:102px!important;
@@ -1960,7 +1960,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 }
 
 /* Warenkorb-Link liegt nun direkt unter body ausserhalb der scrollbaren Shop-Ansicht. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view > a.mobile-back-to-shop{
   display:inline-flex!important;
   position:fixed!important;
@@ -1989,7 +1989,7 @@ body.custom-entry-view #custom-product-form .custom-field-clear {margin:0!import
 html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
 
 /* Smartphone-Warenkorb: Bestellkachel direkt unter den fixierten Zurueck-Button ruecken. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout{
   padding-top:0!important;
  }
@@ -1999,7 +1999,7 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
 }
 
 /* Warenkorb: Zurueck direkt in der blauen Kopfzeile links vom Warenkorb. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
   display:inline-flex!important;
   position:relative!important;
@@ -2032,7 +2032,7 @@ html body:not(.mobile-cart-view) > a.mobile-back-to-shop{display:none!important}
 }
 
 /* Zurueck-Pfeil kompakt links neben dem Warenkorb im blauen Header. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
   display:inline-flex!important;
   align-items:center!important;
@@ -2064,7 +2064,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Warenkorb: Zurueck-Pfeil in der blauen Kopfzeile weiss mit blauer Schrift. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
   background:#fff!important;
   background-color:#fff!important;
@@ -2075,7 +2075,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Verbindliche Gestaltung des Zurueck-Pfeils im mobilen Warenkorb. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop,
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:link,
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop:visited{
@@ -2102,7 +2102,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Warenkorb: Zurueck-Pfeil gleich hoch wie Warenkorb-Button. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{
   width:46px!important;
   min-width:46px!important;
@@ -2122,7 +2122,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Untere Navigation: Zurueck-Taste zwischen Start und Suche. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{gap:0!important;justify-content:space-around!important}
  html body #facility-home-nav > #facility-back-nav{
   display:flex!important;flex-direction:column!important;align-items:center!important;
@@ -2138,7 +2138,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 
 /* Farbkonzept beibehalten: weisse untere Leiste, alle fuenf Symbole
    identisch Brillinger-blau und gleichmaessig verteilt. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   grid-template-columns:repeat(5,minmax(0,1fr))!important;
   background:#fff!important;
@@ -2180,7 +2180,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 
 /* Korrektur: Mobile Bottom-Navigation strikt einzeilig mit fuenf Spalten.
    Auch alte Flex/Grid-Zuweisungen fuer die Einzelelemente neutralisieren. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   display:grid!important;
   grid-template-columns:repeat(5,minmax(0,1fr))!important;
@@ -2232,7 +2232,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 
 /* Fuenf Navigationspunkte: dem langen Titel Artikelwunsch genug Platz geben,
    ohne dass die Beschriftung den Profil-Button ueberlappt. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   grid-template-columns:minmax(0,.95fr) minmax(0,.85fr) minmax(0,.85fr) minmax(0,1.45fr) minmax(0,.75fr)!important;
   overflow:visible!important;
@@ -2264,7 +2264,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Finale Ausrichtung: fuenf exakt gleich breite Felder in EINER Zeile. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   grid-template-columns:repeat(5,minmax(0,1fr))!important;
   grid-template-rows:50px!important;
@@ -2296,13 +2296,13 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 }
 
 /* Warenkorb: oberen Zurueck-Pfeil ausblenden; Navigation unten bleibt. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) > header > a.mobile-back-to-shop{display:none!important}
 }
 
 /* Einheitliche Bottom-Navigation: Icons und Texte auf einer gemeinsamen Achse,
    fuenf gleich breite Klickflaechen und identische vertikale Abstaende. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav{
   display:grid!important;
   grid-template-columns:repeat(5,minmax(0,1fr))!important;
@@ -2376,7 +2376,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 
 /* Shop-spezifische alte Vier-Spalten-Regel ueberstimmen:
    identische fuenfteilige Navigation wie auf allen anderen Seiten. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:has(#shop-view:not([hidden])) #facility-home-nav,
  html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
@@ -2395,7 +2395,7 @@ html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]
 
 /* Smartphone: Warenkorb-Ueberschrift oberhalb statt innerhalb der ganzen Kachel. */
 .mobile-cart-outside-title{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) .shop-layout > .mobile-cart-outside-title{
   display:block!important;
   box-sizing:border-box!important;
@@ -2421,7 +2421,7 @@ html body #shop-view:not([hidden]) .category-nav{
 }
 
 /* Nur Smartphone: Kategorie-Minikacheln etwas kompakter. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
   min-height:49px!important;
   padding:3px 2px!important;
@@ -2440,7 +2440,7 @@ html body #shop-view:not([hidden]) .category-nav{
 html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custom-entry-nav{
  display:none!important;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav{
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
  }
@@ -2451,7 +2451,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Mobile Kategorie-Kacheln ohne Einzelrahmen */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button,
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button.active{
   border:none!important;
@@ -2464,7 +2464,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Nur Smartphone: laengere Beschriftung Artikelsuche sauber zentrieren. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
   font-size:clamp(9px,2.35vw,11px)!important;
   letter-spacing:-.25px!important;
@@ -2476,7 +2476,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Nur App: aeussere Gesamt-Kachel der Kategorien ohne Rahmen.
    Die kleinen einzelnen Kategorie-Kacheln behalten ihre Rahmen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls nav.category-nav{
   border:0!important;
   outline:0!important;
@@ -2492,7 +2492,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Smartphone: Kategorie-Kacheln noch etwas kompakter, Rahmen unveraendert. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-sticky-controls .category-filters > .category-button{
   min-height:44px!important;
   padding:2px 2px!important;
@@ -2512,7 +2512,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 
 /* Smartphone: alle Navigationssymbole nutzen dieselbe vertikale Rasterposition. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav > #facility-search-toggle > svg,
  html body #facility-home-nav > #facility-search-toggle > .facility-search-label{
   position:static!important;
@@ -2522,7 +2522,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Smartphone: Artikelwunsch oberhalb der Artikel statt im unteren Menue. */
 .mobile-article-wish-button{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav,
  html body:has(#shop-view:not([hidden])) #facility-home-nav,
  html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
@@ -2542,7 +2542,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Vier gleich breite Navigationsfelder: identische Symbol-/Text-Ausrichtung
    auch im Shop und beim Ein-/Ausblenden der unteren Leiste. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav,
  html body:has(#shop-view:not([hidden])) #facility-home-nav,
  html body.facility-bottom-nav-hidden #facility-home-nav,
@@ -2611,7 +2611,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Abschliessende Navigation: auch Shop-spezifische alte 5.-Spalte
    ueberstimmen. Alle vier Tabs exakt in einer Zeile und einem Raster. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:has(#shop-view:not([hidden])) #facility-home-nav,
  html body.facility-bottom-nav-hidden:has(#shop-view:not([hidden])) #facility-home-nav,
  html body:not(.mobile-cart-view):not(.custom-entry-view):has(#shop-view:not([hidden]).facility-shop-controls-hidden) #facility-home-nav{
@@ -2629,7 +2629,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Smartphone: Artikel-nicht-gefunden-Button Brillinger-Blau mit weisser Schrift. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) #artikel > .mobile-article-wish-button{
   background:#0346ae!important;
   color:#fff!important;
@@ -2639,7 +2639,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Smartphone: Artikelsuche-Lupe exakt 1px tiefer */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav > #facility-search-toggle > svg{
   position:relative!important;
   top:1px!important;
@@ -2648,7 +2648,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Sichtbare Feinausrichtung: NUR Lupe, 3px nach unten, auch im Shop.
    Transform ueberschreibt alte position/transform:none-Regeln. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav > #facility-search-toggle > svg,
  html body:has(#shop-view:not([hidden])) #facility-home-nav > #facility-search-toggle > svg{
   position:relative!important;
@@ -2659,7 +2659,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 
 /* Smartphone: X direkt im Namensfeld des Mitarbeiterprofils. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  .profile-name-clear-wrap{position:relative!important;width:100%!important}
  .profile-name-clear-wrap #profile-name{padding-right:46px!important}
  .profile-name-clear-wrap #profile-name-clear{
@@ -2675,7 +2675,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 @media(min-width:721px){.profile-name-clear-wrap #profile-name-clear{display:none!important}}
 
 /* Smartphone: Artikel-nicht-gefunden direkt unter den Kategorie-Kacheln. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]) .mobile-sticky-controls .category-nav > .mobile-article-wish-button{
   display:flex!important;
   align-items:center!important;
@@ -2699,7 +2699,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* iPhone Warenkorb: 16px im Anmerkungsfeld verhindert Safari-Autozoom.
    Karte und Formular bleiben in der normalen Viewportbreite. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.mobile-cart-view #shop-view:not([hidden]) #warenkorb #note{
   font-size:16px!important;
   line-height:1.45!important;
@@ -2714,7 +2714,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Smartphone: Kategorien und Artikelwunsch bleiben auch bei aktiver Suche sichtbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.facility-search-open #shop-view:not([hidden]) > .mobile-sticky-controls{
   display:block!important;
  }
@@ -2722,7 +2722,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Smartphone: ueberfluessigen Zurueck-zu-den-Artikeln-Button
    unterhalb der Artikelliste ausblenden; untere Navigation bleibt. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-view:not([hidden]) .mobile-back-to-shop{
   display:none!important;
  }
@@ -2731,7 +2731,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 /* iPhone Artikelsuche: eigenstaendige scrollbare Trefferansicht
    ueber Suchfeld und Tastatur, statt Treffer hinter Kategorien zu schieben. */
 #facility-mobile-search-results{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.facility-search-open #facility-mobile-search-results:not([hidden]){
   display:block!important;
   position:fixed!important;
@@ -2762,7 +2762,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Nur Smartphone: den zusaetzlichen Zur-Uebersicht-Link
    oberhalb von "Uebersicht Bestellungen" entfernen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view > a.waste-back{
   display:none!important;
  }
@@ -2770,7 +2770,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Nur Smartphone, Uebersicht Bestellungen: blauer Kopfbereich
    wie im Bestellshop kompakt (86px), Logo links, ohne zweite Titelzeile. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:has(#order-overview-view:not([hidden])){
   padding-top:86px!important;
  }
@@ -2808,14 +2808,14 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Smartphone: Artikelvorschlags-Leiste ueber Suchtreffern ausblenden.
    Die eigentlichen Artikel-Suchergebnisse bleiben sichtbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #shop-search-suggestions{
   display:none!important;
  }
 }
 
 /* Mobile Bestellübersicht: blaue Kopfzeile unten gerade statt gebogen. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body:has(#order-overview-view:not([hidden])) #facility-blue-header{
   border-radius:0!important;
   border-bottom-left-radius:0!important;
@@ -2831,7 +2831,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Bestellübersicht: nur mobil Monatsfilter anstelle der Gesamtbestellungen. */
 #order-mobile-month-slot{display:none}
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-all-history{display:none!important}
  html body #order-overview-view #order-mobile-month-slot{
   display:flex!important;
@@ -2894,7 +2894,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* Smartphone: waehrend der Artikelsuche Kategorien samt Artikelwunsch
    am festen Platz halten. Die Treffer beginnen erst unter deren Unterkante. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.facility-search-open #shop-view:not([hidden]) > .mobile-sticky-controls{
   position:fixed!important;
   top:86px!important;
@@ -2910,7 +2910,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Nur Smartphone: Monatsauswahl ohne Ueberschrift 'Monat'. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-mobile-month-slot label{
   display:none!important;
  }
@@ -2922,7 +2922,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Monatsauswahl Bestellungen: gleiche Größe wie Jahresauswahl (mobil). */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-mobile-month-slot{
   padding:0!important;
  }
@@ -2942,7 +2942,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 
 /* iPhone: beim Tippen die bestehende Shopansicht nicht verschieben.
    Suchfeld bleibt knapp oberhalb der eingeblendeten Tastatur. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body.facility-search-open.facility-search-keyboard-open > .product-search{
   bottom:calc(var(--facility-search-keyboard-inset, 0px) + 10px)!important;
  }
@@ -2956,7 +2956,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Bestellübersicht: Jahreswechsel auf Smartphones besser lesbar und antippbar. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view .pickup-top-row .pickup-year-selector{
   padding:6px 8px!important;
   gap:4px!important;
@@ -2979,7 +2979,7 @@ html body:not(:has(#shop-view:not([hidden]))) #facility-home-nav #facility-custo
 }
 
 /* Monatsauswahl: nur das Auswahlfeld selbst, ohne umgebende Kachel. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-mobile-month-slot{
   background:transparent!important;
   border:0!important;
@@ -3004,7 +3004,7 @@ html body #order-overview-view #order-filter-panel{
  -webkit-backdrop-filter:none!important;
  padding:0!important;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view .order-filter-wrap{
   margin-top:0!important;
  }
@@ -3072,7 +3072,7 @@ html body #order-overview-view #order-filter-panel{
 
 /* Bestellübersicht: Beschriftung aller drei Auswahlfelder mittig,
    native Dropdown-Pfeile und Filterfunktion bleiben erhalten. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-mobile-month-slot select#order-month-filter,
  html body #order-overview-view #order-filter-panel select#order-dept-filter,
  html body #order-overview-view #order-filter-panel select#order-article-filter{
@@ -3101,7 +3101,7 @@ html body #order-overview-view .order-sticky-tools > .order-filter-wrap{
  top:auto!important;
  z-index:auto!important;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  /* Die Übersicht selbst ist das Scrollfenster unter der blauen Kopfzeile. */
  html body #order-overview-view:not([hidden]) > .order-sticky-tools{
   top:0!important;
