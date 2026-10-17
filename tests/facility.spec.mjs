@@ -382,3 +382,44 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
   await expect(total).toHaveText('4');
   await expect(itemLabels).toHaveCount(4);
 });
+
+
+test('Bestellübersicht: kleine Shopbilder vor jedem Artikel, weiterhin Textliste', async ({ page, isMobile }) => {
+  await page.goto('/#bestelluebersicht', { waitUntil:'domcontentloaded' });
+  await expect.poll(() => page.evaluate(() => Boolean(window.facilityCatalogArticleMedia?.milch?.image))).toBe(true);
+  await page.evaluate(() => {
+    const year=new Date().getFullYear();
+    readOrderStats=()=>[{
+      date:`${year}-03-15T11:00:00Z`,
+      department:'Logistik',
+      items:[{name:'Milch',quantity:2},{name:'Individueller Testartikel',quantity:1}]
+    }];
+    renderOrderStats();
+  });
+  const rows=page.locator('#order-type-buttons .pickup-type-button');
+  await expect(rows).toHaveCount(2);
+  const milk=rows.filter({has:page.locator('.pickup-type-label', {hasText:'Milch'})});
+  const fallback=rows.filter({has:page.locator('.pickup-type-label', {hasText:'Individueller Testartikel'})});
+  await expect(milk.locator('.order-article-main > .order-article-thumb img')).toHaveAttribute('src','bilder/milch-edeka-aktuell.svg');
+  await expect(milk.locator('.pickup-type-label')).toHaveText('Milch');
+  await expect(milk.locator('strong')).toHaveText('1 ›');
+  await expect(fallback.locator('.order-article-thumb')).toHaveText('📦');
+  await expect(fallback.locator('.order-article-thumb img')).toHaveCount(0);
+  const style=await milk.evaluate(row=>{
+    const icon=row.querySelector('.order-article-thumb').getBoundingClientRect();
+    const label=row.querySelector('.pickup-type-label').getBoundingClientRect();
+    const number=row.querySelector('strong').getBoundingClientRect();
+    const cs=getComputedStyle(row);
+    return {iconWidth:icon.width, iconX:icon.x, labelX:label.x, numberX:number.x, shadow:cs.boxShadow, border:cs.borderBottomWidth, radius:cs.borderRadius};
+  });
+  expect(style.iconWidth).toBe(isMobile?28:32);
+  expect(style.iconX).toBeLessThan(style.labelX);
+  expect(style.labelX).toBeLessThan(style.numberX);
+  expect(style.shadow).toBe('none');
+  expect(style.radius).toBe('0px');
+  expect(style.border).toBe('1px');
+  await milk.click();
+  await expect(page.locator('#order-history-section')).toBeVisible();
+  await expect(page.locator('#order-history-list')).toContainText('Milch × 2');
+  await expect(page.locator('#order-history-list')).not.toContainText('Individueller Testartikel');
+});
