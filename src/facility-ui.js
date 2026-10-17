@@ -43,7 +43,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
   '#bestelluebersicht','#leerungsuebersicht'
  ]);
  document.addEventListener('click',event=>{
-  if(!window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches||event.defaultPrevented)return;
+  if(!window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)').matches||event.defaultPrevented)return;
   if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
   const link=event.target.closest?.('a[href^="#"]');
   if(!link)return;
@@ -64,7 +64,7 @@ window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
    horizontales Wischen navigiert genau eine Hierarchieebene zurueck.
    Kein popstate-Umschreiben: das hatte Klicks und Browser-History zerstoert. */
 (function(){
- const mobile=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)');
+ const mobile=window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)');
  const parent={
   '#muellentsorgung':'#start',
   '#entsorgungsuebersicht':'#start',
@@ -168,7 +168,7 @@ window.addEventListener('pageshow',()=>{
  }
  function reset(){tracking=false;distance=0;visual(0);}
  document.addEventListener('touchstart',event=>{
-  if(refreshing||event.touches.length!==1||!matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches)return;
+  if(refreshing||event.touches.length!==1||!matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)').matches)return;
   if(event.target.closest('input,textarea,select,[contenteditable],dialog,[role="dialog"],.modal,.popup,#profile-popup'))return;
   if(!top())return;
   initialX=event.touches[0].clientX;initialY=event.touches[0].clientY;distance=0;tracking=true;
@@ -208,7 +208,7 @@ window.addEventListener('pageshow',()=>{
  const main=shop?.querySelector(':scope > main');
  const controls=shop?.querySelector('.mobile-sticky-controls');
  if(!shop||!main||!controls)return;
- const mobile=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)');
+ const mobile=window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)');
  const hiddenClass='facility-shop-controls-hidden';
  let lastScroll=0,scrollTravel=0,scrollDirection=0;
 
@@ -350,7 +350,7 @@ window.addEventListener('pageshow',()=>{
  const nav=document.getElementById('facility-home-nav');
  const shop=document.getElementById('shop-view');
  if(!nav||!shop)return;
- const media=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)');
+ const media=window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)');
  const views=['home-view','waste-view','overview-menu-view','order-overview-view','waste-overview-view']
   .map(id=>document.getElementById(id)).filter(Boolean);
  const hiddenClass='facility-bottom-nav-hidden';
@@ -418,7 +418,7 @@ window.addEventListener('pageshow',()=>{
  const link=document.querySelector('.mobile-back-to-shop');
  if(!main||!link)return;
  const active=()=>document.body.classList.contains('mobile-cart-view')&&
-   !shop.hidden&&window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches;
+   !shop.hidden&&window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)').matches;
  let last=0,travel=0,dir=0,touchY=null,touchX=null;
  function show(){link.classList.remove('cart-back-hidden');}
  function hide(){link.classList.add('cart-back-hidden');}
@@ -515,7 +515,7 @@ window.addEventListener('pageshow',()=>{
  const before=panel?.querySelector('label[for="order-dept-filter"]');
  if(!select||!panel||!slot||!label)return;
  function syncMonthPosition(){
-  const mobile=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches;
+  const mobile=window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)').matches;
   if(mobile){
    if(label.parentElement!==slot)slot.append(label,select);
   }else if(label.parentElement!==panel){
