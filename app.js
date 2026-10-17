@@ -285,7 +285,7 @@ shopSuggestionPanel.id='shop-search-suggestions';
 shopSuggestionPanel.hidden=true;
 $('products').before(shopSuggestionPanel);
 function renderShopSearchSuggestions(matching){
- const mobile=window.matchMedia('(max-width:720px)').matches;
+ const mobile=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches;
  const typed=searchInput.value.trim().toLocaleLowerCase('de');
  const list=mobile&&typed.length>=2
   ? PRODUCTS.filter(p=>p.name.toLocaleLowerCase('de').includes(typed))
@@ -376,7 +376,7 @@ function resetCustomEntryScroll(){
 }
 function syncMobileShopView(){
   const isCart=window.location.hash==='#warenkorb';
-  const mobile=window.matchMedia('(max-width: 720px)').matches;
+  const mobile=window.matchMedia('(max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse)').matches;
   const isCustom=window.location.hash==='#sonderartikel';
   document.body.classList.toggle('mobile-cart-view',mobile&&isCart);
   document.body.classList.toggle('custom-entry-view',isCustom);
