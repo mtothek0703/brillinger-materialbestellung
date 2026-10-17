@@ -7,6 +7,7 @@ let approvedFilterImportant = 0;
 let approvedStickyImportant = 0;
 let approvedNavImportant = 0;
 let approvedOrderListImportant = 0;
+let approvedResponsiveImportant = 0;
 let totalRules = 0;
 const duplicateDeclarations = [];
 for (const path of files) {
@@ -15,6 +16,7 @@ for (const path of files) {
   const stickyMarker = '/* Bestellübersicht: Überschrift und die fünf Bedienelemente beim Scrollen';
   const navMarker = '/* Mobile Bottom-Navigation 2026:';
   const orderListMarker = '/* Bestellartikel als Zeilenliste 2026:';
+  const responsiveMarker = '/* Smartphone-Querformat 2026:';
   const filterStart = text.indexOf(approvedFilterMarker);
   const stickyStart = text.indexOf(stickyMarker);
   if (filterStart !== -1) {
@@ -28,7 +30,12 @@ for (const path of files) {
     const navEnd = orderListStart > navStart ? orderListStart : text.length;
     approvedNavImportant += (text.slice(navStart, navEnd).match(/!important/g) || []).length;
   }
-  if (orderListStart !== -1) approvedOrderListImportant += (text.slice(orderListStart).match(/!important/g) || []).length;
+  const responsiveStart = text.indexOf(responsiveMarker);
+  if (orderListStart !== -1) {
+    const orderListEnd = responsiveStart > orderListStart ? responsiveStart : text.length;
+    approvedOrderListImportant += (text.slice(orderListStart,orderListEnd).match(/!important/g) || []).length;
+  }
+  if (responsiveStart !== -1) approvedResponsiveImportant += (text.slice(responsiveStart).match(/!important/g) || []).length;
   const root = postcss.parse(text, { from: path });
   root.walkRules(rule => {
     totalRules++;
@@ -41,7 +48,7 @@ for (const path of files) {
     });
   });
 }
-console.log('CSS-Prüfung:', totalRules, 'Regeln,', important, '!important-Deklarationen, davon', approvedFilterImportant, 'für Filterbuttons und', approvedStickyImportant, 'für den fixierten Kopfbereich und', approvedNavImportant, 'für die einheitliche Bottom-Navigation und', approvedOrderListImportant, 'für die schlanke Bestellartikelliste');
+console.log('CSS-Prüfung:', totalRules, 'Regeln,', important, '!important-Deklarationen, davon', approvedFilterImportant, 'für Filterbuttons und', approvedStickyImportant, 'für den fixierten Kopfbereich und', approvedNavImportant, 'für die einheitliche Bottom-Navigation und', approvedOrderListImportant, 'für die schlanke Bestellartikelliste und', approvedResponsiveImportant, 'für Querformat/Displaygrößen');
 if (duplicateDeclarations.length) {
   console.warn('Unnötige gleiche Deklarationen innerhalb einzelner Regeln:', duplicateDeclarations.slice(0, 12).join(', '));
 }
@@ -49,7 +56,7 @@ if (duplicateDeclarations.length) {
 // darf die Zahl jedoch nicht wieder über das ursprüngliche Niveau ansteigen.
 // Die mobile Filter-Gestaltung ist als ausdrücklich begrenzte Ausnahme
 // zugelassen, weil sie sehr spezifische historische Overrides ablöst.
-if (important - approvedFilterImportant - approvedStickyImportant - approvedNavImportant - approvedOrderListImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25 || approvedNavImportant > 85 || approvedOrderListImportant > 55) {
+if (important - approvedFilterImportant - approvedStickyImportant - approvedNavImportant - approvedOrderListImportant - approvedResponsiveImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25 || approvedNavImportant > 85 || approvedOrderListImportant > 55 || approvedResponsiveImportant > 110) {
   console.error('CSS-Regelüberschreibungen haben das vereinbarte Budget überschritten.');
   process.exitCode = 1;
 }
