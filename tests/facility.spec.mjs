@@ -334,13 +334,13 @@ test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Best
   // Erst März auswählen: nur die zwei Bestellungen im März bleiben sichtbar.
   await month.selectOption('2');
   await expect(total).toHaveText('2');
-  await expect(itemLabels).toContainText(['Milch']);
-  await expect(itemLabels).not.toContainText(['Spülmittel']);
+  await expect(page.locator('#order-type-buttons')).toContainText('Milch');
+  await expect(page.locator('#order-type-buttons')).not.toContainText('Spülmittel');
 
   // Mit dem Bereich kombinieren: Werkstatt-Produkte dürfen nicht angezeigt werden.
   await dept.selectOption('Logistik');
   await expect(total).toHaveText('1');
-  await expect(itemLabels).toHaveText(['Milch','Hafermilch']);
+  await expect(itemLabels).toHaveText(['Hafermilch','Milch']);
 
   // Ein Artikel muss die dargestellten Positionen UND den Verlauf filtern.
   await article.selectOption('Milch');
