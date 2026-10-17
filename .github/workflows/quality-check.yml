@@ -1,0 +1,29 @@
+name: Quality check
+on:
+  push:
+    branches: [main, modernisierung-ux-ui-code-20261016]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: facility-quality-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npm run test:syntax
+      - run: npm run test:css
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-failures
+          path: test-results/
+          retention-days: 7

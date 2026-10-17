@@ -1,0 +1,51 @@
+/* Gemeinsame Gestaltungsregeln fuer alle Ansichten.
+   Neue Komponenten sollen diese Variablen nutzen statt Einzelwerte zu kopieren. */
+:root{
+ --fm-brand:#1d439b;
+ --fm-brand-dark:#102a7c;
+ --fm-surface:#fff;
+ --fm-background:#f3f6f8;
+ --fm-text:#183143;
+ --fm-muted:#657a8b;
+ --fm-border:#d7e4ed;
+ --fm-radius-small:10px;
+ --fm-radius-card:16px;
+ --fm-focus:#1d439b;
+ --fm-nav-label-size:13px;
+ --fm-nav-label-weight:700;
+ --fm-tap-target:44px;
+}
+/* Einheitlicher Fokus, auch per externer Tastatur. */
+#facility-home-nav :is(a,button):focus-visible,
+#home-view .home-tiles a:focus-visible,
+#waste-view .waste-option:focus-visible,
+#overview-menu-view .waste-option:focus-visible,
+#shop-view .primary:focus-visible,
+#shop-view .category-button:focus-visible,
+#order-overview-view button:focus-visible,
+#waste-overview-view button:focus-visible{
+ outline:3px solid var(--fm-focus)!important;
+ outline-offset:3px!important;
+}
+/* Navigationsbeschriftungen: dieselbe Typografie auf jeder mobilen Seite. */
+@media(max-width:720px){
+ html body #facility-home-nav > a[href="#start"] > strong,
+ html body #facility-home-nav > #facility-back-nav > span,
+ html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
+ html body #facility-home-nav > #facility-profile-slot > .facility-profile-label{
+  font-family:inherit!important;
+  font-size:var(--fm-nav-label-size)!important;
+  font-weight:var(--fm-nav-label-weight)!important;
+  line-height:1.2!important;
+  text-align:center!important;
+  letter-spacing:0!important;
+  white-space:nowrap!important;
+ }
+ #facility-home-nav :is(a,button){touch-action:manipulation}
+}
+@media(prefers-reduced-motion:reduce){
+ #facility-home-nav *,#shop-view .product,#home-view .home-tiles a{
+  transition-duration:0.01ms!important;
+  animation-duration:0.01ms!important;
+ }
+}

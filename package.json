@@ -1,0 +1,15 @@
+{
+  "name": "brillinger-facility-management",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:syntax": "node --check app.js && node --check src/facility-core.js && node --check src/facility-waste-stats.js && node --check src/facility-order-stats.js && node --check src/facility-ui.js",
+    "test:css": "node scripts/audit-css.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "postcss": "^8.5.6"
+  }
+}
