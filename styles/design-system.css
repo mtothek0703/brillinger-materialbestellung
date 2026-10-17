@@ -282,7 +282,7 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
 
 /* Smartphone-Querformat 2026: kurze Displayhoehe darf die App nicht in
    Desktop-Ansicht verwandeln oder den Inhalt unter festen Kopfzeilen verstecken. */
-@media (min-width:721px) and (max-width:1100px) and (max-height:550px){
+@media (max-width:1100px) and (max-height:550px){
  html, html body{
   width:100%!important;
   max-width:100%!important;
@@ -435,7 +435,7 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
 
 /* Kurzdisplay: feste Shop-Kopfzeile muss genau einmal Platz belegen.
    Hohe Spezifitaet neutralisiert alte Tablet/Desktop-Hoehenregeln. */
-@media (min-width:721px) and (max-width:1100px) and (max-height:550px){
+@media (max-width:1100px) and (max-height:550px){
  html body:not(.mobile-cart-view):not(.custom-entry-view) #shop-view:not([hidden]){
   display:flex!important;
   flex-direction:column!important;
