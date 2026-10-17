@@ -563,18 +563,15 @@ $('request-custom-product').addEventListener('click',async()=>{
  const previousText=button.textContent;
  button.textContent='Wird erfasst…';
  try{
-  // Identische gesicherte Bestell-Warteschlange samt Spam-Schutz und Sammelversand.
-  // Als Artikelwunsch markieren, damit der Einkauf ihn klar unterscheiden kann.
-  const item={name:'ARTIKELWUNSCH: '+name,quantity:amount,
-   orderNote:[details?'Weitere Angaben: '+details:'',productUrl?'Produktlink: '+productUrl:''].filter(Boolean).join(' | ')};
-  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-send-mail',{
+  // Artikelwünsche getrennt von Warenkorb-Bestellungen direkt an den Einkauf senden.
+  // So entstehen für Artikelwünsche keine Einträge in der Bestellstatistik.
+  const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-article-wish',{
    method:'POST',headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({id:crypto.randomUUID(),typ:'bestellung',name:customer,site,department,
-    items:[item],note:'Artikelwunsch zur Aufnahme in den internen Bestellshop – keine direkte Bestellung.'})
+   body:JSON.stringify({name,amount,details,productUrl,customer,site,department})
   });
   const result=await response.json();
   if(!response.ok||result.success!==true)throw new Error(result.error||'Artikelwunsch konnte nicht erfasst werden.');
-  notify('Artikelwunsch erfasst');
+  notify('Artikelwunsch angefragt. Die Anfrage wurde an den Einkauf gesendet.');
   $('custom-product-form').reset();
   $('custom-product-amount').value='1';
   for(const field of ['custom-product-name','custom-product-details']){
