@@ -450,7 +450,15 @@ test('Smartphone Hoch- und Querformat: Navigation und Scrollfenster bleiben nutz
     expect(homeMetrics.navBottom).toBeLessThanOrEqual(size.height+3);
     expect(homeMetrics.docWidth).toBeLessThanOrEqual(homeMetrics.viewportWidth+3);
     expect(homeMetrics.tileWidth).toBeGreaterThan(65);
-    if (compactLandscape) expect(homeMetrics.headerHeight).toBeLessThanOrEqual(74);
+    if (compactLandscape) {
+      const diagnostic=await page.evaluate(() => ({
+        window:[innerWidth,innerHeight],
+        compact:matchMedia('(min-width:721px) and (max-width:1100px) and (max-height:550px)').matches,
+        links:[...document.querySelectorAll('link[rel="stylesheet"]')].map(l=>({path:l.getAttribute('href'),loaded:Boolean(l.sheet)})),
+        headerStyle:getComputedStyle(document.getElementById('facility-blue-header')).height
+      }));
+      expect(homeMetrics.headerHeight,JSON.stringify(diagnostic)).toBeLessThanOrEqual(74);
+    }
 
     await page.goto('/#shop', {waitUntil:'domcontentloaded'});
     await expect(nav).toBeVisible();
