@@ -424,3 +424,62 @@ test('Bestellübersicht: kleine Shopbilder vor jedem Artikel, weiterhin Textlist
   await expect(page.locator('#order-history-list')).toContainText('Milch × 2');
   await expect(page.locator('#order-history-list')).not.toContainText('Individueller Testartikel');
 });
+
+
+test('Smartphone Hoch- und Querformat: Navigation und Scrollfenster bleiben nutzbar', async ({ page, isMobile }) => {
+  if (!isMobile) return;
+  // Verschiedene Gerätegrößen und ein Wechsel der Ausrichtung im selben App-Lauf.
+  const original=page.viewportSize();
+  const sizes=[original];
+  if (original.width < original.height) sizes.push({width:original.height,height:original.width});
+  for (const size of sizes) {
+    await page.setViewportSize(size);
+    const compactLandscape=size.width>size.height && size.height<=550;
+    await page.goto('/#start', {waitUntil:'domcontentloaded'});
+    const nav=page.locator('#facility-home-nav');
+    await expect(nav).toBeVisible();
+    const home=page.locator('#home-view');
+    await expect(home).toBeVisible();
+    await expect(home.locator('.home-tiles a')).toHaveCount(3);
+    const homeMetrics=await page.evaluate(() => {
+      const nav=document.getElementById('facility-home-nav').getBoundingClientRect();
+      const header=document.getElementById('facility-blue-header').getBoundingClientRect();
+      const tile=document.querySelector('#home-view .home-tiles a').getBoundingClientRect();
+      return {navBottom:nav.bottom,headerHeight:header.height,tileWidth:tile.width,docWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth};
+    });
+    expect(homeMetrics.navBottom).toBeLessThanOrEqual(size.height+3);
+    expect(homeMetrics.docWidth).toBeLessThanOrEqual(homeMetrics.viewportWidth+3);
+    expect(homeMetrics.tileWidth).toBeGreaterThan(65);
+    if (compactLandscape) expect(homeMetrics.headerHeight).toBeLessThanOrEqual(74);
+
+    await page.goto('/#shop', {waitUntil:'domcontentloaded'});
+    await expect(nav).toBeVisible();
+    const shop=page.locator('#shop-view');
+    await expect(shop).toBeVisible();
+    const shopMetrics=await page.evaluate(() => {
+      const header=document.querySelector('#shop-view > header').getBoundingClientRect();
+      const main=document.querySelector('#shop-view > main').getBoundingClientRect();
+      const nav=document.getElementById('facility-home-nav').getBoundingClientRect();
+      const controls=document.querySelector('#shop-view > .mobile-sticky-controls').getBoundingClientRect();
+      return {headerHeight:header.height,mainHeight:main.height,controlsHeight:controls.height,navWidth:nav.width,docWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth};
+    });
+    expect(shopMetrics.navWidth).toBeGreaterThan(size.width-20);
+    expect(shopMetrics.docWidth).toBeLessThanOrEqual(shopMetrics.viewportWidth+3);
+    expect(shopMetrics.mainHeight).toBeGreaterThan(45);
+    if (compactLandscape) expect(shopMetrics.headerHeight).toBeLessThanOrEqual(68);
+
+    await page.goto('/#bestelluebersicht', {waitUntil:'domcontentloaded'});
+    await expect(page.locator('#order-overview-view')).toBeVisible();
+    await expect(page.locator('#order-month-filter')).toBeVisible();
+    await expect(page.locator('#order-article-filter')).toBeVisible();
+    const order=await page.evaluate(() => {
+      const view=document.getElementById('order-overview-view').getBoundingClientRect();
+      const header=document.getElementById('facility-blue-header').getBoundingClientRect();
+      return {height:view.height,headerHeight:header.height,width:view.width,docWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth};
+    });
+    expect(order.height).toBeGreaterThan(100);
+    expect(order.width).toBeLessThanOrEqual(size.width+3);
+    expect(order.docWidth).toBeLessThanOrEqual(order.viewportWidth+3);
+    if(compactLandscape) expect(order.headerHeight).toBeLessThanOrEqual(74);
+  }
+});
