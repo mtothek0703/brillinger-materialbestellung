@@ -303,3 +303,80 @@ test('Bestellübersicht zeigt Artikel als Textzeilen mit Trennlinien ohne Kachel
   expect(Math.abs(first.y + first.height - second.y)).toBeLessThan(2);
   expect(Math.abs(first.width - second.width)).toBeLessThan(2);
 });
+
+
+test('Bestellübersicht: kombinierte Filter zeigen ausschließlich passende Bestellungen und Artikel', async ({ page }) => {
+  const year = new Date().getFullYear();
+  const orders = [
+    { date: `${year}-03-15T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:2},{name:'Hafermilch',quantity:1}] },
+    { date: `${year}-03-16T11:00:00Z`, department:'Werkstatt', items:[{name:'Milch',quantity:3},{name:'Glasreiniger',quantity:1}] },
+    { date: `${year}-04-12T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:1},{name:'Spülmittel',quantity:2}] },
+    { date: `${year}-04-17T11:00:00Z`, department:'Logistik', items:[{name:'Glasreiniger',quantity:2}] },
+    { date: `${year-1}-03-15T11:00:00Z`, department:'Logistik', items:[{name:'Milch',quantity:9},{name:'Rohrreiniger',quantity:1}] }
+  ];
+  await page.route('**/rest/v1/rpc/facility_statistics_summary', route => route.fulfill({
+    status:200,
+    contentType:'application/json',
+    headers:{'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type,apikey,authorization'},
+    body:JSON.stringify({ orders, waste:[] })
+  }));
+  await page.goto('/#bestelluebersicht', { waitUntil:'domcontentloaded' });
+  const yearLabel = page.locator('#order-selected-year');
+  const total = page.locator('#order-count');
+  const month = page.locator('#order-month-filter');
+  const dept = page.locator('#order-dept-filter');
+  const article = page.locator('#order-article-filter');
+  const itemLabels = page.locator('#order-type-buttons .pickup-type-label');
+  await expect(yearLabel).toHaveText(String(year));
+  await expect(total).toHaveText('4');
+  await expect(itemLabels).toHaveCount(4);
+
+  // Erst März auswählen: nur die zwei Bestellungen im März bleiben sichtbar.
+  await month.selectOption('2');
+  await expect(total).toHaveText('2');
+  await expect(itemLabels).toContainText(['Milch']);
+  await expect(itemLabels).not.toContainText(['Spülmittel']);
+
+  // Mit dem Bereich kombinieren: Werkstatt-Produkte dürfen nicht angezeigt werden.
+  await dept.selectOption('Logistik');
+  await expect(total).toHaveText('1');
+  await expect(itemLabels).toHaveText(['Milch','Hafermilch']);
+
+  // Ein Artikel muss die dargestellten Positionen UND den Verlauf filtern.
+  await article.selectOption('Milch');
+  await expect(total).toHaveText('1');
+  await expect(itemLabels).toHaveText(['Milch']);
+  await page.locator('#order-type-buttons .pickup-type-button').click();
+  await expect(page.locator('#order-history-list .pickup-row')).toHaveCount(1);
+  await expect(page.locator('#order-history-list')).toContainText('Milch × 2');
+  await expect(page.locator('#order-history-list')).not.toContainText('Hafermilch');
+  await page.locator('#order-history-close').click();
+
+  // Beim Jahreswechsel müssen Monat, Bereich und Artikel erhalten bleiben.
+  await page.locator('#order-year-prev').click();
+  await expect(yearLabel).toHaveText(String(year-1));
+  await expect(month).toHaveValue('2');
+  await expect(dept).toHaveValue('Logistik');
+  await expect(article).toHaveValue('Milch');
+  await expect(total).toHaveText('1');
+  await expect(itemLabels).toHaveText(['Milch']);
+
+  // Leere Schnittmenge: keine anderen Artikel als Ersatz anzeigen.
+  await month.selectOption('3');
+  await expect(total).toHaveText('0');
+  await expect(itemLabels).toHaveCount(0);
+  await expect(page.locator('#order-type-buttons')).toContainText('Keine Bestellungen für die ausgewählten Filter');
+  await expect(dept).toHaveValue('Logistik');
+  await expect(article).toHaveValue('Milch');
+
+  await page.locator('#order-year-next').click();
+  await expect(total).toHaveText('1');
+  await expect(itemLabels).toHaveText(['Milch']);
+  await page.locator('#order-filter-reset').click();
+  await expect(yearLabel).toHaveText(String(year));
+  await expect(month).toHaveValue('all');
+  await expect(dept).toHaveValue('all');
+  await expect(article).toHaveValue('all');
+  await expect(total).toHaveText('4');
+  await expect(itemLabels).toHaveCount(4);
+});
