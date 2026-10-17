@@ -28,7 +28,7 @@
  outline-offset:3px!important;
 }
 /* Navigationsbeschriftungen: dieselbe Typografie auf jeder mobilen Seite. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #facility-home-nav > a[href="#start"] > strong,
  html body #facility-home-nav > #facility-back-nav > span,
  html body #facility-home-nav > #facility-search-toggle > .facility-search-label,
@@ -53,7 +53,7 @@
 
 /* Mobile Bottom-Navigation 2026: vier identische Navigationsfelder.
    Gemeinsame Maße statt der älteren seitenabhängigen Korrekturregeln. */
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  :root{
   --fm-nav-label-size:clamp(11px,3.25vw,12px);
   --fm-nav-icon-size:28px;
@@ -225,7 +225,7 @@ html body #order-overview-view #order-type-buttons > .pickup-type-button:hover{
  background:transparent!important;
  box-shadow:none!important;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-type-buttons > .pickup-type-button{
   min-height:52px!important;
   padding:12px 2px!important;
@@ -266,7 +266,7 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
  flex:1 1 auto;
  overflow-wrap:anywhere;
 }
-@media(max-width:720px){
+@media (max-width:720px), (orientation:landscape) and (max-height:550px) and (max-width:1100px) and (pointer:coarse){
  html body #order-overview-view #order-type-buttons .order-article-thumb{
   flex-basis:28px;
   width:28px;
