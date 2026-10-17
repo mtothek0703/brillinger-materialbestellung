@@ -95,28 +95,33 @@ test('Warenkorb bleibt nach Aktualisieren erhalten', async ({ page, isMobile }) 
 });
 
 test('Bestellvorschlag liefert korrekte Bestätigung ohne echten Versand', async ({ page, isMobile }) => {
-  let received = null;
-  await page.route('**/functions/v1/facility-send-mail', async route => {
-    const cors = {
-      'access-control-allow-origin': '*',
-      'access-control-allow-methods': 'POST, OPTIONS',
-      'access-control-allow-headers': 'content-type,apikey,authorization'
-    };
-    if (route.request().method() === 'OPTIONS') {
-      await route.fulfill({ status: 204, headers: cors });
-      return;
-    }
-    received = route.request().postDataJSON();
-    await route.fulfill({ status: 202, headers: cors, contentType: 'application/json', body: '{"success":true,"queued":true}' });
-  });
   await page.locator('#home-view a[href="#shop"]').click();
   if (isMobile) await page.locator('#facility-search-toggle').click();
   await page.locator('#article-search').fill('Hafermilch');
   await page.locator('#products .product button[data-add]').first().click();
   if (isMobile) await page.goto('/#warenkorb', { waitUntil: 'domcontentloaded' });
   else await page.locator('#shop-view > header .cart-link').click();
+
+  // Nur im Test die konkrete Versandfunktion abfangen. Ein echtes HTTP-Mocking
+  // externer URLs fuehrt in WebKit teils zu "Load failed" vor der Antwort.
+  // Der Aufruf, die Payload und der Bestellabschluss bleiben voll testbar.
+  await page.evaluate(() => {
+    const originalFetch = window.fetch.bind(window);
+    window.__facilityTestOrderPayload = null;
+    window.fetch = (resource, options) => {
+      if (String(resource).includes('/functions/v1/facility-send-mail')) {
+        window.__facilityTestOrderPayload = JSON.parse(options.body);
+        return Promise.resolve(new Response('{"success":true,"queued":true}', {
+          status: 202,
+          headers: { 'content-type': 'application/json' }
+        }));
+      }
+      return originalFetch(resource, options);
+    };
+  });
   await page.locator('#order-button').click();
   await expect(page.locator('#feedback')).toContainText('Bestellvorschlag erfasst');
+  const received = await page.evaluate(() => window.__facilityTestOrderPayload);
   expect(received?.typ).toBe('bestellung');
   expect(received?.items?.some(item => /Hafermilch/i.test(item.name))).toBeTruthy();
 });
