@@ -231,3 +231,50 @@ html body #order-overview-view #order-type-buttons > .pickup-type-button:hover{
   padding:12px 2px!important;
  }
 }
+
+
+/* Kleine Artikelbilder in der Bestellübersicht; Zeilen und Trennlinien bleiben. */
+html body #order-overview-view #order-type-buttons > .pickup-type-button > .order-article-main{
+ display:flex;
+ align-items:center;
+ gap:11px;
+ min-width:0;
+ flex:1 1 auto;
+}
+html body #order-overview-view #order-type-buttons .order-article-thumb{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ flex:0 0 32px;
+ width:32px;
+ height:32px;
+ min-width:32px;
+ line-height:1;
+ font-size:23px;
+ background:transparent;
+ overflow:hidden;
+}
+html body #order-overview-view #order-type-buttons .order-article-thumb img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ border-radius:3px;
+}
+html body #order-overview-view #order-type-buttons .order-article-main > .pickup-type-label{
+ min-width:0;
+ flex:1 1 auto;
+ overflow-wrap:anywhere;
+}
+@media(max-width:720px){
+ html body #order-overview-view #order-type-buttons .order-article-thumb{
+  flex-basis:28px;
+  width:28px;
+  height:28px;
+  min-width:28px;
+  font-size:21px;
+ }
+ html body #order-overview-view #order-type-buttons > .pickup-type-button > .order-article-main{
+  gap:10px;
+ }
+}
