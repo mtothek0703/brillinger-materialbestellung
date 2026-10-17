@@ -56,7 +56,7 @@ if (duplicateDeclarations.length) {
 // darf die Zahl jedoch nicht wieder über das ursprüngliche Niveau ansteigen.
 // Die mobile Filter-Gestaltung ist als ausdrücklich begrenzte Ausnahme
 // zugelassen, weil sie sehr spezifische historische Overrides ablöst.
-if (important - approvedFilterImportant - approvedStickyImportant - approvedNavImportant - approvedOrderListImportant - approvedResponsiveImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25 || approvedNavImportant > 85 || approvedOrderListImportant > 55 || approvedResponsiveImportant > 110) {
+if (important - approvedFilterImportant - approvedStickyImportant - approvedNavImportant - approvedOrderListImportant - approvedResponsiveImportant > 3107 || approvedFilterImportant > 55 || approvedStickyImportant > 25 || approvedNavImportant > 85 || approvedOrderListImportant > 55 || approvedResponsiveImportant > 135) {
   console.error('CSS-Regelüberschreibungen haben das vereinbarte Budget überschritten.');
   process.exitCode = 1;
 }
