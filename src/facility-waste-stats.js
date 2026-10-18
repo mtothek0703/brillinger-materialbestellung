@@ -46,8 +46,12 @@ function getRequests(){
   const legacy=JSON.parse(localStorage.getItem(legacyRequestStorageKey)||'[]');
   if(Array.isArray(legacy))entries.push(...legacy.filter(v=>typeof v==='string'&&!isNaN(Date.parse(v))).map(date=>({date,type:'Restmüll'})));
  }catch(e){console.warn('Alte Restmüllanforderungen konnten nicht gelesen werden',e);}
- if(sharedFacilityStatsReady&&Array.isArray(sharedFacilityStats.waste)
-  &&sharedFacilityStats.waste.length>0)return sharedFacilityStats.waste;
+ if(sharedFacilityStatsReady&&Array.isArray(sharedFacilityStats.waste)){
+  // Die zentrale Statistik und bestaetigte lokale Leerungen zusammen anzeigen.
+  const all=[...sharedFacilityStats.waste,...entries];
+  const seen=new Set();
+  return all.filter(v=>{const key=String(v?.id||'')||[v?.date,v?.type,v?.site].join('|');if(seen.has(key))return false;seen.add(key);return true;});
+ }
  return entries;
 }
 let selectedPickupYear=new Date().getFullYear();
