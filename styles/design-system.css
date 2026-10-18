@@ -756,3 +756,10 @@ html body #waste-overview-view #pickup-types .waste-no-results{
   overflow-x:clip!important;overflow-y:visible!important;
  }
 }
+
+/* Entsorgungs-Kacheln sind Schaltflaechen fuer den direkten Versand. */
+html body #waste-view button.waste-option{
+ appearance:none;-webkit-appearance:none;font:inherit;
+ width:100%;text-align:left;cursor:pointer;
+}
+html body #waste-view button.waste-option[aria-busy="true"]{opacity:.75;cursor:progress;}
