@@ -10,7 +10,7 @@ document.getElementById('profile-form').addEventListener('submit',e=>{e.preventD
 document.getElementById('profile-back').addEventListener('click',()=>{if(!saved())return;pop.hidden=true;pop.style.display='none';});
 edit.addEventListener('click',open);
 const p=saved();if(p){apply(p);edit.hidden=false}else open();
-window.addEventListener('pageshow',()=>{apply(saved());updateWasteEmails()});
+window.addEventListener('pageshow',()=>{apply(saved());});
 })();
 
 
