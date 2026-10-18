@@ -50,12 +50,17 @@ let selectedPickupYear=new Date().getFullYear();
 let selectedPickupType=null;
 let selectedWasteMonth='all';
 let selectedWasteSite='all';
+let selectedWasteType='all';
+const wasteTypeSymbols={
+ 'Restmüll':'🗑️','Kartonagen':'📦','Elektroschrott':'🔌','Holz':'🪵','Metallschrott':'🔩'
+};
 function closePickupHistory(){
  document.getElementById('pickup-history-section').hidden=true;
  document.getElementById('pickup-history-backdrop').hidden=true;
  document.body.classList.remove('pickup-history-open');
 }
-function openPickupHistory(){
+function openPickupHistory(type=null){
+ selectedPickupType=type;
  renderRequests();
  document.getElementById('pickup-history-section').hidden=false;
  document.getElementById('pickup-history-backdrop').hidden=false;
@@ -67,53 +72,74 @@ document.getElementById('pickup-history-backdrop').addEventListener('click',clos
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.body.classList.contains('pickup-history-open'))closePickupHistory();});
 window.addEventListener('hashchange',closePickupHistory);
 function renderRequests(){
- const allEntries=getRequests();
+ const allEntries=getRequests().filter(v=>v&&v.date&&!isNaN(Date.parse(v.date)));
  const months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
  const monthSelect=document.getElementById('waste-month-filter');
  monthSelect.replaceChildren(new Option('Alle Monate','all'),...months.map((name,i)=>new Option(name,String(i))));
  monthSelect.value=selectedWasteMonth;
  const siteSelect=document.getElementById('waste-site-filter');
- const sites=[...new Set(['Handwerkerpark 25','Kirchentellinsfurt',...allEntries.map(v=>String(v.site||'').trim()).filter(Boolean)])].sort((a,b)=>a.localeCompare(b,'de'));
+ const sites=[...new Set(['Handwerkerpark 25','Kirchentellinsfurt',...allEntries.map(v=>String(v.site||'').trim()).filter(Boolean),...(selectedWasteSite!=='all'?[selectedWasteSite]:[])])].sort((a,b)=>a.localeCompare(b,'de'));
  siteSelect.replaceChildren(new Option('Alle Standorte','all'),...sites.map(site=>new Option(site,site)));
- if(selectedWasteSite!=='all'&&!sites.includes(selectedWasteSite))selectedWasteSite='all';
  siteSelect.value=selectedWasteSite;
- const entries=allEntries.filter(v=>new Date(v.date).getFullYear()===selectedPickupYear&&(selectedWasteMonth==='all'||String(new Date(v.date).getMonth())===selectedWasteMonth)&&(selectedWasteSite==='all'||String(v.site||'').trim()===selectedWasteSite)).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
+ const typeSelect=document.getElementById('waste-type-filter');
+ const typeNames=wasteTypes.map(([,name])=>name);
+ typeSelect.replaceChildren(new Option('Alle Arten','all'),...typeNames.map(name=>new Option(name,name)));
+ if(selectedWasteType!=='all'&&!typeNames.includes(selectedWasteType))selectedWasteType='all';
+ typeSelect.value=selectedWasteType;
+ // Jahr, Monat, Standort und Entsorgungsart filtern dieselben Leerungsdaten.
+ const entries=allEntries.filter(v=>
+  new Date(v.date).getFullYear()===selectedPickupYear&&
+  (selectedWasteMonth==='all'||String(new Date(v.date).getMonth())===selectedWasteMonth)&&
+  (selectedWasteSite==='all'||String(v.site||'').trim()===selectedWasteSite)&&
+  (selectedWasteType==='all'||v.type===selectedWasteType)
+ ).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
  document.getElementById('pickup-selected-year').textContent=String(selectedPickupYear);
- document.getElementById('pickup-total').textContent=entries.length;
+ document.getElementById('pickup-total').textContent=String(entries.length);
  const types=document.getElementById('pickup-types');types.replaceChildren();
- wasteTypes.forEach(([,name])=>{
+ const ranked=typeNames.map(name=>({name,count:entries.filter(v=>v.type===name).length}))
+  .filter(item=>item.count>0 || (selectedWasteMonth==='all'&&selectedWasteSite==='all'&&selectedWasteType==='all'))
+  .sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'de'));
+ if(!ranked.length){
+  const empty=document.createElement('p');empty.className='waste-no-results';
+  empty.textContent='Keine Leerungen für die ausgewählten Filter.';
+  types.appendChild(empty);
+ }
+ ranked.forEach(item=>{
   const row=document.createElement('button');row.type='button';row.className='pickup-row pickup-type-button';
-  row.setAttribute('aria-pressed',String(selectedPickupType===name));
-  const label=document.createElement('span');label.className='pickup-type-label';label.textContent=name;
-  const amount=entries.filter(v=>v.type===name).length;
-  const count=document.createElement('strong');count.textContent=String(amount)+' ›';
-  row.append(label,count);
-  row.addEventListener('click',()=>{
-   selectedPickupType=name;
-   openPickupHistory();
-  });
+  const main=document.createElement('span');main.className='order-article-main';
+  const thumb=document.createElement('span');thumb.className='order-article-thumb';thumb.setAttribute('aria-hidden','true');
+  thumb.textContent=wasteTypeSymbols[item.name]||'♻️';
+  const label=document.createElement('span');label.className='pickup-type-label';label.textContent=item.name;
+  main.append(thumb,label);
+  const count=document.createElement('strong');count.textContent=item.count+' ›';
+  row.append(main,count);
+  row.addEventListener('click',()=>openPickupHistory(item.name));
   types.appendChild(row);
  });
  const list=document.getElementById('pickup-list');list.replaceChildren();
- const history=document.getElementById('pickup-history-title');
- history.textContent=selectedPickupType?'Leerungsverlauf: '+selectedPickupType:'Leerungsverlauf';
- const filtered=selectedPickupType?entries.filter(v=>v.type===selectedPickupType):entries;
- if(!filtered.length){const empty=document.createElement('p');empty.textContent='Für '+(selectedPickupType||'die Entsorgung')+' wurden '+selectedPickupYear+' noch keine Anforderungen erfasst.';list.appendChild(empty);return;}
- filtered.forEach(value=>{
+ const historyType=selectedPickupType||(selectedWasteType==='all'?null:selectedWasteType);
+ document.getElementById('pickup-history-title').textContent=historyType?'Leerungsverlauf: '+historyType:'Leerungsverlauf: Alle Leerungen';
+ const historyEntries=historyType?entries.filter(v=>v.type===historyType):entries;
+ if(!historyEntries.length){
+  const empty=document.createElement('p');empty.textContent='Keine Leerungen für die ausgewählten Filter.';
+  list.appendChild(empty);
+ }
+ historyEntries.forEach(value=>{
   const row=document.createElement('div');row.className='pickup-row';
-  const label=document.createElement('span');label.textContent=value.type+(value.site?' · '+value.site:'')+' · '+new Date(value.date).toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'short'});
-  row.appendChild(label);list.appendChild(row);
+  const date=document.createElement('strong');date.textContent=new Date(value.date).toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'short'});
+  const details=document.createElement('span');details.textContent=value.type+(value.site?' · '+value.site:'');
+  row.append(date,details);list.appendChild(row);
  });
 }
 document.getElementById('waste-month-filter').addEventListener('change',event=>{selectedWasteMonth=event.target.value;renderRequests();});
 document.getElementById('waste-site-filter').addEventListener('change',event=>{selectedWasteSite=event.target.value;renderRequests();});
-document.getElementById('waste-filter-reset').addEventListener('click',()=>{selectedWasteMonth='all';selectedWasteSite='all';renderRequests();});
-document.getElementById('pickup-all-history').addEventListener('click',()=>{
- selectedPickupType=null;
- openPickupHistory();
-});
+document.getElementById('waste-type-filter').addEventListener('change',event=>{selectedWasteType=event.target.value;renderRequests();});
+document.getElementById('waste-filter-reset').addEventListener('click',()=>{selectedWasteMonth='all';selectedWasteSite='all';selectedWasteType='all';renderRequests();});
+document.getElementById('pickup-all-history').addEventListener('click',()=>openPickupHistory(null));
 document.getElementById('pickup-year-prev').addEventListener('click',()=>{selectedPickupYear--;renderRequests();});
 document.getElementById('pickup-year-next').addEventListener('click',()=>{selectedPickupYear++;renderRequests();});
+window.addEventListener('storage',event=>{if([requestStorageKey,legacyRequestStorageKey].includes(event.key))renderRequests();});
+window.addEventListener('pageshow',renderRequests);
 /* Sichtbare Statusmeldung fuer Entsorgungsanforderungen */
 const wasteStatusDialog=document.createElement('dialog');
 wasteStatusDialog.id='waste-status-dialog';
