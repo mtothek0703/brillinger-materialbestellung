@@ -34,7 +34,9 @@ window.addEventListener('focus',refreshFacilityStatsIfVisible);
 setInterval(refreshFacilityStatsIfVisible,30000);
 if(facilityStatsViews.includes(location.hash))setTimeout(refreshFacilityStatsIfVisible,0);
 function getRequests(){
- if(sharedFacilityStatsReady)return sharedFacilityStats.waste;
+ // Eine leere zentrale Statistik darf lokal erfasste Leerungen
+ // nicht ausblenden. Eine nichtleere zentrale Liste hat Vorrang,
+ // damit dieselben Leerungen nicht doppelt gezählt werden.
  let entries=[];
  try{
   const values=JSON.parse(localStorage.getItem(requestStorageKey)||'[]');
@@ -44,6 +46,8 @@ function getRequests(){
   const legacy=JSON.parse(localStorage.getItem(legacyRequestStorageKey)||'[]');
   if(Array.isArray(legacy))entries.push(...legacy.filter(v=>typeof v==='string'&&!isNaN(Date.parse(v))).map(date=>({date,type:'Restmüll'})));
  }catch(e){console.warn('Alte Restmüllanforderungen konnten nicht gelesen werden',e);}
+ if(sharedFacilityStatsReady&&Array.isArray(sharedFacilityStats.waste)
+  &&sharedFacilityStats.waste.length>0)return sharedFacilityStats.waste;
  return entries;
 }
 let selectedPickupYear=new Date().getFullYear();
@@ -95,12 +99,15 @@ function renderRequests(){
  ).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
  document.getElementById('pickup-selected-year').textContent=String(selectedPickupYear);
  const types=document.getElementById('pickup-types');types.replaceChildren();
+ // Auch ohne aktive Dropdown-Filter nur Leerungsarten mit Treffern anzeigen.
  const ranked=typeNames.map(name=>({name,count:entries.filter(v=>v.type===name).length}))
-  .filter(item=>item.count>0 || (selectedWasteMonth==='all'&&selectedWasteSite==='all'&&selectedWasteType==='all'))
+  .filter(item=>item.count>0)
   .sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name,'de'));
  if(!ranked.length){
   const empty=document.createElement('p');empty.className='waste-no-results';
-  empty.textContent='Keine Leerungen für die ausgewählten Filter.';
+  empty.textContent=selectedWasteMonth!=='all'||selectedWasteSite!=='all'||selectedWasteType!=='all'
+   ?'Keine Leerungen für die ausgewählten Filter.'
+   :'Für '+selectedPickupYear+' wurden noch keine Leerungen erfasst.';
   types.appendChild(empty);
  }
  ranked.forEach(item=>{
