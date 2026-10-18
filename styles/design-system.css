@@ -512,3 +512,266 @@ html body #order-overview-view #order-type-buttons .order-article-main > .pickup
   top:0!important;
  }
 }
+
+/* Leerungsuebersicht - Paritaet mit Bestelluebersicht (2026-10-18).
+   Diese gezielten Regeln haben Vorrang vor den alten Leerungskacheln. */
+html body #waste-overview-view:not([hidden]) > .order-sticky-tools{
+ position:sticky!important;
+ top:174px!important;
+ z-index:450!important;
+ width:100%!important;
+ min-width:0!important;
+ box-sizing:border-box!important;
+ padding:4px 0 10px!important;
+ background:#f4f7fb!important;
+ isolation:isolate;
+}
+html body #waste-overview-view .order-sticky-tools > h1{
+ margin:4px 0 12px!important;
+}
+html body #waste-overview-view .order-sticky-tools > .pickup-top-row{
+ display:grid!important;
+ grid-template-columns:minmax(0,390px) minmax(0,1fr)!important;
+ gap:14px!important;
+ align-items:stretch!important;
+ margin:16px 0 24px!important;
+}
+html body #waste-overview-view .pickup-top-row .pickup-year-selector{
+ width:100%!important;max-width:none!important;min-width:0!important;
+ margin:0!important;box-sizing:border-box!important;
+}
+html body #waste-overview-view .pickup-top-row #pickup-all-history{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:12px!important;min-height:68px!important;margin:0!important;
+ padding:15px 18px!important;border:1px solid #d7e4ed!important;
+ border-radius:16px!important;background:#fff!important;
+ box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
+ color:#163747!important;font-size:17px!important;font-weight:650!important;
+}
+html body #waste-overview-view #pickup-all-history strong{
+ margin-left:auto!important;padding:8px 13px!important;
+ border-radius:11px!important;background:#edf5fa!important;
+ color:#005c80!important;font-size:22px!important;
+}
+html body #waste-overview-view #pickup-all-history>span{
+ color:#005c80!important;font-size:26px!important;
+}
+html body #waste-overview-view #waste-mobile-month-slot{
+ display:none!important;
+}
+html body #waste-overview-view .order-sticky-tools > .waste-filter-wrap{
+ position:static!important;top:auto!important;z-index:auto!important;
+ margin:0 0 22px!important;padding:0!important;
+}
+html body #waste-overview-view #waste-filter-panel{
+ position:relative!important;
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ column-gap:12px!important;row-gap:8px!important;
+ align-items:stretch!important;
+ min-width:0!important;
+ margin:0!important;padding:0!important;
+ background:transparent!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+}
+html body #waste-overview-view #waste-filter-panel label{
+ font-size:14px!important;font-weight:650!important;
+ color:#153443!important;align-self:end!important;margin:0!important;
+}
+html body #waste-overview-view #waste-filter-panel label[for="waste-month-filter"]{
+ grid-column:1!important;grid-row:1!important;
+}
+html body #waste-overview-view #waste-filter-panel label[for="waste-site-filter"]{
+ grid-column:2!important;grid-row:1!important;
+}
+html body #waste-overview-view #waste-filter-panel label[for="waste-type-filter"]{
+ grid-column:3!important;grid-row:1!important;
+}
+html body #waste-overview-view #waste-filter-panel select#waste-month-filter{
+ grid-column:1!important;grid-row:2!important;
+}
+html body #waste-overview-view #waste-filter-panel select#waste-site-filter{
+ grid-column:2!important;grid-row:2!important;
+}
+html body #waste-overview-view #waste-filter-panel select#waste-type-filter{
+ grid-column:3!important;grid-row:2!important;
+}
+html body #waste-overview-view #waste-filter-panel select{
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ min-height:42px!important;height:42px!important;
+ padding:8px!important;border:1px solid #cddde7!important;
+ border-radius:9px!important;background:#fff!important;
+ color:#153443!important;font-family:inherit!important;font-size:15px!important;
+}
+html body #waste-overview-view #waste-filter-panel #waste-filter-reset{
+ grid-column:1/-1!important;grid-row:3!important;justify-self:end!important;
+ min-height:42px!important;margin:0!important;
+ padding:9px 13px!important;border-radius:9px!important;
+}
+html body #waste-overview-view #pickup-types{
+ display:flex!important;flex-direction:column!important;
+ grid-template-columns:none!important;
+ gap:0!important;margin:12px 0 28px!important;padding:0!important;
+ background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ grid-template-columns:none!important;gap:12px!important;
+ width:100%!important;min-height:56px!important;margin:0!important;
+ padding:12px 4px!important;
+ background:#fff!important;border:0!important;
+ border-bottom:1px solid #d7e4ed!important;border-radius:0!important;
+ box-shadow:none!important;transform:none!important;
+ color:#153443!important;font:inherit!important;font-size:16px!important;
+ font-weight:600!important;line-height:1.35!important;text-align:left!important;cursor:pointer!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button:last-child{
+ border-bottom:0!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button:hover{
+ background:#fff!important;border-color:#d7e4ed!important;
+ box-shadow:none!important;transform:none!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button .order-article-main{
+ display:flex!important;align-items:center!important;
+ gap:11px!important;min-width:0!important;flex:1 1 auto!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button .order-article-thumb{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 32px!important;width:32px!important;height:32px!important;
+ min-width:32px!important;line-height:1!important;font-size:23px!important;
+ background:transparent!important;overflow:hidden!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button .pickup-type-label{
+ display:block!important;flex:1 1 auto!important;min-width:0!important;
+ overflow-wrap:anywhere!important;color:#153443!important;
+}
+html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button > strong{
+ display:block!important;flex:0 0 auto!important;min-width:0!important;
+ margin-left:auto!important;padding:0!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;color:#005c80!important;
+ font-size:16px!important;font-weight:700!important;line-height:1.35!important;
+ white-space:nowrap!important;
+}
+html body #waste-overview-view #pickup-list .pickup-row{
+ display:flex!important;flex-direction:column!important;
+ align-items:flex-start!important;gap:6px!important;
+}
+html body #waste-overview-view #pickup-types .waste-no-results{
+ padding:12px 4px!important;color:#607480!important;
+}
+@media (max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px){
+ html body #waste-overview-view:not([hidden]) > .order-sticky-tools{
+  top:0!important;padding:4px 0 10px!important;
+ }
+ html body #waste-overview-view:not([hidden]) .order-sticky-tools > h1{
+  font-size:24px!important;line-height:normal!important;
+  font-weight:700!important;color:#153443!important;margin:3px 0!important;
+ }
+ html body #waste-overview-view .order-sticky-tools > .pickup-top-row{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:8px!important;row-gap:0!important;
+  margin:12px 0!important;
+ }
+ html body #waste-overview-view .pickup-top-row .pickup-year-selector{
+  min-height:62px!important;padding:6px 8px!important;
+  gap:4px!important;border-radius:12px!important;
+ }
+ html body #waste-overview-view .pickup-top-row .pickup-year-selector button{
+  flex-shrink:0!important;width:44px!important;min-width:44px!important;
+  height:48px!important;font-size:34px!important;line-height:1!important;padding:0!important;
+ }
+ html body #waste-overview-view .pickup-top-row .pickup-year-selector strong{
+  min-width:0!important;font-size:18px!important;font-weight:650!important;line-height:1.1!important;
+ }
+ html body #waste-overview-view #pickup-all-history{
+  display:none!important;
+ }
+ html body #waste-overview-view #waste-mobile-month-slot{
+  display:flex!important;grid-column:2!important;grid-row:1!important;
+  flex-direction:column!important;align-items:stretch!important;justify-content:center!important;
+  min-width:0!important;width:100%!important;height:100%!important;box-sizing:border-box!important;
+  gap:0!important;padding:0!important;background:transparent!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+ }
+ html body #waste-overview-view #waste-mobile-month-slot label{
+  display:none!important;
+ }
+ html body #waste-overview-view #waste-mobile-month-slot select#waste-month-filter{
+  width:100%!important;max-width:100%!important;height:100%!important;min-height:62px!important;
+  padding:10px 12px!important;border:1px solid #cddde7!important;
+  border-radius:10px!important;background:#fff!important;color:#153443!important;
+  font:inherit!important;font-size:18px!important;font-weight:650!important;line-height:1.2!important;
+  text-align:center!important;text-align-last:center!important;touch-action:manipulation;
+ }
+ html body #waste-overview-view .order-sticky-tools > .waste-filter-wrap{
+  position:static!important;top:auto!important;margin:0!important;
+ }
+ html body #waste-overview-view #waste-filter-panel{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:clamp(6px,2vw,12px)!important;row-gap:8px!important;
+  align-items:stretch!important;margin:0!important;padding:0!important;
+ }
+ html body #waste-overview-view #waste-filter-panel label[for="waste-site-filter"],
+ html body #waste-overview-view #waste-filter-panel label[for="waste-type-filter"]{
+  position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;
+  clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;
+ }
+ html body #waste-overview-view #waste-filter-panel select#waste-site-filter,
+ html body #waste-overview-view #waste-filter-panel select#waste-type-filter{
+  display:block!important;min-width:0!important;width:100%!important;
+  max-width:100%!important;min-height:62px!important;height:62px!important;
+  padding:10px 8px!important;border:1px solid #cddde7!important;
+  border-radius:10px!important;background:#fff!important;color:#153443!important;
+  font-family:inherit!important;font-size:clamp(14px,4.2vw,18px)!important;
+  font-weight:650!important;line-height:1.2!important;text-overflow:ellipsis!important;
+  text-align:center!important;text-align-last:center!important;touch-action:manipulation;
+ }
+ html body #waste-overview-view #waste-filter-panel select#waste-site-filter{
+  grid-column:1!important;grid-row:1!important;
+ }
+ html body #waste-overview-view #waste-filter-panel select#waste-type-filter{
+  grid-column:2!important;grid-row:1!important;
+ }
+ html body #waste-overview-view #waste-filter-panel #waste-filter-reset{
+  grid-column:1/-1!important;grid-row:2!important;
+  justify-self:end!important;width:auto!important;margin:0!important;
+  min-height:42px!important;padding:9px 13px!important;font-size:14px!important;
+ }
+ html body #waste-overview-view #pickup-types > .pickup-row.pickup-type-button{
+  min-height:52px!important;padding:12px 2px!important;
+ }
+ html body #waste-overview-view #pickup-types .order-article-thumb{
+  flex-basis:28px!important;width:28px!important;min-width:28px!important;
+  height:28px!important;font-size:21px!important;
+ }
+ html body #waste-overview-view #pickup-types .order-article-main{
+  gap:10px!important;
+ }
+}
+@media (max-width:359px) and (orientation:portrait){
+ html body #waste-overview-view #waste-filter-panel,
+ html body #waste-overview-view .pickup-top-row{
+  min-width:0!important;
+ }
+ html body #waste-overview-view .pickup-top-row .pickup-year-selector button{
+  width:36px!important;min-width:36px!important;
+ }
+ html body #waste-overview-view .pickup-top-row .pickup-year-selector strong{
+  font-size:17px!important;
+ }
+}
+@media (max-width:1100px) and (max-height:550px){
+ html body #waste-overview-view:not([hidden]) > .order-sticky-tools{
+  top:0!important;padding-top:3px!important;
+ }
+}
+@media (min-width:721px){
+ html body:has(#waste-overview-view:not([hidden])):not(.pickup-history-open){
+  overflow-x:clip!important;overflow-y:visible!important;
+ }
+}
