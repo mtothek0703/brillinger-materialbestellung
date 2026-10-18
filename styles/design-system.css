@@ -763,3 +763,24 @@ html body #waste-view button.waste-option{
  width:100%;text-align:left;cursor:pointer;
 }
 html body #waste-view button.waste-option[aria-busy="true"]{opacity:.75;cursor:progress;}
+
+/* Artikel nicht gefunden: keine Shop-Kategorien und keine leere Filterzone.
+   Hohe Spezifitaet uebersteuert die spaeteren Smartphone- und Suchregeln.
+   Auf Artikelsuche und Warenkorb bleibt die Leiste unveraendert. */
+html body.custom-entry-view #shop-view:not([hidden]) > .mobile-sticky-controls,
+html body.custom-entry-view #shop-view:not([hidden]) > main > .mobile-sticky-controls {
+ display:none!important;
+ visibility:hidden!important;
+ height:0!important;
+ min-height:0!important;
+ max-height:0!important;
+ padding:0!important;
+ margin:0!important;
+ border:0!important;
+ overflow:hidden!important;
+ pointer-events:none!important;
+}
+html body.custom-entry-view #shop-view:not([hidden]) .mobile-sticky-controls .category-nav,
+html body.custom-entry-view #shop-view:not([hidden]) .mobile-sticky-controls .category-filters {
+ display:none!important;
+}
