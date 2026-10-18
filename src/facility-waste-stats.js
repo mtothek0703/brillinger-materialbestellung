@@ -94,7 +94,6 @@ function renderRequests(){
   (selectedWasteType==='all'||v.type===selectedWasteType)
  ).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
  document.getElementById('pickup-selected-year').textContent=String(selectedPickupYear);
- document.getElementById('pickup-total').textContent=String(entries.length);
  const types=document.getElementById('pickup-types');types.replaceChildren();
  const ranked=typeNames.map(name=>({name,count:entries.filter(v=>v.type===name).length}))
   .filter(item=>item.count>0 || (selectedWasteMonth==='all'&&selectedWasteSite==='all'&&selectedWasteType==='all'))
@@ -135,7 +134,6 @@ document.getElementById('waste-month-filter').addEventListener('change',event=>{
 document.getElementById('waste-site-filter').addEventListener('change',event=>{selectedWasteSite=event.target.value;renderRequests();});
 document.getElementById('waste-type-filter').addEventListener('change',event=>{selectedWasteType=event.target.value;renderRequests();});
 document.getElementById('waste-filter-reset').addEventListener('click',()=>{selectedWasteMonth='all';selectedWasteSite='all';selectedWasteType='all';renderRequests();});
-document.getElementById('pickup-all-history').addEventListener('click',()=>openPickupHistory(null));
 document.getElementById('pickup-year-prev').addEventListener('click',()=>{selectedPickupYear--;renderRequests();});
 document.getElementById('pickup-year-next').addEventListener('click',()=>{selectedPickupYear++;renderRequests();});
 window.addEventListener('storage',event=>{if([requestStorageKey,legacyRequestStorageKey].includes(event.key))renderRequests();});
