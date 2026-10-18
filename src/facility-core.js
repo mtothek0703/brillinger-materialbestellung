@@ -301,6 +301,7 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
    dass weiterhin dasselbe Bestellformular abgeschickt wird. */
 (function(){
  const button=document.getElementById('order-button');
+ const clear=document.getElementById('clear-cart-button');
  const form=document.getElementById('order-form');
  const nav=document.getElementById('facility-home-nav');
  if(!button||!form||!nav)return;
@@ -309,14 +310,16 @@ document.querySelectorAll('.home-tiles a').forEach(link=>{
  function sync(){
   const show=mobile.matches&&document.body.classList.contains('mobile-cart-view');
   if(show){
+   if(clear&&clear.parentElement!==document.body)document.body.appendChild(clear);
    if(button.parentElement!==document.body)document.body.appendChild(button);
    const rect=nav.getBoundingClientRect();
    const below=Math.max(0,window.innerHeight-rect.top);
    const bottom=Math.max(68,Math.min(180,Math.ceil(below+10)))+'px';
    if(document.documentElement.style.getPropertyValue('--mobile-order-bottom')!==bottom)
     document.documentElement.style.setProperty('--mobile-order-bottom',bottom);
-  }else if(button.parentElement!==form){
-   form.appendChild(button);
+  }else{
+   if(clear&&clear.parentElement!==form)form.appendChild(clear);
+   if(button.parentElement!==form)form.appendChild(button);
   }
  }
  function later(){requestAnimationFrame(sync)}
