@@ -526,3 +526,25 @@ window.addEventListener('pageshow',()=>{
  syncMonthPosition();
  window.addEventListener('resize',syncMonthPosition,{passive:true});
 })();
+
+/* Leerungen: derselbe Monatsfilter-Wechsel zwischen Desktop und Smartphone
+   wie in der Bestellübersicht. Das Select selbst bleibt mitsamt Auswahl erhalten. */
+(function(){
+ const select=document.getElementById('waste-month-filter');
+ const panel=document.getElementById('waste-filter-panel');
+ const slot=document.getElementById('waste-mobile-month-slot');
+ const label=panel?.querySelector('label[for="waste-month-filter"]');
+ const before=panel?.querySelector('label[for="waste-site-filter"]');
+ if(!select||!panel||!slot||!label)return;
+ function syncWasteMonthPosition(){
+  const mobile=window.matchMedia('(max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px)').matches;
+  if(mobile){
+   if(label.parentElement!==slot)slot.append(label,select);
+  }else if(label.parentElement!==panel){
+   panel.insertBefore(label,before||null);
+   panel.insertBefore(select,before||null);
+  }
+ }
+ syncWasteMonthPosition();
+ window.addEventListener('resize',syncWasteMonthPosition,{passive:true});
+})();
