@@ -531,30 +531,14 @@ html body #waste-overview-view .order-sticky-tools > h1{
 }
 html body #waste-overview-view .order-sticky-tools > .pickup-top-row{
  display:grid!important;
- grid-template-columns:minmax(0,390px) minmax(0,1fr)!important;
- gap:14px!important;
+ grid-template-columns:minmax(0,390px)!important;
+ gap:0!important;
  align-items:stretch!important;
  margin:16px 0 24px!important;
 }
 html body #waste-overview-view .pickup-top-row .pickup-year-selector{
  width:100%!important;max-width:none!important;min-width:0!important;
  margin:0!important;box-sizing:border-box!important;
-}
-html body #waste-overview-view .pickup-top-row #pickup-all-history{
- display:flex!important;align-items:center!important;justify-content:space-between!important;
- gap:12px!important;min-height:68px!important;margin:0!important;
- padding:15px 18px!important;border:1px solid #d7e4ed!important;
- border-radius:16px!important;background:#fff!important;
- box-shadow:0 5px 18px rgba(18,48,69,.07)!important;
- color:#163747!important;font-size:17px!important;font-weight:650!important;
-}
-html body #waste-overview-view #pickup-all-history strong{
- margin-left:auto!important;padding:8px 13px!important;
- border-radius:11px!important;background:#edf5fa!important;
- color:#005c80!important;font-size:22px!important;
-}
-html body #waste-overview-view #pickup-all-history>span{
- color:#005c80!important;font-size:26px!important;
 }
 html body #waste-overview-view #waste-mobile-month-slot{
  display:none!important;
@@ -685,9 +669,6 @@ html body #waste-overview-view #pickup-types .waste-no-results{
  }
  html body #waste-overview-view .pickup-top-row .pickup-year-selector strong{
   min-width:0!important;font-size:18px!important;font-weight:650!important;line-height:1.1!important;
- }
- html body #waste-overview-view #pickup-all-history{
-  display:none!important;
  }
  html body #waste-overview-view #waste-mobile-month-slot{
   display:flex!important;grid-column:2!important;grid-row:1!important;
