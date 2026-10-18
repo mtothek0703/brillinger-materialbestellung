@@ -160,41 +160,40 @@ wasteStatusDialog.querySelector('#waste-status-close').addEventListener('click',
 function showWasteStatus(ok,message){
  wasteStatusDialog.querySelector('#waste-status-icon').textContent=ok?'✓':'!';
  wasteStatusDialog.querySelector('#waste-status-icon').style.color=ok?'#15803d':'#b45309';
- wasteStatusDialog.querySelector('#waste-status-title').textContent=ok?'Anforderung erfolgreich versendet':'Anforderung nicht versendet';
- wasteStatusDialog.querySelector('#waste-status-description').textContent=message;
+ wasteStatusDialog.querySelector('#waste-status-title').textContent=ok?'Leerung angemeldet':'Anforderung fehlgeschlagen';
+ wasteStatusDialog.querySelector('#waste-status-description').textContent=ok?'':message;
  if(!wasteStatusDialog.open)wasteStatusDialog.showModal();
 }
-/* Mailvorlage für Restmüll und Kartonagen richtet sich beim Klick nach dem Profilstandort. */
-for (const wasteId of ['waste-rest','waste-paper']) {
- const link=document.getElementById(wasteId);
- if (!link) continue;
- const baseHref=link.getAttribute('href');
- link.addEventListener('click',()=>{
-  let profile=null;
-  try { profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null'); } catch {}
-  const isHwp=String(profile?.site||'').trim()==='Handwerkerpark 25';
-  const targetAddress=isHwp
-   ? 'Orthopädie Brillinger GmbH\r\nHandwerkerpark 25\r\n72070 Tübingen'
-   : 'Orthopädie Brillinger GmbH\r\nEinhornstraße 10\r\n72138 Kirchentellinsfurt';
-  const q=baseHref.indexOf('?');
-  const params=new URLSearchParams(baseHref.slice(q+1).replaceAll('&amp;','&'));
-  let body=params.get('body')||'';
-  body=body.replace(/Orthopädie Brillinger GmbH\s*(?:Einhornstraße 10\s*72138 Kirchentellinsfurt|Handwerkerpark 25\s*72070 Tübingen)/,targetAddress);
-  params.set('body',body);
-  link.setAttribute('href',baseHref.slice(0,q+1)+'subject='+encodeURIComponent(params.get('subject')||'')+'&body='+encodeURIComponent(body));
- });
-}
-/* Am Handwerkerpark 25 sind diese drei Entsorgungsarten nicht verfügbar. */
-for (const wasteId of ['waste-electronics','waste-wood','waste-metal']) {
- const link=document.getElementById(wasteId);
- if (!link) continue;
- link.addEventListener('click',(event)=>{
-  let profile=null;
-  try { profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null'); } catch {}
-  if (String(profile?.site||'').trim()!=='Handwerkerpark 25') return;
+/* Entsorgung direkt absenden und nur nach bestaetigtem Versand zaehlen. */
+let wasteSending=false;
+for(const [wasteId,type] of wasteTypes){
+ const el=document.getElementById(wasteId);
+ if(!el)continue;
+ el.addEventListener('click',async event=>{
   event.preventDefault();
-  showWasteStatus(false,'Diese Entsorgungsart ist am Standort Handwerkerpark 25 nicht möglich.');
- });
+  if(wasteSending)return;
+  let profile;
+  try{profile=JSON.parse(localStorage.getItem('facility-employee-profile-v1')||'null');}catch{}
+  const name=String(profile?.name||'').trim();
+  const site=String(profile?.site||'').trim();
+  const department=String(profile?.dept||'').trim();
+  if(!name||!site||!department){showWasteStatus(false,'Bitte Name, Standort und Bereich im Profil speichern.');return;}
+  if(site==='Handwerkerpark 25'&&!['Restmüll','Kartonagen'].includes(type)){
+   showWasteStatus(false,'Diese Entsorgungsart ist am Handwerkerpark 25 nicht möglich.');return;
+  }
+  wasteSending=true;
+  el.setAttribute('aria-busy','true');
+  try{
+   const response=await fetch('https://xiiaklqnchmtbmgtijxo.supabase.co/functions/v1/facility-send-mail',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({id:crypto.randomUUID(),typ:'leerung',name,site,department,wasteType:type})
+   });
+   const result=await response.json();
+   if(!response.ok||result.success!==true)throw Error(result.error||'Anmeldung fehlgeschlagen.');
+   await loadSharedFacilityStats();
+   showWasteStatus(true,'Leerung angemeldet');
+  }catch(error){showWasteStatus(false,error?.message||'Anmeldung fehlgeschlagen.');}
+  finally{wasteSending=false;el.removeAttribute('aria-busy');}
+ },{capture:true});
 }
-/* Testphase: Vorbereitete Mailto-Links bleiben klickbar; keine Supabase-Leerungsübermittlung. */
 renderRequests();
