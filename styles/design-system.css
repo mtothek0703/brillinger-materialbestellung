@@ -784,3 +784,23 @@ html body.custom-entry-view #shop-view:not([hidden]) .mobile-sticky-controls .ca
 html body.custom-entry-view #shop-view:not([hidden]) .mobile-sticky-controls .category-filters {
  display:none!important;
 }
+
+/* Warenkorb auf Smartphones: keine leere Kategorien-/Suchleiste.
+   Die Steuerleiste wurde in #shop-view verschoben und blieb wegen
+   spezifischerer Desktop-/Mobile-Regeln als leerer Balken sichtbar. */
+@media (max-width:720px), (min-width:721px) and (max-width:1100px) and (max-height:550px){
+ html body.mobile-cart-view #shop-view:not([hidden]) > .mobile-sticky-controls,
+ html body.mobile-cart-view #shop-view:not([hidden]) > main > .mobile-sticky-controls{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+ }
+}
