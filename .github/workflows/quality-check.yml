@@ -2,7 +2,13 @@ name: Quality check
 on:
   push:
     branches: [main, modernisierung-ux-ui-code-20261016]
+    paths-ignore:
+      - '**/*.md'
+      - '.github/workflows/cleanup-artifacts.yml'
   pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - '.github/workflows/cleanup-artifacts.yml'
   workflow_dispatch:
 concurrency:
   group: facility-quality-${{ github.event.pull_request.head.ref || github.ref_name }}
